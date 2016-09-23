@@ -58,9 +58,7 @@ tag_svn_revision = 1&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Whenever you want to build a stable release (without any &amp;ldquo;dev&amp;rdquo; tags), just set the key to empty in your &lt;code&gt;setup.cfg&lt;/code&gt;, like this:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;[egg_info]
-tag_build =&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;You may find a working example in &lt;a href="https://github.com/logc/pyhello"&gt;this repository&lt;/a&gt;&lt;/p&gt;&lt;/html&gt;</content></entry>
+tag_build =&lt;/code&gt;&lt;/pre&gt;&lt;/html&gt;</content></entry>
  <entry>
   <title type="text">Instalar Python 2.7 y NumPy sobre RedHat 6</title>
   <link rel="alternate" href="http://logc.github.io/blog/2013/12/04/instalar-python-2-7-y-numpy-sobre-redhat-6/?utm_source=python&amp;utm_medium=Atom" />
