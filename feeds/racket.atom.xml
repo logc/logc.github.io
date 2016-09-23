@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?> 
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+ <title type="text">logc io: Posts tagged 'racket'</title>
+ <link rel="self" href="http://logc.github.io/feeds/racket.atom.xml" />
+ <link href="http://logc.github.io/tags/racket.html" />
+ <id>urn:http-logc-github-io:-tags-racket-html</id>
+ <updated>2016-09-23T19:48:27Z</updated>
+ <entry>
+  <title type="text">Racket and vim-syntastic</title>
+  <link rel="alternate" href="http://logc.github.io/blog/2016/09/23/racket-and-vim-syntastic/?utm_source=racket&amp;utm_medium=Atom" />
+  <id>urn:http-logc-github-io:-blog-2016-09-23-racket-and-vim-syntastic</id>
+  <published>2016-09-23T19:48:27Z</published>
+  <updated>2016-09-23T19:48:27Z</updated>
+  <author>
+   <name>logc</name></author>
+  <content type="html">&lt;html&gt;
+&lt;p&gt;The current Syntastic checker for Racket syntax in Vim is the &lt;code&gt;racket&lt;/code&gt; executable itself. This means that the current buffer is executed by Racket whenever it is checked for syntax, and this can have unintended consequences, or enter an infinite loop if you happen to open the wrong file.&lt;/p&gt;
+
+&lt;p&gt;In order to just get the syntax errors, add this to your &lt;code&gt;.vimrc&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;let g:syntastic_racket_racket_args="--load"&lt;/code&gt;&lt;/pre&gt;&lt;/html&gt;</content></entry></feed>
