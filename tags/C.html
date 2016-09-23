@@ -106,92 +106,9 @@
   </header>
 
 <p>This is the standard example for MapReduce applications, counting the words in a file. Note that this snippet is not threaded nor distributed. It is just a curiosity: how to implement the same in C++, using the STL to avoid having any <code>for</code> loop!</p>
-
-<div class="brush: c++">
- <div class="source">
-  <pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;fstream&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;numeric&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;sstream&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;vector&gt;</span><span class="cp"></span>
-
-<span class="k">using</span> <span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="p">;</span>
-<span class="k">using</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">;</span>
-<span class="k">using</span> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="p">;</span>
-<span class="k">using</span> <span class="n">std</span><span class="o">::</span><span class="n">istringstream</span><span class="p">;</span>
-<span class="k">using</span> <span class="n">std</span><span class="o">::</span><span class="n">istream_iterator</span><span class="p">;</span>
-
-
-<span class="n">vector</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span> <span class="n">split_at_whitespace</span><span class="p">(</span><span class="n">string</span> <span class="n">line</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="n">istringstream</span> <span class="n">iss</span><span class="p">(</span><span class="n">line</span><span class="p">);</span>
-    <span class="n">vector</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span> <span class="n">tokens</span><span class="p">{</span>
-        <span class="n">istream_iterator</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span><span class="p">{</span><span class="n">iss</span><span class="p">},</span>
-        <span class="n">istream_iterator</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span><span class="p">{}};</span>
-    <span class="k">return</span> <span class="n">tokens</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="n">vector</span><span class="o">&lt;</span> <span class="n">pair</span><span class="o">&lt;</span><span class="n">string</span><span class="p">,</span> <span class="kt">int</span><span class="o">&gt;</span> <span class="o">&gt;</span> <span class="n">map</span><span class="p">(</span><span class="n">string</span> <span class="n">line</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="n">vector</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span> <span class="n">tokens</span> <span class="o">=</span> <span class="n">split_at_whitespace</span><span class="p">(</span><span class="n">line</span><span class="p">);</span>
-    <span class="n">vector</span><span class="o">&lt;</span> <span class="n">pair</span><span class="o">&lt;</span><span class="n">string</span><span class="p">,</span> <span class="kt">int</span><span class="o">&gt;</span> <span class="o">&gt;</span> <span class="n">current_outputs</span><span class="p">(</span><span class="n">tokens</span><span class="p">.</span><span class="n">size</span><span class="p">());</span>
-    <span class="n">std</span><span class="o">::</span><span class="n">transform</span><span class="p">(</span>
-        <span class="n">tokens</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">tokens</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="n">current_outputs</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span>
-        <span class="p">[]</span> <span class="p">(</span><span class="k">const</span> <span class="n">string</span> <span class="n">output</span><span class="p">)</span> <span class="p">{</span>
-            <span class="k">return</span> <span class="n">std</span><span class="o">::</span><span class="n">make_pair</span><span class="p">(</span><span class="n">output</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
-        <span class="p">});</span>
-    <span class="k">return</span> <span class="n">current_outputs</span><span class="p">;</span>
-<span class="p">}</span>
-
-<span class="kt">int</span> <span class="n">reduce</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span> <span class="n">pair</span><span class="o">&lt;</span><span class="n">string</span><span class="p">,</span> <span class="kt">int</span><span class="o">&gt;</span> <span class="o">&gt;</span> <span class="n">outputs</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="k">return</span> <span class="n">std</span><span class="o">::</span><span class="n">accumulate</span><span class="p">(</span>
-        <span class="n">outputs</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">outputs</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="mf">0.0</span><span class="p">,</span>
-        <span class="p">[]</span> <span class="p">(</span><span class="kt">int</span> <span class="n">sum</span><span class="p">,</span> <span class="k">const</span> <span class="n">pair</span><span class="o">&lt;</span><span class="n">string</span><span class="p">,</span> <span class="kt">int</span><span class="o">&gt;</span> <span class="n">output</span><span class="p">)</span> <span class="p">{</span>
-                <span class="k">return</span> <span class="n">sum</span> <span class="o">+</span> <span class="n">output</span><span class="p">.</span><span class="n">second</span><span class="p">;</span>
-            <span class="p">});</span>
-<span class="p">}</span>
-
-<span class="kt">int</span> <span class="n">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span>
-<span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">argc</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Usage: "</span> <span class="o">&lt;&lt;</span> <span class="n">argv</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="s">" infile"</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-        <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
-    <span class="p">}</span>
-
-    <span class="n">string</span> <span class="n">filename</span> <span class="o">=</span> <span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
-    <span class="n">std</span><span class="o">::</span><span class="n">ifstream</span> <span class="n">infile</span><span class="p">(</span><span class="n">filename</span><span class="p">);</span>
-    <span class="n">string</span> <span class="n">line</span><span class="p">;</span>
-    <span class="n">vector</span><span class="o">&lt;</span> <span class="n">pair</span><span class="o">&lt;</span><span class="n">string</span><span class="p">,</span> <span class="kt">int</span><span class="o">&gt;</span> <span class="o">&gt;</span> <span class="n">occurences</span><span class="p">;</span>
-    <span class="k">while</span> <span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">getline</span><span class="p">(</span><span class="n">infile</span><span class="p">,</span> <span class="n">line</span><span class="p">))</span> <span class="p">{</span>
-        <span class="k">auto</span> <span class="n">line_occurences</span> <span class="o">=</span> <span class="n">map</span><span class="p">(</span><span class="n">line</span><span class="p">);</span>
-        <span class="n">occurences</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span>
-            <span class="n">occurences</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="n">line_occurences</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">line_occurences</span><span class="p">.</span><span class="n">end</span><span class="p">());</span>
-    <span class="p">}</span>
-    <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="n">reduce</span><span class="p">(</span><span class="n">occurences</span><span class="p">);</span>
-    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"File "</span> <span class="o">&lt;&lt;</span> <span class="n">filename</span> <span class="o">&lt;&lt;</span> <span class="s">" holds "</span> <span class="o">&lt;&lt;</span> <span class="n">n</span> <span class="o">&lt;&lt;</span> <span class="s">" words"</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span>
-</pre></div>
-
-</div>
-
-<p>Compile and run:</p>
-
-<div class="brush: console">
- <div class="source">
-  <pre><span></span><span class="gp">$</span> cat <span class="s">&lt;&lt; EOF &gt; sample.txt</span>
-<span class="gp">&gt;</span><span class="s"> This is a first line</span>
-<span class="gp">&gt;</span><span class="s"> This is a second line</span>
-<span class="gp">&gt;</span><span class="s"> EOF</span>
-
-<span class="gp">$</span> c++ main.cpp -o wordcount -std<span class="o">=</span>c++11 <span class="o">&amp;&amp;</span> ./wordcount sample.txt
-<span class="go">File sample.txt holds 10 words</span>
-</pre></div>
-
-</div>
-
+  <footer>
+    <a href='/blog/2014/01/21/wordcount-in-c/'>&hellip; more &hellip;</a>
+  </footer>
 </article>
 <article>
   <header>
@@ -203,48 +120,9 @@
 <h2 id="accumulate-instead-of-loop">Accumulate instead of loop</h2>
 
 <p>You can traverse a C++ vector in many ways. Looping over a counter variable that goes from 0 to the vector size or taking an iterator from the vector&rsquo;s <code>begin</code> to its <code>end</code> pointer positions are well-known ways to access its elements. When you are collapsing the elements into a single accumulator value (an operation usually called <code>reduce</code> in functional programming), you can use the <code>std::accumulate</code> function in the <code>numeric</code> header.</p>
-
-<div class="brush: c++">
- <div class="source">
-  <pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;vector&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;numeric&gt;</span><span class="cp"></span>
-
-<span class="k">struct</span> <span class="n">cell</span> <span class="p">{</span>
-    <span class="kt">double</span> <span class="n">probability</span><span class="p">;</span>
-<span class="p">};</span>
-
-<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
-<span class="p">{</span>
-    <span class="kt">double</span> <span class="n">result</span><span class="p">;</span>
-    <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">cell</span><span class="o">&gt;</span> <span class="n">grid</span><span class="p">;</span>
-    <span class="k">for</span> <span class="p">(</span><span class="kt">size_t</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">cell</span> <span class="n">c</span> <span class="o">=</span> <span class="p">{.</span><span class="n">probability</span> <span class="o">=</span> <span class="mf">0.1</span> <span class="o">*</span> <span class="n">i</span><span class="p">};</span>
-        <span class="n">grid</span><span class="p">.</span><span class="n">push_back</span><span class="p">(</span><span class="n">c</span><span class="p">);</span>
-    <span class="p">}</span>
-
-    <span class="n">result</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">accumulate</span><span class="p">(</span>
-        <span class="n">grid</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">grid</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="mf">0.0</span><span class="p">,</span>
-        <span class="p">[]</span> <span class="p">(</span><span class="kt">double</span> <span class="n">sum</span><span class="p">,</span> <span class="k">const</span> <span class="n">cell</span><span class="o">&amp;</span> <span class="n">c</span><span class="p">)</span> <span class="p">{</span><span class="k">return</span> <span class="n">sum</span> <span class="o">+</span> <span class="n">c</span><span class="p">.</span><span class="n">probability</span><span class="p">;});</span>
-    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">result</span><span class="p">;</span>
-    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span>
-</pre></div>
-
-</div>
-
-<h2 id="compile-and-run">Compile and run</h2>
-
-<p>In this example, the compilation needs a <code>-std=c++11</code> flag in order to set the standard to C++11, a fairly recent standard that is not supported by all compilers and systems. However, the part that is written in this new standard is the <em>accumulating function</em>, which is expressed as a lambda in this example. If you move its code to a named function outside the <code>main</code>, this code should compile with many more compilers.</p>
-
-<div class="brush: console">
- <div class="source">
-  <pre><span></span><span class="gp">$</span> c++ main.cpp -o example -std<span class="o">=</span>c++11 <span class="o">&amp;&amp;</span> ./example
-<span class="go">0.3</span>
-</pre></div>
-
-</div>
-
+  <footer>
+    <a href='/blog/2014/01/20/reduce-in-standard-c/'>&hellip; more &hellip;</a>
+  </footer>
 </article>
         </div>
         <div id="right" class="col-md-2"></div>

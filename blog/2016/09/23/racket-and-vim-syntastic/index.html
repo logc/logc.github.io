@@ -4,7 +4,7 @@
 
     <meta charset="utf-8">
     <title>Racket and vim-syntastic</title>
-    <meta name="description" content="The current Syntastic checker for Racket syntax in Vim is the `racket` executable itself. This means that the current buffer is executed by Racket whenever it is checked for syntax, and this can have unintended consequences, or enter an infinite loop if y...">
+    <meta name="description" content="The current Syntastic checker for Racket syntax in Vim is the `racket` executable itself. This means that the current buffer is executed by Racket whenever it is checked for syntax, and this can have unintended consequences, e.g. entering an infinite loop...">
     <meta name="author"      content="logc">
     <meta name="keywords"    content="racket, vim">
     <meta name="viewport"    content="width=device-width, initial-scale=1.0">
@@ -105,7 +105,7 @@
 <time datetime="2016-09-23" pubdate="true">2016-09-23</time> :: <span class="tags"><a href="/tags/racket.html">racket</a>, <a href="/tags/vim.html">vim</a></span></p>
   </header>
 
-<p>The current Syntastic checker for Racket syntax in Vim is the <code>racket</code> executable itself. This means that the current buffer is executed by Racket whenever it is checked for syntax, and this can have unintended consequences, or enter an infinite loop if you happen to open the wrong file.</p>
+<p>The current Syntastic checker for Racket syntax in Vim is the <code>racket</code> executable itself. This means that the current buffer is executed by Racket whenever it is checked for syntax, and this can have unintended consequences, e.g. entering an infinite loop, if you happen to open the wrong file.</p>
 
 <p>In order to just get the syntax errors, add this to your <code>.vimrc</code>:</p>
 

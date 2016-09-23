@@ -13,7 +13,7 @@
    <guid>urn:http-logc-github-io:-blog-2016-09-23-racket-and-vim-syntastic</guid>
    <pubDate>Fri, 23 Sep 2016 19:48:27 UT</pubDate>
    <description>&lt;html&gt;
-&lt;p&gt;The current Syntastic checker for Racket syntax in Vim is the &lt;code&gt;racket&lt;/code&gt; executable itself. This means that the current buffer is executed by Racket whenever it is checked for syntax, and this can have unintended consequences, or enter an infinite loop if you happen to open the wrong file.&lt;/p&gt;
+&lt;p&gt;The current Syntastic checker for Racket syntax in Vim is the &lt;code&gt;racket&lt;/code&gt; executable itself. This means that the current buffer is executed by Racket whenever it is checked for syntax, and this can have unintended consequences, e.g. entering an infinite loop, if you happen to open the wrong file.&lt;/p&gt;
 
 &lt;p&gt;In order to just get the syntax errors, add this to your &lt;code&gt;.vimrc&lt;/code&gt;:&lt;/p&gt;
 

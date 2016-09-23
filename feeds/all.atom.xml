@@ -14,7 +14,7 @@
   <author>
    <name>logc</name></author>
   <content type="html">&lt;html&gt;
-&lt;p&gt;The current Syntastic checker for Racket syntax in Vim is the &lt;code&gt;racket&lt;/code&gt; executable itself. This means that the current buffer is executed by Racket whenever it is checked for syntax, and this can have unintended consequences, or enter an infinite loop if you happen to open the wrong file.&lt;/p&gt;
+&lt;p&gt;The current Syntastic checker for Racket syntax in Vim is the &lt;code&gt;racket&lt;/code&gt; executable itself. This means that the current buffer is executed by Racket whenever it is checked for syntax, and this can have unintended consequences, e.g. entering an infinite loop, if you happen to open the wrong file.&lt;/p&gt;
 
 &lt;p&gt;In order to just get the syntax errors, add this to your &lt;code&gt;.vimrc&lt;/code&gt;:&lt;/p&gt;
 
@@ -132,6 +132,7 @@ tag_build =&lt;/code&gt;&lt;/pre&gt;&lt;/html&gt;</content></entry>
    <name>logc</name></author>
   <content type="html">&lt;html&gt;
 &lt;p&gt;This is the standard example for MapReduce applications, counting the words in a file. Note that this snippet is not threaded nor distributed. It is just a curiosity: how to implement the same in C++, using the STL to avoid having any &lt;code&gt;for&lt;/code&gt; loop!&lt;/p&gt;
+&lt;!-- more--&gt;
 
 &lt;div class="brush: c++"&gt;
  &lt;div class="source"&gt;
@@ -229,6 +230,7 @@ tag_build =&lt;/code&gt;&lt;/pre&gt;&lt;/html&gt;</content></entry>
 &lt;h2 id="accumulate-instead-of-loop"&gt;Accumulate instead of loop&lt;/h2&gt;
 
 &lt;p&gt;You can traverse a C++ vector in many ways. Looping over a counter variable that goes from 0 to the vector size or taking an iterator from the vector&amp;rsquo;s &lt;code&gt;begin&lt;/code&gt; to its &lt;code&gt;end&lt;/code&gt; pointer positions are well-known ways to access its elements. When you are collapsing the elements into a single accumulator value (an operation usually called &lt;code&gt;reduce&lt;/code&gt; in functional programming), you can use the &lt;code&gt;std::accumulate&lt;/code&gt; function in the &lt;code&gt;numeric&lt;/code&gt; header.&lt;/p&gt;
+&lt;!-- more--&gt;
 
 &lt;div class="brush: c++"&gt;
  &lt;div class="source"&gt;
