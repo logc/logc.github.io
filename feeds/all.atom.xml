@@ -1,0 +1,1042 @@
+<?xml version="1.0" encoding="utf-8"?> 
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+ <title type="text">logc io: logc io</title>
+ <link rel="self" href="http://logc.github.io/feeds/all.atom.xml" />
+ <link href="http://logc.github.io/index.html" />
+ <id>urn:http-logc-github-io:-index-html</id>
+ <updated>2015-07-15T11:05:47Z</updated>
+ <entry>
+  <title type="text">Open files from last commit in Vim</title>
+  <link rel="alternate" href="http://logc.github.io/blog/2015/07/15/open-files-from-last-commit-in-vim/?utm_source=all&amp;utm_medium=Atom" />
+  <id>urn:http-logc-github-io:-blog-2015-07-15-open-files-from-last-commit-in-vim</id>
+  <published>2015-07-15T11:05:47Z</published>
+  <updated>2015-07-15T11:05:47Z</updated>
+  <author>
+   <name>logc</name></author>
+  <content type="html">&lt;html&gt;
+&lt;p&gt;It is always a nuisance to remember which files were you working on when you last exited your editing session. I have tried different approaches, including:&lt;/p&gt;
+
+&lt;ul&gt;
+ &lt;li&gt;leaving a test that does not succeed in order to get an errortrace that  points to the next task I should tackle&lt;/li&gt;
+ &lt;li&gt;opening the editor inside a &lt;code&gt;tmux&lt;/code&gt; or &lt;code&gt;screen&lt;/code&gt; session, and therefore never  ending the editing session&lt;/li&gt;&lt;/ul&gt;
+
+&lt;p&gt;The last idea I had was to create a unfinished Git commit (called &amp;ldquo;Unfinished: The commit title&amp;rdquo;), and use Git to retrieve the name of the files that were touched in that commit. You can do it like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ git log --pretty=format: --name-only -n 1&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;If you alias that command in your &lt;code&gt;.gitconfig&lt;/code&gt;, e.g. to &lt;code&gt;lastedited&lt;/code&gt;, you can then open the files in your editor by command subtitution:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ vim $(git lastedited)&lt;/code&gt;&lt;/pre&gt;&lt;/html&gt;</content></entry>
+ <entry>
+  <title type="text">If programming languages were music genres</title>
+  <link rel="alternate" href="http://logc.github.io/blog/2015/02/27/if-programming-languages-were-music-genres/?utm_source=all&amp;utm_medium=Atom" />
+  <id>urn:http-logc-github-io:-blog-2015-02-27-if-programming-languages-were-music-genres</id>
+  <published>2015-02-27T16:52:41Z</published>
+  <updated>2015-02-27T16:52:41Z</updated>
+  <author>
+   <name>logc</name></author>
+  <content type="html">&lt;html&gt;
+&lt;p&gt;There are quite some posts out there that compare programming languages to something else, like religions, rock bands, types of women &amp;hellip; There is a &lt;a href="http://lambda-the-ultimate.org/node/3133"&gt;compilation of these over at Lambda the Ultimate&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;One comparison that I find missing is that of programming languages to music genres (maybe the &amp;ldquo;Subcultures&amp;rdquo; post was simmilar, but it seems to be a dead link now). This is the more surprising since it looks like developers tend to argue about their favourite languages just like most people about music: everyone knows it is a highly subjective preference, but no-one escapes trying to convince others that they are not listening to the &amp;ldquo;right&amp;rdquo; music!&lt;/p&gt;
+
+&lt;p&gt;So, here is my (completely subjective) view on programming languages as music genres:&lt;/p&gt;
+&lt;!-- more--&gt;
+
+&lt;ul&gt;
+ &lt;li&gt;&lt;strong&gt;C: punk rock&lt;/strong&gt; It only has three chords, it was born in the late 70&amp;rsquo;s, and,  despite several reports to the contrary, it is not dead yet.&lt;/li&gt;
+ &lt;li&gt;&lt;strong&gt;C++: heavy metal&lt;/strong&gt; It claims to be similar but more technical than C, it is  subdivided in dozens of different subgenres that you will never totally  master, and despite the whole technical allure, at some point you start  thinking it is a bit commercial and superficial.&lt;/li&gt;
+ &lt;li&gt;&lt;strong&gt;Java: techno&lt;/strong&gt; No one likes it really, but peer pressure drives you at some  point to go to a place where they are playing it loudly, and you have to do  as if you enjoy it.&lt;/li&gt;
+ &lt;li&gt;&lt;strong&gt;Python: blues rock&lt;/strong&gt; It does what C does, but slower and with one and two  more chords thrown here and there. Everyone likes it for a while, but then,  after some hours of listening to it, you start wondering if there is something  else.&lt;/li&gt;
+ &lt;li&gt;&lt;strong&gt;Ruby: reggae&lt;/strong&gt; Coming from an exotic place, it has gained mainstream  acceptance, it is as slow as Python, and people in that scene tend to regard  themselves as cool without further explanation.&lt;/li&gt;
+ &lt;li&gt;&lt;strong&gt;LISP: classical music&lt;/strong&gt; Someone in a position of authority told you long  ago to learn its basics because it was important for your education, you  thought at the time that it was a hateful and obsolete past-time, but as time  goes by, you go back to it and find comfort in its beauty.&lt;/li&gt;
+ &lt;li&gt;&lt;strong&gt;Haskell: mathcore&lt;/strong&gt; Not everyone knows it, and those who do think they are  some kind of elite. It is 100% faster and more complex than anything else  out there. It is several layers of purity removed from C, although they  share some distant roots.&lt;/li&gt;
+ &lt;li&gt;&lt;strong&gt;Erlang: world music&lt;/strong&gt; A lot of different musical styles thrown together and  whose unifying trait seems to be that, apparently, very few people listen to  them.&lt;/li&gt;
+ &lt;li&gt;&lt;strong&gt;Clojure: hip hop&lt;/strong&gt; The base is made with the same tools as techno, but with  old soul records played on top. Who would have thought that those sweet  performers from Motown sounded so aggresive when played with a bad attitude?&lt;/li&gt;
+ &lt;li&gt;&lt;strong&gt;Scala: rap rock&lt;/strong&gt; It tries to bring together the best of two worlds and it  largely succeeds. The hardcore fans of each camp will deny there is any need  to blend their styles together, but from time to time find themselves  listening to it and nodding.&lt;/li&gt;&lt;/ul&gt;&lt;/html&gt;</content></entry>
+ <entry>
+  <title type="text">Python egg tagged with Git commit hash</title>
+  <link rel="alternate" href="http://logc.github.io/blog/2014/04/01/python-egg-tagged-with-git-commit-hash/?utm_source=all&amp;utm_medium=Atom" />
+  <id>urn:http-logc-github-io:-blog-2014-04-01-python-egg-tagged-with-git-commit-hash</id>
+  <published>2014-04-01T15:22:00Z</published>
+  <updated>2014-04-01T15:22:00Z</updated>
+  <author>
+   <name>logc</name></author>
+  <content type="html">&lt;html&gt;
+&lt;h2 id="svn"&gt;SVN&lt;/h2&gt;
+
+&lt;p&gt;Python&amp;rsquo;s setuptools provide a simple mechanism to tag your built distributions with the SVN revision they belong to, by creating a &lt;code&gt;setup.cfg&lt;/code&gt; file along the normal &lt;code&gt;setup.py&lt;/code&gt;, and there write&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[egg_info]
+# Add svn revision to the file name
+tag_svn_revision = 1&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id="git"&gt;Git&lt;/h2&gt;
+
+&lt;p&gt;How to do the same for Git? Or in general, with other information? (Date tagging is also supported by default).&lt;/p&gt;
+
+&lt;p&gt;Answer: modify directly the &lt;code&gt;options&lt;/code&gt; dictionary in the call to &lt;code&gt;setup&lt;/code&gt;, in &lt;code&gt;setup.py&lt;/code&gt;. There, you can put anything you can compute with Python or system calls. E.g. for git:&lt;/p&gt;
+
+&lt;div class="brush: python"&gt;
+ &lt;div class="source"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;shlex&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;subprocess&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;check_output&lt;/span&gt;
+
+&lt;span class="n"&gt;GIT_HEAD_REV&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;check_output&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;shlex&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;split&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git rev-parse --short HEAD&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;strip&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+
+
+&lt;span class="n"&gt;setup&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+    &lt;span class="c1"&gt;# ... other keys like project name, version, etc ...&lt;/span&gt;
+    &lt;span class="n"&gt;options&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;dict&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;egg_info&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;dict&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;tag_build&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;"dev_"&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;GIT_HEAD_REV&lt;/span&gt;&lt;span class="p"&gt;)),&lt;/span&gt;
+&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;p&gt;With that setup, distributions (&lt;code&gt;sdist&lt;/code&gt; or &lt;code&gt;bdist&lt;/code&gt;) would be tagged with the string &amp;ldquo;dev&amp;rdquo; and the git hash of the latest commit:&lt;/p&gt;
+
+&lt;div class="brush: console"&gt;
+ &lt;div class="source"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; bin/python setup.py sdist bdist_egg
+&lt;span class="gp"&gt;$&lt;/span&gt; ls dist
+&lt;span class="go"&gt;pyhello-0.1dev-92ffa06.tar.gz    pyhello-0.1dev_92ffa06-py2.7.egg&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;p&gt;Whenever you want to build a stable release (without any &amp;ldquo;dev&amp;rdquo; tags), just set the key to empty in your &lt;code&gt;setup.cfg&lt;/code&gt;, like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;[egg_info]
+tag_build =&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You may find a working example in &lt;a href="https://github.com/logc/pyhello"&gt;this repository&lt;/a&gt;&lt;/p&gt;&lt;/html&gt;</content></entry>
+ <entry>
+  <title type="text">Wordcount in C++</title>
+  <link rel="alternate" href="http://logc.github.io/blog/2014/01/21/wordcount-in-c/?utm_source=all&amp;utm_medium=Atom" />
+  <id>urn:http-logc-github-io:-blog-2014-01-21-wordcount-in-c</id>
+  <published>2014-01-21T14:52:26Z</published>
+  <updated>2014-01-21T14:52:26Z</updated>
+  <author>
+   <name>logc</name></author>
+  <content type="html">&lt;html&gt;
+&lt;p&gt;This is the standard example for MapReduce applications, counting the words in a file. Note that this snippet is not threaded nor distributed. It is just a curiosity: how to implement the same in C++, using the STL to avoid having any &lt;code&gt;for&lt;/code&gt; loop!&lt;/p&gt;
+
+&lt;div class="brush: c++"&gt;
+ &lt;div class="source"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;fstream&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;iostream&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;numeric&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;sstream&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;string&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;vector&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+
+&lt;span class="k"&gt;using&lt;/span&gt; &lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;pair&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="k"&gt;using&lt;/span&gt; &lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;string&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="k"&gt;using&lt;/span&gt; &lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;vector&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="k"&gt;using&lt;/span&gt; &lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;istringstream&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="k"&gt;using&lt;/span&gt; &lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;istream_iterator&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+
+&lt;span class="n"&gt;vector&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;string&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;split_at_whitespace&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;string&lt;/span&gt; &lt;span class="n"&gt;line&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="n"&gt;istringstream&lt;/span&gt; &lt;span class="n"&gt;iss&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;line&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="n"&gt;vector&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;string&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;tokens&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="n"&gt;istream_iterator&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;string&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="n"&gt;iss&lt;/span&gt;&lt;span class="p"&gt;},&lt;/span&gt;
+        &lt;span class="n"&gt;istream_iterator&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;string&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="p"&gt;{}};&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;tokens&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="n"&gt;vector&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;pair&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;string&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;map&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;string&lt;/span&gt; &lt;span class="n"&gt;line&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="n"&gt;vector&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;string&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;tokens&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;split_at_whitespace&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;line&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="n"&gt;vector&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;pair&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;string&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;current_outputs&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;tokens&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;size&lt;/span&gt;&lt;span class="p"&gt;());&lt;/span&gt;
+    &lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;transform&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+        &lt;span class="n"&gt;tokens&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;begin&lt;/span&gt;&lt;span class="p"&gt;(),&lt;/span&gt; &lt;span class="n"&gt;tokens&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;end&lt;/span&gt;&lt;span class="p"&gt;(),&lt;/span&gt; &lt;span class="n"&gt;current_outputs&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;begin&lt;/span&gt;&lt;span class="p"&gt;(),&lt;/span&gt;
+        &lt;span class="p"&gt;[]&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="n"&gt;string&lt;/span&gt; &lt;span class="n"&gt;output&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+            &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;make_pair&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;output&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+        &lt;span class="p"&gt;});&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;current_outputs&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;reduce&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;vector&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;pair&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;string&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;outputs&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;accumulate&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+        &lt;span class="n"&gt;outputs&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;begin&lt;/span&gt;&lt;span class="p"&gt;(),&lt;/span&gt; &lt;span class="n"&gt;outputs&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;end&lt;/span&gt;&lt;span class="p"&gt;(),&lt;/span&gt; &lt;span class="mf"&gt;0.0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="p"&gt;[]&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;sum&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="n"&gt;pair&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;string&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;output&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+                &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;sum&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;output&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;second&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+            &lt;span class="p"&gt;});&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;main&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;argc&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="kt"&gt;char&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;argv&lt;/span&gt;&lt;span class="p"&gt;[])&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;argc&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;cout&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="s"&gt;"Usage: "&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;argv&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="s"&gt;" infile"&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;endl&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+
+    &lt;span class="n"&gt;string&lt;/span&gt; &lt;span class="n"&gt;filename&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;argv&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt;
+    &lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;ifstream&lt;/span&gt; &lt;span class="n"&gt;infile&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;filename&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="n"&gt;string&lt;/span&gt; &lt;span class="n"&gt;line&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="n"&gt;vector&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;pair&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;string&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;occurences&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="k"&gt;while&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;getline&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;infile&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;line&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="k"&gt;auto&lt;/span&gt; &lt;span class="n"&gt;line_occurences&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;map&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;line&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+        &lt;span class="n"&gt;occurences&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;insert&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+            &lt;span class="n"&gt;occurences&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;end&lt;/span&gt;&lt;span class="p"&gt;(),&lt;/span&gt; &lt;span class="n"&gt;line_occurences&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;begin&lt;/span&gt;&lt;span class="p"&gt;(),&lt;/span&gt; &lt;span class="n"&gt;line_occurences&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;end&lt;/span&gt;&lt;span class="p"&gt;());&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+    &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;reduce&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;occurences&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;cout&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="s"&gt;"File "&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;filename&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="s"&gt;" holds "&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="s"&gt;" words"&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;endl&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;p&gt;Compile and run:&lt;/p&gt;
+
+&lt;div class="brush: console"&gt;
+ &lt;div class="source"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; cat &lt;span class="s"&gt;&amp;lt;&amp;lt; EOF &amp;gt; sample.txt&lt;/span&gt;
+&lt;span class="gp"&gt;&amp;gt;&lt;/span&gt;&lt;span class="s"&gt; This is a first line&lt;/span&gt;
+&lt;span class="gp"&gt;&amp;gt;&lt;/span&gt;&lt;span class="s"&gt; This is a second line&lt;/span&gt;
+&lt;span class="gp"&gt;&amp;gt;&lt;/span&gt;&lt;span class="s"&gt; EOF&lt;/span&gt;
+
+&lt;span class="gp"&gt;$&lt;/span&gt; c++ main.cpp -o wordcount -std&lt;span class="o"&gt;=&lt;/span&gt;c++11 &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; ./wordcount sample.txt
+&lt;span class="go"&gt;File sample.txt holds 10 words&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;&lt;/html&gt;</content></entry>
+ <entry>
+  <title type="text">Reduce in standard C++</title>
+  <link rel="alternate" href="http://logc.github.io/blog/2014/01/20/reduce-in-standard-c/?utm_source=all&amp;utm_medium=Atom" />
+  <id>urn:http-logc-github-io:-blog-2014-01-20-reduce-in-standard-c</id>
+  <published>2014-01-20T13:47:25Z</published>
+  <updated>2014-01-20T13:47:25Z</updated>
+  <author>
+   <name>logc</name></author>
+  <content type="html">&lt;html&gt;
+&lt;h2 id="accumulate-instead-of-loop"&gt;Accumulate instead of loop&lt;/h2&gt;
+
+&lt;p&gt;You can traverse a C++ vector in many ways. Looping over a counter variable that goes from 0 to the vector size or taking an iterator from the vector&amp;rsquo;s &lt;code&gt;begin&lt;/code&gt; to its &lt;code&gt;end&lt;/code&gt; pointer positions are well-known ways to access its elements. When you are collapsing the elements into a single accumulator value (an operation usually called &lt;code&gt;reduce&lt;/code&gt; in functional programming), you can use the &lt;code&gt;std::accumulate&lt;/code&gt; function in the &lt;code&gt;numeric&lt;/code&gt; header.&lt;/p&gt;
+
+&lt;div class="brush: c++"&gt;
+ &lt;div class="source"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;iostream&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;vector&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;numeric&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+
+&lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="n"&gt;cell&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="kt"&gt;double&lt;/span&gt; &lt;span class="n"&gt;probability&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;};&lt;/span&gt;
+
+&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="kt"&gt;double&lt;/span&gt; &lt;span class="n"&gt;result&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;vector&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;cell&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;grid&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;size_t&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="o"&gt;++&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="n"&gt;cell&lt;/span&gt; &lt;span class="n"&gt;c&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{.&lt;/span&gt;&lt;span class="n"&gt;probability&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mf"&gt;0.1&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;};&lt;/span&gt;
+        &lt;span class="n"&gt;grid&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;push_back&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;c&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+
+    &lt;span class="n"&gt;result&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;accumulate&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+        &lt;span class="n"&gt;grid&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;begin&lt;/span&gt;&lt;span class="p"&gt;(),&lt;/span&gt; &lt;span class="n"&gt;grid&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;end&lt;/span&gt;&lt;span class="p"&gt;(),&lt;/span&gt; &lt;span class="mf"&gt;0.0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="p"&gt;[]&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;double&lt;/span&gt; &lt;span class="n"&gt;sum&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="n"&gt;cell&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt; &lt;span class="n"&gt;c&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;sum&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;c&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;probability&lt;/span&gt;&lt;span class="p"&gt;;});&lt;/span&gt;
+    &lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;cout&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;result&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;h2 id="compile-and-run"&gt;Compile and run&lt;/h2&gt;
+
+&lt;p&gt;In this example, the compilation needs a &lt;code&gt;-std=c++11&lt;/code&gt; flag in order to set the standard to C++11, a fairly recent standard that is not supported by all compilers and systems. However, the part that is written in this new standard is the &lt;em&gt;accumulating function&lt;/em&gt;, which is expressed as a lambda in this example. If you move its code to a named function outside the &lt;code&gt;main&lt;/code&gt;, this code should compile with many more compilers.&lt;/p&gt;
+
+&lt;div class="brush: console"&gt;
+ &lt;div class="source"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; c++ main.cpp -o example -std&lt;span class="o"&gt;=&lt;/span&gt;c++11 &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; ./example
+&lt;span class="go"&gt;0.3&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;&lt;/html&gt;</content></entry>
+ <entry>
+  <title type="text">How do you develop with Yesod</title>
+  <link rel="alternate" href="http://logc.github.io/blog/2013/12/04/how-do-you-develop-with-yesod/?utm_source=all&amp;utm_medium=Atom" />
+  <id>urn:http-logc-github-io:-blog-2013-12-04-how-do-you-develop-with-yesod</id>
+  <published>2013-12-04T14:39:03Z</published>
+  <updated>2013-12-04T14:39:03Z</updated>
+  <author>
+   <name>logc</name></author>
+  <content type="html">&lt;html&gt;
+&lt;p&gt;Yesod tutorials and examples can be found on the &lt;a href="http://www.yesodweb.com/book"&gt;Yesod book&lt;/a&gt;, which is freely available online.&lt;/p&gt;
+
+&lt;p&gt;However, many of the examples given are self-contained (which means that handler functions, data models and templates are defined in a single module, where a Warp web server is started as well). There is &lt;a href="http://www.yesodweb.com/book/scaffolding-and-the-site-template"&gt;a chapter that describes the scaffolded template&lt;/a&gt;, i.e. what you get after you start with Yesod, but it is rather a description of its advantages and structure, not so much a detailed how-to.&lt;/p&gt;
+
+&lt;p&gt;The purpose of this post is to explain to a new Yesod developer &amp;ldquo;What do I do after &amp;hellip; ?&amp;rdquo; :&lt;/p&gt;
+
+&lt;div class="brush: console"&gt;
+ &lt;div class="source"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; yesod init
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;!-- more--&gt;
+
+&lt;p&gt;Briefly summarized, what you need after this command is:&lt;/p&gt;
+
+&lt;ol&gt;
+ &lt;li&gt;
+  &lt;p&gt;Describe the &lt;strong&gt;data models&lt;/strong&gt; your Web application is going to store persistently&lt;/p&gt;&lt;/li&gt;
+ &lt;li&gt;
+  &lt;p&gt;Describe which &lt;strong&gt;routes&lt;/strong&gt; are going to exist in your Web application&lt;/p&gt;&lt;/li&gt;
+ &lt;li&gt;
+  &lt;p&gt;Write the &lt;strong&gt;handler functions&lt;/strong&gt; that answer requests to those routes&lt;/p&gt;&lt;/li&gt;
+ &lt;li&gt;
+  &lt;p&gt;Write the &lt;strong&gt;Hamlet templates&lt;/strong&gt; that are filled out by the handler functions (and  possibly Lucius and Julius templates)&lt;/p&gt;&lt;/li&gt;&lt;/ol&gt;
+
+&lt;p&gt;The &lt;code&gt;yesod add-handler&lt;/code&gt; command automates the process of adding &lt;strong&gt;routes&lt;/strong&gt; and &lt;strong&gt;handler functions&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;h3 id="adding-data-models"&gt;Adding data models&lt;/h3&gt;
+
+&lt;p&gt;A new data model has to be described in the &lt;code&gt;config/models&lt;/code&gt; text file. With &amp;ldquo;text file&amp;rdquo; we mean that you write in &amp;ldquo;near free&amp;rdquo; syntax, but nevertheless many of the keywords are Haskell.&lt;/p&gt;
+
+&lt;h4 id="basics"&gt;Basics&lt;/h4&gt;
+
+&lt;p&gt;A new model consists of a name and a description of its fields. The description of fields consists, in turn, of a name and a type for the field. The type can be &lt;code&gt;Int&lt;/code&gt;, &lt;code&gt;Text&lt;/code&gt;, &lt;code&gt;UTCTime&lt;/code&gt;, or other Haskell types. The type can also be qualified with a Monad (usually &lt;code&gt;Maybe&lt;/code&gt;) and have a defaul value. Let&amp;rsquo;s see a simple example:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Book
+    title Text
+    author Text
+    publisher Text Maybe
+    published UTCTime default=CURRENT_TIME&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;An identifier field is &lt;strong&gt;automatically added&lt;/strong&gt; to each model. The name of that field is always &lt;code&gt;&amp;lt;modelName&amp;gt;Id&lt;/code&gt;, e.g. for the previous model it would be &lt;code&gt;BookId&lt;/code&gt;. This is a unique identifier stored in the database using the database mechanisms if available, or the Persistent module&amp;rsquo;s mechanisms otherwise. We usually do not need to care about &lt;strong&gt;writing&lt;/strong&gt; this ID, but we will be interested in &lt;strong&gt;reading&lt;/strong&gt; it from the database, as we will see later.&lt;/p&gt;
+
+&lt;p&gt;Another thing we get for free are &lt;strong&gt;accessor functions&lt;/strong&gt; for each field. These are called &lt;code&gt;bookTitle&lt;/code&gt; to get the title, &lt;code&gt;bookAuthor&lt;/code&gt; to get the author, and so on&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;With the mentioned, you can create your own models. Let&amp;rsquo;s review other features that are slightly more advanced but almost unavoidable in any app that is not completely trivial.&lt;/p&gt;
+
+&lt;h4 id="reference-other-models"&gt;Reference other models&lt;/h4&gt;
+
+&lt;p&gt;You can &lt;strong&gt;reference field in other models&lt;/strong&gt;. This creates &lt;em&gt;foreign keys&lt;/em&gt; in relational databases, or is managed by Persistent otherwise. You refer to the other model with an uppercase and join the name of model and field in camel case. An example is in the default models written by the scaffolding:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;User
+    ...
+Email
+    user UserId Maybe&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This is also an example of using the automatically created field &lt;code&gt;UserId&lt;/code&gt; for the User.&lt;/p&gt;
+
+&lt;h4 id="declare-records-to-be-unique"&gt;Declare records to be unique&lt;/h4&gt;
+
+&lt;p&gt;You can &lt;strong&gt;declare records to be unique with respect to a field&lt;/strong&gt;. The unique ID are handed out to anything new in the store otherwise. You can specify that a record has to have a new value in one of its fields to be accepted. Again the default models provide an example of this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;User
+    ident Text
+    UniqueUser ident&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id="derive-typeclasses"&gt;Derive typeclasses&lt;/h4&gt;
+
+&lt;p&gt;And as a last note, you can directly &lt;strong&gt;declare your models to derive Haskell typeclasses&lt;/strong&gt; e.g. Eq, Ord, Show. Which means the model, when loaded from database and available to be manipulated, will have the correct functions of that typeclass already implemented. ( In the case of Eq, it will be equatable, in the case of Ord, it will be comparable, and in the case of Show it will be printable; this, of course, in the case the compiler can deduce out of the fields composing the model how to implement such functions for you ).&lt;/p&gt;
+
+&lt;p&gt;An example of deriving typeclasses:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Person
+    ...
+    deriving (Show)&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id="adding-routes"&gt;Adding routes&lt;/h3&gt;
+
+&lt;p&gt;You declare new routes to be answered to in the &lt;code&gt;config/routes&lt;/code&gt; text file. This can be automated with the &lt;code&gt;yesod add-handler&lt;/code&gt; command. However, let&amp;rsquo;s review it to gain a bit of control on the underlying machinery.&lt;/p&gt;
+
+&lt;p&gt;A new route starts from the root &lt;code&gt;/&lt;/code&gt; and lists a &lt;em&gt;resource name&lt;/em&gt; and &lt;em&gt;query parameters&lt;/em&gt;. After that there is a space, and the name of the handler function(s) that handle requests to that particular route. Again a space, and a space-separated list of HTTP methods that are allowed on that route. An example with all of these:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;/book/#BookId BookR GET PUT DELETE&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;where &lt;code&gt;book&lt;/code&gt; is the &lt;em&gt;resource name&lt;/em&gt;, &lt;code&gt;#BookId&lt;/code&gt; is the &lt;em&gt;query parameter&lt;/em&gt;, BookR is the shared part of the name of the &lt;em&gt;handler functions&lt;/em&gt;, and the allowed methods are GET, PUT and DELETE.&lt;/p&gt;
+
+&lt;p&gt;We say &lt;code&gt;BookR&lt;/code&gt; is the shared part of the name because a single handler function is expected &lt;strong&gt;for each one of the allowed methods&lt;/strong&gt;. That is, in the above example, &lt;code&gt;getBookR&lt;/code&gt;, &lt;code&gt;putBookR&lt;/code&gt; and &lt;code&gt;deleteBookR&lt;/code&gt; are expected to exist somewhere (probably in a module called &lt;code&gt;Book&lt;/code&gt; within the &lt;code&gt;Handlers&lt;/code&gt; directory).&lt;/p&gt;
+
+&lt;p&gt;Usually the convention for a REST API is that GET allows to see an instance of a model, POST allows to create an instance of a model, PUT allows to modify an instance of a model, and DELETE allows to, well, delete it.&lt;/p&gt;
+
+&lt;p&gt;After you have added a new route, the application will not compile until there are handler functions for all of the new resources and allowed methods.&lt;/p&gt;
+
+&lt;h3 id="adding-handler-functions"&gt;Adding handler functions&lt;/h3&gt;
+
+&lt;p&gt;You add new functions to handle requests in modules under the &lt;code&gt;Handler&lt;/code&gt; directory. This can be automated with the &lt;code&gt;yesod add-handler&lt;/code&gt; command. However, let&amp;rsquo;s review it to gain a bit of control on the underlying machinery.&lt;/p&gt;
+
+&lt;p&gt;A handler function must exist &lt;strong&gt;for each resource and for each allowed HTTP method on that resource&lt;/strong&gt;. That means if we declared the resource &lt;code&gt;/donkey&lt;/code&gt; to accept requests with GET, POST and DELETE methods, then we have to implement &lt;code&gt;getDonkeyR&lt;/code&gt;, &lt;code&gt;postDonkeyR&lt;/code&gt; and &lt;code&gt;deleteDonkeyR&lt;/code&gt;. The &lt;code&gt;R&lt;/code&gt; means &amp;ldquo;resource&amp;rdquo;.&lt;/p&gt;
+
+&lt;p&gt;Let us see a stub example of one of those functions:&lt;/p&gt;
+
+&lt;div class="brush: haskell"&gt;
+ &lt;div class="source"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nf"&gt;getDonkeyR&lt;/span&gt; &lt;span class="ow"&gt;::&lt;/span&gt; &lt;span class="kt"&gt;DonkeyId&lt;/span&gt; &lt;span class="ow"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kt"&gt;Handler&lt;/span&gt; &lt;span class="kt"&gt;Html&lt;/span&gt;
+&lt;span class="nf"&gt;getDonkeyR&lt;/span&gt; &lt;span class="n"&gt;donkeyId&lt;/span&gt; &lt;span class="ow"&gt;=&lt;/span&gt; &lt;span class="n"&gt;undefined&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;h4 id="handler-function-signature"&gt;Handler function signature&lt;/h4&gt;
+
+&lt;p&gt;Being a Haskell function, the function signature is important to understand what the function does.&lt;/p&gt;
+
+&lt;p&gt;In the case of Yesod, the &lt;strong&gt;input to the function are query parameters&lt;/strong&gt;, which are typed to correspond to model fields. That is, you do not get an integer, but a &lt;code&gt;DonkeyId&lt;/code&gt; &amp;mdash; if you specified in the route that the &lt;code&gt;donkey&lt;/code&gt; resource has a query parameter of that type. This helps ensure that there are no typos in the &lt;code&gt;routes&lt;/code&gt; and &lt;code&gt;models&lt;/code&gt; text files that cause your app to fail on deployment.&lt;/p&gt;
+
+&lt;p&gt;The &lt;strong&gt;output of the function&lt;/strong&gt; is quite determined by Yesod, so it is easy to read, but you have to accept that the framework &amp;ldquo;knows what it is doing&amp;rdquo;. You usually have a &lt;code&gt;Handler Html&lt;/code&gt; result type; which means that the result of your function is a function that knows how to answer a request with HTML. This function is what is going to be called by the application when it is running.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Do not let that make your head explode&lt;/em&gt;: it is like when you compile a function with gcc. It is not your source code that is run when the resulting binary is executed: it is the object representation of it. This is not exactly the same but for the moment, it is a good enough explanation.&lt;/p&gt;
+
+&lt;p&gt;Other output types for the function are &lt;code&gt;Handler RepJson&lt;/code&gt; if the function returns JSON, or even &lt;code&gt;Handler TypedContent&lt;/code&gt; if the function returns HTML or JSON depending on what the client has requested.&lt;/p&gt;
+
+&lt;h4 id="handler-function-body"&gt;Handler function body&lt;/h4&gt;
+
+&lt;p&gt;In the function itself, you may want to do many different things. Let us discuss the most usual:&lt;/p&gt;
+
+&lt;ol&gt;
+ &lt;li&gt;
+  &lt;p&gt;getting something out of the database and into a template for viewing  ( &lt;strong&gt;Database -&amp;gt; User&lt;/strong&gt; )&lt;/p&gt;&lt;/li&gt;
+ &lt;li&gt;
+  &lt;p&gt;getting something out of a template form from the user, and inserting that  into the database ( &lt;strong&gt;User -&amp;gt; Database&lt;/strong&gt; )&lt;/p&gt;&lt;/li&gt;&lt;/ol&gt;
+
+&lt;h5 id="database---user"&gt;Database -&amp;gt; User&lt;/h5&gt;
+
+&lt;p&gt;Consider the following function:&lt;/p&gt;
+
+&lt;div class="brush: haskell"&gt;
+ &lt;div class="source"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nf"&gt;getBooksR&lt;/span&gt; &lt;span class="ow"&gt;::&lt;/span&gt; &lt;span class="kt"&gt;Handler&lt;/span&gt; &lt;span class="kt"&gt;Html&lt;/span&gt;
+&lt;span class="nf"&gt;getBooksR&lt;/span&gt; &lt;span class="ow"&gt;=&lt;/span&gt; &lt;span class="kr"&gt;do&lt;/span&gt;
+        &lt;span class="n"&gt;books&lt;/span&gt; &lt;span class="ow"&gt;&amp;lt;-&lt;/span&gt; &lt;span class="n"&gt;runDB&lt;/span&gt; &lt;span class="o"&gt;$&lt;/span&gt; &lt;span class="n"&gt;selectList&lt;/span&gt; &lt;span class="kt"&gt;[]&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="kt"&gt;Asc&lt;/span&gt; &lt;span class="kt"&gt;BookTitle&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+        &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;formWidget&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;enctype&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="ow"&gt;&amp;lt;-&lt;/span&gt; &lt;span class="n"&gt;generateFormPost&lt;/span&gt; &lt;span class="n"&gt;bookForm&lt;/span&gt;
+        &lt;span class="n"&gt;defaultLayout&lt;/span&gt; &lt;span class="o"&gt;$&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;widgetFile&lt;/span&gt; &lt;span class="s"&gt;"books"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;p&gt;The first line after &lt;code&gt;do&lt;/code&gt; allows us to get a Book model out of the database. The &lt;code&gt;runDB&lt;/code&gt; function runs any query on the database, while the &lt;code&gt;selectList&lt;/code&gt; function composes a query that returns its results as a list. The empty first argument means we take &lt;strong&gt;all fields&lt;/strong&gt; from each record, and the second argument accepts a number of filters and modifyers. The example shown is equivalent, in SQL, to:&lt;/p&gt;
+
+&lt;div class="brush: sql"&gt;
+ &lt;div class="source"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;SELECT&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="k"&gt;FROM&lt;/span&gt; &lt;span class="n"&gt;books&lt;/span&gt; &lt;span class="k"&gt;ORDER&lt;/span&gt; &lt;span class="k"&gt;BY&lt;/span&gt; &lt;span class="ss"&gt;"BookTitle"&lt;/span&gt; &lt;span class="k"&gt;ASC&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;p&gt;Then we would go on to render the correct HTML template with the default layout. The template will have direct access to the &lt;code&gt;books&lt;/code&gt; variable because it is in the same scope (the handler function). We will see how this happens when we discuss templates. The rendering happens with the line:&lt;/p&gt;
+
+&lt;div class="brush: haskell"&gt;
+ &lt;div class="source"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nf"&gt;defaultLayout&lt;/span&gt; &lt;span class="o"&gt;$&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;widgetFile&lt;/span&gt; &lt;span class="s"&gt;"books"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;p&gt;The template rendering takes the &lt;code&gt;defaultLayout&lt;/code&gt; function, applied on the result of loading a widgetFile by name. The default layout renders the template found under &lt;code&gt;templates/default-layout.*&lt;/code&gt; and includes within it the result of rendering whatever is on the &lt;code&gt;templates/books.*&lt;/code&gt; files. This helps make the look and feel uniform across the website.&lt;/p&gt;
+
+&lt;p&gt;(You may notice that we are skipping a line in the &lt;code&gt;getBooksR&lt;/code&gt; function, between reading from database and rendering the template. It is concerned with &lt;strong&gt;form rendering&lt;/strong&gt;, but for the sake of brevity we will not discuss it here)&lt;/p&gt;
+
+&lt;h5 id="user---database"&gt;User -&amp;gt; Database&lt;/h5&gt;
+
+&lt;p&gt;Consider the following function:&lt;/p&gt;
+
+&lt;div class="brush: haskell"&gt;
+ &lt;div class="source"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nf"&gt;postBooksR&lt;/span&gt; &lt;span class="ow"&gt;::&lt;/span&gt; &lt;span class="kt"&gt;Handler&lt;/span&gt; &lt;span class="kt"&gt;Html&lt;/span&gt;
+&lt;span class="nf"&gt;postBooksR&lt;/span&gt; &lt;span class="ow"&gt;=&lt;/span&gt; &lt;span class="kr"&gt;do&lt;/span&gt;
+    &lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="n"&gt;result&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kr"&gt;_&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="kr"&gt;_&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="ow"&gt;&amp;lt;-&lt;/span&gt; &lt;span class="n"&gt;runFormPost&lt;/span&gt; &lt;span class="n"&gt;bookForm&lt;/span&gt;
+    &lt;span class="kr"&gt;case&lt;/span&gt; &lt;span class="n"&gt;result&lt;/span&gt; &lt;span class="kr"&gt;of&lt;/span&gt;
+        &lt;span class="kt"&gt;FormSuccess&lt;/span&gt; &lt;span class="n"&gt;book&lt;/span&gt; &lt;span class="ow"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kr"&gt;do&lt;/span&gt;
+            &lt;span class="n"&gt;bookid&lt;/span&gt; &lt;span class="ow"&gt;&amp;lt;-&lt;/span&gt; &lt;span class="n"&gt;runDB&lt;/span&gt; &lt;span class="o"&gt;$&lt;/span&gt; &lt;span class="n"&gt;insert&lt;/span&gt; &lt;span class="n"&gt;book&lt;/span&gt;
+            &lt;span class="n"&gt;setMessage&lt;/span&gt; &lt;span class="s"&gt;"Book registered"&lt;/span&gt;
+        &lt;span class="kr"&gt;_&lt;/span&gt; &lt;span class="ow"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kr"&gt;do&lt;/span&gt;
+            &lt;span class="n"&gt;setMessage&lt;/span&gt; &lt;span class="s"&gt;"Invalid data"&lt;/span&gt;
+            &lt;span class="n"&gt;redirect&lt;/span&gt; &lt;span class="o"&gt;$&lt;/span&gt; &lt;span class="kt"&gt;BooksR&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;p&gt;The first line after &lt;code&gt;do&lt;/code&gt; gets the result out of a form that is defined and rendered elsewhere. The result may be a success, because all inputs are filled out and are of the expected types, or it may be anything else (an error), where we print an error message and do no more. If we have a success, then we can extract the specific &lt;code&gt;book&lt;/code&gt; (of type &lt;code&gt;Book&lt;/code&gt;) out of the &lt;code&gt;FormSuccess&lt;/code&gt; monad via pattern matching, and then insert it into the DB via the Persist &lt;code&gt;insert&lt;/code&gt; function:&lt;/p&gt;
+
+&lt;div class="brush: haskell"&gt;
+ &lt;div class="source"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nf"&gt;bookid&lt;/span&gt; &lt;span class="ow"&gt;&amp;lt;-&lt;/span&gt; &lt;span class="n"&gt;runDB&lt;/span&gt; &lt;span class="o"&gt;$&lt;/span&gt; &lt;span class="n"&gt;insert&lt;/span&gt; &lt;span class="n"&gt;book&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;p&gt;Notice this works without any more specifications because we know, from the compile process, that the result of parsing the form contents must have enough informations to build a Book model, and a Book model can be written to database because we have already parsed it and created the necessary tables (in the case of a relational DB engine) on app startup.&lt;/p&gt;
+
+&lt;p&gt;Notice also we receive a bookId as a result of inserting, but we can ignore it.&lt;/p&gt;
+
+&lt;h4 id="after-writing-your-handlers"&gt;After writing your handlers&lt;/h4&gt;
+
+&lt;p&gt;After writing your handlers, you must make the application aware that they exist. Import the relevant module in in the &lt;code&gt;Application&lt;/code&gt; module, and also remember to list them in the &lt;code&gt;&amp;lt;application&amp;gt;.cabal&lt;/code&gt; file, under &lt;code&gt;exposed-modules&lt;/code&gt;. This makes the &lt;code&gt;cabal&lt;/code&gt; build system know that it must include the new handler files in the compilation, and the &lt;code&gt;Application&lt;/code&gt; module aware that it has to import those modules if it wants to answer the calls to some of the resources.&lt;/p&gt;
+
+&lt;h3 id="adding-hamlet-templates"&gt;Adding Hamlet templates&lt;/h3&gt;
+
+&lt;p&gt;We said earlier that the variables extracted from storage are rendered in the template. A template is a file that lives in the &lt;code&gt;templates&lt;/code&gt; directory and is called whatever we want the &lt;code&gt;widgetFile&lt;/code&gt; function to find.&lt;/p&gt;
+
+&lt;p&gt;Hamlet is a template language that describes HTML to produce. A very short summary of Hamlet: you do not need to close HTML tags, this will be done for you. &lt;em&gt;With the important exception of links. Do not forget to close them with &lt;code&gt;&amp;lt;/a&amp;gt;&lt;/code&gt;&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;In the template, you can refer to any variable that is available in the handler function (because the generated code is inserted in the function code directly before the results are produced). See this example template to render a Book model:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;h2&amp;gt; Book: #{bookTitle book}
+
+&amp;lt;p&amp;gt; by #{bookAuthor book}&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Within the template, we can use the &lt;strong&gt;accessor functions&lt;/strong&gt; we got for free out of the model definition. Remember that this is Haskell, so the function must go before the arguments. We drop into Haskell from the template by using &lt;code&gt;#{ }&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;There is more syntax to iterate over a collection of &lt;code&gt;books&lt;/code&gt; and control &lt;code&gt;if&lt;/code&gt; we render some thing or the other depending on the presence of a variable, but we will skip this. There is Yesod documentation available.&lt;/p&gt;
+
+&lt;p&gt;Let us mention another important feature of these templates: &lt;strong&gt;compiled in-site links&lt;/strong&gt;. This means you refer to other pages within your website &lt;em&gt;through their resource names&lt;/em&gt;, not through a simple string. In the homepage, for instance, you should include a link to the &amp;ldquo;books&amp;rdquo; page by using:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;a href=@{BooksR}&amp;gt;Add new book&amp;lt;/a&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Notice you use an &lt;code&gt;@&lt;/code&gt;, not the &lt;code&gt;#&lt;/code&gt; symbol.&lt;/p&gt;
+
+&lt;p&gt;This makes it &lt;strong&gt;impossible for you to have dead links within the site&lt;/strong&gt;. They are checked by the compiler on each site update, and the compilation will fail if there is something misspelled.&lt;/p&gt;
+
+&lt;h3 id="summing-up"&gt;Summing up&lt;/h3&gt;
+
+&lt;p&gt;We have reviewed what are the minimal changes you have to do to a scaffolded site in order to add a new feature to it, in some more depth than necessary since you can use &lt;code&gt;yesod add-handler&lt;/code&gt; to make many of the changes for you. However, now you should understand better what is this command doing and why could it fail. The changes are:&lt;/p&gt;
+
+&lt;ol&gt;
+ &lt;li&gt;
+  &lt;p&gt;In &lt;code&gt;config/models&lt;/code&gt;: describe &lt;strong&gt;data models&lt;/strong&gt; stored&lt;/p&gt;&lt;/li&gt;
+ &lt;li&gt;
+  &lt;p&gt;In &lt;code&gt;config/routes&lt;/code&gt;: describe &lt;strong&gt;routes&lt;/strong&gt; served, as resources&lt;/p&gt;&lt;/li&gt;
+ &lt;li&gt;
+  &lt;p&gt;In &lt;code&gt;Handler/&amp;lt;name&amp;gt;.hs&lt;/code&gt;: write &lt;strong&gt;handler functions&lt;/strong&gt; that answer requests to  those routes; include them in &lt;code&gt;Application.hs&lt;/code&gt; and list them on  &lt;code&gt;&amp;lt;application&amp;gt;.cabal&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+ &lt;li&gt;
+  &lt;p&gt;In &lt;code&gt;templates/&amp;lt;name&amp;gt;.{hamlet,lucius,julius}&lt;/code&gt;: write the &lt;strong&gt;templates&lt;/strong&gt; that  are filled out by the handler functions&lt;/p&gt;&lt;/li&gt;&lt;/ol&gt;&lt;/html&gt;</content></entry>
+ <entry>
+  <title type="text">Instalar Python 2.7 y NumPy sobre RedHat 6</title>
+  <link rel="alternate" href="http://logc.github.io/blog/2013/12/04/instalar-python-2-7-y-numpy-sobre-redhat-6/?utm_source=all&amp;utm_medium=Atom" />
+  <id>urn:http-logc-github-io:-blog-2013-12-04-instalar-python-2-7-y-numpy-sobre-redhat-6</id>
+  <published>2013-12-04T11:44:57Z</published>
+  <updated>2013-12-04T11:44:57Z</updated>
+  <author>
+   <name>logc</name></author>
+  <content type="html">&lt;html&gt;
+&lt;p&gt;RedHat y centOS tienen la fastidiosa dependencia de su gestor de paquetes, yum, con la versión 2.6 de Python desde tiempos inmemoriales. Lo que en tecnología son unos seis o siete años.&lt;/p&gt;
+
+&lt;p&gt;Instalar Python 2.7 no es posible con los repositorios instalados por defecto, y si tienes la mala idea de instalar un repositorio donde sí esté y meterlo como paquete que supedita al python por defecto, te acabas de cargar yum (y la posibilidad más sencilla de deshacer tus cambios).&lt;/p&gt;
+
+&lt;p&gt;La mejor manera, pese a lo que pueda parecer, es &lt;strong&gt;instalar desde fuentes&lt;/strong&gt;, haciendo lo que se conoce como &amp;ldquo;altinstall&amp;rdquo; (instalación alternativa). Esto crea ejecutables llamados &lt;code&gt;python2.7&lt;/code&gt; bajo &lt;code&gt;/usr/local/bin&lt;/code&gt;, que &lt;strong&gt;no sobreescriben&lt;/strong&gt; el comando &lt;code&gt;python&lt;/code&gt; normal del sistema; éste sigue apuntando a un ejecutable bajo &lt;code&gt;/usr/bin&lt;/code&gt;.&lt;/p&gt;
+
+&lt;div class="brush: console"&gt;
+ &lt;div class="source"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; wget http://www.python.org/ftp/python/2.7.6/Python-2.7.6.tgz
+&lt;span class="gp"&gt;$&lt;/span&gt; tar xvfz Python-2.7.6.tgz
+&lt;span class="gp"&gt;$&lt;/span&gt; &lt;span class="nb"&gt;cd&lt;/span&gt; Python-2.7.6
+&lt;span class="gp"&gt;$&lt;/span&gt; ./configure
+&lt;span class="gp"&gt;$&lt;/span&gt; make
+&lt;span class="gp"&gt;$&lt;/span&gt; sudo make altinstall
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;p&gt;Además de esto, es recomendable instalar &lt;strong&gt;un &lt;code&gt;easy_install&lt;/code&gt; alternativo también&lt;/strong&gt;, ya que, si no, todas las librerías de python se instalarán para la 2.6 y no para la 2.7.&lt;/p&gt;
+
+&lt;div class="brush: console"&gt;
+ &lt;div class="source"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; wget http://pypi.python.org/packages/2.7/s/setuptools/setuptools-0.6c11-py2.7.egg
+&lt;span class="gp"&gt;$&lt;/span&gt; sudo -i
+&lt;span class="gp"&gt;#&lt;/span&gt; &lt;span class="nb"&gt;export&lt;/span&gt; &lt;span class="nv"&gt;PATH&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;$PATH&lt;/span&gt;:/usr/local/bin
+&lt;span class="gp"&gt;#&lt;/span&gt; sh setuptools-0.6c11-py2.7.egg
+&lt;span class="gp"&gt;#&lt;/span&gt; &lt;span class="nb"&gt;exit&lt;/span&gt;
+&lt;span class="gp"&gt;$&lt;/span&gt; sudo rm /usr/local/bin/easy_install &lt;span class="c1"&gt;## remove the symlink that shadows the system easy_install&lt;/span&gt;
+&lt;span class="gp"&gt;$&lt;/span&gt; &lt;span class="c1"&gt;# You may now try the easy_install for 2.7 with e.g.:&lt;/span&gt;
+&lt;span class="gp"&gt;$&lt;/span&gt; sudo /usr/local/bin/easy_install-2.7 numpy
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;p&gt;Este post es una combinación de &lt;a href="http://stackoverflow.com/questions/4149361/on-linux-suse-or-redhat-how-do-i-load-python-2-7"&gt;dos respuestas en Stack Overflow&lt;/a&gt;, y mi propia experiencia con este mismo problema.&lt;/p&gt;&lt;/html&gt;</content></entry>
+ <entry>
+  <title type="text">Unicode encodings</title>
+  <link rel="alternate" href="http://logc.github.io/blog/2013/12/03/unicode-encodings/?utm_source=all&amp;utm_medium=Atom" />
+  <id>urn:http-logc-github-io:-blog-2013-12-03-unicode-encodings</id>
+  <published>2013-12-03T13:46:19Z</published>
+  <updated>2013-12-03T13:46:19Z</updated>
+  <author>
+   <name>logc</name></author>
+  <content type="html">&lt;html&gt;
+&lt;p&gt;¡Por fin he entendido cuál es la diferencia entre Unicode y UTF&amp;ndash;8! Y lo que es más importante, cómo se declaran correctamente &lt;code&gt;strings&lt;/code&gt; en Unicode en Python.&lt;/p&gt;
+
+&lt;p&gt;Unicode es &lt;strong&gt;la tabla de equivalencias&lt;/strong&gt; entre caracteres de (casi) todos los lenguajes humanos, y un número asignado a ese caracter en concreto.&lt;/p&gt;
+
+&lt;p&gt;UTF&amp;ndash;8 es &lt;strong&gt;la manera de comprimir&lt;/strong&gt; esos números en uno o dos bytes, en lugar de usar 4 bytes por caracter, aprovechando el hecho de que la mayoría de caracteres habituales están en los números bajos (menores de 128).&lt;/p&gt;
+
+&lt;p&gt;Es decir, si el &amp;ldquo;encodificador&amp;rdquo; encuentra un número &amp;lt; 128, deja ese número; si encuentra uno mayor, pero menor de X (donde X es un límite que no recuerdo), usa &lt;strong&gt;dos bytes&lt;/strong&gt; para expresar este número. El &amp;ldquo;decodificador&amp;rdquo; entonces sabe que cada caracter menor de 128 está &amp;ldquo;solo&amp;rdquo;, mientras que si encuentra uno mayor, entonces debe leer también el siguiente byte para tener el número correcto con el que ir a la tabla Unicode y obtener el caracter adecuado.&lt;/p&gt;
+
+&lt;p&gt;Se puede crear una cadena Unicode en Python usando una &lt;code&gt;u&lt;/code&gt; delante de la cadena literal, pero esto no siempre es posible, como cuando se lee de un fichero. Para convertir entre distintas codificaciones existe la función &lt;code&gt;unicode&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;La función &lt;code&gt;unicode&lt;/code&gt; &lt;strong&gt;no utiliza UTF&amp;ndash;8 por defecto&lt;/strong&gt;, sino, absurdamente, ASCII. Por eso &lt;em&gt;sólo es equivalente a poner una &lt;code&gt;u&lt;/code&gt; delante una cadena si se especifica que el &lt;code&gt;encoding&lt;/code&gt; sea &lt;code&gt;'utf-8'&lt;/code&gt;&lt;/em&gt;.&lt;/p&gt;
+
+&lt;div class="brush: python"&gt;
+ &lt;div class="source"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;unicode_string&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;u"Años"&lt;/span&gt;
+
+&lt;span class="n"&gt;unicode_str&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;unicode&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;open&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;some.txt&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;r&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;read&lt;/span&gt;&lt;span class="p"&gt;(),&lt;/span&gt; &lt;span class="n"&gt;encoding&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;utf-8&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;&lt;/html&gt;</content></entry>
+ <entry>
+  <title type="text">py2app excludes</title>
+  <link rel="alternate" href="http://logc.github.io/blog/2013/12/02/py2app-excludes/?utm_source=all&amp;utm_medium=Atom" />
+  <id>urn:http-logc-github-io:-blog-2013-12-02-py2app-excludes</id>
+  <published>2013-12-02T20:58:08Z</published>
+  <updated>2013-12-02T20:58:08Z</updated>
+  <author>
+   <name>logc</name></author>
+  <content type="html">&lt;html&gt;
+&lt;p&gt;Al generar una aplicación para Mac OS X con py2app, a menudo se generan ejecutables muy pesados, por ejemplo 20 MBs para una aplicación de línea de comandos (!).&lt;/p&gt;
+
+&lt;p&gt;Uno de los problemas es que py2app tiende a incluir muchos módulos de la librería estándar de Python que en realidad no hacen falta. Se pueden excluir específicamente incluyéndolos en la opción excludes que se pasa a la función setup en el archivo setup.py usado para generar la aplicación.&lt;/p&gt;
+
+&lt;p&gt;Con la lista siguiente, el peso baja de 22 MBs a 6 MBs. Probablemente se puede rebajar aún más.&lt;/p&gt;
+
+&lt;div class="brush: python"&gt;
+ &lt;div class="source"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# File: setup.py&lt;/span&gt;
+
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;setuptools&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;setup&lt;/span&gt;
+
+&lt;span class="n"&gt;APP&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;path/main.py&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="n"&gt;Plist&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{}&lt;/span&gt;
+&lt;span class="n"&gt;DATA_FILES&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[]&lt;/span&gt;
+&lt;span class="n"&gt;OPTIONS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;argv_emulation&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="bp"&gt;True&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+           &lt;span class="c1"&gt;#&amp;#39;iconfile&amp;#39;: &amp;#39;Icons/ConverterIcon.icns&amp;#39;,&lt;/span&gt;
+           &lt;span class="s1"&gt;&amp;#39;plist&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Plist&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+           &lt;span class="s1"&gt;&amp;#39;excludes&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;
+               &lt;span class="s1"&gt;&amp;#39;aetypes&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+               &lt;span class="s1"&gt;&amp;#39;ast&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+               &lt;span class="s1"&gt;&amp;#39;bz2&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+               &lt;span class="s1"&gt;&amp;#39;calendar&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+               &lt;span class="s1"&gt;&amp;#39;codecs&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+               &lt;span class="s1"&gt;&amp;#39;collections&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+               &lt;span class="s1"&gt;&amp;#39;ctypes&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+               &lt;span class="s1"&gt;&amp;#39;distutils&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+               &lt;span class="s1"&gt;&amp;#39;doctest&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+               &lt;span class="s1"&gt;&amp;#39;email&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+               &lt;span class="s1"&gt;&amp;#39;encodings&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+               &lt;span class="s1"&gt;&amp;#39;functools&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+               &lt;span class="s1"&gt;&amp;#39;gzip&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+               &lt;span class="s1"&gt;&amp;#39;inspect&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+               &lt;span class="s1"&gt;&amp;#39;itertools&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+               &lt;span class="s1"&gt;&amp;#39;locale&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+               &lt;span class="s1"&gt;&amp;#39;logging&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+               &lt;span class="s1"&gt;&amp;#39;optparse&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+               &lt;span class="s1"&gt;&amp;#39;pickle&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+               &lt;span class="s1"&gt;&amp;#39;platform&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+               &lt;span class="s1"&gt;&amp;#39;pprint&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+               &lt;span class="s1"&gt;&amp;#39;random&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+               &lt;span class="s1"&gt;&amp;#39;re&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+               &lt;span class="s1"&gt;&amp;#39;sets&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+               &lt;span class="s1"&gt;&amp;#39;shutil&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+               &lt;span class="s1"&gt;&amp;#39;socket&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+               &lt;span class="s1"&gt;&amp;#39;ssl&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+               &lt;span class="s1"&gt;&amp;#39;subprocess&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+               &lt;span class="s1"&gt;&amp;#39;tarfile&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+               &lt;span class="s1"&gt;&amp;#39;tempfile&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+               &lt;span class="s1"&gt;&amp;#39;threading&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+               &lt;span class="s1"&gt;&amp;#39;traceback&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+               &lt;span class="s1"&gt;&amp;#39;types&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+               &lt;span class="s1"&gt;&amp;#39;unittest&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+               &lt;span class="s1"&gt;&amp;#39;urllib&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+               &lt;span class="s1"&gt;&amp;#39;urllib2&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+               &lt;span class="s1"&gt;&amp;#39;urlparse&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+               &lt;span class="s1"&gt;&amp;#39;weakref&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+               &lt;span class="s1"&gt;&amp;#39;xml&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+               &lt;span class="s1"&gt;&amp;#39;zipfile&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+           &lt;span class="p"&gt;]&lt;/span&gt;
+           &lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="n"&gt;setup&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+    &lt;span class="n"&gt;app&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;APP&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="n"&gt;package_dir&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;src&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;},&lt;/span&gt; &lt;span class="c1"&gt;# you may not need this&lt;/span&gt;
+    &lt;span class="n"&gt;data_files&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;DATA_FILES&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="n"&gt;version&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;"0.1"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="n"&gt;description&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;"&amp;lt;Your description&amp;gt;"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="n"&gt;author&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;"&amp;lt;Your name&amp;gt;"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="n"&gt;author_email&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;"&amp;lt;Your email&amp;gt;"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="n"&gt;options&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;py2app&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;OPTIONS&lt;/span&gt;&lt;span class="p"&gt;},&lt;/span&gt;
+    &lt;span class="n"&gt;setup_requires&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;py2app&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
+&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;&lt;/html&gt;</content></entry>
+ <entry>
+  <title type="text">Compilar Cython</title>
+  <link rel="alternate" href="http://logc.github.io/blog/2013/11/19/compilar-cython/?utm_source=all&amp;utm_medium=Atom" />
+  <id>urn:http-logc-github-io:-blog-2013-11-19-compilar-cython</id>
+  <published>2013-11-19T08:30:14Z</published>
+  <updated>2013-11-19T08:30:14Z</updated>
+  <author>
+   <name>logc</name></author>
+  <content type="html">&lt;html&gt;
+&lt;p&gt;Compilar ficheros de Cython es más fácil usando la función &lt;code&gt;cythonize&lt;/code&gt; dentro del setup.py de nuestro proyecto:&lt;/p&gt;
+
+&lt;div class="brush: python"&gt;
+ &lt;div class="source"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# File: setup.py&lt;/span&gt;
+
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;distutils.core&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;setup&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;Cython.Build&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;cythonize&lt;/span&gt;
+
+&lt;span class="n"&gt;setup&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+      &lt;span class="n"&gt;name&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;"My hello app"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+      &lt;span class="n"&gt;ext_modules&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;cythonize&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;fibonacci.pyx&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="c1"&gt;# accepts a glob pattern&lt;/span&gt;
+&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;p&gt;Por ejemplo, el fichero a compilar es fibonacci.pyx, que contiene un ejemplo del tutorial de Cython:&lt;/p&gt;
+
+&lt;div class="brush: python"&gt;
+ &lt;div class="source"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# File: fibonacci.pyx&lt;/span&gt;
+
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;fib&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
+    &lt;span class="k"&gt;while&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;p&gt;El resultado de compilar &lt;code&gt;fibonacci.pyx&lt;/code&gt; es un fichero con código intermedio en C &lt;code&gt;fibonacci.c&lt;/code&gt; y un fichero compilado &lt;code&gt;fibonacci.so&lt;/code&gt;.&lt;/p&gt;
+
+&lt;div class="brush: bash"&gt;
+ &lt;div class="source"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ python setup.py build
+running build
+running build_ext
+building &lt;span class="s1"&gt;&amp;#39;fibonacci&amp;#39;&lt;/span&gt; extension
+/usr/bin/clang ...snip... -o build/lib.macosx-10.8-x86_64-2.7/fibonacci.so
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;blockquote&gt;
+ &lt;p&gt;&lt;strong&gt;note&lt;/strong&gt;&lt;/p&gt;
+ &lt;p&gt;El compilador que se utiliza es el que sea por defecto del sistema en ese momento. Aún estoy investigando cómo seleccionar un compilador en concreto, o añadir librerías y flags.&lt;/p&gt;&lt;/blockquote&gt;
+
+&lt;p&gt;El fichero .so puede usarse desde otros módulos de Python, o directamente desde la shell&lt;/p&gt;
+
+&lt;div class="brush: pycon"&gt;
+ &lt;div class="source"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;&amp;gt;&amp;gt;&amp;gt; &lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;fibonacci&lt;/span&gt;
+&lt;span class="gp"&gt;&amp;gt;&amp;gt;&amp;gt; &lt;/span&gt;&lt;span class="n"&gt;fibonacci&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;fib&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="go"&gt;1 1 2 3&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;&lt;/html&gt;</content></entry>
+ <entry>
+  <title type="text">Infraestructura de lanzamientos locales</title>
+  <link rel="alternate" href="http://logc.github.io/blog/2013/11/17/infraestructura-de-lanzamientos-locales/?utm_source=all&amp;utm_medium=Atom" />
+  <id>urn:http-logc-github-io:-blog-2013-11-17-infraestructura-de-lanzamientos-locales</id>
+  <published>2013-11-17T21:43:12Z</published>
+  <updated>2013-11-17T21:43:12Z</updated>
+  <author>
+   <name>logc</name></author>
+  <content type="html">&lt;html&gt;
+&lt;p&gt;Este post describe cómo crear una infraestructura de lanzamientos locales, para compartir paquetes locales con otros desarrolladores del mismo equipo, basándose en Python y Macports. Esto presupone que los otros miembros del equipo usan todos Mac OS X, y que están interesados en usar paquetes de Python, claro.&lt;/p&gt;
+
+&lt;p&gt;Necesitaremos:&lt;/p&gt;
+
+&lt;ul&gt;
+ &lt;li&gt;crear un paquete de Python con su correspondiente &lt;code&gt;setup.py&lt;/code&gt;&lt;/li&gt;
+ &lt;li&gt;tener un directorio &lt;code&gt;releases&lt;/code&gt; servido por HTTP por el servidor Apache  integrado en el sistema operativo.&lt;/li&gt;
+ &lt;li&gt;tener un directorio &lt;code&gt;ports&lt;/code&gt; servido por rsync.&lt;/li&gt;
+ &lt;li&gt;configurar Macports para usar este nuevo repositorio.&lt;/li&gt;&lt;/ul&gt;
+&lt;!-- more--&gt;
+
+&lt;h2 id="crear-un-paquete-de-ejemplo-en-python"&gt;Crear un paquete de ejemplo en Python&lt;/h2&gt;
+
+&lt;p&gt;Crea un directorio llamado &lt;code&gt;pyhello&lt;/code&gt;, y los siguientes directorios y ficheros dentro de él:&lt;/p&gt;
+
+&lt;div class="brush: console"&gt;
+ &lt;div class="source"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="go"&gt;.&lt;/span&gt;
+&lt;span class="go"&gt;├── pyhello&lt;/span&gt;
+&lt;span class="go"&gt;│   ├── __init__.py&lt;/span&gt;
+&lt;span class="go"&gt;│   └── main.py&lt;/span&gt;
+&lt;span class="go"&gt;└── setup.py&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;p&gt;El contenido de &lt;code&gt;setup.py&lt;/code&gt;:&lt;/p&gt;
+
+&lt;div class="brush: python"&gt;
+ &lt;div class="source"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;setuptools&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;setup&lt;/span&gt;
+
+&lt;span class="n"&gt;setup&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;pyhello&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+      &lt;span class="n"&gt;version&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;0.1&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+      &lt;span class="n"&gt;packages&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;pyhello&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
+      &lt;span class="n"&gt;entry_points&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+          &lt;span class="s1"&gt;&amp;#39;console_scripts&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;pyhello=pyhello.main:main&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]})&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;p&gt;El contenido de &lt;code&gt;pyhello/main.py&lt;/code&gt;:&lt;/p&gt;
+
+&lt;div class="brush: python"&gt;
+ &lt;div class="source"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+    &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s2"&gt;"Hello from pyhello!"&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;p&gt;Después crea una distribución de fuentes con el comando estándar:&lt;/p&gt;
+
+&lt;div class="brush: console"&gt;
+ &lt;div class="source"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="go"&gt;python setup.py sdist&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;p&gt;Esto crea un lanzamiento llamado &lt;code&gt;pyhello-0.1.tar.gz&lt;/code&gt; bajo el directorio &lt;code&gt;dist&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h2 id="servir-lanzamientos-por-http"&gt;Servir lanzamientos por HTTP&lt;/h2&gt;
+
+&lt;p&gt;Crea un directorio &lt;code&gt;releases&lt;/code&gt; bajo &lt;code&gt;~/Sites&lt;/code&gt;. Copia el fichero &lt;code&gt;dist/pyhello-0.1.tar.gz&lt;/code&gt; allá.&lt;/p&gt;
+
+&lt;p&gt;Crea un fichero de configuración para Apache en &lt;code&gt;/etc/apache2/users/YOUR_USERNAME.conf&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;El contenido de &lt;code&gt;YOUR_USERNAME.conf&lt;/code&gt;:&lt;/p&gt;
+
+&lt;div class="brush: apacheconf"&gt;
+ &lt;div class="source"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nt"&gt;&amp;lt;Directory&lt;/span&gt; &lt;span class="s"&gt;"/Users/YOUR_USERNAME/Sites/"&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class="nb"&gt;Options&lt;/span&gt; Indexes Multiviews
+    &lt;span class="nb"&gt;AllowOverride&lt;/span&gt; AuthConfig Limit
+    &lt;span class="nb"&gt;Order&lt;/span&gt; allow,deny
+    &lt;span class="nb"&gt;Allow&lt;/span&gt; from &lt;span class="k"&gt;all&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/Directory&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;p&gt;Para lanzar Apache sólo durante esta sesión de la máquina:&lt;/p&gt;
+
+&lt;div class="brush: console"&gt;
+ &lt;div class="source"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo apachectl start
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;p&gt;Para lanzar Apache automáticamente cada vez que se inicia la máquina:&lt;/p&gt;
+
+&lt;div class="brush: console"&gt;
+ &lt;div class="source"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo launchctl load -w /System/Library/LaunchDaemons/org.apache.httpd.plist
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;h2 id="crear-un-fichero-portfile"&gt;Crear un fichero Portfile&lt;/h2&gt;
+
+&lt;p&gt;El contenido de un fichero Portfile para un proyecto de Python normal (basado en un &lt;code&gt;setup.py&lt;/code&gt;) es:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;# -*- coding: utf-8; mode: tcl; tab-width: 4; truncate-lines: t; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:et:sw=4:ts=4:sts=4
+# $Id$
+
+PortSystem 1.0
+PortGroup python 1.0
+
+name                py-pyhello
+version             0.1
+
+categories-append   devel
+license             BSD
+maintainers         your.mail.provider.com:your.mail.name
+description         An example Python app
+long_description    Pyhello is an example Python app, distributed over \
+                    local Macports
+
+platforms           darwin
+supported_archs     noarch
+
+homepage            http://your.local.machine/~YOUR_USERNAME/
+master_sites        http://your.local.machine/~YOUR_USERNAME/releases/
+distname            pyhello-${version}
+
+python.versions     26 27
+
+checksums           rmd160 b8a9e7e5db29d407db95310ee95e7048d6fa1cdd \
+                    sha256 cd8693792f5e6632c0c7efd287b5153571173cc3a26f98c2cead7af6a0445b2b&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;Aclaraciones&lt;/strong&gt;:&lt;/p&gt;
+
+&lt;ul&gt;
+ &lt;li&gt;
+  &lt;p&gt;&lt;code&gt;PortGroup&lt;/code&gt; para python configura los comandos de &lt;code&gt;build&lt;/code&gt; e &lt;code&gt;install&lt;/code&gt;;  también existen grupos para &lt;code&gt;haskell&lt;/code&gt; y otros.&lt;/p&gt;&lt;/li&gt;
+ &lt;li&gt;
+  &lt;p&gt;el nombre del paquete es manipulado para generar un paquete por cada versión  listada en &lt;code&gt;python.versions&lt;/code&gt;. En este ejemplo, se generarían &lt;code&gt;py26-pyhello&lt;/code&gt; y  &lt;code&gt;py27-pyhello&lt;/code&gt;.&lt;/p&gt;&lt;/li&gt;
+ &lt;li&gt;
+  &lt;p&gt;la convención para el campo &lt;code&gt;maintainers&lt;/code&gt; es &lt;code&gt;gmail.com:user&lt;/code&gt; para  &lt;code&gt;user@gmail.com&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+ &lt;li&gt;
+  &lt;p&gt;para generar los digests del lanzamiento con los siguientes comandos:&lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;
+
+&lt;div class="brush: console"&gt;
+ &lt;div class="source"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; openssl sha256 dist/pyhello-0.1.tar.gz
+&lt;span class="gp"&gt;$&lt;/span&gt; openssl rmd160 dist/pyhello-0.1.tar.gz
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;h2 id="servir-portfiles-por-rsync"&gt;Servir Portfiles por rsync&lt;/h2&gt;
+
+&lt;p&gt;Crea un directorio &lt;code&gt;ports&lt;/code&gt; bajo &lt;code&gt;~/Sites&lt;/code&gt;, y los siguentes subdirectorios en él:&lt;/p&gt;
+
+&lt;div class="brush: console"&gt;
+ &lt;div class="source"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="go"&gt;.&lt;/span&gt;
+&lt;span class="go"&gt;└── python&lt;/span&gt;
+&lt;span class="go"&gt;    └── pyhello&lt;/span&gt;
+&lt;span class="go"&gt;        └── Portfile&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;p&gt;Copia el fichero Portfile a su ubicación mostrada y ejecuta el siguiente comando en el directorio &lt;code&gt;ports&lt;/code&gt;:&lt;/p&gt;
+
+&lt;div class="brush: console"&gt;
+ &lt;div class="source"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; portindex
+&lt;span class="go"&gt;Creating port index in ...&lt;/span&gt;
+&lt;span class="go"&gt;Adding port python/pyhello&lt;/span&gt;
+&lt;span class="go"&gt;Adding subport py26-pyhello&lt;/span&gt;
+&lt;span class="go"&gt;Adding subport py27-pyhello&lt;/span&gt;
+
+&lt;span class="go"&gt;Total number of ports parsed:	3&lt;/span&gt;
+&lt;span class="go"&gt;Ports successfully parsed:	3&lt;/span&gt;
+&lt;span class="go"&gt;Ports failed:			0&lt;/span&gt;
+&lt;span class="go"&gt;Up-to-date ports skipped:	0&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;p&gt;Aunque rsync viene instalado por defecto, usaremos la versión instalada con Macports en lo siguiente. La versión por defecto está en &lt;code&gt;/usr/bin&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Crear un fichero para &lt;code&gt;launchctl&lt;/code&gt; en &lt;code&gt;/Library/LaunchDaemons/name.YOUR_USERNAME.rsync.plist&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;El contenido de &lt;code&gt;rsync.plit&lt;/code&gt;:&lt;/p&gt;
+
+&lt;div class="brush: xml"&gt;
+ &lt;div class="source"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt; &lt;span class="cp"&gt;&amp;lt;?xml version="1.0" encoding="UTF-8"?&amp;gt;&lt;/span&gt;
+ &lt;span class="cp"&gt;&amp;lt;!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"&amp;gt;&lt;/span&gt;
+ &lt;span class="nt"&gt;&amp;lt;plist&lt;/span&gt; &lt;span class="na"&gt;version=&lt;/span&gt;&lt;span class="s"&gt;"1.0"&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+ &lt;span class="nt"&gt;&amp;lt;dict&amp;gt;&lt;/span&gt;
+        &lt;span class="nt"&gt;&amp;lt;key&amp;gt;&lt;/span&gt;Disabled&lt;span class="nt"&gt;&amp;lt;/key&amp;gt;&lt;/span&gt;
+        &lt;span class="nt"&gt;&amp;lt;false/&amp;gt;&lt;/span&gt;
+        &lt;span class="nt"&gt;&amp;lt;key&amp;gt;&lt;/span&gt;Label&lt;span class="nt"&gt;&amp;lt;/key&amp;gt;&lt;/span&gt;
+        &lt;span class="nt"&gt;&amp;lt;string&amp;gt;&lt;/span&gt;name.YOUR_USERNAME.rsync&lt;span class="nt"&gt;&amp;lt;/string&amp;gt;&lt;/span&gt;
+        &lt;span class="nt"&gt;&amp;lt;key&amp;gt;&lt;/span&gt;Program&lt;span class="nt"&gt;&amp;lt;/key&amp;gt;&lt;/span&gt;
+        &lt;span class="nt"&gt;&amp;lt;string&amp;gt;&lt;/span&gt;/opt/local/bin/rsync&lt;span class="nt"&gt;&amp;lt;/string&amp;gt;&lt;/span&gt;
+        &lt;span class="nt"&gt;&amp;lt;key&amp;gt;&lt;/span&gt;ProgramArguments&lt;span class="nt"&gt;&amp;lt;/key&amp;gt;&lt;/span&gt;
+        &lt;span class="nt"&gt;&amp;lt;array&amp;gt;&lt;/span&gt;
+                &lt;span class="nt"&gt;&amp;lt;string&amp;gt;&lt;/span&gt;/opt/local/bin/rsync&lt;span class="nt"&gt;&amp;lt;/string&amp;gt;&lt;/span&gt;
+                &lt;span class="nt"&gt;&amp;lt;string&amp;gt;&lt;/span&gt;--daemon&lt;span class="nt"&gt;&amp;lt;/string&amp;gt;&lt;/span&gt;
+                &lt;span class="nt"&gt;&amp;lt;string&amp;gt;&lt;/span&gt;--config=/opt/local/etc/rsyncd.conf&lt;span class="nt"&gt;&amp;lt;/string&amp;gt;&lt;/span&gt;
+        &lt;span class="nt"&gt;&amp;lt;/array&amp;gt;&lt;/span&gt;
+        &lt;span class="nt"&gt;&amp;lt;key&amp;gt;&lt;/span&gt;inetdCompatibility&lt;span class="nt"&gt;&amp;lt;/key&amp;gt;&lt;/span&gt;
+        &lt;span class="nt"&gt;&amp;lt;dict&amp;gt;&lt;/span&gt;
+                &lt;span class="nt"&gt;&amp;lt;key&amp;gt;&lt;/span&gt;Wait&lt;span class="nt"&gt;&amp;lt;/key&amp;gt;&lt;/span&gt;
+                &lt;span class="nt"&gt;&amp;lt;false/&amp;gt;&lt;/span&gt;
+        &lt;span class="nt"&gt;&amp;lt;/dict&amp;gt;&lt;/span&gt;
+        &lt;span class="nt"&gt;&amp;lt;key&amp;gt;&lt;/span&gt;Sockets&lt;span class="nt"&gt;&amp;lt;/key&amp;gt;&lt;/span&gt;
+        &lt;span class="nt"&gt;&amp;lt;dict&amp;gt;&lt;/span&gt;
+            &lt;span class="nt"&gt;&amp;lt;key&amp;gt;&lt;/span&gt;Listeners&lt;span class="nt"&gt;&amp;lt;/key&amp;gt;&lt;/span&gt;
+            &lt;span class="nt"&gt;&amp;lt;dict&amp;gt;&lt;/span&gt;
+                &lt;span class="nt"&gt;&amp;lt;key&amp;gt;&lt;/span&gt;SockServiceName&lt;span class="nt"&gt;&amp;lt;/key&amp;gt;&lt;/span&gt;
+                &lt;span class="nt"&gt;&amp;lt;string&amp;gt;&lt;/span&gt;rsync&lt;span class="nt"&gt;&amp;lt;/string&amp;gt;&lt;/span&gt;
+                &lt;span class="nt"&gt;&amp;lt;key&amp;gt;&lt;/span&gt;SockType&lt;span class="nt"&gt;&amp;lt;/key&amp;gt;&lt;/span&gt;
+                &lt;span class="nt"&gt;&amp;lt;string&amp;gt;&lt;/span&gt;stream&lt;span class="nt"&gt;&amp;lt;/string&amp;gt;&lt;/span&gt;
+            &lt;span class="nt"&gt;&amp;lt;/dict&amp;gt;&lt;/span&gt;
+        &lt;span class="nt"&gt;&amp;lt;/dict&amp;gt;&lt;/span&gt;
+ &lt;span class="nt"&gt;&amp;lt;/dict&amp;gt;&lt;/span&gt;
+ &lt;span class="nt"&gt;&amp;lt;/plist&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;p&gt;El contenido de &lt;code&gt;/opt/local/etc/rsyncd.conf&lt;/code&gt;:&lt;/p&gt;
+
+&lt;div class="brush: ini"&gt;
+ &lt;div class="source"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;[ports]&lt;/span&gt;
+
+&lt;span class="na"&gt;path&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;/Users/YOUR_USERNAME/Sites/ports&lt;/span&gt;
+&lt;span class="na"&gt;log file&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;/opt/local/var/log/rsyncd.log&lt;/span&gt;
+&lt;span class="na"&gt;pid file&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;/opt/local/var/run/rsyncd.pid&lt;/span&gt;
+&lt;span class="na"&gt;read only&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;true&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;p&gt;Añadir rsync a &lt;code&gt;launchctl&lt;/code&gt;:&lt;/p&gt;
+
+&lt;div class="brush: console"&gt;
+ &lt;div class="source"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo launchctl load -w /Library/LaunchDaemons/name.YOUR_USERNAME.rsync.plist
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;p&gt;Comprueba que sólo se pueden listar los ports y nada más del sistema de fichero:&lt;/p&gt;
+
+&lt;div class="brush: console"&gt;
+ &lt;div class="source"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; rsync -axv rsync://localhost/
+&lt;span class="gp"&gt;$&lt;/span&gt; rsync -axv rsync://localhost/ports/
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;h2 id="configurar-macports"&gt;Configurar Macports&lt;/h2&gt;
+
+&lt;p&gt;Configura Macports en todas las máquinas que deban poder acceder a los nuevos paquetes. El nuevo repositorio debe ir antes del repositorio por defecto para evitar conflictos de nombres.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;rsync://localhost/ports/
+rsync://rsync.macports.org/release/ports/ [default]&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Comprueba desde otras máquinas que se pueden encontrar los nuevos paquetes:&lt;/p&gt;
+
+&lt;div class="brush: console"&gt;
+ &lt;div class="source"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; port search pyhello
+&lt;span class="go"&gt;py-pyhello @0.1 (python, devel)&lt;/span&gt;
+&lt;span class="go"&gt;    An example Python app&lt;/span&gt;
+
+&lt;span class="go"&gt;py26-pyhello @0.1 (python, devel)&lt;/span&gt;
+&lt;span class="go"&gt;    An example Python app&lt;/span&gt;
+
+&lt;span class="go"&gt;py27-pyhello @0.1 (python, devel)&lt;/span&gt;
+&lt;span class="go"&gt;    An example Python app&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;p&gt;Después de instalar el nuevo paquete, sus comandos están a nuestra disposición:&lt;/p&gt;
+
+&lt;div class="brush: console"&gt;
+ &lt;div class="source"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo port install py27-pyhello
+&lt;span class="gp"&gt;$&lt;/span&gt; pyhello
+&lt;span class="go"&gt;Hello from pyhello!&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;&lt;/html&gt;</content></entry></feed>

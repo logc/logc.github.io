@@ -1,0 +1,223 @@
+/* custom.css */
+
+@font-face {
+    font-family: 'texgyreherosbold';
+    src: url('../fonts/texgyreheros_bold_macroman/texgyreheros-bold-webfont.eot');
+    src: url('../fonts/texgyreheros_bold_macroman/texgyreheros-bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/texgyreheros_bold_macroman/texgyreheros-bold-webfont.woff') format('woff'),
+         url('../fonts/texgyreheros_bold_macroman/texgyreheros-bold-webfont.ttf') format('truetype'),
+         url('../fonts/texgyreheros_bold_macroman/texgyreheros-bold-webfont.svg#texgyreherosbold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'texgyreherosbold_italic';
+    src: url('../fonts/texgyreheros_bolditalic_macroman/texgyreheros-bolditalic-webfont.eot');
+    src: url('../fonts/texgyreheros_bolditalic_macroman/texgyreheros-bolditalic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/texgyreheros_bolditalic_macroman/texgyreheros-bolditalic-webfont.woff') format('woff'),
+         url('../fonts/texgyreheros_bolditalic_macroman/texgyreheros-bolditalic-webfont.ttf') format('truetype'),
+         url('../fonts/texgyreheros_bolditalic_macroman/texgyreheros-bolditalic-webfont.svg#texgyreherosbold_italic') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'texgyreherositalic';
+    src: url('../fonts/texgyreheros_italic_macroman/texgyreheros-italic-webfont.eot');
+    src: url('../fonts/texgyreheros_italic_macroman/texgyreheros-italic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/texgyreheros_italic_macroman/texgyreheros-italic-webfont.woff') format('woff'),
+         url('../fonts/texgyreheros_italic_macroman/texgyreheros-italic-webfont.ttf') format('truetype'),
+         url('../fonts/texgyreheros_italic_macroman/texgyreheros-italic-webfont.svg#texgyreherositalic') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'texgyreherosregular';
+    src: url('../fonts/texgyreheros_regular_macroman/texgyreheros-regular-webfont.eot');
+    src: url('../fonts/texgyreheros_regular_macroman/texgyreheros-regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/texgyreheros_regular_macroman/texgyreheros-regular-webfont.woff') format('woff'),
+         url('../fonts/texgyreheros_regular_macroman/texgyreheros-regular-webfont.ttf') format('truetype'),
+         url('../fonts/texgyreheros_regular_macroman/texgyreheros-regular-webfont.svg#texgyreherosregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'texgyretermesbold';
+    src: url('../fonts/texgyreheros_bold_macroman/texgyretermes-bold-webfont.eot');
+    src: url('../fonts/texgyreheros_bold_macroman/texgyretermes-bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/texgyreheros_bold_macroman/texgyretermes-bold-webfont.woff') format('woff'),
+         url('../fonts/texgyreheros_bold_macroman/texgyretermes-bold-webfont.ttf') format('truetype'),
+         url('../fonts/texgyreheros_bold_macroman/texgyretermes-bold-webfont.svg#texgyretermesbold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'texgyretermesbold_italic';
+    src: url('fonts/texgyretermes_bold_macroman/texgyretermes-bolditalic-webfont.eot');
+    src: url('fonts/texgyretermes_bold_macroman/texgyretermes-bolditalic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/texgyretermes_bold_macroman/texgyretermes-bolditalic-webfont.woff') format('woff'),
+         url('fonts/texgyretermes_bold_macroman/texgyretermes-bolditalic-webfont.ttf') format('truetype'),
+         url('fonts/texgyretermes_bold_macroman/texgyretermes-bolditalic-webfont.svg#texgyretermesbold_italic') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'texgyretermesitalic';
+    src: url('../fonts/texgyretermes_italic_macroman/texgyretermes-italic-webfont.eot');
+    src: url('../fonts/texgyretermes_italic_macroman/texgyretermes-italic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/texgyretermes_italic_macroman/texgyretermes-italic-webfont.woff') format('woff'),
+         url('../fonts/texgyretermes_italic_macroman/texgyretermes-italic-webfont.ttf') format('truetype'),
+         url('../fonts/texgyretermes_italic_macroman/texgyretermes-italic-webfont.svg#texgyretermesitalic') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'texgyretermesregular';
+    src: url('../fonts/texgyretermes_regular_macroman/texgyretermes-regular-webfont.eot');
+    src: url('../fonts/texgyretermes_regular_macroman/texgyretermes-regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/texgyretermes_regular_macroman/texgyretermes-regular-webfont.woff') format('woff'),
+         url('../fonts/texgyretermes_regular_macroman/texgyretermes-regular-webfont.ttf') format('truetype'),
+         url('../fonts/texgyretermes_regular_macroman/texgyretermes-regular-webfont.svg#texgyretermesregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+body {
+    font-family: 'texgyretermesregular', serif;
+    font-size: 18px;
+    text-align: left;
+    color: #c8c8c8;
+    background-color: #272b30;
+}
+
+.navbar, .navbar-brand, .dropdown-toggle, .navbar-nav>.dropdown>a .caret {
+    font-family: 'texgyreherosbold', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 20px;
+    color: #c8c8c8 !important;
+    background-color: #3a3f44;
+}
+
+.navbar-inverse .navbar-nav>.dropdown>a .caret {
+    border-top-color: #c8c8c8 !important;;
+    border-bottom-color: #c8c8c8 !important;;
+}
+
+.navbar-inverse .navbar-nav>li>a {
+    color: #c8c8c8 !important;
+}
+
+.date-and-tags {
+    font-family: 'Fira Mono', Menlo, Monaco, Consolas, 'Courier New', monospace;
+    font-size: 80%;
+}
+
+/* This is not code blocks, but only inline code */
+code {
+    font-family: 'Fira Mono', Menlo, Monaco, Consolas, 'Courier New', monospace;
+    font-size: 80%;
+    color: black;
+    background-color: #c8c8c8;
+}
+
+a, a:hover, a:visited {
+    color: #558a86;
+}
+
+.pagination > .active a {
+    background-color: #558a86;
+    border-color: #558a86;
+}
+
+pre {
+    background-color: #c8c8c8 !important;
+    font-family: 'Fira Mono', Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+.footnotes {
+    font-size: smaller;
+    margin-top: 2em;
+}
+
+#left-sidebar, #right-sidebar {
+    font-size: 80%;
+}
+
+#page-footer {
+    font-size: 70%;
+}
+
+footer {
+    font-size: 70%;
+}
+
+blockquote p {
+    font-size: 100%;
+    color: #2f292b;
+    margin-bottom: 13px;
+}
+
+h1 {
+    font-family: 'texgyreherosbold' !important;
+    font-size: 170%;
+    font-weight: bold;
+    color: #c8c8c8;
+}
+
+h2 {
+    font-family: 'texgyreherosbold' !important;
+    font-size: 160%;
+    font-weight: bold;
+    color: #558a86;
+}
+
+h3 {
+    font-family: 'texgyreherosbold' !important;
+    font-size: 150%;
+    font-weight: bold;
+    color: #558a86;
+}
+
+h4 {
+    font-family: 'texgyreherosbold' !important;
+    font-size: 140%;
+    font-style: italic;
+    color: #558a86;
+}
+
+article {
+    padding-bottom: 18px;
+    border-bottom: 2px dashed #ccc;
+}
+
+.read-more {
+    font-style: italic;
+}
+
+.figure {
+    padding: 1em;
+}
+
+.caption {
+    color: #666;
+    font-style: italic;
+    font-size: smaller;
+}
+
+.sourcetable {
+    margin-top: 1em;
+    margin-bottom: 1em;
+}

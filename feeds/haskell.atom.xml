@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="utf-8"?> 
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+ <title type="text">logc io: Posts tagged 'haskell'</title>
+ <link rel="self" href="http://logc.github.io/feeds/haskell.atom.xml" />
+ <link href="http://logc.github.io/tags/haskell.html" />
+ <id>urn:http-logc-github-io:-tags-haskell-html</id>
+ <updated>2013-12-04T14:39:03Z</updated>
+ <entry>
+  <title type="text">How do you develop with Yesod</title>
+  <link rel="alternate" href="http://logc.github.io/blog/2013/12/04/how-do-you-develop-with-yesod/?utm_source=haskell&amp;utm_medium=Atom" />
+  <id>urn:http-logc-github-io:-blog-2013-12-04-how-do-you-develop-with-yesod</id>
+  <published>2013-12-04T14:39:03Z</published>
+  <updated>2013-12-04T14:39:03Z</updated>
+  <author>
+   <name>logc</name></author>
+  <content type="html">&lt;html&gt;
+&lt;p&gt;Yesod tutorials and examples can be found on the &lt;a href="http://www.yesodweb.com/book"&gt;Yesod book&lt;/a&gt;, which is freely available online.&lt;/p&gt;
+
+&lt;p&gt;However, many of the examples given are self-contained (which means that handler functions, data models and templates are defined in a single module, where a Warp web server is started as well). There is &lt;a href="http://www.yesodweb.com/book/scaffolding-and-the-site-template"&gt;a chapter that describes the scaffolded template&lt;/a&gt;, i.e. what you get after you start with Yesod, but it is rather a description of its advantages and structure, not so much a detailed how-to.&lt;/p&gt;
+
+&lt;p&gt;The purpose of this post is to explain to a new Yesod developer &amp;ldquo;What do I do after &amp;hellip; ?&amp;rdquo; :&lt;/p&gt;
+
+&lt;div class="brush: console"&gt;
+ &lt;div class="source"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; yesod init
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;!-- more--&gt;
+
+&lt;p&gt;Briefly summarized, what you need after this command is:&lt;/p&gt;
+
+&lt;ol&gt;
+ &lt;li&gt;
+  &lt;p&gt;Describe the &lt;strong&gt;data models&lt;/strong&gt; your Web application is going to store persistently&lt;/p&gt;&lt;/li&gt;
+ &lt;li&gt;
+  &lt;p&gt;Describe which &lt;strong&gt;routes&lt;/strong&gt; are going to exist in your Web application&lt;/p&gt;&lt;/li&gt;
+ &lt;li&gt;
+  &lt;p&gt;Write the &lt;strong&gt;handler functions&lt;/strong&gt; that answer requests to those routes&lt;/p&gt;&lt;/li&gt;
+ &lt;li&gt;
+  &lt;p&gt;Write the &lt;strong&gt;Hamlet templates&lt;/strong&gt; that are filled out by the handler functions (and  possibly Lucius and Julius templates)&lt;/p&gt;&lt;/li&gt;&lt;/ol&gt;
+
+&lt;p&gt;The &lt;code&gt;yesod add-handler&lt;/code&gt; command automates the process of adding &lt;strong&gt;routes&lt;/strong&gt; and &lt;strong&gt;handler functions&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;h3 id="adding-data-models"&gt;Adding data models&lt;/h3&gt;
+
+&lt;p&gt;A new data model has to be described in the &lt;code&gt;config/models&lt;/code&gt; text file. With &amp;ldquo;text file&amp;rdquo; we mean that you write in &amp;ldquo;near free&amp;rdquo; syntax, but nevertheless many of the keywords are Haskell.&lt;/p&gt;
+
+&lt;h4 id="basics"&gt;Basics&lt;/h4&gt;
+
+&lt;p&gt;A new model consists of a name and a description of its fields. The description of fields consists, in turn, of a name and a type for the field. The type can be &lt;code&gt;Int&lt;/code&gt;, &lt;code&gt;Text&lt;/code&gt;, &lt;code&gt;UTCTime&lt;/code&gt;, or other Haskell types. The type can also be qualified with a Monad (usually &lt;code&gt;Maybe&lt;/code&gt;) and have a defaul value. Let&amp;rsquo;s see a simple example:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Book
+    title Text
+    author Text
+    publisher Text Maybe
+    published UTCTime default=CURRENT_TIME&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;An identifier field is &lt;strong&gt;automatically added&lt;/strong&gt; to each model. The name of that field is always &lt;code&gt;&amp;lt;modelName&amp;gt;Id&lt;/code&gt;, e.g. for the previous model it would be &lt;code&gt;BookId&lt;/code&gt;. This is a unique identifier stored in the database using the database mechanisms if available, or the Persistent module&amp;rsquo;s mechanisms otherwise. We usually do not need to care about &lt;strong&gt;writing&lt;/strong&gt; this ID, but we will be interested in &lt;strong&gt;reading&lt;/strong&gt; it from the database, as we will see later.&lt;/p&gt;
+
+&lt;p&gt;Another thing we get for free are &lt;strong&gt;accessor functions&lt;/strong&gt; for each field. These are called &lt;code&gt;bookTitle&lt;/code&gt; to get the title, &lt;code&gt;bookAuthor&lt;/code&gt; to get the author, and so on&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;With the mentioned, you can create your own models. Let&amp;rsquo;s review other features that are slightly more advanced but almost unavoidable in any app that is not completely trivial.&lt;/p&gt;
+
+&lt;h4 id="reference-other-models"&gt;Reference other models&lt;/h4&gt;
+
+&lt;p&gt;You can &lt;strong&gt;reference field in other models&lt;/strong&gt;. This creates &lt;em&gt;foreign keys&lt;/em&gt; in relational databases, or is managed by Persistent otherwise. You refer to the other model with an uppercase and join the name of model and field in camel case. An example is in the default models written by the scaffolding:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;User
+    ...
+Email
+    user UserId Maybe&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;This is also an example of using the automatically created field &lt;code&gt;UserId&lt;/code&gt; for the User.&lt;/p&gt;
+
+&lt;h4 id="declare-records-to-be-unique"&gt;Declare records to be unique&lt;/h4&gt;
+
+&lt;p&gt;You can &lt;strong&gt;declare records to be unique with respect to a field&lt;/strong&gt;. The unique ID are handed out to anything new in the store otherwise. You can specify that a record has to have a new value in one of its fields to be accepted. Again the default models provide an example of this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;User
+    ident Text
+    UniqueUser ident&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id="derive-typeclasses"&gt;Derive typeclasses&lt;/h4&gt;
+
+&lt;p&gt;And as a last note, you can directly &lt;strong&gt;declare your models to derive Haskell typeclasses&lt;/strong&gt; e.g. Eq, Ord, Show. Which means the model, when loaded from database and available to be manipulated, will have the correct functions of that typeclass already implemented. ( In the case of Eq, it will be equatable, in the case of Ord, it will be comparable, and in the case of Show it will be printable; this, of course, in the case the compiler can deduce out of the fields composing the model how to implement such functions for you ).&lt;/p&gt;
+
+&lt;p&gt;An example of deriving typeclasses:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;Person
+    ...
+    deriving (Show)&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id="adding-routes"&gt;Adding routes&lt;/h3&gt;
+
+&lt;p&gt;You declare new routes to be answered to in the &lt;code&gt;config/routes&lt;/code&gt; text file. This can be automated with the &lt;code&gt;yesod add-handler&lt;/code&gt; command. However, let&amp;rsquo;s review it to gain a bit of control on the underlying machinery.&lt;/p&gt;
+
+&lt;p&gt;A new route starts from the root &lt;code&gt;/&lt;/code&gt; and lists a &lt;em&gt;resource name&lt;/em&gt; and &lt;em&gt;query parameters&lt;/em&gt;. After that there is a space, and the name of the handler function(s) that handle requests to that particular route. Again a space, and a space-separated list of HTTP methods that are allowed on that route. An example with all of these:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;/book/#BookId BookR GET PUT DELETE&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;where &lt;code&gt;book&lt;/code&gt; is the &lt;em&gt;resource name&lt;/em&gt;, &lt;code&gt;#BookId&lt;/code&gt; is the &lt;em&gt;query parameter&lt;/em&gt;, BookR is the shared part of the name of the &lt;em&gt;handler functions&lt;/em&gt;, and the allowed methods are GET, PUT and DELETE.&lt;/p&gt;
+
+&lt;p&gt;We say &lt;code&gt;BookR&lt;/code&gt; is the shared part of the name because a single handler function is expected &lt;strong&gt;for each one of the allowed methods&lt;/strong&gt;. That is, in the above example, &lt;code&gt;getBookR&lt;/code&gt;, &lt;code&gt;putBookR&lt;/code&gt; and &lt;code&gt;deleteBookR&lt;/code&gt; are expected to exist somewhere (probably in a module called &lt;code&gt;Book&lt;/code&gt; within the &lt;code&gt;Handlers&lt;/code&gt; directory).&lt;/p&gt;
+
+&lt;p&gt;Usually the convention for a REST API is that GET allows to see an instance of a model, POST allows to create an instance of a model, PUT allows to modify an instance of a model, and DELETE allows to, well, delete it.&lt;/p&gt;
+
+&lt;p&gt;After you have added a new route, the application will not compile until there are handler functions for all of the new resources and allowed methods.&lt;/p&gt;
+
+&lt;h3 id="adding-handler-functions"&gt;Adding handler functions&lt;/h3&gt;
+
+&lt;p&gt;You add new functions to handle requests in modules under the &lt;code&gt;Handler&lt;/code&gt; directory. This can be automated with the &lt;code&gt;yesod add-handler&lt;/code&gt; command. However, let&amp;rsquo;s review it to gain a bit of control on the underlying machinery.&lt;/p&gt;
+
+&lt;p&gt;A handler function must exist &lt;strong&gt;for each resource and for each allowed HTTP method on that resource&lt;/strong&gt;. That means if we declared the resource &lt;code&gt;/donkey&lt;/code&gt; to accept requests with GET, POST and DELETE methods, then we have to implement &lt;code&gt;getDonkeyR&lt;/code&gt;, &lt;code&gt;postDonkeyR&lt;/code&gt; and &lt;code&gt;deleteDonkeyR&lt;/code&gt;. The &lt;code&gt;R&lt;/code&gt; means &amp;ldquo;resource&amp;rdquo;.&lt;/p&gt;
+
+&lt;p&gt;Let us see a stub example of one of those functions:&lt;/p&gt;
+
+&lt;div class="brush: haskell"&gt;
+ &lt;div class="source"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nf"&gt;getDonkeyR&lt;/span&gt; &lt;span class="ow"&gt;::&lt;/span&gt; &lt;span class="kt"&gt;DonkeyId&lt;/span&gt; &lt;span class="ow"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kt"&gt;Handler&lt;/span&gt; &lt;span class="kt"&gt;Html&lt;/span&gt;
+&lt;span class="nf"&gt;getDonkeyR&lt;/span&gt; &lt;span class="n"&gt;donkeyId&lt;/span&gt; &lt;span class="ow"&gt;=&lt;/span&gt; &lt;span class="n"&gt;undefined&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;h4 id="handler-function-signature"&gt;Handler function signature&lt;/h4&gt;
+
+&lt;p&gt;Being a Haskell function, the function signature is important to understand what the function does.&lt;/p&gt;
+
+&lt;p&gt;In the case of Yesod, the &lt;strong&gt;input to the function are query parameters&lt;/strong&gt;, which are typed to correspond to model fields. That is, you do not get an integer, but a &lt;code&gt;DonkeyId&lt;/code&gt; &amp;mdash; if you specified in the route that the &lt;code&gt;donkey&lt;/code&gt; resource has a query parameter of that type. This helps ensure that there are no typos in the &lt;code&gt;routes&lt;/code&gt; and &lt;code&gt;models&lt;/code&gt; text files that cause your app to fail on deployment.&lt;/p&gt;
+
+&lt;p&gt;The &lt;strong&gt;output of the function&lt;/strong&gt; is quite determined by Yesod, so it is easy to read, but you have to accept that the framework &amp;ldquo;knows what it is doing&amp;rdquo;. You usually have a &lt;code&gt;Handler Html&lt;/code&gt; result type; which means that the result of your function is a function that knows how to answer a request with HTML. This function is what is going to be called by the application when it is running.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Do not let that make your head explode&lt;/em&gt;: it is like when you compile a function with gcc. It is not your source code that is run when the resulting binary is executed: it is the object representation of it. This is not exactly the same but for the moment, it is a good enough explanation.&lt;/p&gt;
+
+&lt;p&gt;Other output types for the function are &lt;code&gt;Handler RepJson&lt;/code&gt; if the function returns JSON, or even &lt;code&gt;Handler TypedContent&lt;/code&gt; if the function returns HTML or JSON depending on what the client has requested.&lt;/p&gt;
+
+&lt;h4 id="handler-function-body"&gt;Handler function body&lt;/h4&gt;
+
+&lt;p&gt;In the function itself, you may want to do many different things. Let us discuss the most usual:&lt;/p&gt;
+
+&lt;ol&gt;
+ &lt;li&gt;
+  &lt;p&gt;getting something out of the database and into a template for viewing  ( &lt;strong&gt;Database -&amp;gt; User&lt;/strong&gt; )&lt;/p&gt;&lt;/li&gt;
+ &lt;li&gt;
+  &lt;p&gt;getting something out of a template form from the user, and inserting that  into the database ( &lt;strong&gt;User -&amp;gt; Database&lt;/strong&gt; )&lt;/p&gt;&lt;/li&gt;&lt;/ol&gt;
+
+&lt;h5 id="database---user"&gt;Database -&amp;gt; User&lt;/h5&gt;
+
+&lt;p&gt;Consider the following function:&lt;/p&gt;
+
+&lt;div class="brush: haskell"&gt;
+ &lt;div class="source"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nf"&gt;getBooksR&lt;/span&gt; &lt;span class="ow"&gt;::&lt;/span&gt; &lt;span class="kt"&gt;Handler&lt;/span&gt; &lt;span class="kt"&gt;Html&lt;/span&gt;
+&lt;span class="nf"&gt;getBooksR&lt;/span&gt; &lt;span class="ow"&gt;=&lt;/span&gt; &lt;span class="kr"&gt;do&lt;/span&gt;
+        &lt;span class="n"&gt;books&lt;/span&gt; &lt;span class="ow"&gt;&amp;lt;-&lt;/span&gt; &lt;span class="n"&gt;runDB&lt;/span&gt; &lt;span class="o"&gt;$&lt;/span&gt; &lt;span class="n"&gt;selectList&lt;/span&gt; &lt;span class="kt"&gt;[]&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="kt"&gt;Asc&lt;/span&gt; &lt;span class="kt"&gt;BookTitle&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+        &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;formWidget&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;enctype&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="ow"&gt;&amp;lt;-&lt;/span&gt; &lt;span class="n"&gt;generateFormPost&lt;/span&gt; &lt;span class="n"&gt;bookForm&lt;/span&gt;
+        &lt;span class="n"&gt;defaultLayout&lt;/span&gt; &lt;span class="o"&gt;$&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;widgetFile&lt;/span&gt; &lt;span class="s"&gt;"books"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;p&gt;The first line after &lt;code&gt;do&lt;/code&gt; allows us to get a Book model out of the database. The &lt;code&gt;runDB&lt;/code&gt; function runs any query on the database, while the &lt;code&gt;selectList&lt;/code&gt; function composes a query that returns its results as a list. The empty first argument means we take &lt;strong&gt;all fields&lt;/strong&gt; from each record, and the second argument accepts a number of filters and modifyers. The example shown is equivalent, in SQL, to:&lt;/p&gt;
+
+&lt;div class="brush: sql"&gt;
+ &lt;div class="source"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;SELECT&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="k"&gt;FROM&lt;/span&gt; &lt;span class="n"&gt;books&lt;/span&gt; &lt;span class="k"&gt;ORDER&lt;/span&gt; &lt;span class="k"&gt;BY&lt;/span&gt; &lt;span class="ss"&gt;"BookTitle"&lt;/span&gt; &lt;span class="k"&gt;ASC&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;p&gt;Then we would go on to render the correct HTML template with the default layout. The template will have direct access to the &lt;code&gt;books&lt;/code&gt; variable because it is in the same scope (the handler function). We will see how this happens when we discuss templates. The rendering happens with the line:&lt;/p&gt;
+
+&lt;div class="brush: haskell"&gt;
+ &lt;div class="source"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nf"&gt;defaultLayout&lt;/span&gt; &lt;span class="o"&gt;$&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;widgetFile&lt;/span&gt; &lt;span class="s"&gt;"books"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;p&gt;The template rendering takes the &lt;code&gt;defaultLayout&lt;/code&gt; function, applied on the result of loading a widgetFile by name. The default layout renders the template found under &lt;code&gt;templates/default-layout.*&lt;/code&gt; and includes within it the result of rendering whatever is on the &lt;code&gt;templates/books.*&lt;/code&gt; files. This helps make the look and feel uniform across the website.&lt;/p&gt;
+
+&lt;p&gt;(You may notice that we are skipping a line in the &lt;code&gt;getBooksR&lt;/code&gt; function, between reading from database and rendering the template. It is concerned with &lt;strong&gt;form rendering&lt;/strong&gt;, but for the sake of brevity we will not discuss it here)&lt;/p&gt;
+
+&lt;h5 id="user---database"&gt;User -&amp;gt; Database&lt;/h5&gt;
+
+&lt;p&gt;Consider the following function:&lt;/p&gt;
+
+&lt;div class="brush: haskell"&gt;
+ &lt;div class="source"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nf"&gt;postBooksR&lt;/span&gt; &lt;span class="ow"&gt;::&lt;/span&gt; &lt;span class="kt"&gt;Handler&lt;/span&gt; &lt;span class="kt"&gt;Html&lt;/span&gt;
+&lt;span class="nf"&gt;postBooksR&lt;/span&gt; &lt;span class="ow"&gt;=&lt;/span&gt; &lt;span class="kr"&gt;do&lt;/span&gt;
+    &lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="n"&gt;result&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kr"&gt;_&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="kr"&gt;_&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="ow"&gt;&amp;lt;-&lt;/span&gt; &lt;span class="n"&gt;runFormPost&lt;/span&gt; &lt;span class="n"&gt;bookForm&lt;/span&gt;
+    &lt;span class="kr"&gt;case&lt;/span&gt; &lt;span class="n"&gt;result&lt;/span&gt; &lt;span class="kr"&gt;of&lt;/span&gt;
+        &lt;span class="kt"&gt;FormSuccess&lt;/span&gt; &lt;span class="n"&gt;book&lt;/span&gt; &lt;span class="ow"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kr"&gt;do&lt;/span&gt;
+            &lt;span class="n"&gt;bookid&lt;/span&gt; &lt;span class="ow"&gt;&amp;lt;-&lt;/span&gt; &lt;span class="n"&gt;runDB&lt;/span&gt; &lt;span class="o"&gt;$&lt;/span&gt; &lt;span class="n"&gt;insert&lt;/span&gt; &lt;span class="n"&gt;book&lt;/span&gt;
+            &lt;span class="n"&gt;setMessage&lt;/span&gt; &lt;span class="s"&gt;"Book registered"&lt;/span&gt;
+        &lt;span class="kr"&gt;_&lt;/span&gt; &lt;span class="ow"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kr"&gt;do&lt;/span&gt;
+            &lt;span class="n"&gt;setMessage&lt;/span&gt; &lt;span class="s"&gt;"Invalid data"&lt;/span&gt;
+            &lt;span class="n"&gt;redirect&lt;/span&gt; &lt;span class="o"&gt;$&lt;/span&gt; &lt;span class="kt"&gt;BooksR&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;p&gt;The first line after &lt;code&gt;do&lt;/code&gt; gets the result out of a form that is defined and rendered elsewhere. The result may be a success, because all inputs are filled out and are of the expected types, or it may be anything else (an error), where we print an error message and do no more. If we have a success, then we can extract the specific &lt;code&gt;book&lt;/code&gt; (of type &lt;code&gt;Book&lt;/code&gt;) out of the &lt;code&gt;FormSuccess&lt;/code&gt; monad via pattern matching, and then insert it into the DB via the Persist &lt;code&gt;insert&lt;/code&gt; function:&lt;/p&gt;
+
+&lt;div class="brush: haskell"&gt;
+ &lt;div class="source"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nf"&gt;bookid&lt;/span&gt; &lt;span class="ow"&gt;&amp;lt;-&lt;/span&gt; &lt;span class="n"&gt;runDB&lt;/span&gt; &lt;span class="o"&gt;$&lt;/span&gt; &lt;span class="n"&gt;insert&lt;/span&gt; &lt;span class="n"&gt;book&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;p&gt;Notice this works without any more specifications because we know, from the compile process, that the result of parsing the form contents must have enough informations to build a Book model, and a Book model can be written to database because we have already parsed it and created the necessary tables (in the case of a relational DB engine) on app startup.&lt;/p&gt;
+
+&lt;p&gt;Notice also we receive a bookId as a result of inserting, but we can ignore it.&lt;/p&gt;
+
+&lt;h4 id="after-writing-your-handlers"&gt;After writing your handlers&lt;/h4&gt;
+
+&lt;p&gt;After writing your handlers, you must make the application aware that they exist. Import the relevant module in in the &lt;code&gt;Application&lt;/code&gt; module, and also remember to list them in the &lt;code&gt;&amp;lt;application&amp;gt;.cabal&lt;/code&gt; file, under &lt;code&gt;exposed-modules&lt;/code&gt;. This makes the &lt;code&gt;cabal&lt;/code&gt; build system know that it must include the new handler files in the compilation, and the &lt;code&gt;Application&lt;/code&gt; module aware that it has to import those modules if it wants to answer the calls to some of the resources.&lt;/p&gt;
+
+&lt;h3 id="adding-hamlet-templates"&gt;Adding Hamlet templates&lt;/h3&gt;
+
+&lt;p&gt;We said earlier that the variables extracted from storage are rendered in the template. A template is a file that lives in the &lt;code&gt;templates&lt;/code&gt; directory and is called whatever we want the &lt;code&gt;widgetFile&lt;/code&gt; function to find.&lt;/p&gt;
+
+&lt;p&gt;Hamlet is a template language that describes HTML to produce. A very short summary of Hamlet: you do not need to close HTML tags, this will be done for you. &lt;em&gt;With the important exception of links. Do not forget to close them with &lt;code&gt;&amp;lt;/a&amp;gt;&lt;/code&gt;&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;In the template, you can refer to any variable that is available in the handler function (because the generated code is inserted in the function code directly before the results are produced). See this example template to render a Book model:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;h2&amp;gt; Book: #{bookTitle book}
+
+&amp;lt;p&amp;gt; by #{bookAuthor book}&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Within the template, we can use the &lt;strong&gt;accessor functions&lt;/strong&gt; we got for free out of the model definition. Remember that this is Haskell, so the function must go before the arguments. We drop into Haskell from the template by using &lt;code&gt;#{ }&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;There is more syntax to iterate over a collection of &lt;code&gt;books&lt;/code&gt; and control &lt;code&gt;if&lt;/code&gt; we render some thing or the other depending on the presence of a variable, but we will skip this. There is Yesod documentation available.&lt;/p&gt;
+
+&lt;p&gt;Let us mention another important feature of these templates: &lt;strong&gt;compiled in-site links&lt;/strong&gt;. This means you refer to other pages within your website &lt;em&gt;through their resource names&lt;/em&gt;, not through a simple string. In the homepage, for instance, you should include a link to the &amp;ldquo;books&amp;rdquo; page by using:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;&amp;lt;a href=@{BooksR}&amp;gt;Add new book&amp;lt;/a&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Notice you use an &lt;code&gt;@&lt;/code&gt;, not the &lt;code&gt;#&lt;/code&gt; symbol.&lt;/p&gt;
+
+&lt;p&gt;This makes it &lt;strong&gt;impossible for you to have dead links within the site&lt;/strong&gt;. They are checked by the compiler on each site update, and the compilation will fail if there is something misspelled.&lt;/p&gt;
+
+&lt;h3 id="summing-up"&gt;Summing up&lt;/h3&gt;
+
+&lt;p&gt;We have reviewed what are the minimal changes you have to do to a scaffolded site in order to add a new feature to it, in some more depth than necessary since you can use &lt;code&gt;yesod add-handler&lt;/code&gt; to make many of the changes for you. However, now you should understand better what is this command doing and why could it fail. The changes are:&lt;/p&gt;
+
+&lt;ol&gt;
+ &lt;li&gt;
+  &lt;p&gt;In &lt;code&gt;config/models&lt;/code&gt;: describe &lt;strong&gt;data models&lt;/strong&gt; stored&lt;/p&gt;&lt;/li&gt;
+ &lt;li&gt;
+  &lt;p&gt;In &lt;code&gt;config/routes&lt;/code&gt;: describe &lt;strong&gt;routes&lt;/strong&gt; served, as resources&lt;/p&gt;&lt;/li&gt;
+ &lt;li&gt;
+  &lt;p&gt;In &lt;code&gt;Handler/&amp;lt;name&amp;gt;.hs&lt;/code&gt;: write &lt;strong&gt;handler functions&lt;/strong&gt; that answer requests to  those routes; include them in &lt;code&gt;Application.hs&lt;/code&gt; and list them on  &lt;code&gt;&amp;lt;application&amp;gt;.cabal&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+ &lt;li&gt;
+  &lt;p&gt;In &lt;code&gt;templates/&amp;lt;name&amp;gt;.{hamlet,lucius,julius}&lt;/code&gt;: write the &lt;strong&gt;templates&lt;/strong&gt; that  are filled out by the handler functions&lt;/p&gt;&lt;/li&gt;&lt;/ol&gt;&lt;/html&gt;</content></entry></feed>
