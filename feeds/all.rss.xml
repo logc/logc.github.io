@@ -29,6 +29,7 @@
 &lt;p&gt;A customer is someone who wants to use your product and does not care about its inner workings: he is prepared to give you money in exchange for both things (using your product, and not having to know how it works).&lt;/p&gt;
 
 &lt;p&gt;A collaborator is someone that works with you in creating the very same product that you intend to sell later on. His interests are exactly the opposite as those of the customer: a collaborator does not necessarily need to use the product, and he needs to know as much as possible about your product in order to contribute as much as possible to it. Otherwise, the collaboration will be wasteful.&lt;/p&gt;
+&lt;!-- more--&gt;
 
 &lt;p&gt;Therefore, you should give to your customer a binary (the end-result of your software), and you should give to your collborator a source code representation of your product (a textual representation of the same software).&lt;/p&gt;
 
