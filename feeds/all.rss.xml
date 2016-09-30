@@ -19,6 +19,55 @@
 
 &lt;pre&gt;&lt;code&gt;let g:syntastic_racket_racket_args="--load"&lt;/code&gt;&lt;/pre&gt;&lt;/html&gt;</description></item>
   <item>
+   <title>Binaries and customers</title>
+   <link>http://logc.github.io/blog/2016/02/26/binaries-and-customers/?utm_source=all&amp;utm_medium=RSS</link>
+   <guid>urn:http-logc-github-io:-blog-2016-02-26-binaries-and-customers</guid>
+   <pubDate>Fri, 26 Feb 2016 22:54:28 UT</pubDate>
+   <description>&lt;html&gt;
+&lt;p&gt;Just this week I realised that the barrier between binaries and source code is the same barrier that there is between a customer and a collaborator.&lt;/p&gt;
+
+&lt;p&gt;A customer is someone who wants to use your product and does not care about its inner workings: he is prepared to give you money in exchange for both things (using your product, and not having to know how it works).&lt;/p&gt;
+
+&lt;p&gt;A collaborator is someone that works with you in creating the very same product that you intend to sell later on. His interests are exactly the opposite as those of the customer: a collaborator does not necessarily need to use the product, and he needs to know as much as possible about your product in order to contribute as much as possible to it. Otherwise, the collaboration will be wasteful.&lt;/p&gt;
+
+&lt;p&gt;Therefore, you should give to your customer a binary (the end-result of your software), and you should give to your collborator a source code representation of your product (a textual representation of the same software).&lt;/p&gt;
+
+&lt;p&gt;I came to realize this while discussing during a technical speech with one of our tech leads. He was promoting the use of a tool that allowed designers to turn specifications into wireframes, and those wireframes into workable code. He expected this tool to avoid that designers and developers communicated &amp;ldquo;via screenshots&amp;rdquo;. I agreed with him, and said that we needed specification owners to work as close to the code as possible, because the ultimate specification of a feature is the source code itself.&lt;/p&gt;
+
+&lt;p&gt;At that point, he disagreed with me, and said that he did not expect designers to &amp;ldquo;actually code&amp;rdquo;. I said anything that was not a textual representation of the result was wasteful, since the receivers of a binary representation would have to reverse engineer how that binary was created. With &amp;ldquo;binary&amp;rdquo; I meant the screenshots, but also other representations like videos, presentations, etc.&lt;/p&gt;
+
+&lt;p&gt;He contended that why should a designer treat you (the lowly coder) as anything different than a customer. And at that point it suddenly dawned on me: because the customer pays.&lt;/p&gt;
+
+&lt;p&gt;The money transaction marks the frontier between one organization and another, and it also marks this curious effect: the customer is &lt;strong&gt;entitled&lt;/strong&gt; to a &lt;strong&gt;less complex&lt;/strong&gt; representation of the product, precisely because the customer/provider relationship is a hallmark of the division of labour, and in plain words it means &amp;ldquo;I have other shit to do, just give me the plain result of your work &amp;amp; don&amp;rsquo;t bother me with details.&amp;rdquo;&lt;/p&gt;&lt;/html&gt;</description></item>
+  <item>
+   <title>The difference between Racket and Haskell</title>
+   <link>http://logc.github.io/blog/2015/10/16/the-difference-between-racket-and-haskell/?utm_source=all&amp;utm_medium=RSS</link>
+   <guid>urn:http-logc-github-io:-blog-2015-10-16-the-difference-between-racket-and-haskell</guid>
+   <pubDate>Fri, 16 Oct 2015 13:10:42 UT</pubDate>
+   <description>&lt;html&gt;
+&lt;p&gt;During most of 2014, and previous years, I was very fond of Haskell and learnt the basics of developing server applications with it. I was captured by the elegance and expresiveness of the language. I was specifically enthusiastic about the possibility to write multithreaded and type-safe code without all the fuss of C++ or Java. But I was let down by the complexity of &lt;code&gt;cabal&lt;/code&gt; and the seeming inability of the Haskell community to provide stable packages that would compile on different platforms. I mean actually compile, not just promise that they will compile.&lt;/p&gt;
+
+&lt;p&gt;Around the end of 2014, I got word of Racket as a modern Scheme (Scheme, in turn, being the moder Lisp). For a long time, I had kept in my ever-expanding to-do list to learn a bit of Lisp. People told me that, if I should start anywhere in that &amp;ldquo;language space&amp;rdquo;, I should probably start with Racket, so I gave it a go. Here is a list of the differences I have felt between both languages, not exactly from the point of view of abstract language features but from the point of view of pragmatic work.&lt;/p&gt;
+&lt;!-- more--&gt;
+
+&lt;ul&gt;
+ &lt;li&gt;
+  &lt;p&gt;&lt;strong&gt;Racket packages just work&lt;/strong&gt;. I know that &lt;code&gt;cabal&lt;/code&gt; problems have been already  &lt;a href="https://www.fpcomplete.com/blog/2015/05/thousand-user-haskell-survey"&gt;identified by the Haskell  community&lt;/a&gt;  as a pain point (not to say a pain in the &amp;hellip;). But I cannot stress enough how  frustrating it can be to read &lt;a href="http://haskell.cs.yale.edu/euterpea/"&gt;the wonderful documentation about a music  library&lt;/a&gt; which is &lt;a href="https://hackage.haskell.org/package/Euterpea"&gt;listed in  Hackage&lt;/a&gt;, try to build it and  fail completely. Or develop a &lt;a href="http://www.yesodweb.com"&gt;Yesod application&lt;/a&gt; and  being unable to pin down all the sub-dependencies of dependencies, so that a  build in my development machine would succeed and on the machine of my  co-worker it would not, even with the same operating system and GHCi version.&lt;/p&gt;&lt;/li&gt;
+ &lt;li&gt;
+  &lt;p&gt;&lt;strong&gt;The rest of tooling is wonderful&lt;/strong&gt;. How is it possible that there is a full  IDE for Racket, including plugins developed by third parties, and the only  IDE for Haskell that I am aware of is the &amp;ldquo;IDE in the cloud&amp;rdquo; from FPComplete?  OK, it seems there is a project called Leksah that builds an IDE for Haskell in  Haskell. It comes in fourth place in the &lt;a href="https://wiki.haskell.org/IDEs"&gt;IDEs page of the Haskell  wiki&lt;/a&gt;, after a &amp;ldquo;colorer plugin for Eclipse&amp;rdquo;.  Which, to me, means that the Haskell community is not serious about giving  people the means to learn Haskell: even if I am the kind of developer that  prefers a simple text editor and a shell, when learning a new language I might  need some more help to &amp;ldquo;keep things stable&amp;rdquo; until I have a better grasp on the  language. With Racket, usually I develop on Vim and the Racket REPL, but when I  am in doubt about a problem, I fire up DrRacket and follow its wise advice.&lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;
+
+&lt;p&gt; But it does not stop at the IDE. &lt;code&gt;raco&lt;/code&gt; is a much better tool at handling  packages, documentation and almost all development tasks than &lt;code&gt;cabal&lt;/code&gt; will ever  be. Maybe &lt;code&gt;stack&lt;/code&gt; will get there at some point. However, and I hate to use this  argumentation, &lt;code&gt;raco&lt;/code&gt; is &lt;strong&gt;already there, bundled with Racket just like the  IDE, and is used by the whole community&lt;/strong&gt;. &lt;code&gt;stack&lt;/code&gt; has been in development just  four months at the time of this writing, and it has yet to prove that it is  adopted by the community.&lt;/p&gt;
+
+&lt;ul&gt;
+ &lt;li&gt;&lt;strong&gt;The syntax is terse and this is because the community is not out to show  off&lt;/strong&gt;. This is quite a subjective point, but hey, this is my blog. I do not  remember which author famously remarked that &amp;ldquo;software organizations tend to  write software that reflects the mental state of the organization&amp;rdquo;. Whenever  reading up on Haskell, I noticed a &amp;ldquo;climbing&amp;rdquo; feeling: any concept already  covered was only a step in an infinite ladder of abstractions. At first, you  imagine that from some point on you will be able to write &amp;ldquo;good enough&amp;rdquo; Haskell  to tackle at least the lowly tasks that you intend to accomplish. But this is  never the case. There is yet another language extension that does what you  want, if only you had learnt about it before. In my opinion, this reflects the  elite thinking of (at least a part of) the Haskell community. Nothing is ever  clever enough: there must be a new way to define Arrows, Lenses, and Barbed  wires to fool those who have dared to understand Monads.&lt;/li&gt;&lt;/ul&gt;
+
+&lt;p&gt; Contrast this with the simplicity of the Racket syntax, which is a very  intentional heritage from Scheme and Lisp. There is almost nothing to learn.  From around half of the Racket guide you can write Racket programs that work.  The whole language is there to be expanded by you, if you do not find its  features enough. Yes, there are &amp;ldquo;different languages&amp;rdquo; that can be thought of as  equivalent to the &amp;ldquo;language extensions&amp;rdquo; of Haskell, but when did you read on  any Haskell manual how to introduce your own language extensions?&lt;/p&gt;
+
+&lt;ul&gt;
+ &lt;li&gt;If you are thinking, &amp;ldquo;oh but Haskell is typed, while Racket is interpreted&amp;rdquo;,  please have a look at  &lt;a href="http://docs.racket-lang.org/guide/contracts.html"&gt;contracts&lt;/a&gt; for the safety,  and at &lt;a href="http://docs.racket-lang.org/ts-guide/index.html"&gt;Typed Racket&lt;/a&gt; for the  performance. Again the day is saved for Racket (yay).&lt;/li&gt;&lt;/ul&gt;
+
+&lt;p&gt;And this is enough ranting. I would really like to see the Haskell language improve and deliver on the promise that it once was, at least for me. Until then, I will be happily writing parenthesis in Racket.&lt;/p&gt;&lt;/html&gt;</description></item>
+  <item>
    <title>Open files from last commit in Vim</title>
    <link>http://logc.github.io/blog/2015/07/15/open-files-from-last-commit-in-vim/?utm_source=all&amp;utm_medium=RSS</link>
    <guid>urn:http-logc-github-io:-blog-2015-07-15-open-files-from-last-commit-in-vim</guid>

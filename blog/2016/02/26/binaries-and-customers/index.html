@@ -3,15 +3,15 @@
   <head>
 
     <meta charset="utf-8">
-    <title>If programming languages were music genres</title>
-    <meta name="description" content="There are quite some posts out there that compare programming languages to something else, like religions, rock bands, types of women  There is a compilation of these over at Lambda the Ultimate.  One comparison that I find missing is that of programming ...">
+    <title>Binaries and customers</title>
+    <meta name="description" content="Just this week I realised that the barrier between binaries and source code is the same barrier that there is between a customer and a collaborator.  A customer is someone who wants to use your product and does not care about its inner workings: he is pre...">
     <meta name="author"      content="logc">
-    <meta name="keywords"    content="">
+    <meta name="keywords"    content="economy, development">
     <meta name="viewport"    content="width=device-width, initial-scale=1.0">
     <link rel="icon"      href="/favicon.ico">
-    <link rel="canonical" href="http://logc.github.io/blog/2015/02/27/if-programming-languages-were-music-genres/">
-    <link rel="next" href="/blog/2014/04/01/python-egg-tagged-with-git-commit-hash/">
-    <link rel="prev" href="/blog/2015/07/15/open-files-from-last-commit-in-vim/">
+    <link rel="canonical" href="http://logc.github.io/blog/2016/02/26/binaries-and-customers/">
+    <link rel="next" href="/blog/2015/10/16/the-difference-between-racket-and-haskell/">
+    <link rel="prev" href="/blog/2016/09/23/racket-and-vim-syntastic/">
     <!-- CSS -->
     <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="/css/pygments.css">
@@ -106,36 +106,33 @@
 
           <article>
   <header>
-    <h1>If programming languages were music genres</h1>
+    <h1>Binaries and customers</h1>
     <p class='date-and-tags'>
-<time datetime="2015-02-27" pubdate="true">2015-02-27</time> :: <span class="tags"><a href="/tags/.html"></a></span></p>
+<time datetime="2016-02-26" pubdate="true">2016-02-26</time> :: <span class="tags"><a href="/tags/economy.html">economy</a>, <a href="/tags/development.html">development</a></span></p>
   </header>
 
-<p>There are quite some posts out there that compare programming languages to something else, like religions, rock bands, types of women &hellip; There is a <a href="http://lambda-the-ultimate.org/node/3133">compilation of these over at Lambda the Ultimate</a>.</p>
+<p>Just this week I realised that the barrier between binaries and source code is the same barrier that there is between a customer and a collaborator.</p>
 
-<p>One comparison that I find missing is that of programming languages to music genres (maybe the &ldquo;Subcultures&rdquo; post was simmilar, but it seems to be a dead link now). This is the more surprising since it looks like developers tend to argue about their favourite languages just like most people about music: everyone knows it is a highly subjective preference, but no-one escapes trying to convince others that they are not listening to the &ldquo;right&rdquo; music!</p>
+<p>A customer is someone who wants to use your product and does not care about its inner workings: he is prepared to give you money in exchange for both things (using your product, and not having to know how it works).</p>
 
-<p>So, here is my (completely subjective) view on programming languages as music genres:</p>
-<!-- more-->
+<p>A collaborator is someone that works with you in creating the very same product that you intend to sell later on. His interests are exactly the opposite as those of the customer: a collaborator does not necessarily need to use the product, and he needs to know as much as possible about your product in order to contribute as much as possible to it. Otherwise, the collaboration will be wasteful.</p>
 
-<ul>
- <li><strong>C: punk rock</strong> It only has three chords, it was born in the late 70&rsquo;s, and,  despite several reports to the contrary, it is not dead yet.</li>
- <li><strong>C++: heavy metal</strong> It claims to be similar but more technical than C, it is  subdivided in dozens of different subgenres that you will never totally  master, and despite the whole technical allure, at some point you start  thinking it is a bit commercial and superficial.</li>
- <li><strong>Java: techno</strong> No one likes it really, but peer pressure drives you at some  point to go to a place where they are playing it loudly, and you have to do  as if you enjoy it.</li>
- <li><strong>Python: blues rock</strong> It does what C does, but slower and with one and two  more chords thrown here and there. Everyone likes it for a while, but then,  after some hours of listening to it, you start wondering if there is something  else.</li>
- <li><strong>Ruby: reggae</strong> Coming from an exotic place, it has gained mainstream  acceptance, it is as slow as Python, and people in that scene tend to regard  themselves as cool without further explanation.</li>
- <li><strong>LISP: classical music</strong> Someone in a position of authority told you long  ago to learn its basics because it was important for your education, you  thought at the time that it was a hateful and obsolete past-time, but as time  goes by, you go back to it and find comfort in its beauty.</li>
- <li><strong>Haskell: mathcore</strong> Not everyone knows it, and those who do think they are  some kind of elite. It is 100% faster and more complex than anything else  out there. It is several layers of purity removed from C, although they  share some distant roots.</li>
- <li><strong>Erlang: world music</strong> A lot of different musical styles thrown together and  whose unifying trait seems to be that, apparently, very few people listen to  them.</li>
- <li><strong>Clojure: hip hop</strong> The base is made with the same tools as techno, but with  old soul records played on top. Who would have thought that those sweet  performers from Motown sounded so aggresive when played with a bad attitude?</li>
- <li><strong>Scala: rap rock</strong> It tries to bring together the best of two worlds and it  largely succeeds. The hardcore fans of each camp will deny there is any need  to blend their styles together, but from time to time find themselves  listening to it and nodding.</li></ul>
+<p>Therefore, you should give to your customer a binary (the end-result of your software), and you should give to your collborator a source code representation of your product (a textual representation of the same software).</p>
+
+<p>I came to realize this while discussing during a technical speech with one of our tech leads. He was promoting the use of a tool that allowed designers to turn specifications into wireframes, and those wireframes into workable code. He expected this tool to avoid that designers and developers communicated &ldquo;via screenshots&rdquo;. I agreed with him, and said that we needed specification owners to work as close to the code as possible, because the ultimate specification of a feature is the source code itself.</p>
+
+<p>At that point, he disagreed with me, and said that he did not expect designers to &ldquo;actually code&rdquo;. I said anything that was not a textual representation of the result was wasteful, since the receivers of a binary representation would have to reverse engineer how that binary was created. With &ldquo;binary&rdquo; I meant the screenshots, but also other representations like videos, presentations, etc.</p>
+
+<p>He contended that why should a designer treat you (the lowly coder) as anything different than a customer. And at that point it suddenly dawned on me: because the customer pays.</p>
+
+<p>The money transaction marks the frontier between one organization and another, and it also marks this curious effect: the customer is <strong>entitled</strong> to a <strong>less complex</strong> representation of the product, precisely because the customer/provider relationship is a hallmark of the division of labour, and in plain words it means &ldquo;I have other shit to do, just give me the plain result of your work &amp; don&rsquo;t bother me with details.&rdquo;</p>
   <footer>
     <ul class="pager">
     <li class="previous">
-      <a href="/blog/2015/07/15/open-files-from-last-commit-in-vim/">&larr; <em>Open files from last commit in Vim</em></a>
+      <a href="/blog/2016/09/23/racket-and-vim-syntastic/">&larr; <em>Racket and vim-syntastic</em></a>
     </li>
     <li class="next">
-      <a href="/blog/2014/04/01/python-egg-tagged-with-git-commit-hash/"><em>Python egg tagged with Git commit hash</em> &rarr;</a>
+      <a href="/blog/2015/10/16/the-difference-between-racket-and-haskell/"><em>The difference between Racket and Haskell</em> &rarr;</a>
     </li>
     </ul>
   </footer>

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <meta charset="utf-8">
+    <title>The difference between Racket and Haskell</title>
+    <meta name="description" content="During most of 2014, and previous years, I was very fond of Haskell and learnt the basics of developing server applications with it. I was captured by the elegance and expresiveness of the language. I was specifically enthusiastic about the possibility to...">
+    <meta name="author"      content="logc">
+    <meta name="keywords"    content="development, rant">
+    <meta name="viewport"    content="width=device-width, initial-scale=1.0">
+    <link rel="icon"      href="/favicon.ico">
+    <link rel="canonical" href="http://logc.github.io/blog/2015/10/16/the-difference-between-racket-and-haskell/">
+    <link rel="next" href="/blog/2015/07/15/open-files-from-last-commit-in-vim/">
+    <link rel="prev" href="/blog/2016/02/26/binaries-and-customers/">
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/css/scribble.css">
+    <link rel="stylesheet" type="text/css" href="/css/custom.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Fira+Mono" rel="stylesheet">
+    <!-- Feeds -->
+    <link rel="alternate" type="application/atom+xml"
+          href="/feeds/all.atom.xml" title="Atom Feed">
+    <link rel="alternate" type="application/rss+xml"
+          href="/feeds/all.rss.xml" title="RSS Feed">
+    <!-- JS -->
+    <script type="text/javascript">
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-xxxxx', 'auto');
+      ga('send', 'pageview');
+    </script>
+  </head>
+  <body>
+    <!-- A standard Twitter Bootstrap nav bar -->
+    <header class="navbar navbar-default navbar-inverse"
+            role="banner">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button"
+                  class="navbar-toggle"
+                  data-toggle="collapse"
+                  data-target=".our-nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a href="/index.html" class="navbar-brand">logc i/o</a>
+        </div>
+        <div class="collapse navbar-collapse our-nav-collapse"
+             role="navigation">
+          <ul class="nav navbar-nav">
+
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                Tags <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="/index.html">All Posts</a></li>
+
+<li><a href="/tags/C.html">C++</a></li>
+
+<li><a href="/tags/development.html">development</a></li>
+
+<li><a href="/tags/economy.html">economy</a></li>
+
+<li><a href="/tags/git.html">git</a></li>
+
+<li><a href="/tags/haskell.html">haskell</a></li>
+
+<li><a href="/tags/python.html">python</a></li>
+
+<li><a href="/tags/racket.html">racket</a></li>
+
+<li><a href="/tags/rant.html">rant</a></li>
+
+<li><a href="/tags/sysadmin.html">sysadmin</a></li>
+
+<li><a href="/tags/vim.html">vim</a></li>
+
+<li><a href="/tags/web.html">web</a></li>
+              </ul>
+            </li>
+            <li>
+              <a href="/About.html">About</a>
+            </li> 
+            <li><a href="/feeds/all.atom.xml">Atom</a></li>
+            <li><a href="/feeds/all.rss.xml">RSS</a></li>
+          </ul>
+        </div>
+      </div>
+    </header>
+    <div class="container">
+      <div class="row">
+
+        <div id="left" class="col-md-2"></div>
+        <!-- Main column -->
+        <div id="content" class="col-md-8">
+
+
+
+
+
+          <article>
+  <header>
+    <h1>The difference between Racket and Haskell</h1>
+    <p class='date-and-tags'>
+<time datetime="2015-10-16" pubdate="true">2015-10-16</time> :: <span class="tags"><a href="/tags/development.html">development</a>, <a href="/tags/rant.html">rant</a></span></p>
+  </header>
+
+<p>During most of 2014, and previous years, I was very fond of Haskell and learnt the basics of developing server applications with it. I was captured by the elegance and expresiveness of the language. I was specifically enthusiastic about the possibility to write multithreaded and type-safe code without all the fuss of C++ or Java. But I was let down by the complexity of <code>cabal</code> and the seeming inability of the Haskell community to provide stable packages that would compile on different platforms. I mean actually compile, not just promise that they will compile.</p>
+
+<p>Around the end of 2014, I got word of Racket as a modern Scheme (Scheme, in turn, being the moder Lisp). For a long time, I had kept in my ever-expanding to-do list to learn a bit of Lisp. People told me that, if I should start anywhere in that &ldquo;language space&rdquo;, I should probably start with Racket, so I gave it a go. Here is a list of the differences I have felt between both languages, not exactly from the point of view of abstract language features but from the point of view of pragmatic work.</p>
+<!-- more-->
+
+<ul>
+ <li>
+  <p><strong>Racket packages just work</strong>. I know that <code>cabal</code> problems have been already  <a href="https://www.fpcomplete.com/blog/2015/05/thousand-user-haskell-survey">identified by the Haskell  community</a>  as a pain point (not to say a pain in the &hellip;). But I cannot stress enough how  frustrating it can be to read <a href="http://haskell.cs.yale.edu/euterpea/">the wonderful documentation about a music  library</a> which is <a href="https://hackage.haskell.org/package/Euterpea">listed in  Hackage</a>, try to build it and  fail completely. Or develop a <a href="http://www.yesodweb.com">Yesod application</a> and  being unable to pin down all the sub-dependencies of dependencies, so that a  build in my development machine would succeed and on the machine of my  co-worker it would not, even with the same operating system and GHCi version.</p></li>
+ <li>
+  <p><strong>The rest of tooling is wonderful</strong>. How is it possible that there is a full  IDE for Racket, including plugins developed by third parties, and the only  IDE for Haskell that I am aware of is the &ldquo;IDE in the cloud&rdquo; from FPComplete?  OK, it seems there is a project called Leksah that builds an IDE for Haskell in  Haskell. It comes in fourth place in the <a href="https://wiki.haskell.org/IDEs">IDEs page of the Haskell  wiki</a>, after a &ldquo;colorer plugin for Eclipse&rdquo;.  Which, to me, means that the Haskell community is not serious about giving  people the means to learn Haskell: even if I am the kind of developer that  prefers a simple text editor and a shell, when learning a new language I might  need some more help to &ldquo;keep things stable&rdquo; until I have a better grasp on the  language. With Racket, usually I develop on Vim and the Racket REPL, but when I  am in doubt about a problem, I fire up DrRacket and follow its wise advice.</p></li></ul>
+
+<p> But it does not stop at the IDE. <code>raco</code> is a much better tool at handling  packages, documentation and almost all development tasks than <code>cabal</code> will ever  be. Maybe <code>stack</code> will get there at some point. However, and I hate to use this  argumentation, <code>raco</code> is <strong>already there, bundled with Racket just like the  IDE, and is used by the whole community</strong>. <code>stack</code> has been in development just  four months at the time of this writing, and it has yet to prove that it is  adopted by the community.</p>
+
+<ul>
+ <li><strong>The syntax is terse and this is because the community is not out to show  off</strong>. This is quite a subjective point, but hey, this is my blog. I do not  remember which author famously remarked that &ldquo;software organizations tend to  write software that reflects the mental state of the organization&rdquo;. Whenever  reading up on Haskell, I noticed a &ldquo;climbing&rdquo; feeling: any concept already  covered was only a step in an infinite ladder of abstractions. At first, you  imagine that from some point on you will be able to write &ldquo;good enough&rdquo; Haskell  to tackle at least the lowly tasks that you intend to accomplish. But this is  never the case. There is yet another language extension that does what you  want, if only you had learnt about it before. In my opinion, this reflects the  elite thinking of (at least a part of) the Haskell community. Nothing is ever  clever enough: there must be a new way to define Arrows, Lenses, and Barbed  wires to fool those who have dared to understand Monads.</li></ul>
+
+<p> Contrast this with the simplicity of the Racket syntax, which is a very  intentional heritage from Scheme and Lisp. There is almost nothing to learn.  From around half of the Racket guide you can write Racket programs that work.  The whole language is there to be expanded by you, if you do not find its  features enough. Yes, there are &ldquo;different languages&rdquo; that can be thought of as  equivalent to the &ldquo;language extensions&rdquo; of Haskell, but when did you read on  any Haskell manual how to introduce your own language extensions?</p>
+
+<ul>
+ <li>If you are thinking, &ldquo;oh but Haskell is typed, while Racket is interpreted&rdquo;,  please have a look at  <a href="http://docs.racket-lang.org/guide/contracts.html">contracts</a> for the safety,  and at <a href="http://docs.racket-lang.org/ts-guide/index.html">Typed Racket</a> for the  performance. Again the day is saved for Racket (yay).</li></ul>
+
+<p>And this is enough ranting. I would really like to see the Haskell language improve and deliver on the promise that it once was, at least for me. Until then, I will be happily writing parenthesis in Racket.</p>
+  <footer>
+    <ul class="pager">
+    <li class="previous">
+      <a href="/blog/2016/02/26/binaries-and-customers/">&larr; <em>Binaries and customers</em></a>
+    </li>
+    <li class="next">
+      <a href="/blog/2015/07/15/open-files-from-last-commit-in-vim/"><em>Open files from last commit in Vim</em> &rarr;</a>
+    </li>
+    </ul>
+  </footer>
+</article>
+        </div>
+        <div id="right" class="col-md-2"></div>
+      </div>
+      <footer>
+        <hr />
+        <p><a href="https://twitter.com/logdc"
+              class="twitter-follow-button"
+              data-show-count="false"
+              data-lang="en">
+             "Follow logdc"
+           </a>
+           <script type="text/javascript">
+             !function(d,s,id){
+                 var js,fjs=d.getElementsByTagName(s)[0];
+                 if(!d.getElementById(id)){
+                     js=d.createElement(s);
+                     js.id=id;
+                     js.src="//platform.twitter.com/widgets.js";
+                     fjs.parentNode.insertBefore(js,fjs);
+                 }
+             }(document,"script","twitter-wjs");
+           </script></p>
+
+        <p>Site generated with
+        <a href="https://github.com/greghendershott/frog">Frog</a>
+        &amp;
+        <a href="http://twitter.github.com/bootstrap/index.html">Bootstrap</a>.</p>
+        <p>This page was last built on Friday, September 30th, 2016</p>
+
+        <p><em>© Copyright 2016, Luis Osa</em>.</p>
+      </footer>
+    </div>
+    <!-- </body> JS -->
+    <script type="text/javascript" src="//code.jquery.com/jquery.min.js"></script>
+    <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+  </body>
+</html>

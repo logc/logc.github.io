@@ -3,13 +3,13 @@
   <head>
 
     <meta charset="utf-8">
-    <title>logc io</title>
-    <meta name="description" content="logc io">
+    <title>Posts tagged 'development'</title>
+    <meta name="description" content="Posts tagged 'development'">
     <meta name="author"      content="logc">
-    <meta name="keywords"    content="rant, C++, vim, sysadmin, racket, economy, python, web, all, development, git, haskell">
+    <meta name="keywords"    content="development">
     <meta name="viewport"    content="width=device-width, initial-scale=1.0">
     <link rel="icon"      href="/favicon.ico">
-    <link rel="canonical" href="http://logc.github.io/index.html">
+    <link rel="canonical" href="http://logc.github.io/tags/development.html">
 
 
     <!-- CSS -->
@@ -21,9 +21,9 @@
     <link href="https://fonts.googleapis.com/css?family=Fira+Mono" rel="stylesheet">
     <!-- Feeds -->
     <link rel="alternate" type="application/atom+xml"
-          href="/feeds/all.atom.xml" title="Atom Feed">
+          href="/feeds/development.atom.xml" title="Atom Feed">
     <link rel="alternate" type="application/rss+xml"
-          href="/feeds/all.rss.xml" title="RSS Feed">
+          href="/feeds/development.rss.xml" title="RSS Feed">
     <!-- JS -->
     <script type="text/javascript">
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -87,8 +87,8 @@
             <li>
               <a href="/About.html">About</a>
             </li> 
-            <li><a href="/feeds/all.atom.xml">Atom</a></li>
-            <li><a href="/feeds/all.rss.xml">RSS</a></li>
+            <li><a href="/feeds/development.atom.xml">Atom</a></li>
+            <li><a href="/feeds/development.rss.xml">RSS</a></li>
           </ul>
         </div>
       </div>
@@ -100,26 +100,11 @@
         <!-- Main column -->
         <div id="content" class="col-md-8">
 
-          <h1>Development notes</h1>
-          <p>These are the development notes of logc </p> 
 
 
+          <h1>Posts tagged <em>development</em></h1>
 
           <article>
-  <header>
-    <h2><a href='/blog/2016/09/23/racket-and-vim-syntastic/'>Racket and vim-syntastic</a></h2>
-    <p class='date-and-tags'>
-<time datetime="2016-09-23" pubdate="true">2016-09-23</time> :: <span class="tags"><a href="/tags/racket.html">racket</a>, <a href="/tags/vim.html">vim</a></span></p>
-  </header>
-
-<p>The current Syntastic checker for Racket syntax in Vim is the <code>racket</code> executable itself. This means that the current buffer is executed by Racket whenever it is checked for syntax, and this can have unintended consequences, e.g. entering an infinite loop, if you happen to open the wrong file.</p>
-
-<p>In order to just get the syntax errors, add this to your <code>.vimrc</code>:</p>
-
-<pre><code>let g:syntastic_racket_racket_args="--load"</code></pre>
-
-</article>
-<article>
   <header>
     <h2><a href='/blog/2016/02/26/binaries-and-customers/'>Binaries and customers</a></h2>
     <p class='date-and-tags'>
@@ -157,53 +142,6 @@
     <a href='/blog/2015/10/16/the-difference-between-racket-and-haskell/'>&hellip; more &hellip;</a>
   </footer>
 </article>
-<article>
-  <header>
-    <h2><a href='/blog/2015/07/15/open-files-from-last-commit-in-vim/'>Open files from last commit in Vim</a></h2>
-    <p class='date-and-tags'>
-<time datetime="2015-07-15" pubdate="true">2015-07-15</time> :: <span class="tags"><a href="/tags/vim.html">vim</a>, <a href="/tags/git.html">git</a></span></p>
-  </header>
-
-<p>It is always a nuisance to remember which files were you working on when you last exited your editing session. I have tried different approaches, including:</p>
-
-<ul>
- <li>leaving a test that does not succeed in order to get an errortrace that  points to the next task I should tackle</li>
- <li>opening the editor inside a <code>tmux</code> or <code>screen</code> session, and therefore never  ending the editing session</li></ul>
-
-<p>The last idea I had was to create a unfinished Git commit (called &ldquo;Unfinished: The commit title&rdquo;), and use Git to retrieve the name of the files that were touched in that commit. You can do it like this:</p>
-
-<pre><code>$ git log --pretty=format: --name-only -n 1</code></pre>
-
-<p>If you alias that command in your <code>.gitconfig</code>, e.g. to <code>lastedited</code>, you can then open the files in your editor by command subtitution:</p>
-
-<pre><code>$ vim $(git lastedited)</code></pre>
-
-</article>
-<article>
-  <header>
-    <h2><a href='/blog/2015/02/27/if-programming-languages-were-music-genres/'>If programming languages were music genres</a></h2>
-    <p class='date-and-tags'>
-<time datetime="2015-02-27" pubdate="true">2015-02-27</time> :: <span class="tags"><a href="/tags/.html"></a></span></p>
-  </header>
-
-<p>There are quite some posts out there that compare programming languages to something else, like religions, rock bands, types of women &hellip; There is a <a href="http://lambda-the-ultimate.org/node/3133">compilation of these over at Lambda the Ultimate</a>.</p>
-
-<p>One comparison that I find missing is that of programming languages to music genres (maybe the &ldquo;Subcultures&rdquo; post was simmilar, but it seems to be a dead link now). This is the more surprising since it looks like developers tend to argue about their favourite languages just like most people about music: everyone knows it is a highly subjective preference, but no-one escapes trying to convince others that they are not listening to the &ldquo;right&rdquo; music!</p>
-
-<p>So, here is my (completely subjective) view on programming languages as music genres:</p>
-  <footer>
-    <a href='/blog/2015/02/27/if-programming-languages-were-music-genres/'>&hellip; more &hellip;</a>
-  </footer>
-</article>
-<footer>
- <ul class="pagination">
-  <li class="disabled"><a href="#">
-    <quote>&larr;</quote></a></li>
-  <li class="active"><a href="/index.html">1</a></li>
-  <li><a href="/index-2.html">2</a></li>
-  <li><a href="/index-3.html">3</a></li>
-  <li><a href="/index-2.html">
-    <quote>&rarr;</quote></a></li></ul></footer>
         </div>
         <div id="right" class="col-md-2"></div>
       </div>
