@@ -2,6 +2,7 @@ http://logc.github.io/blog/2015/07/15/open-files-from-last-commit-in-vim/
 http://logc.github.io/blog/2013/12/04/instalar-python-2-7-y-numpy-sobre-redhat-6/
 http://logc.github.io/blog/2015/02/27/if-programming-languages-were-music-genres/
 http://logc.github.io/blog/2015/10/16/the-difference-between-racket-and-haskell/
+http://logc.github.io/blog/2016/10/03/setting-up-github-pages-with-frog/
 http://logc.github.io/blog/2013/12/04/how-do-you-develop-with-yesod/
 http://logc.github.io/blog/2016/09/23/racket-and-vim-syntastic/
 http://logc.github.io/blog/2016/02/26/binaries-and-customers/

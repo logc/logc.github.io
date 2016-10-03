@@ -4,7 +4,31 @@
  <link rel="self" href="http://logc.github.io/feeds/all.atom.xml" />
  <link href="http://logc.github.io/index.html" />
  <id>urn:http-logc-github-io:-index-html</id>
- <updated>2016-09-23T19:48:27Z</updated>
+ <updated>2016-10-03T17:08:34Z</updated>
+ <entry>
+  <title type="text">Setting up Github Pages with Frog</title>
+  <link rel="alternate" href="http://logc.github.io/blog/2016/10/03/setting-up-github-pages-with-frog/?utm_source=all&amp;utm_medium=Atom" />
+  <id>urn:http-logc-github-io:-blog-2016-10-03-setting-up-github-pages-with-frog</id>
+  <published>2016-10-03T17:08:34Z</published>
+  <updated>2016-10-03T17:08:34Z</updated>
+  <author>
+   <name>logc</name></author>
+  <content type="html">&lt;html&gt;
+&lt;p&gt;To set up a static blog in Github Pages using the Racket package &lt;a href="https://github.com/greghendershott/frog"&gt;Frog&lt;/a&gt;, you need to do the following:&lt;/p&gt;
+
+&lt;ol&gt;
+ &lt;li&gt;download and install Racket (duh!)&lt;/li&gt;
+ &lt;li&gt;
+  &lt;p&gt;install Frog with &lt;code&gt;raco&lt;/code&gt;:&lt;/p&gt;
+  &lt;pre&gt;&lt;code&gt;raco install frog&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;&lt;/ol&gt;
+&lt;!-- more--&gt;
+
+&lt;ol&gt;
+ &lt;li&gt;
+  &lt;p&gt;create a folder and initialize a Frog project there:&lt;/p&gt;
+  &lt;pre&gt;&lt;code&gt;mkdir new-blog
+cd new-blog
+raco frog --init&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;&lt;/ol&gt;&lt;/html&gt;</content></entry>
  <entry>
   <title type="text">Racket and vim-syntastic</title>
   <link rel="alternate" href="http://logc.github.io/blog/2016/09/23/racket-and-vim-syntastic/?utm_source=all&amp;utm_medium=Atom" />

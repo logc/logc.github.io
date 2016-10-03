@@ -106,6 +106,22 @@
 
           <article>
   <header>
+    <h2><a href='/blog/2015/02/27/if-programming-languages-were-music-genres/'>If programming languages were music genres</a></h2>
+    <p class='date-and-tags'>
+<time datetime="2015-02-27" pubdate="true">2015-02-27</time> :: <span class="tags"><a href="/tags/.html"></a></span></p>
+  </header>
+
+<p>There are quite some posts out there that compare programming languages to something else, like religions, rock bands, types of women &hellip; There is a <a href="http://lambda-the-ultimate.org/node/3133">compilation of these over at Lambda the Ultimate</a>.</p>
+
+<p>One comparison that I find missing is that of programming languages to music genres (maybe the &ldquo;Subcultures&rdquo; post was simmilar, but it seems to be a dead link now). This is the more surprising since it looks like developers tend to argue about their favourite languages just like most people about music: everyone knows it is a highly subjective preference, but no-one escapes trying to convince others that they are not listening to the &ldquo;right&rdquo; music!</p>
+
+<p>So, here is my (completely subjective) view on programming languages as music genres:</p>
+  <footer>
+    <a href='/blog/2015/02/27/if-programming-languages-were-music-genres/'>&hellip; more &hellip;</a>
+  </footer>
+</article>
+<article>
+  <header>
     <h2><a href='/blog/2014/04/01/python-egg-tagged-with-git-commit-hash/'>Python egg tagged with Git commit hash</a></h2>
     <p class='date-and-tags'>
 <time datetime="2014-04-01" pubdate="true">2014-04-01</time> :: <span class="tags"><a href="/tags/python.html">python</a>, <a href="/tags/git.html">git</a></span></p>
@@ -207,50 +223,6 @@ tag_build =</code></pre>
     <a href='/blog/2013/12/04/how-do-you-develop-with-yesod/'>&hellip; more &hellip;</a>
   </footer>
 </article>
-<article>
-  <header>
-    <h2><a href='/blog/2013/12/04/instalar-python-2-7-y-numpy-sobre-redhat-6/'>Instalar Python 2.7 y NumPy sobre RedHat 6</a></h2>
-    <p class='date-and-tags'>
-<time datetime="2013-12-04" pubdate="true">2013-12-04</time> :: <span class="tags"><a href="/tags/python.html">python</a></span></p>
-  </header>
-
-<p>RedHat y centOS tienen la fastidiosa dependencia de su gestor de paquetes, yum, con la versión 2.6 de Python desde tiempos inmemoriales. Lo que en tecnología son unos seis o siete años.</p>
-
-<p>Instalar Python 2.7 no es posible con los repositorios instalados por defecto, y si tienes la mala idea de instalar un repositorio donde sí esté y meterlo como paquete que supedita al python por defecto, te acabas de cargar yum (y la posibilidad más sencilla de deshacer tus cambios).</p>
-
-<p>La mejor manera, pese a lo que pueda parecer, es <strong>instalar desde fuentes</strong>, haciendo lo que se conoce como &ldquo;altinstall&rdquo; (instalación alternativa). Esto crea ejecutables llamados <code>python2.7</code> bajo <code>/usr/local/bin</code>, que <strong>no sobreescriben</strong> el comando <code>python</code> normal del sistema; éste sigue apuntando a un ejecutable bajo <code>/usr/bin</code>.</p>
-
-<div class="brush: console">
- <div class="source">
-  <pre><span></span><span class="gp">$</span> wget http://www.python.org/ftp/python/2.7.6/Python-2.7.6.tgz
-<span class="gp">$</span> tar xvfz Python-2.7.6.tgz
-<span class="gp">$</span> <span class="nb">cd</span> Python-2.7.6
-<span class="gp">$</span> ./configure
-<span class="gp">$</span> make
-<span class="gp">$</span> sudo make altinstall
-</pre></div>
-
-</div>
-
-<p>Además de esto, es recomendable instalar <strong>un <code>easy_install</code> alternativo también</strong>, ya que, si no, todas las librerías de python se instalarán para la 2.6 y no para la 2.7.</p>
-
-<div class="brush: console">
- <div class="source">
-  <pre><span></span><span class="gp">$</span> wget http://pypi.python.org/packages/2.7/s/setuptools/setuptools-0.6c11-py2.7.egg
-<span class="gp">$</span> sudo -i
-<span class="gp">#</span> <span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:/usr/local/bin
-<span class="gp">#</span> sh setuptools-0.6c11-py2.7.egg
-<span class="gp">#</span> <span class="nb">exit</span>
-<span class="gp">$</span> sudo rm /usr/local/bin/easy_install <span class="c1">## remove the symlink that shadows the system easy_install</span>
-<span class="gp">$</span> <span class="c1"># You may now try the easy_install for 2.7 with e.g.:</span>
-<span class="gp">$</span> sudo /usr/local/bin/easy_install-2.7 numpy
-</pre></div>
-
-</div>
-
-<p>Este post es una combinación de <a href="http://stackoverflow.com/questions/4149361/on-linux-suse-or-redhat-how-do-i-load-python-2-7">dos respuestas en Stack Overflow</a>, y mi propia experiencia con este mismo problema.</p>
-
-</article>
 <footer>
  <ul class="pagination">
   <li><a href="/index.html">
@@ -287,7 +259,7 @@ tag_build =</code></pre>
         <a href="https://github.com/greghendershott/frog">Frog</a>
         &amp;
         <a href="http://twitter.github.com/bootstrap/index.html">Bootstrap</a>.</p>
-        <p>This page was last built on Friday, September 30th, 2016</p>
+        <p>This page was last built on Monday, October 3rd, 2016</p>
 
         <p><em>© Copyright 2016, Luis Osa</em>.</p>
       </footer>
