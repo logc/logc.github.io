@@ -58,6 +58,8 @@ $ git push -u origin master&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
 
 &lt;pre&gt;&lt;code&gt;$ raco frog -n "Another post"
 # ... edit that post ...
+$ raco frog -b
+$ git add .
 $ git commit -a
 $ git push&lt;/code&gt;&lt;/pre&gt;&lt;/html&gt;</description></item>
   <item>
