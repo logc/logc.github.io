@@ -3,13 +3,13 @@
   <head>
 
     <meta charset="utf-8">
-    <title>Posts tagged 'haskell'</title>
-    <meta name="description" content="Posts tagged 'haskell'">
+    <title>Posts tagged 'frog'</title>
+    <meta name="description" content="Posts tagged 'frog'">
     <meta name="author"      content="logc">
-    <meta name="keywords"    content="haskell">
+    <meta name="keywords"    content="frog">
     <meta name="viewport"    content="width=device-width, initial-scale=1.0">
     <link rel="icon"      href="/favicon.ico">
-    <link rel="canonical" href="http://logc.github.io/tags/haskell.html">
+    <link rel="canonical" href="http://logc.github.io/tags/frog.html">
 
 
     <!-- CSS -->
@@ -21,9 +21,9 @@
     <link href="https://fonts.googleapis.com/css?family=Fira+Mono" rel="stylesheet">
     <!-- Feeds -->
     <link rel="alternate" type="application/atom+xml"
-          href="/feeds/haskell.atom.xml" title="Atom Feed">
+          href="/feeds/frog.atom.xml" title="Atom Feed">
     <link rel="alternate" type="application/rss+xml"
-          href="/feeds/haskell.rss.xml" title="RSS Feed">
+          href="/feeds/frog.rss.xml" title="RSS Feed">
     <!-- JS -->
     <script type="text/javascript">
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -91,8 +91,8 @@
             <li>
               <a href="/About.html">About</a>
             </li> 
-            <li><a href="/feeds/haskell.atom.xml">Atom</a></li>
-            <li><a href="/feeds/haskell.rss.xml">RSS</a></li>
+            <li><a href="/feeds/frog.atom.xml">Atom</a></li>
+            <li><a href="/feeds/frog.rss.xml">RSS</a></li>
           </ul>
         </div>
       </div>
@@ -106,30 +106,63 @@
 
 
 
-          <h1>Posts tagged <em>haskell</em></h1>
+          <h1>Posts tagged <em>frog</em></h1>
 
           <article>
   <header>
-    <h2><a href='/blog/2013/12/04/how-do-you-develop-with-yesod/'>How do you develop with Yesod</a></h2>
+    <h2><a href='/blog/2016/10/03/setting-up-github-pages-with-frog/'>Setting up Github Pages with Frog</a></h2>
     <p class='date-and-tags'>
-<time datetime="2013-12-04" pubdate="true">2013-12-04</time> :: <span class="tags"><a href="/tags/haskell.html">haskell</a>, <a href="/tags/web.html">web</a></span></p>
+<time datetime="2016-10-03" pubdate="true">2016-10-03</time> :: <span class="tags"><a href="/tags/racket.html">racket</a>, <a href="/tags/frog.html">frog</a>, <a href="/tags/blog.html">blog</a></span></p>
   </header>
 
-<p>Yesod tutorials and examples can be found on the <a href="http://www.yesodweb.com/book">Yesod book</a>, which is freely available online.</p>
+<p>To set up a static blog in Github Pages using the Racket package <a href="https://github.com/greghendershott/frog">Frog</a>, you need to do the following:</p>
 
-<p>However, many of the examples given are self-contained (which means that handler functions, data models and templates are defined in a single module, where a Warp web server is started as well). There is <a href="http://www.yesodweb.com/book/scaffolding-and-the-site-template">a chapter that describes the scaffolded template</a>, i.e. what you get after you start with Yesod, but it is rather a description of its advantages and structure, not so much a detailed how-to.</p>
+<ol>
+ <li>download and install Racket (duh!)</li>
+ <li>
+  <p>install Frog with <code>raco</code>:</p>
+  <pre><code>$ raco install frog</code></pre></li>
+ <li>
+  <p>create a folder and initialize a Frog project there:</p>
+  <pre><code>$ mkdir new-blog
+$ cd new-blog
+$ raco frog --init</code></pre></li>
+ <li>
+  <p>customize the <code>.frogrc</code> file. Set at least <code>scheme/host</code> to  <em>https://your-username.github.io</em>, and <code>title</code> &amp; <code>author</code> to whatever you  want.</p></li>
+ <li>
+  <p>add some content of your own:</p>
+  <pre><code>$ raco frog -n "New post"
+# ... output says something like:
+~/new-blog/_src/posts/2016-10-03-new-post.md
+# ... edit that file with your preferred editor ...</code></pre></li>
+ <li>
+  <p>when you are finished editing, preview your glorious site with</p>
+  <pre><code>$ raco frog -bp</code></pre></li>
+ <li>
+  <p>initialize an empty Git repository on the project folder, and tell git to  ignore the Frog machinery and your source directory</p>
+  <pre><code>$ git init .
+$ cat &lt;&lt; EOF &gt; .gitignore
+/.frog/
+/.frogrc
+/_src/
+EOF</code></pre></li>
+ <li>
+  <p>commit everything, except for what we just ignored</p>
+  <pre><code>$ git add .
+$ git commit</code></pre></li>
+ <li>
+  <p>on github.com, create a new repository with the name  <em>your-username.github.io</em>. Once created, add it as a remote to your local  repo, and push your local <code>master</code> to it.</p>
+  <pre><code>$ git remote add origin &lt;your new repo&gt;
+$ git push -u origin master</code></pre></li>
+ <li>after some seconds, your new blog should be available as <em>http://your-username.github.io</em></li></ol>
 
-<p>The purpose of this post is to explain to a new Yesod developer &ldquo;What do I do after &hellip; ?&rdquo; :</p>
+<p>Now, each time that you want to add a new post, it&rsquo;s just a matter of</p>
 
-<div class="brush: console">
- <div class="source">
-  <pre><span></span><span class="gp">$</span> yesod init
-</pre></div>
+<pre><code>$ raco frog -n "Another post"
+# ... edit that post ...
+$ git commit -a
+$ git push</code></pre>
 
-</div>
-  <footer>
-    <a href='/blog/2013/12/04/how-do-you-develop-with-yesod/'>&hellip; more &hellip;</a>
-  </footer>
 </article>
         </div>
         <div id="right" class="col-md-2"></div>

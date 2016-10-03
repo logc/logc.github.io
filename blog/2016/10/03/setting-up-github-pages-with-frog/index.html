@@ -6,7 +6,7 @@
     <title>Setting up Github Pages with Frog</title>
     <meta name="description" content="To set up a static blog in Github Pages using the Racket package Frog, you need to do the following:   download and install Racket (duh!)    install Frog with `raco`:    `$ raco install frog`      create a folder and initialize a Frog project there:    `$...">
     <meta name="author"      content="logc">
-    <meta name="keywords"    content="">
+    <meta name="keywords"    content="racket, frog, blog">
     <meta name="viewport"    content="width=device-width, initial-scale=1.0">
     <link rel="icon"      href="/favicon.ico">
     <link rel="canonical" href="http://logc.github.io/blog/2016/10/03/setting-up-github-pages-with-frog/">
@@ -61,11 +61,15 @@
               <ul class="dropdown-menu">
                 <li><a href="/index.html">All Posts</a></li>
 
+<li><a href="/tags/blog.html">blog</a></li>
+
 <li><a href="/tags/C.html">C++</a></li>
 
 <li><a href="/tags/development.html">development</a></li>
 
 <li><a href="/tags/economy.html">economy</a></li>
+
+<li><a href="/tags/frog.html">frog</a></li>
 
 <li><a href="/tags/git.html">git</a></li>
 
@@ -108,7 +112,7 @@
   <header>
     <h1>Setting up Github Pages with Frog</h1>
     <p class='date-and-tags'>
-<time datetime="2016-10-03" pubdate="true">2016-10-03</time> :: <span class="tags"><a href="/tags/.html"></a></span></p>
+<time datetime="2016-10-03" pubdate="true">2016-10-03</time> :: <span class="tags"><a href="/tags/racket.html">racket</a>, <a href="/tags/frog.html">frog</a>, <a href="/tags/blog.html">blog</a></span></p>
   </header>
 
 <p>To set up a static blog in Github Pages using the Racket package <a href="https://github.com/greghendershott/frog">Frog</a>, you need to do the following:</p>
@@ -124,7 +128,7 @@
 $ cd new-blog
 $ raco frog --init</code></pre></li>
  <li>
-  <p>customize the <code>.frogrc</code> file. Set at least <code>scheme/host</code> to <em>https://.github.io</em>, and <code>title</code> &amp; <code>author</code> to whatever you want,</p></li>
+  <p>customize the <code>.frogrc</code> file. Set at least <code>scheme/host</code> to  <em>https://your-username.github.io</em>, and <code>title</code> &amp; <code>author</code> to whatever you  want.</p></li>
  <li>
   <p>add some content of your own:</p>
   <pre><code>$ raco frog -n "New post"
@@ -137,17 +141,20 @@ $ raco frog --init</code></pre></li>
  <li>
   <p>initialize an empty Git repository on the project folder, and tell git to  ignore the Frog machinery and your source directory</p>
   <pre><code>$ git init .
-$ cat &lt;&lt; EOF &gt; .gitignore</code></pre>
-  <p>/.gitignore /.frog/ /.frogrc /_src/  EOF</p></li>
+$ cat &lt;&lt; EOF &gt; .gitignore
+/.frog/
+/.frogrc
+/_src/
+EOF</code></pre></li>
  <li>
   <p>commit everything, except for what we just ignored</p>
   <pre><code>$ git add .
 $ git commit</code></pre></li>
  <li>
-  <p>on github.com, create a new repository with the name <em>.github.io</em>. Once created, add it as a remote to your local repo,  and push your local <code>master</code> to it.</p>
+  <p>on github.com, create a new repository with the name  <em>your-username.github.io</em>. Once created, add it as a remote to your local  repo, and push your local <code>master</code> to it.</p>
   <pre><code>$ git remote add origin &lt;your new repo&gt;
 $ git push -u origin master</code></pre></li>
- <li>after some seconds, your new blog should be available as <em>http://.github.io</em></li></ol>
+ <li>after some seconds, your new blog should be available as <em>http://your-username.github.io</em></li></ol>
 
 <p>Now, each time that you want to add a new post, it&rsquo;s just a matter of</p>
 
