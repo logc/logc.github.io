@@ -1,19 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?> 
-<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
- <title type="text">logc io: Posts tagged 'C'</title>
- <link rel="self" href="http://logc.github.io/feeds/C.atom.xml" />
- <link href="http://logc.github.io/tags/C.html" />
- <id>urn:http-logc-github-io:-tags-C-html</id>
- <updated>2016-10-20T16:39:47Z</updated>
- <entry>
-  <title type="text">Minimal C project structure with SCons</title>
-  <link rel="alternate" href="http://logc.github.io/blog/2016/10/20/minimal-c-project-structure-with-scons/?utm_source=C&amp;utm_medium=Atom" />
-  <id>urn:http-logc-github-io:-blog-2016-10-20-minimal-c-project-structure-with-scons</id>
-  <published>2016-10-20T16:39:47Z</published>
-  <updated>2016-10-20T16:39:47Z</updated>
-  <author>
-   <name>logc</name></author>
-  <content type="html">&lt;html&gt;
+<rss version="2.0">
+ <channel>
+  <title>logc io: Posts tagged 'build'</title>
+  <description>logc io: Posts tagged 'build'</description>
+  <link>http://logc.github.io/tags/build.html</link>
+  <lastBuildDate>Thu, 20 Oct 2016 16:39:47 UT</lastBuildDate>
+  <pubDate>Thu, 20 Oct 2016 16:39:47 UT</pubDate>
+  <ttl>1800</ttl>
+  <item>
+   <title>Minimal C project structure with SCons</title>
+   <link>http://logc.github.io/blog/2016/10/20/minimal-c-project-structure-with-scons/?utm_source=build&amp;utm_medium=RSS</link>
+   <guid>urn:http-logc-github-io:-blog-2016-10-20-minimal-c-project-structure-with-scons</guid>
+   <pubDate>Thu, 20 Oct 2016 16:39:47 UT</pubDate>
+   <description>&lt;html&gt;
 &lt;p&gt;This is a possible project structure in order to have a C project using SCons as the build system. It enables:&lt;/p&gt;
 
 &lt;ul&gt;
@@ -182,4 +181,4 @@ env.Program(target='test_mylib', source=Glob('tests/*.c') + Glob('tests/**/*.c')
 
 &lt;p&gt;You can clean all object files and the products with&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;$ scons --clean&lt;/code&gt;&lt;/pre&gt;&lt;/html&gt;</content></entry></feed>
+&lt;pre&gt;&lt;code&gt;$ scons --clean&lt;/code&gt;&lt;/pre&gt;&lt;/html&gt;</description></item></channel></rss>

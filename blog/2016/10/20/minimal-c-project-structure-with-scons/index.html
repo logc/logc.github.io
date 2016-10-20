@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <meta charset="utf-8">
+    <title>Minimal C project structure with SCons</title>
+    <meta name="description" content="This is a possible project structure in order to have a C project using SCons as the build system. It enables:   compile most files as a library, and link that to a `main` file with  application code. separate `src` and `include` directories   separate un...">
+    <meta name="author"      content="logc">
+    <meta name="keywords"    content="C, scons, build">
+    <meta name="viewport"    content="width=device-width, initial-scale=1.0">
+    <link rel="icon"      href="/favicon.ico">
+    <link rel="canonical" href="http://logc.github.io/blog/2016/10/20/minimal-c-project-structure-with-scons/">
+    <link rel="next" href="/blog/2016/10/03/setting-up-github-pages-with-frog/">
+
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/css/scribble.css">
+    <link rel="stylesheet" type="text/css" href="/css/custom.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Fira+Mono" rel="stylesheet">
+    <!-- Feeds -->
+    <link rel="alternate" type="application/atom+xml"
+          href="/feeds/all.atom.xml" title="Atom Feed">
+    <link rel="alternate" type="application/rss+xml"
+          href="/feeds/all.rss.xml" title="RSS Feed">
+    <!-- JS -->
+    <script type="text/javascript">
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-xxxxx', 'auto');
+      ga('send', 'pageview');
+    </script>
+  </head>
+  <body>
+    <!-- A standard Twitter Bootstrap nav bar -->
+    <header class="navbar navbar-default navbar-inverse"
+            role="banner">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button"
+                  class="navbar-toggle"
+                  data-toggle="collapse"
+                  data-target=".our-nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a href="/index.html" class="navbar-brand">logc i/o</a>
+        </div>
+        <div class="collapse navbar-collapse our-nav-collapse"
+             role="navigation">
+          <ul class="nav navbar-nav">
+
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                Tags <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="/index.html">All Posts</a></li>
+
+<li><a href="/tags/blog.html">blog</a></li>
+
+<li><a href="/tags/build.html">build</a></li>
+
+<li><a href="/tags/C.html">C</a></li>
+
+<li><a href="/tags/C.html">C++</a></li>
+
+<li><a href="/tags/development.html">development</a></li>
+
+<li><a href="/tags/economy.html">economy</a></li>
+
+<li><a href="/tags/frog.html">frog</a></li>
+
+<li><a href="/tags/git.html">git</a></li>
+
+<li><a href="/tags/haskell.html">haskell</a></li>
+
+<li><a href="/tags/python.html">python</a></li>
+
+<li><a href="/tags/racket.html">racket</a></li>
+
+<li><a href="/tags/rant.html">rant</a></li>
+
+<li><a href="/tags/scons.html">scons</a></li>
+
+<li><a href="/tags/sysadmin.html">sysadmin</a></li>
+
+<li><a href="/tags/vim.html">vim</a></li>
+
+<li><a href="/tags/web.html">web</a></li>
+              </ul>
+            </li>
+            <li>
+              <a href="/About.html">About</a>
+            </li> 
+            <li><a href="/feeds/all.atom.xml">Atom</a></li>
+            <li><a href="/feeds/all.rss.xml">RSS</a></li>
+          </ul>
+        </div>
+      </div>
+    </header>
+    <div class="container">
+      <div class="row">
+
+        <div id="left" class="col-md-2"></div>
+        <!-- Main column -->
+        <div id="content" class="col-md-8">
+
+
+
+
+
+          <article>
+  <header>
+    <h1>Minimal C project structure with SCons</h1>
+    <p class='date-and-tags'>
+<time datetime="2016-10-20" pubdate="true">2016-10-20</time> :: <span class="tags"><a href="/tags/C.html">C</a>, <a href="/tags/scons.html">scons</a>, <a href="/tags/build.html">build</a></span></p>
+  </header>
+
+<p>This is a possible project structure in order to have a C project using SCons as the build system. It enables:</p>
+
+<ul>
+ <li>compile most files as a library, and link that to a <code>main</code> file with  application code.</li>
+ <li>separate <code>src</code> and <code>include</code> directories</li>
+ <li>separate unit tests using <a href="https://libcheck.github.io/check/">libcheck</a></li>
+ <li>the unit tests link to the library</li>
+ <li>Macports-installed libraries</li></ul>
+<!-- more-->
+
+<p>Layout your code like this:</p>
+
+<pre><code>.
+├── include
+│   └── core
+│       └── mylib.h
+├── sconstruct
+├── src
+│   ├── core
+│   │   └── mylib.c
+│   └── main.c
+└── tests
+    ├── core
+    │   ├── test_mylib.c
+    │   ├── test_mylib.h
+    │   └── tests.h
+    └── main.c</code></pre>
+
+<p>where <code>mylib</code> should have a more descriptive name for your project.</p>
+
+<p><code>sconstruct</code> is:</p>
+
+<pre><code>env = Environment(CPPPATH=['include', '/opt/local/include'])
+env.Library(target='mylib', source=Glob('src/core/*.c'))
+env.Program(target='mylib', source=Glob('src/*.c'),
+            LIBS=['mylib'], LIBPATH=['.'])
+env.Program(target='test_mylib', source=Glob('tests/*.c') + Glob('tests/**/*.c'),
+            LIBS=['mylib', 'check'], LIBPATH=['.', '/opt/local/lib/'])</code></pre>
+
+<h2 id="implementation">Implementation</h2>
+
+<p><code>src/core/mylib.c</code> (and all other files in subdirectories of <code>src/</code>) holds the core logic without user interactions (pure functions, if you wish :) ). It can look like this:</p>
+
+<div class="brush: c">
+ <div class="source">
+  <pre><span></span><span class="kt">int</span> <span class="nf">whatever</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+</div>
+
+<p><code>src/main.c</code> uses all other files in order to do something useful for a user. For instance:</p>
+
+<div class="brush: c">
+ <div class="source">
+  <pre><span></span><span class="cp">#include</span> <span class="cpf">"core/mylib.h"</span><span class="cp"></span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="n">whatever</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+
+</div>
+
+<p><code>main.c</code> and <code>core/mylib.c</code> see each other via the header files in the <code>include</code> directory, where <code>core/mylib.h</code> holds:</p>
+
+<div class="brush: c">
+ <div class="source">
+  <pre><span></span><span class="kt">int</span> <span class="nf">whatever</span><span class="p">();</span>
+</pre></div>
+
+</div>
+
+<h2 id="tests">Tests</h2>
+
+<p>Tests have the same subdirectory structure as the source subtree (a <code>core</code> directory to hold tests for <code>core</code> implementation files), but headers are included in the same subtree, because tests are not expected to need to publish their API to end-users, only their results.</p>
+
+<p>A typical test file, e.g. <code>tests/core/test_mylib.c</code>, should define tests, and then define a function that puts them together into a test suite. This is the function that we will want to expose via a header file:</p>
+
+<div class="brush: c">
+ <div class="source">
+  <pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;check.h&gt;</span><span class="cp"></span>
+
+<span class="n">START_TEST</span><span class="p">(</span><span class="n">test_fails</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">ck_assert_int_eq</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="n">END_TEST</span>
+
+<span class="n">Suite</span> <span class="o">*</span> <span class="n">core_suite</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">Suite</span> <span class="o">*</span><span class="n">s</span><span class="p">;</span>
+    <span class="n">TCase</span> <span class="o">*</span><span class="n">tc_core</span><span class="p">;</span>
+
+    <span class="n">s</span> <span class="o">=</span> <span class="n">suite_create</span><span class="p">(</span><span class="s">"Core/mylib"</span><span class="p">);</span>
+
+    <span class="cm">/* Core test case */</span>
+    <span class="n">tc_core</span> <span class="o">=</span> <span class="n">tcase_create</span><span class="p">(</span><span class="s">"Core"</span><span class="p">);</span>
+
+    <span class="n">tcase_add_test</span><span class="p">(</span><span class="n">tc_core</span><span class="p">,</span> <span class="n">test_fails</span><span class="p">);</span>
+    <span class="n">suite_add_tcase</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">tc_core</span><span class="p">);</span>
+
+    <span class="k">return</span> <span class="n">s</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+</div>
+
+<p>In this example, we create a header file for each test file in a directory, and then an aggregated header file called <code>tests.h</code> which includes all other header files in the same directory:</p>
+
+<div class="brush: c">
+ <div class="source">
+  <pre><span></span><span class="c1">// test_mylib.h</span>
+<span class="n">Suite</span> <span class="o">*</span> <span class="nf">core_suite</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
+
+<span class="c1">// tests.h</span>
+<span class="cp">#include</span> <span class="cpf">"test_mylib.h"</span><span class="cp"></span>
+</pre></div>
+
+</div>
+
+<p>Finally, the test runner executable is defined in the <code>tests/main.c</code> file. It includes all <code>tests</code> headers, uses the exported test suite creating functions to create all test suites, and runs them.</p>
+
+<div class="brush: c">
+ <div class="source">
+  <pre><span></span><span class="c1">// tests/main.c</span>
+<span class="cp">#include</span> <span class="cpf">&lt;stdlib.h&gt;</span><span class="cp"></span>
+
+<span class="cp">#include</span> <span class="cpf">&lt;check.h&gt;</span><span class="cp"></span>
+
+<span class="cp">#include</span> <span class="cpf">"core/tests.h"</span><span class="cp"></span>
+
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">number_failed</span><span class="p">;</span>
+    <span class="n">Suite</span> <span class="o">*</span><span class="n">s</span><span class="p">;</span>
+    <span class="n">SRunner</span> <span class="o">*</span><span class="n">sr</span><span class="p">;</span>
+
+    <span class="n">s</span> <span class="o">=</span> <span class="n">core_suite</span><span class="p">();</span>
+    <span class="n">sr</span> <span class="o">=</span> <span class="n">srunner_create</span><span class="p">(</span><span class="n">s</span><span class="p">);</span>
+
+    <span class="n">srunner_run_all</span><span class="p">(</span><span class="n">sr</span><span class="p">,</span> <span class="n">CK_NORMAL</span><span class="p">);</span>
+    <span class="n">number_failed</span> <span class="o">=</span> <span class="n">srunner_ntests_failed</span><span class="p">(</span><span class="n">sr</span><span class="p">);</span>
+    <span class="n">srunner_free</span><span class="p">(</span><span class="n">sr</span><span class="p">);</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">number_failed</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="o">?</span> <span class="nl">EXIT_SUCCESS</span> <span class="p">:</span> <span class="n">EXIT_FAILURE</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+</div>
+
+<h2 id="usage">Usage</h2>
+
+<p>Build your project with:</p>
+
+<pre><code>$ scons</code></pre>
+
+<p>You will find three products:</p>
+
+<ul>
+ <li>a static library called <code>libmylib</code></li>
+ <li>an executable called <code>mylib</code>, which links to that library</li>
+ <li>a test executable called <code>test_mylib</code>, also linked to that library</li></ul>
+
+<p>You can run all tests with <code>./test_mylib</code>, and execute the program with <code>./mylib</code></p>
+
+<p>You can clean all object files and the products with</p>
+
+<pre><code>$ scons --clean</code></pre>
+  <footer>
+    <ul class="pager">
+
+    <li class="next">
+      <a href="/blog/2016/10/03/setting-up-github-pages-with-frog/"><em>Setting up Github Pages with Frog</em> &rarr;</a>
+    </li>
+    </ul>
+  </footer>
+</article>
+        </div>
+        <div id="right" class="col-md-2"></div>
+      </div>
+      <footer>
+        <hr />
+        <p><a href="https://twitter.com/logdc"
+              class="twitter-follow-button"
+              data-show-count="false"
+              data-lang="en">
+             "Follow logdc"
+           </a>
+           <script type="text/javascript">
+             !function(d,s,id){
+                 var js,fjs=d.getElementsByTagName(s)[0];
+                 if(!d.getElementById(id)){
+                     js=d.createElement(s);
+                     js.id=id;
+                     js.src="//platform.twitter.com/widgets.js";
+                     fjs.parentNode.insertBefore(js,fjs);
+                 }
+             }(document,"script","twitter-wjs");
+           </script></p>
+
+        <p>Site generated with
+        <a href="https://github.com/greghendershott/frog">Frog</a>
+        &amp;
+        <a href="http://twitter.github.com/bootstrap/index.html">Bootstrap</a>.</p>
+        <p>This page was last built on Thursday, October 20th, 2016</p>
+
+        <p><em>© Copyright 2016, Luis Osa</em>.</p>
+      </footer>
+    </div>
+    <!-- </body> JS -->
+    <script type="text/javascript" src="//code.jquery.com/jquery.min.js"></script>
+    <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+  </body>
+</html>

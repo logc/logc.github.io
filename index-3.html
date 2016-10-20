@@ -6,7 +6,7 @@
     <title>logc io (page 3)</title>
     <meta name="description" content="logc io (page 3)">
     <meta name="author"      content="logc">
-    <meta name="keywords"    content="C++, rant, economy, python, web, all, development, git, blog, sysadmin, racket, vim, haskell, frog">
+    <meta name="keywords"    content="C++, rant, economy, python, web, all, development, git, frog, scons, sysadmin, racket, vim, blog, build, haskell, C">
     <meta name="viewport"    content="width=device-width, initial-scale=1.0">
     <link rel="icon"      href="/favicon.ico">
     <link rel="canonical" href="http://logc.github.io/index-3.html">
@@ -63,6 +63,10 @@
 
 <li><a href="/tags/blog.html">blog</a></li>
 
+<li><a href="/tags/build.html">build</a></li>
+
+<li><a href="/tags/C.html">C</a></li>
+
 <li><a href="/tags/C.html">C++</a></li>
 
 <li><a href="/tags/development.html">development</a></li>
@@ -80,6 +84,8 @@
 <li><a href="/tags/racket.html">racket</a></li>
 
 <li><a href="/tags/rant.html">rant</a></li>
+
+<li><a href="/tags/scons.html">scons</a></li>
 
 <li><a href="/tags/sysadmin.html">sysadmin</a></li>
 
@@ -109,6 +115,29 @@
 
 
           <article>
+  <header>
+    <h2><a href='/blog/2013/12/04/how-do-you-develop-with-yesod/'>How do you develop with Yesod</a></h2>
+    <p class='date-and-tags'>
+<time datetime="2013-12-04" pubdate="true">2013-12-04</time> :: <span class="tags"><a href="/tags/haskell.html">haskell</a>, <a href="/tags/web.html">web</a></span></p>
+  </header>
+
+<p>Yesod tutorials and examples can be found on the <a href="http://www.yesodweb.com/book">Yesod book</a>, which is freely available online.</p>
+
+<p>However, many of the examples given are self-contained (which means that handler functions, data models and templates are defined in a single module, where a Warp web server is started as well). There is <a href="http://www.yesodweb.com/book/scaffolding-and-the-site-template">a chapter that describes the scaffolded template</a>, i.e. what you get after you start with Yesod, but it is rather a description of its advantages and structure, not so much a detailed how-to.</p>
+
+<p>The purpose of this post is to explain to a new Yesod developer &ldquo;What do I do after &hellip; ?&rdquo; :</p>
+
+<div class="brush: console">
+ <div class="source">
+  <pre><span></span><span class="gp">$</span> yesod init
+</pre></div>
+
+</div>
+  <footer>
+    <a href='/blog/2013/12/04/how-do-you-develop-with-yesod/'>&hellip; more &hellip;</a>
+  </footer>
+</article>
+<article>
   <header>
     <h2><a href='/blog/2013/12/04/instalar-python-2-7-y-numpy-sobre-redhat-6/'>Instalar Python 2.7 y NumPy sobre RedHat 6</a></h2>
     <p class='date-and-tags'>
@@ -334,26 +363,6 @@ building <span class="s1">&#39;fibonacci&#39;</span> extension
 </div>
 
 </article>
-<article>
-  <header>
-    <h2><a href='/blog/2013/11/17/infraestructura-de-lanzamientos-locales/'>Infraestructura de lanzamientos locales</a></h2>
-    <p class='date-and-tags'>
-<time datetime="2013-11-17" pubdate="true">2013-11-17</time> :: <span class="tags"><a href="/tags/sysadmin.html">sysadmin</a></span></p>
-  </header>
-
-<p>Este post describe cómo crear una infraestructura de lanzamientos locales, para compartir paquetes locales con otros desarrolladores del mismo equipo, basándose en Python y Macports. Esto presupone que los otros miembros del equipo usan todos Mac OS X, y que están interesados en usar paquetes de Python, claro.</p>
-
-<p>Necesitaremos:</p>
-
-<ul>
- <li>crear un paquete de Python con su correspondiente <code>setup.py</code></li>
- <li>tener un directorio <code>releases</code> servido por HTTP por el servidor Apache  integrado en el sistema operativo.</li>
- <li>tener un directorio <code>ports</code> servido por rsync.</li>
- <li>configurar Macports para usar este nuevo repositorio.</li></ul>
-  <footer>
-    <a href='/blog/2013/11/17/infraestructura-de-lanzamientos-locales/'>&hellip; more &hellip;</a>
-  </footer>
-</article>
 <footer>
  <ul class="pagination">
   <li><a href="/index-2.html">
@@ -361,7 +370,8 @@ building <span class="s1">&#39;fibonacci&#39;</span> extension
   <li><a href="/index.html">1</a></li>
   <li><a href="/index-2.html">2</a></li>
   <li class="active"><a href="/index-3.html">3</a></li>
-  <li class="disabled"><a href="#">
+  <li><a href="/index-4.html">4</a></li>
+  <li><a href="/index-4.html">
     <quote>&rarr;</quote></a></li></ul></footer>
         </div>
         <div id="right" class="col-md-2"></div>
@@ -390,7 +400,7 @@ building <span class="s1">&#39;fibonacci&#39;</span> extension
         <a href="https://github.com/greghendershott/frog">Frog</a>
         &amp;
         <a href="http://twitter.github.com/bootstrap/index.html">Bootstrap</a>.</p>
-        <p>This page was last built on Monday, October 3rd, 2016</p>
+        <p>This page was last built on Thursday, October 20th, 2016</p>
 
         <p><em>© Copyright 2016, Luis Osa</em>.</p>
       </footer>

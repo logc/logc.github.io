@@ -4,9 +4,184 @@
   <title>logc io: logc io</title>
   <description>logc io: logc io</description>
   <link>http://logc.github.io/index.html</link>
-  <lastBuildDate>Mon, 03 Oct 2016 17:08:34 UT</lastBuildDate>
-  <pubDate>Mon, 03 Oct 2016 17:08:34 UT</pubDate>
+  <lastBuildDate>Thu, 20 Oct 2016 16:39:47 UT</lastBuildDate>
+  <pubDate>Thu, 20 Oct 2016 16:39:47 UT</pubDate>
   <ttl>1800</ttl>
+  <item>
+   <title>Minimal C project structure with SCons</title>
+   <link>http://logc.github.io/blog/2016/10/20/minimal-c-project-structure-with-scons/?utm_source=all&amp;utm_medium=RSS</link>
+   <guid>urn:http-logc-github-io:-blog-2016-10-20-minimal-c-project-structure-with-scons</guid>
+   <pubDate>Thu, 20 Oct 2016 16:39:47 UT</pubDate>
+   <description>&lt;html&gt;
+&lt;p&gt;This is a possible project structure in order to have a C project using SCons as the build system. It enables:&lt;/p&gt;
+
+&lt;ul&gt;
+ &lt;li&gt;compile most files as a library, and link that to a &lt;code&gt;main&lt;/code&gt; file with  application code.&lt;/li&gt;
+ &lt;li&gt;separate &lt;code&gt;src&lt;/code&gt; and &lt;code&gt;include&lt;/code&gt; directories&lt;/li&gt;
+ &lt;li&gt;separate unit tests using &lt;a href="https://libcheck.github.io/check/"&gt;libcheck&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;the unit tests link to the library&lt;/li&gt;
+ &lt;li&gt;Macports-installed libraries&lt;/li&gt;&lt;/ul&gt;
+&lt;!-- more--&gt;
+
+&lt;p&gt;Layout your code like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;.
+├── include
+│   └── core
+│       └── mylib.h
+├── sconstruct
+├── src
+│   ├── core
+│   │   └── mylib.c
+│   └── main.c
+└── tests
+    ├── core
+    │   ├── test_mylib.c
+    │   ├── test_mylib.h
+    │   └── tests.h
+    └── main.c&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;where &lt;code&gt;mylib&lt;/code&gt; should have a more descriptive name for your project.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;sconstruct&lt;/code&gt; is:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;env = Environment(CPPPATH=['include', '/opt/local/include'])
+env.Library(target='mylib', source=Glob('src/core/*.c'))
+env.Program(target='mylib', source=Glob('src/*.c'),
+            LIBS=['mylib'], LIBPATH=['.'])
+env.Program(target='test_mylib', source=Glob('tests/*.c') + Glob('tests/**/*.c'),
+            LIBS=['mylib', 'check'], LIBPATH=['.', '/opt/local/lib/'])&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id="implementation"&gt;Implementation&lt;/h2&gt;
+
+&lt;p&gt;&lt;code&gt;src/core/mylib.c&lt;/code&gt; (and all other files in subdirectories of &lt;code&gt;src/&lt;/code&gt;) holds the core logic without user interactions (pure functions, if you wish :) ). It can look like this:&lt;/p&gt;
+
+&lt;div class="brush: c"&gt;
+ &lt;div class="source"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;whatever&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;p&gt;&lt;code&gt;src/main.c&lt;/code&gt; uses all other files in order to do something useful for a user. For instance:&lt;/p&gt;
+
+&lt;div class="brush: c"&gt;
+ &lt;div class="source"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;"core/mylib.h"&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+
+&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;whatever&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;p&gt;&lt;code&gt;main.c&lt;/code&gt; and &lt;code&gt;core/mylib.c&lt;/code&gt; see each other via the header files in the &lt;code&gt;include&lt;/code&gt; directory, where &lt;code&gt;core/mylib.h&lt;/code&gt; holds:&lt;/p&gt;
+
+&lt;div class="brush: c"&gt;
+ &lt;div class="source"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;whatever&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;h2 id="tests"&gt;Tests&lt;/h2&gt;
+
+&lt;p&gt;Tests have the same subdirectory structure as the source subtree (a &lt;code&gt;core&lt;/code&gt; directory to hold tests for &lt;code&gt;core&lt;/code&gt; implementation files), but headers are included in the same subtree, because tests are not expected to need to publish their API to end-users, only their results.&lt;/p&gt;
+
+&lt;p&gt;A typical test file, e.g. &lt;code&gt;tests/core/test_mylib.c&lt;/code&gt;, should define tests, and then define a function that puts them together into a test suite. This is the function that we will want to expose via a header file:&lt;/p&gt;
+
+&lt;div class="brush: c"&gt;
+ &lt;div class="source"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;check.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+
+&lt;span class="n"&gt;START_TEST&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;test_fails&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="n"&gt;ck_assert_int_eq&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="n"&gt;END_TEST&lt;/span&gt;
+
+&lt;span class="n"&gt;Suite&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;core_suite&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;void&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="n"&gt;Suite&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="n"&gt;TCase&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;tc_core&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+    &lt;span class="n"&gt;s&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;suite_create&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"Core/mylib"&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+    &lt;span class="cm"&gt;/* Core test case */&lt;/span&gt;
+    &lt;span class="n"&gt;tc_core&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;tcase_create&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"Core"&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+    &lt;span class="n"&gt;tcase_add_test&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;tc_core&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;test_fails&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="n"&gt;suite_add_tcase&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;tc_core&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;p&gt;In this example, we create a header file for each test file in a directory, and then an aggregated header file called &lt;code&gt;tests.h&lt;/code&gt; which includes all other header files in the same directory:&lt;/p&gt;
+
+&lt;div class="brush: c"&gt;
+ &lt;div class="source"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;// test_mylib.h&lt;/span&gt;
+&lt;span class="n"&gt;Suite&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="nf"&gt;core_suite&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;void&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+&lt;span class="c1"&gt;// tests.h&lt;/span&gt;
+&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;"test_mylib.h"&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;p&gt;Finally, the test runner executable is defined in the &lt;code&gt;tests/main.c&lt;/code&gt; file. It includes all &lt;code&gt;tests&lt;/code&gt; headers, uses the exported test suite creating functions to create all test suites, and runs them.&lt;/p&gt;
+
+&lt;div class="brush: c"&gt;
+ &lt;div class="source"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;// tests/main.c&lt;/span&gt;
+&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;stdlib.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+
+&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;check.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+
+&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;"core/tests.h"&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+
+&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;void&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;number_failed&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="n"&gt;Suite&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="n"&gt;SRunner&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;sr&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+    &lt;span class="n"&gt;s&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;core_suite&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+    &lt;span class="n"&gt;sr&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;srunner_create&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+    &lt;span class="n"&gt;srunner_run_all&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sr&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;CK_NORMAL&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="n"&gt;number_failed&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;srunner_ntests_failed&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sr&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="n"&gt;srunner_free&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sr&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;number_failed&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;?&lt;/span&gt; &lt;span class="nl"&gt;EXIT_SUCCESS&lt;/span&gt; &lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;EXIT_FAILURE&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;h2 id="usage"&gt;Usage&lt;/h2&gt;
+
+&lt;p&gt;Build your project with:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ scons&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;You will find three products:&lt;/p&gt;
+
+&lt;ul&gt;
+ &lt;li&gt;a static library called &lt;code&gt;libmylib&lt;/code&gt;&lt;/li&gt;
+ &lt;li&gt;an executable called &lt;code&gt;mylib&lt;/code&gt;, which links to that library&lt;/li&gt;
+ &lt;li&gt;a test executable called &lt;code&gt;test_mylib&lt;/code&gt;, also linked to that library&lt;/li&gt;&lt;/ul&gt;
+
+&lt;p&gt;You can run all tests with &lt;code&gt;./test_mylib&lt;/code&gt;, and execute the program with &lt;code&gt;./mylib&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;You can clean all object files and the products with&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ scons --clean&lt;/code&gt;&lt;/pre&gt;&lt;/html&gt;</description></item>
   <item>
    <title>Setting up Github Pages with Frog</title>
    <link>http://logc.github.io/blog/2016/10/03/setting-up-github-pages-with-frog/?utm_source=all&amp;utm_medium=RSS</link>

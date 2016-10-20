@@ -3,13 +3,13 @@
   <head>
 
     <meta charset="utf-8">
-    <title>Posts tagged 'C'</title>
-    <meta name="description" content="Posts tagged 'C'">
+    <title>logc io (page 4)</title>
+    <meta name="description" content="logc io (page 4)">
     <meta name="author"      content="logc">
-    <meta name="keywords"    content="C">
+    <meta name="keywords"    content="C++, rant, economy, python, web, all, development, git, frog, scons, sysadmin, racket, vim, blog, build, haskell, C">
     <meta name="viewport"    content="width=device-width, initial-scale=1.0">
     <link rel="icon"      href="/favicon.ico">
-    <link rel="canonical" href="http://logc.github.io/tags/C.html">
+    <link rel="canonical" href="http://logc.github.io/index-4.html">
 
 
     <!-- CSS -->
@@ -21,9 +21,9 @@
     <link href="https://fonts.googleapis.com/css?family=Fira+Mono" rel="stylesheet">
     <!-- Feeds -->
     <link rel="alternate" type="application/atom+xml"
-          href="/feeds/C.atom.xml" title="Atom Feed">
+          href="/feeds/all.atom.xml" title="Atom Feed">
     <link rel="alternate" type="application/rss+xml"
-          href="/feeds/C.rss.xml" title="RSS Feed">
+          href="/feeds/all.rss.xml" title="RSS Feed">
     <!-- JS -->
     <script type="text/javascript">
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -97,8 +97,8 @@
             <li>
               <a href="/About.html">About</a>
             </li> 
-            <li><a href="/feeds/C.atom.xml">Atom</a></li>
-            <li><a href="/feeds/C.rss.xml">RSS</a></li>
+            <li><a href="/feeds/all.atom.xml">Atom</a></li>
+            <li><a href="/feeds/all.rss.xml">RSS</a></li>
           </ul>
         </div>
       </div>
@@ -112,27 +112,38 @@
 
 
 
-          <h1>Posts tagged <em>C</em></h1>
+
 
           <article>
   <header>
-    <h2><a href='/blog/2016/10/20/minimal-c-project-structure-with-scons/'>Minimal C project structure with SCons</a></h2>
+    <h2><a href='/blog/2013/11/17/infraestructura-de-lanzamientos-locales/'>Infraestructura de lanzamientos locales</a></h2>
     <p class='date-and-tags'>
-<time datetime="2016-10-20" pubdate="true">2016-10-20</time> :: <span class="tags"><a href="/tags/C.html">C</a>, <a href="/tags/scons.html">scons</a>, <a href="/tags/build.html">build</a></span></p>
+<time datetime="2013-11-17" pubdate="true">2013-11-17</time> :: <span class="tags"><a href="/tags/sysadmin.html">sysadmin</a></span></p>
   </header>
 
-<p>This is a possible project structure in order to have a C project using SCons as the build system. It enables:</p>
+<p>Este post describe cómo crear una infraestructura de lanzamientos locales, para compartir paquetes locales con otros desarrolladores del mismo equipo, basándose en Python y Macports. Esto presupone que los otros miembros del equipo usan todos Mac OS X, y que están interesados en usar paquetes de Python, claro.</p>
+
+<p>Necesitaremos:</p>
 
 <ul>
- <li>compile most files as a library, and link that to a <code>main</code> file with  application code.</li>
- <li>separate <code>src</code> and <code>include</code> directories</li>
- <li>separate unit tests using <a href="https://libcheck.github.io/check/">libcheck</a></li>
- <li>the unit tests link to the library</li>
- <li>Macports-installed libraries</li></ul>
+ <li>crear un paquete de Python con su correspondiente <code>setup.py</code></li>
+ <li>tener un directorio <code>releases</code> servido por HTTP por el servidor Apache  integrado en el sistema operativo.</li>
+ <li>tener un directorio <code>ports</code> servido por rsync.</li>
+ <li>configurar Macports para usar este nuevo repositorio.</li></ul>
   <footer>
-    <a href='/blog/2016/10/20/minimal-c-project-structure-with-scons/'>&hellip; more &hellip;</a>
+    <a href='/blog/2013/11/17/infraestructura-de-lanzamientos-locales/'>&hellip; more &hellip;</a>
   </footer>
 </article>
+<footer>
+ <ul class="pagination">
+  <li><a href="/index-3.html">
+    <quote>&larr;</quote></a></li>
+  <li><a href="/index.html">1</a></li>
+  <li><a href="/index-2.html">2</a></li>
+  <li><a href="/index-3.html">3</a></li>
+  <li class="active"><a href="/index-4.html">4</a></li>
+  <li class="disabled"><a href="#">
+    <quote>&rarr;</quote></a></li></ul></footer>
         </div>
         <div id="right" class="col-md-2"></div>
       </div>

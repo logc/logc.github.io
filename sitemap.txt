@@ -13,4 +13,5 @@ http://logc.github.io/blog/2014/01/20/reduce-in-standard-c/
 http://logc.github.io/blog/2013/11/19/compilar-cython/
 http://logc.github.io/blog/2013/11/17/infraestructura-de-lanzamientos-locales/
 http://logc.github.io/blog/2013/12/02/py2app-excludes/
+http://logc.github.io/blog/2016/10/20/minimal-c-project-structure-with-scons/
 http://logc.github.io/About.html
