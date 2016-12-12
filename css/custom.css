@@ -96,44 +96,22 @@
 
 }
 
-.navbar, .navbar-brand, .dropdown-toggle, .navbar-nav>.dropdown>a .caret {
+.navbar, .navbar-inverse, .navbar-brand, .dropdown-toggle, .navbar-nav>.dropdown>a .caret {
     font-family: 'texgyreherosbold', 'Helvetica Neue', Helvetica, Arial, sans-serif;
     font-size: 20px;
     margin-bottom: 0px;
 }
 
 body {
-    font-family: 'texgyreherosregular', sans-serif;
+    font-family: 'texgyreherosregular', 'Helvetica Neue', Helvetica, Arial, sans-serif;
     font-size: 18px;
-    text-align: left;
+    text-align: justify;
+    text-justify: inter-word;
 }
 
 article {
     padding-top: 1px;
     padding-bottom: 75px;
-}
-
-
-.navbar-inverse .navbar-nav>.dropdown>a .caret {
-    border-top-color: #c8c8c8 !important;;
-    border-bottom-color: #c8c8c8 !important;;
-}
-
-.navbar-inverse .navbar-nav>li>a {
-    color: #c8c8c8 !important;
-}
-
-.date-and-tags {
-    font-family: 'Fira Mono', Menlo, Monaco, Consolas, 'Courier New', monospace;
-    font-size: 80%;
-}
-
-/* This is not code blocks, but only inline code */
-code {
-    font-family: 'Fira Mono', Menlo, Monaco, Consolas, 'Courier New', monospace;
-    font-size: 80%;
-    color: black;
-    background-color: #c8c8c8;
 }
 
 a, a:hover, a:visited {
@@ -143,34 +121,6 @@ a, a:hover, a:visited {
 .pagination > .active a {
     background-color: #558a86;
     border-color: #558a86;
-}
-
-pre {
-    background-color: #c8c8c8 !important;
-    font-family: 'Fira Mono', Menlo, Monaco, Consolas, 'Courier New', monospace;
-}
-
-.footnotes {
-    font-size: smaller;
-    margin-top: 2em;
-}
-
-#left-sidebar, #right-sidebar {
-    font-size: 80%;
-}
-
-#page-footer {
-    font-size: 70%;
-}
-
-footer {
-    font-size: 70%;
-}
-
-blockquote p {
-    font-size: 100%;
-    color: #2f292b;
-    margin-bottom: 13px;
 }
 
 h1 {
@@ -201,6 +151,53 @@ h4 {
     color: #558a86;
 }
 
+/* This is not code blocks, but only inline code */
+code {
+    font-family: 'Fira Mono', Menlo, Monaco, Consolas, 'Courier New', monospace;
+    font-size: 80%;
+    color: black;
+    background-color: #c8c8c8;
+}
+
+pre {
+    background-color: #c8c8c8 !important;
+    font-family: 'Fira Mono', Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+footer {
+    width: 80%;
+    margin: 0 auto;
+    padding: 5%;
+    padding-bottom: 0px;
+    font-size: 70%;
+}
+
+blockquote p {
+    font-size: 100%;
+    color: #2f292b;
+    margin-bottom: 13px;
+}
+
+.date-and-tags {
+    font-family: 'texgyreherosbold', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 80%;
+}
+
+.pagination > .active a {
+    background-color: #a63e14;
+    border-color: #a63e14;
+}
+
+.footnotes {
+    font-size: smaller;
+    margin-top: 2em;
+}
+
+#left-sidebar, #right-sidebar {
+    font-size: 80%;
+}
+
+
 .read-more {
     font-style: italic;
 }
@@ -221,7 +218,6 @@ h4 {
 }
 
 /* Start taken from http://prl.ccs.neu.edu/blog/index.html */
-
 .jumbotron
 {
   color: white;
@@ -278,9 +274,8 @@ h4 {
   body
   {
     background: linear-gradient(rgba(0, 0, 0, 0.7),
-                                rgba(0, 0, 0, 0.2),
-                                rgba(0, 0, 0, 0.7),
-                       rgba(0, 0, 0, 0.7)), url('../img/background.jpg') no-repeat center center transparent;
+                                rgba(0, 0, 0, 0.0),
+			       	rgba(0, 0, 0, 0.7)), url('../img/background.jpg') no-repeat center center transparent;
     background-repeat:no-repeat;
     background-size:cover;
     background-attachment: fixed;

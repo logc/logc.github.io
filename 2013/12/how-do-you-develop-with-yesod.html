@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <meta charset="utf-8">
+    <title>How do you develop with Yesod</title>
+    <meta name="description" content="Yesod tutorials and examples can be found on the Yesod book, which is freely available online.  However, many of the examples given are self-contained (which means that handler functions, data models and templates are defined in a single module, where a W...">
+    <meta name="author"      content="logc">
+    <meta name="keywords"    content="haskell, web">
+    <meta name="viewport"    content="width=device-width, initial-scale=1.0">
+    <link rel="icon"      href="/favicon.ico">
+    <link rel="canonical" href="http://logc.github.io/2013/12/how-do-you-develop-with-yesod.html">
+    <link rel="next" href="/2013/12/instalar-python-2-7-y-numpy-sobre-redhat-6.html">
+    <link rel="prev" href="/2014/01/reduce-in-standard-c.html">
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/pygments.css">
+    <link rel="stylesheet" type="text/css" href="/css/scribble.css">
+    <link rel="stylesheet" type="text/css" href="/css/custom.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Fira+Mono" rel="stylesheet">
+    <!-- Feeds -->
+    <link rel="alternate" type="application/atom+xml"
+          href="/feeds/all.atom.xml" title="Atom Feed">
+    <link rel="alternate" type="application/rss+xml"
+          href="/feeds/all.rss.xml" title="RSS Feed">
+    <!-- JS -->
+    <script type="text/javascript">
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-xxxxx', 'auto');
+      ga('send', 'pageview');
+    </script>
+  </head>
+  <body>
+    <!-- A standard Twitter Bootstrap nav bar -->
+    <header class="navbar navbar-inverse"
+            role="banner">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button"
+                  class="navbar-toggle"
+                  data-toggle="collapse"
+                  data-target=".our-nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <!-- a href="/index.html" class="navbar-brand">Home</a -->
+        </div>
+        <div class="collapse navbar-collapse our-nav-collapse"
+             role="navigation">
+          <ul class="nav navbar-nav">
+
+            <li>
+              <a href="/index.html">Home</a>
+            </li> 
+
+            <li>
+              <a href="/About.html">About</a>
+            </li> 
+
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                Tags <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="/index.html">All Posts</a></li>
+
+<li><a href="/tags/blog.html">blog</a></li>
+
+<li><a href="/tags/build.html">build</a></li>
+
+<li><a href="/tags/C.html">C</a></li>
+
+<li><a href="/tags/C.html">C++</a></li>
+
+<li><a href="/tags/frog.html">frog</a></li>
+
+<li><a href="/tags/git.html">git</a></li>
+
+<li><a href="/tags/haskell.html">haskell</a></li>
+
+<li><a href="/tags/python.html">python</a></li>
+
+<li><a href="/tags/racket.html">racket</a></li>
+
+<li><a href="/tags/scons.html">scons</a></li>
+
+<li><a href="/tags/sysadmin.html">sysadmin</a></li>
+
+<li><a href="/tags/vim.html">vim</a></li>
+
+<li><a href="/tags/web.html">web</a></li>
+              </ul>
+            </li>
+
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                Feeds <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li><a href="/feeds/all.atom.xml">Atom</a></li>
+                <li><a href="/feeds/all.rss.xml">RSS</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </header>
+    <div class="jumbotron subpages">
+      <div class="container">
+        <h1>This is rocket science</h1>
+        <h2>Development notes by logc</h2>
+      </div>
+    </div>
+    <div class="main-content">
+      <div class="container">
+        <div class="row">
+
+          <!-- Main column -->
+          <div id="content" class="col-md-12">
+
+
+
+
+
+            <article>
+  <header>
+    <h1>How do you develop with Yesod</h1>
+    <p class='date-and-tags'>
+<time datetime="2013-12-04" pubdate="true">2013-12-04</time> :: <span class="tags"><a href="/tags/haskell.html">haskell</a>, <a href="/tags/web.html">web</a></span></p>
+  </header>
+
+<p>Yesod tutorials and examples can be found on the <a href="http://www.yesodweb.com/book">Yesod book</a>, which is freely available online.</p>
+
+<p>However, many of the examples given are self-contained (which means that handler functions, data models and templates are defined in a single module, where a Warp web server is started as well). There is <a href="http://www.yesodweb.com/book/scaffolding-and-the-site-template">a chapter that describes the scaffolded template</a>, i.e. what you get after you start with Yesod, but it is rather a description of its advantages and structure, not so much a detailed how-to.</p>
+
+<p>The purpose of this post is to explain to a new Yesod developer &ldquo;What do I do after &hellip; ?&rdquo; :</p>
+
+<div class="brush: console">
+ <table class="sourcetable">
+  <tbody>
+   <tr>
+    <td class="linenos">
+     <div class="linenodiv">
+      <pre>1</pre></div></td>
+    <td class="code">
+     <div class="source">
+      <pre><span></span><span class="gp">$</span> yesod init
+</pre></div>
+</td></tr></tbody></table>
+</div>
+<!-- more-->
+
+<p>Briefly summarized, what you need after this command is:</p>
+
+<ol>
+ <li>
+  <p>Describe the <strong>data models</strong> your Web application is going to store persistently</p></li>
+ <li>
+  <p>Describe which <strong>routes</strong> are going to exist in your Web application</p></li>
+ <li>
+  <p>Write the <strong>handler functions</strong> that answer requests to those routes</p></li>
+ <li>
+  <p>Write the <strong>Hamlet templates</strong> that are filled out by the handler functions (and  possibly Lucius and Julius templates)</p></li></ol>
+
+<p>The <code>yesod add-handler</code> command automates the process of adding <strong>routes</strong> and <strong>handler functions</strong>.</p>
+
+<h3 id="adding-data-models">Adding data models</h3>
+
+<p>A new data model has to be described in the <code>config/models</code> text file. With &ldquo;text file&rdquo; we mean that you write in &ldquo;near free&rdquo; syntax, but nevertheless many of the keywords are Haskell.</p>
+
+<h4 id="basics">Basics</h4>
+
+<p>A new model consists of a name and a description of its fields. The description of fields consists, in turn, of a name and a type for the field. The type can be <code>Int</code>, <code>Text</code>, <code>UTCTime</code>, or other Haskell types. The type can also be qualified with a Monad (usually <code>Maybe</code>) and have a defaul value. Let&rsquo;s see a simple example:</p>
+
+<pre><code>Book
+    title Text
+    author Text
+    publisher Text Maybe
+    published UTCTime default=CURRENT_TIME</code></pre>
+
+<p>An identifier field is <strong>automatically added</strong> to each model. The name of that field is always <code>&lt;modelName&gt;Id</code>, e.g. for the previous model it would be <code>BookId</code>. This is a unique identifier stored in the database using the database mechanisms if available, or the Persistent module&rsquo;s mechanisms otherwise. We usually do not need to care about <strong>writing</strong> this ID, but we will be interested in <strong>reading</strong> it from the database, as we will see later.</p>
+
+<p>Another thing we get for free are <strong>accessor functions</strong> for each field. These are called <code>bookTitle</code> to get the title, <code>bookAuthor</code> to get the author, and so on&hellip;</p>
+
+<p>With the mentioned, you can create your own models. Let&rsquo;s review other features that are slightly more advanced but almost unavoidable in any app that is not completely trivial.</p>
+
+<h4 id="reference-other-models">Reference other models</h4>
+
+<p>You can <strong>reference field in other models</strong>. This creates <em>foreign keys</em> in relational databases, or is managed by Persistent otherwise. You refer to the other model with an uppercase and join the name of model and field in camel case. An example is in the default models written by the scaffolding:</p>
+
+<pre><code>User
+    ...
+Email
+    user UserId Maybe</code></pre>
+
+<p>This is also an example of using the automatically created field <code>UserId</code> for the User.</p>
+
+<h4 id="declare-records-to-be-unique">Declare records to be unique</h4>
+
+<p>You can <strong>declare records to be unique with respect to a field</strong>. The unique ID are handed out to anything new in the store otherwise. You can specify that a record has to have a new value in one of its fields to be accepted. Again the default models provide an example of this:</p>
+
+<pre><code>User
+    ident Text
+    UniqueUser ident</code></pre>
+
+<h4 id="derive-typeclasses">Derive typeclasses</h4>
+
+<p>And as a last note, you can directly <strong>declare your models to derive Haskell typeclasses</strong> e.g. Eq, Ord, Show. Which means the model, when loaded from database and available to be manipulated, will have the correct functions of that typeclass already implemented. ( In the case of Eq, it will be equatable, in the case of Ord, it will be comparable, and in the case of Show it will be printable; this, of course, in the case the compiler can deduce out of the fields composing the model how to implement such functions for you ).</p>
+
+<p>An example of deriving typeclasses:</p>
+
+<pre><code>Person
+    ...
+    deriving (Show)</code></pre>
+
+<h3 id="adding-routes">Adding routes</h3>
+
+<p>You declare new routes to be answered to in the <code>config/routes</code> text file. This can be automated with the <code>yesod add-handler</code> command. However, let&rsquo;s review it to gain a bit of control on the underlying machinery.</p>
+
+<p>A new route starts from the root <code>/</code> and lists a <em>resource name</em> and <em>query parameters</em>. After that there is a space, and the name of the handler function(s) that handle requests to that particular route. Again a space, and a space-separated list of HTTP methods that are allowed on that route. An example with all of these:</p>
+
+<pre><code>/book/#BookId BookR GET PUT DELETE</code></pre>
+
+<p>where <code>book</code> is the <em>resource name</em>, <code>#BookId</code> is the <em>query parameter</em>, BookR is the shared part of the name of the <em>handler functions</em>, and the allowed methods are GET, PUT and DELETE.</p>
+
+<p>We say <code>BookR</code> is the shared part of the name because a single handler function is expected <strong>for each one of the allowed methods</strong>. That is, in the above example, <code>getBookR</code>, <code>putBookR</code> and <code>deleteBookR</code> are expected to exist somewhere (probably in a module called <code>Book</code> within the <code>Handlers</code> directory).</p>
+
+<p>Usually the convention for a REST API is that GET allows to see an instance of a model, POST allows to create an instance of a model, PUT allows to modify an instance of a model, and DELETE allows to, well, delete it.</p>
+
+<p>After you have added a new route, the application will not compile until there are handler functions for all of the new resources and allowed methods.</p>
+
+<h3 id="adding-handler-functions">Adding handler functions</h3>
+
+<p>You add new functions to handle requests in modules under the <code>Handler</code> directory. This can be automated with the <code>yesod add-handler</code> command. However, let&rsquo;s review it to gain a bit of control on the underlying machinery.</p>
+
+<p>A handler function must exist <strong>for each resource and for each allowed HTTP method on that resource</strong>. That means if we declared the resource <code>/donkey</code> to accept requests with GET, POST and DELETE methods, then we have to implement <code>getDonkeyR</code>, <code>postDonkeyR</code> and <code>deleteDonkeyR</code>. The <code>R</code> means &ldquo;resource&rdquo;.</p>
+
+<p>Let us see a stub example of one of those functions:</p>
+
+<div class="brush: haskell">
+ <table class="sourcetable">
+  <tbody>
+   <tr>
+    <td class="linenos">
+     <div class="linenodiv">
+      <pre>1
+2</pre></div></td>
+    <td class="code">
+     <div class="source">
+      <pre><span></span><span class="nf">getDonkeyR</span> <span class="ow">::</span> <span class="kt">DonkeyId</span> <span class="ow">-&gt;</span> <span class="kt">Handler</span> <span class="kt">Html</span>
+<span class="nf">getDonkeyR</span> <span class="n">donkeyId</span> <span class="ow">=</span> <span class="n">undefined</span>
+</pre></div>
+</td></tr></tbody></table>
+</div>
+
+<h4 id="handler-function-signature">Handler function signature</h4>
+
+<p>Being a Haskell function, the function signature is important to understand what the function does.</p>
+
+<p>In the case of Yesod, the <strong>input to the function are query parameters</strong>, which are typed to correspond to model fields. That is, you do not get an integer, but a <code>DonkeyId</code> &mdash; if you specified in the route that the <code>donkey</code> resource has a query parameter of that type. This helps ensure that there are no typos in the <code>routes</code> and <code>models</code> text files that cause your app to fail on deployment.</p>
+
+<p>The <strong>output of the function</strong> is quite determined by Yesod, so it is easy to read, but you have to accept that the framework &ldquo;knows what it is doing&rdquo;. You usually have a <code>Handler Html</code> result type; which means that the result of your function is a function that knows how to answer a request with HTML. This function is what is going to be called by the application when it is running.</p>
+
+<p><em>Do not let that make your head explode</em>: it is like when you compile a function with gcc. It is not your source code that is run when the resulting binary is executed: it is the object representation of it. This is not exactly the same but for the moment, it is a good enough explanation.</p>
+
+<p>Other output types for the function are <code>Handler RepJson</code> if the function returns JSON, or even <code>Handler TypedContent</code> if the function returns HTML or JSON depending on what the client has requested.</p>
+
+<h4 id="handler-function-body">Handler function body</h4>
+
+<p>In the function itself, you may want to do many different things. Let us discuss the most usual:</p>
+
+<ol>
+ <li>
+  <p>getting something out of the database and into a template for viewing  ( <strong>Database -&gt; User</strong> )</p></li>
+ <li>
+  <p>getting something out of a template form from the user, and inserting that  into the database ( <strong>User -&gt; Database</strong> )</p></li></ol>
+
+<h5 id="database---user">Database -&gt; User</h5>
+
+<p>Consider the following function:</p>
+
+<div class="brush: haskell">
+ <table class="sourcetable">
+  <tbody>
+   <tr>
+    <td class="linenos">
+     <div class="linenodiv">
+      <pre>1
+2
+3
+4
+5</pre></div></td>
+    <td class="code">
+     <div class="source">
+      <pre><span></span><span class="nf">getBooksR</span> <span class="ow">::</span> <span class="kt">Handler</span> <span class="kt">Html</span>
+<span class="nf">getBooksR</span> <span class="ow">=</span> <span class="kr">do</span>
+        <span class="n">books</span> <span class="ow">&lt;-</span> <span class="n">runDB</span> <span class="o">$</span> <span class="n">selectList</span> <span class="kt">[]</span> <span class="p">[</span><span class="kt">Asc</span> <span class="kt">BookTitle</span><span class="p">]</span>
+        <span class="p">(</span><span class="n">formWidget</span><span class="p">,</span> <span class="n">enctype</span><span class="p">)</span> <span class="ow">&lt;-</span> <span class="n">generateFormPost</span> <span class="n">bookForm</span>
+        <span class="n">defaultLayout</span> <span class="o">$</span><span class="p">(</span><span class="n">widgetFile</span> <span class="s">"books"</span><span class="p">)</span>
+</pre></div>
+</td></tr></tbody></table>
+</div>
+
+<p>The first line after <code>do</code> allows us to get a Book model out of the database. The <code>runDB</code> function runs any query on the database, while the <code>selectList</code> function composes a query that returns its results as a list. The empty first argument means we take <strong>all fields</strong> from each record, and the second argument accepts a number of filters and modifyers. The example shown is equivalent, in SQL, to:</p>
+
+<div class="brush: sql">
+ <table class="sourcetable">
+  <tbody>
+   <tr>
+    <td class="linenos">
+     <div class="linenodiv">
+      <pre>1</pre></div></td>
+    <td class="code">
+     <div class="source">
+      <pre><span></span><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">books</span> <span class="k">ORDER</span> <span class="k">BY</span> <span class="ss">"BookTitle"</span> <span class="k">ASC</span><span class="p">;</span>
+</pre></div>
+</td></tr></tbody></table>
+</div>
+
+<p>Then we would go on to render the correct HTML template with the default layout. The template will have direct access to the <code>books</code> variable because it is in the same scope (the handler function). We will see how this happens when we discuss templates. The rendering happens with the line:</p>
+
+<div class="brush: haskell">
+ <table class="sourcetable">
+  <tbody>
+   <tr>
+    <td class="linenos">
+     <div class="linenodiv">
+      <pre>1</pre></div></td>
+    <td class="code">
+     <div class="source">
+      <pre><span></span><span class="nf">defaultLayout</span> <span class="o">$</span><span class="p">(</span><span class="n">widgetFile</span> <span class="s">"books"</span><span class="p">)</span>
+</pre></div>
+</td></tr></tbody></table>
+</div>
+
+<p>The template rendering takes the <code>defaultLayout</code> function, applied on the result of loading a widgetFile by name. The default layout renders the template found under <code>templates/default-layout.*</code> and includes within it the result of rendering whatever is on the <code>templates/books.*</code> files. This helps make the look and feel uniform across the website.</p>
+
+<p>(You may notice that we are skipping a line in the <code>getBooksR</code> function, between reading from database and rendering the template. It is concerned with <strong>form rendering</strong>, but for the sake of brevity we will not discuss it here)</p>
+
+<h5 id="user---database">User -&gt; Database</h5>
+
+<p>Consider the following function:</p>
+
+<div class="brush: haskell">
+ <table class="sourcetable">
+  <tbody>
+   <tr>
+    <td class="linenos">
+     <div class="linenodiv">
+      <pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10</pre></div></td>
+    <td class="code">
+     <div class="source">
+      <pre><span></span><span class="nf">postBooksR</span> <span class="ow">::</span> <span class="kt">Handler</span> <span class="kt">Html</span>
+<span class="nf">postBooksR</span> <span class="ow">=</span> <span class="kr">do</span>
+    <span class="p">((</span><span class="n">result</span><span class="p">,</span> <span class="kr">_</span><span class="p">),</span> <span class="kr">_</span><span class="p">)</span> <span class="ow">&lt;-</span> <span class="n">runFormPost</span> <span class="n">bookForm</span>
+    <span class="kr">case</span> <span class="n">result</span> <span class="kr">of</span>
+        <span class="kt">FormSuccess</span> <span class="n">book</span> <span class="ow">-&gt;</span> <span class="kr">do</span>
+            <span class="n">bookid</span> <span class="ow">&lt;-</span> <span class="n">runDB</span> <span class="o">$</span> <span class="n">insert</span> <span class="n">book</span>
+            <span class="n">setMessage</span> <span class="s">"Book registered"</span>
+        <span class="kr">_</span> <span class="ow">-&gt;</span> <span class="kr">do</span>
+            <span class="n">setMessage</span> <span class="s">"Invalid data"</span>
+            <span class="n">redirect</span> <span class="o">$</span> <span class="kt">BooksR</span>
+</pre></div>
+</td></tr></tbody></table>
+</div>
+
+<p>The first line after <code>do</code> gets the result out of a form that is defined and rendered elsewhere. The result may be a success, because all inputs are filled out and are of the expected types, or it may be anything else (an error), where we print an error message and do no more. If we have a success, then we can extract the specific <code>book</code> (of type <code>Book</code>) out of the <code>FormSuccess</code> monad via pattern matching, and then insert it into the DB via the Persist <code>insert</code> function:</p>
+
+<div class="brush: haskell">
+ <table class="sourcetable">
+  <tbody>
+   <tr>
+    <td class="linenos">
+     <div class="linenodiv">
+      <pre>1</pre></div></td>
+    <td class="code">
+     <div class="source">
+      <pre><span></span><span class="nf">bookid</span> <span class="ow">&lt;-</span> <span class="n">runDB</span> <span class="o">$</span> <span class="n">insert</span> <span class="n">book</span>
+</pre></div>
+</td></tr></tbody></table>
+</div>
+
+<p>Notice this works without any more specifications because we know, from the compile process, that the result of parsing the form contents must have enough informations to build a Book model, and a Book model can be written to database because we have already parsed it and created the necessary tables (in the case of a relational DB engine) on app startup.</p>
+
+<p>Notice also we receive a bookId as a result of inserting, but we can ignore it.</p>
+
+<h4 id="after-writing-your-handlers">After writing your handlers</h4>
+
+<p>After writing your handlers, you must make the application aware that they exist. Import the relevant module in in the <code>Application</code> module, and also remember to list them in the <code>&lt;application&gt;.cabal</code> file, under <code>exposed-modules</code>. This makes the <code>cabal</code> build system know that it must include the new handler files in the compilation, and the <code>Application</code> module aware that it has to import those modules if it wants to answer the calls to some of the resources.</p>
+
+<h3 id="adding-hamlet-templates">Adding Hamlet templates</h3>
+
+<p>We said earlier that the variables extracted from storage are rendered in the template. A template is a file that lives in the <code>templates</code> directory and is called whatever we want the <code>widgetFile</code> function to find.</p>
+
+<p>Hamlet is a template language that describes HTML to produce. A very short summary of Hamlet: you do not need to close HTML tags, this will be done for you. <em>With the important exception of links. Do not forget to close them with <code>&lt;/a&gt;</code></em>.</p>
+
+<p>In the template, you can refer to any variable that is available in the handler function (because the generated code is inserted in the function code directly before the results are produced). See this example template to render a Book model:</p>
+
+<pre><code>&lt;h2&gt; Book: #{bookTitle book}
+
+&lt;p&gt; by #{bookAuthor book}</code></pre>
+
+<p>Within the template, we can use the <strong>accessor functions</strong> we got for free out of the model definition. Remember that this is Haskell, so the function must go before the arguments. We drop into Haskell from the template by using <code>#{ }</code>.</p>
+
+<p>There is more syntax to iterate over a collection of <code>books</code> and control <code>if</code> we render some thing or the other depending on the presence of a variable, but we will skip this. There is Yesod documentation available.</p>
+
+<p>Let us mention another important feature of these templates: <strong>compiled in-site links</strong>. This means you refer to other pages within your website <em>through their resource names</em>, not through a simple string. In the homepage, for instance, you should include a link to the &ldquo;books&rdquo; page by using:</p>
+
+<pre><code>&lt;a href=@{BooksR}&gt;Add new book&lt;/a&gt;</code></pre>
+
+<p>Notice you use an <code>@</code>, not the <code>#</code> symbol.</p>
+
+<p>This makes it <strong>impossible for you to have dead links within the site</strong>. They are checked by the compiler on each site update, and the compilation will fail if there is something misspelled.</p>
+
+<h3 id="summing-up">Summing up</h3>
+
+<p>We have reviewed what are the minimal changes you have to do to a scaffolded site in order to add a new feature to it, in some more depth than necessary since you can use <code>yesod add-handler</code> to make many of the changes for you. However, now you should understand better what is this command doing and why could it fail. The changes are:</p>
+
+<ol>
+ <li>
+  <p>In <code>config/models</code>: describe <strong>data models</strong> stored</p></li>
+ <li>
+  <p>In <code>config/routes</code>: describe <strong>routes</strong> served, as resources</p></li>
+ <li>
+  <p>In <code>Handler/&lt;name&gt;.hs</code>: write <strong>handler functions</strong> that answer requests to  those routes; include them in <code>Application.hs</code> and list them on  <code>&lt;application&gt;.cabal</code></p></li>
+ <li>
+  <p>In <code>templates/&lt;name&gt;.{hamlet,lucius,julius}</code>: write the <strong>templates</strong> that  are filled out by the handler functions</p></li></ol>
+  <footer>
+    <ul class="pager">
+    <li class="previous">
+      <a href="/2014/01/reduce-in-standard-c.html">&larr; <em>Reduce in standard C++</em></a>
+    </li>
+    <li class="next">
+      <a href="/2013/12/instalar-python-2-7-y-numpy-sobre-redhat-6.html"><em>Instalar Python 2.7 y NumPy sobre RedHat 6</em> &rarr;</a>
+    </li>
+    </ul>
+  </footer>
+</article>
+          </div>
+        </div>
+      </div>
+      <footer>
+        <hr />
+        <p>Site generated with
+        <a href="https://github.com/greghendershott/frog">Frog</a>
+        &amp;
+        <a href="http://twitter.github.com/bootstrap/index.html">Bootstrap</a>.
+        Cover image by NASA/Bill Ingalls [Public domain], via Wikimedia Commons.
+        </p>
+        <p>This page was last built on Monday, December 12th, 2016</p>
+
+        <p><em>© Copyright 2016, Luis Osa</em>.</p>
+      </footer>
+    </div>
+    <!-- </body> JS -->
+    <script type="text/javascript" src="//code.jquery.com/jquery.min.js"></script>
+    <script type="text/javascript" src="/js/bootstrap.min.js"></script>
+  </body>
+</html>

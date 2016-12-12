@@ -6,7 +6,7 @@
     <title>logc io (page 3)</title>
     <meta name="description" content="logc io (page 3)">
     <meta name="author"      content="logc">
-    <meta name="keywords"    content="C++, rant, economy, python, web, all, development, git, frog, scons, sysadmin, racket, vim, blog, build, haskell, C">
+    <meta name="keywords"    content="C++, blog, python, web, all, build, git, frog, scons, sysadmin, racket, vim, haskell, C">
     <meta name="viewport"    content="width=device-width, initial-scale=1.0">
     <link rel="icon"      href="/favicon.ico">
     <link rel="canonical" href="http://logc.github.io/index-3.html">
@@ -37,7 +37,7 @@
   </head>
   <body>
     <!-- A standard Twitter Bootstrap nav bar -->
-    <header class="navbar navbar-default navbar-inverse"
+    <header class="navbar navbar-inverse"
             role="banner">
       <div class="container">
         <div class="navbar-header">
@@ -49,6 +49,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
+          <!-- a href="/index.html" class="navbar-brand">Home</a -->
         </div>
         <div class="collapse navbar-collapse our-nav-collapse"
              role="navigation">
@@ -57,9 +58,11 @@
             <li>
               <a href="/index.html">Home</a>
             </li> 
+
             <li>
               <a href="/About.html">About</a>
             </li> 
+
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 Tags <b class="caret"></b></a>
@@ -74,10 +77,6 @@
 
 <li><a href="/tags/C.html">C++</a></li>
 
-<li><a href="/tags/development.html">development</a></li>
-
-<li><a href="/tags/economy.html">economy</a></li>
-
 <li><a href="/tags/frog.html">frog</a></li>
 
 <li><a href="/tags/git.html">git</a></li>
@@ -88,8 +87,6 @@
 
 <li><a href="/tags/racket.html">racket</a></li>
 
-<li><a href="/tags/rant.html">rant</a></li>
-
 <li><a href="/tags/scons.html">scons</a></li>
 
 <li><a href="/tags/sysadmin.html">sysadmin</a></li>
@@ -99,6 +96,7 @@
 <li><a href="/tags/web.html">web</a></li>
               </ul>
             </li>
+
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 Feeds <b class="caret"></b></a>
@@ -113,13 +111,11 @@
     </header>
     <div class="jumbotron subpages">
       <div class="container">
-        <h1>Development notes</h1>
-        <h2>logc</h2>
+        <h1>This is rocket science</h1>
+        <h2>Development notes by logc</h2>
       </div>
     </div>
-
     <div class="main-content">
-
       <div class="container">
         <div class="row">
 
@@ -132,74 +128,7 @@
 
             <article>
   <header>
-    <h2><a href='/blog/2013/12/04/how-do-you-develop-with-yesod/'>How do you develop with Yesod</a></h2>
-    <p class='date-and-tags'>
-<time datetime="2013-12-04" pubdate="true">2013-12-04</time> :: <span class="tags"><a href="/tags/haskell.html">haskell</a>, <a href="/tags/web.html">web</a></span></p>
-  </header>
-
-<p>Yesod tutorials and examples can be found on the <a href="http://www.yesodweb.com/book">Yesod book</a>, which is freely available online.</p>
-
-<p>However, many of the examples given are self-contained (which means that handler functions, data models and templates are defined in a single module, where a Warp web server is started as well). There is <a href="http://www.yesodweb.com/book/scaffolding-and-the-site-template">a chapter that describes the scaffolded template</a>, i.e. what you get after you start with Yesod, but it is rather a description of its advantages and structure, not so much a detailed how-to.</p>
-
-<p>The purpose of this post is to explain to a new Yesod developer &ldquo;What do I do after &hellip; ?&rdquo; :</p>
-
-<div class="brush: console">
- <div class="source">
-  <pre><span></span><span class="gp">$</span> yesod init
-</pre></div>
-
-</div>
-  <footer>
-    <a href='/blog/2013/12/04/how-do-you-develop-with-yesod/'>&hellip; more &hellip;</a>
-  </footer>
-</article>
-<article>
-  <header>
-    <h2><a href='/blog/2013/12/04/instalar-python-2-7-y-numpy-sobre-redhat-6/'>Instalar Python 2.7 y NumPy sobre RedHat 6</a></h2>
-    <p class='date-and-tags'>
-<time datetime="2013-12-04" pubdate="true">2013-12-04</time> :: <span class="tags"><a href="/tags/python.html">python</a></span></p>
-  </header>
-
-<p>RedHat y centOS tienen la fastidiosa dependencia de su gestor de paquetes, yum, con la versión 2.6 de Python desde tiempos inmemoriales. Lo que en tecnología son unos seis o siete años.</p>
-
-<p>Instalar Python 2.7 no es posible con los repositorios instalados por defecto, y si tienes la mala idea de instalar un repositorio donde sí esté y meterlo como paquete que supedita al python por defecto, te acabas de cargar yum (y la posibilidad más sencilla de deshacer tus cambios).</p>
-
-<p>La mejor manera, pese a lo que pueda parecer, es <strong>instalar desde fuentes</strong>, haciendo lo que se conoce como &ldquo;altinstall&rdquo; (instalación alternativa). Esto crea ejecutables llamados <code>python2.7</code> bajo <code>/usr/local/bin</code>, que <strong>no sobreescriben</strong> el comando <code>python</code> normal del sistema; éste sigue apuntando a un ejecutable bajo <code>/usr/bin</code>.</p>
-
-<div class="brush: console">
- <div class="source">
-  <pre><span></span><span class="gp">$</span> wget http://www.python.org/ftp/python/2.7.6/Python-2.7.6.tgz
-<span class="gp">$</span> tar xvfz Python-2.7.6.tgz
-<span class="gp">$</span> <span class="nb">cd</span> Python-2.7.6
-<span class="gp">$</span> ./configure
-<span class="gp">$</span> make
-<span class="gp">$</span> sudo make altinstall
-</pre></div>
-
-</div>
-
-<p>Además de esto, es recomendable instalar <strong>un <code>easy_install</code> alternativo también</strong>, ya que, si no, todas las librerías de python se instalarán para la 2.6 y no para la 2.7.</p>
-
-<div class="brush: console">
- <div class="source">
-  <pre><span></span><span class="gp">$</span> wget http://pypi.python.org/packages/2.7/s/setuptools/setuptools-0.6c11-py2.7.egg
-<span class="gp">$</span> sudo -i
-<span class="gp">#</span> <span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:/usr/local/bin
-<span class="gp">#</span> sh setuptools-0.6c11-py2.7.egg
-<span class="gp">#</span> <span class="nb">exit</span>
-<span class="gp">$</span> sudo rm /usr/local/bin/easy_install <span class="c1">## remove the symlink that shadows the system easy_install</span>
-<span class="gp">$</span> <span class="c1"># You may now try the easy_install for 2.7 with e.g.:</span>
-<span class="gp">$</span> sudo /usr/local/bin/easy_install-2.7 numpy
-</pre></div>
-
-</div>
-
-<p>Este post es una combinación de <a href="http://stackoverflow.com/questions/4149361/on-linux-suse-or-redhat-how-do-i-load-python-2-7">dos respuestas en Stack Overflow</a>, y mi propia experiencia con este mismo problema.</p>
-
-</article>
-<article>
-  <header>
-    <h2><a href='/blog/2013/12/03/unicode-encodings/'>Unicode encodings</a></h2>
+    <h2><a href='/2013/12/unicode-encodings.html'>Unicode encodings</a></h2>
     <p class='date-and-tags'>
 <time datetime="2013-12-03" pubdate="true">2013-12-03</time> :: <span class="tags"><a href="/tags/python.html">python</a></span></p>
   </header>
@@ -217,18 +146,27 @@
 <p>La función <code>unicode</code> <strong>no utiliza UTF&ndash;8 por defecto</strong>, sino, absurdamente, ASCII. Por eso <em>sólo es equivalente a poner una <code>u</code> delante una cadena si se especifica que el <code>encoding</code> sea <code>'utf-8'</code></em>.</p>
 
 <div class="brush: python">
- <div class="source">
-  <pre><span></span><span class="n">unicode_string</span> <span class="o">=</span> <span class="s2">u"Años"</span>
+ <table class="sourcetable">
+  <tbody>
+   <tr>
+    <td class="linenos">
+     <div class="linenodiv">
+      <pre>1
+2
+3</pre></div></td>
+    <td class="code">
+     <div class="source">
+      <pre><span></span><span class="n">unicode_string</span> <span class="o">=</span> <span class="s2">u"Años"</span>
 
 <span class="n">unicode_str</span> <span class="o">=</span> <span class="nb">unicode</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s1">&#39;some.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">(),</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
 </pre></div>
-
+</td></tr></tbody></table>
 </div>
 
 </article>
 <article>
   <header>
-    <h2><a href='/blog/2013/12/02/py2app-excludes/'>py2app excludes</a></h2>
+    <h2><a href='/2013/12/py2app-excludes.html'>py2app excludes</a></h2>
     <p class='date-and-tags'>
 <time datetime="2013-12-02" pubdate="true">2013-12-02</time> :: <span class="tags"><a href="/tags/python.html">python</a></span></p>
   </header>
@@ -240,8 +178,79 @@
 <p>Con la lista siguiente, el peso baja de 22 MBs a 6 MBs. Probablemente se puede rebajar aún más.</p>
 
 <div class="brush: python">
- <div class="source">
-  <pre><span></span><span class="c1"># File: setup.py</span>
+ <table class="sourcetable">
+  <tbody>
+   <tr>
+    <td class="linenos">
+     <div class="linenodiv">
+      <pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65</pre></div></td>
+    <td class="code">
+     <div class="source">
+      <pre><span></span><span class="c1"># File: setup.py</span>
 
 <span class="kn">from</span> <span class="nn">setuptools</span> <span class="kn">import</span> <span class="n">setup</span>
 
@@ -307,13 +316,13 @@
     <span class="n">setup_requires</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;py2app&#39;</span><span class="p">],</span>
 <span class="p">)</span>
 </pre></div>
-
+</td></tr></tbody></table>
 </div>
 
 </article>
 <article>
   <header>
-    <h2><a href='/blog/2013/11/19/compilar-cython/'>Compilar Cython</a></h2>
+    <h2><a href='/2013/11/compilar-cython.html'>Compilar Cython</a></h2>
     <p class='date-and-tags'>
 <time datetime="2013-11-19" pubdate="true">2013-11-19</time> :: <span class="tags"><a href="/tags/python.html">python</a></span></p>
   </header>
@@ -321,8 +330,23 @@
 <p>Compilar ficheros de Cython es más fácil usando la función <code>cythonize</code> dentro del setup.py de nuestro proyecto:</p>
 
 <div class="brush: python">
- <div class="source">
-  <pre><span></span><span class="c1"># File: setup.py</span>
+ <table class="sourcetable">
+  <tbody>
+   <tr>
+    <td class="linenos">
+     <div class="linenodiv">
+      <pre>1
+2
+3
+4
+5
+6
+7
+8
+9</pre></div></td>
+    <td class="code">
+     <div class="source">
+      <pre><span></span><span class="c1"># File: setup.py</span>
 
 <span class="kn">from</span> <span class="nn">distutils.core</span> <span class="kn">import</span> <span class="n">setup</span>
 <span class="kn">from</span> <span class="nn">Cython.Build</span> <span class="kn">import</span> <span class="n">cythonize</span>
@@ -332,14 +356,27 @@
       <span class="n">ext_modules</span> <span class="o">=</span> <span class="n">cythonize</span><span class="p">(</span><span class="s1">&#39;fibonacci.pyx&#39;</span><span class="p">),</span> <span class="c1"># accepts a glob pattern</span>
 <span class="p">)</span>
 </pre></div>
-
+</td></tr></tbody></table>
 </div>
 
 <p>Por ejemplo, el fichero a compilar es fibonacci.pyx, que contiene un ejemplo del tutorial de Cython:</p>
 
 <div class="brush: python">
- <div class="source">
-  <pre><span></span><span class="c1"># File: fibonacci.pyx</span>
+ <table class="sourcetable">
+  <tbody>
+   <tr>
+    <td class="linenos">
+     <div class="linenodiv">
+      <pre>1
+2
+3
+4
+5
+6
+7</pre></div></td>
+    <td class="code">
+     <div class="source">
+      <pre><span></span><span class="c1"># File: fibonacci.pyx</span>
 
 <span class="k">def</span> <span class="nf">fib</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
     <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span>
@@ -347,20 +384,31 @@
         <span class="k">print</span> <span class="n">b</span><span class="p">,</span>
         <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">b</span><span class="p">,</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
 </pre></div>
-
+</td></tr></tbody></table>
 </div>
 
 <p>El resultado de compilar <code>fibonacci.pyx</code> es un fichero con código intermedio en C <code>fibonacci.c</code> y un fichero compilado <code>fibonacci.so</code>.</p>
 
 <div class="brush: bash">
- <div class="source">
-  <pre><span></span>$ python setup.py build
+ <table class="sourcetable">
+  <tbody>
+   <tr>
+    <td class="linenos">
+     <div class="linenodiv">
+      <pre>1
+2
+3
+4
+5</pre></div></td>
+    <td class="code">
+     <div class="source">
+      <pre><span></span>$ python setup.py build
 running build
 running build_ext
 building <span class="s1">&#39;fibonacci&#39;</span> extension
 /usr/bin/clang ...snip... -o build/lib.macosx-10.8-x86_64-2.7/fibonacci.so
 </pre></div>
-
+</td></tr></tbody></table>
 </div>
 
 <blockquote>
@@ -370,14 +418,43 @@ building <span class="s1">&#39;fibonacci&#39;</span> extension
 <p>El fichero .so puede usarse desde otros módulos de Python, o directamente desde la shell</p>
 
 <div class="brush: pycon">
- <div class="source">
-  <pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">fibonacci</span>
+ <table class="sourcetable">
+  <tbody>
+   <tr>
+    <td class="linenos">
+     <div class="linenodiv">
+      <pre>1
+2
+3</pre></div></td>
+    <td class="code">
+     <div class="source">
+      <pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">fibonacci</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">fibonacci</span><span class="o">.</span><span class="n">fib</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
 <span class="go">1 1 2 3</span>
 </pre></div>
-
+</td></tr></tbody></table>
 </div>
 
+</article>
+<article>
+  <header>
+    <h2><a href='/2013/11/infraestructura-de-lanzamientos-locales.html'>Infraestructura de lanzamientos locales</a></h2>
+    <p class='date-and-tags'>
+<time datetime="2013-11-17" pubdate="true">2013-11-17</time> :: <span class="tags"><a href="/tags/sysadmin.html">sysadmin</a></span></p>
+  </header>
+
+<p>Este post describe cómo crear una infraestructura de lanzamientos locales, para compartir paquetes locales con otros desarrolladores del mismo equipo, basándose en Python y Macports. Esto presupone que los otros miembros del equipo usan todos Mac OS X, y que están interesados en usar paquetes de Python, claro.</p>
+
+<p>Necesitaremos:</p>
+
+<ul>
+ <li>crear un paquete de Python con su correspondiente <code>setup.py</code></li>
+ <li>tener un directorio <code>releases</code> servido por HTTP por el servidor Apache  integrado en el sistema operativo.</li>
+ <li>tener un directorio <code>ports</code> servido por rsync.</li>
+ <li>configurar Macports para usar este nuevo repositorio.</li></ul>
+  <footer>
+    <a href='/2013/11/infraestructura-de-lanzamientos-locales.html'>&hellip; more &hellip;</a>
+  </footer>
 </article>
 <footer>
  <ul class="pagination">
@@ -386,24 +463,23 @@ building <span class="s1">&#39;fibonacci&#39;</span> extension
   <li><a href="/index.html">1</a></li>
   <li><a href="/index-2.html">2</a></li>
   <li class="active"><a href="/index-3.html">3</a></li>
-  <li><a href="/index-4.html">4</a></li>
-  <li><a href="/index-4.html">
+  <li class="disabled"><a href="#">
     <quote>&rarr;</quote></a></li></ul></footer>
           </div>
         </div>
-        <footer>
-          <hr />
-          <p>Site generated with
-          <a href="https://github.com/greghendershott/frog">Frog</a>
-          &amp;
-          <a href="http://twitter.github.com/bootstrap/index.html">Bootstrap</a>.
-          Cover image by NASA/Bill Ingalls [Public domain], via Wikimedia Commons.
-          </p>
-          <p>This page was last built on Monday, December 12th, 2016</p>
-
-          <p><em>© Copyright 2016, Luis Osa</em>.</p>
-        </footer>
       </div>
+      <footer>
+        <hr />
+        <p>Site generated with
+        <a href="https://github.com/greghendershott/frog">Frog</a>
+        &amp;
+        <a href="http://twitter.github.com/bootstrap/index.html">Bootstrap</a>.
+        Cover image by NASA/Bill Ingalls [Public domain], via Wikimedia Commons.
+        </p>
+        <p>This page was last built on Monday, December 12th, 2016</p>
+
+        <p><em>© Copyright 2016, Luis Osa</em>.</p>
+      </footer>
     </div>
     <!-- </body> JS -->
     <script type="text/javascript" src="//code.jquery.com/jquery.min.js"></script>

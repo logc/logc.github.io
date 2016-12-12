@@ -7,8 +7,8 @@
  <updated>2014-04-01T15:22:00Z</updated>
  <entry>
   <title type="text">Python egg tagged with Git commit hash</title>
-  <link rel="alternate" href="http://logc.github.io/blog/2014/04/01/python-egg-tagged-with-git-commit-hash/?utm_source=python&amp;utm_medium=Atom" />
-  <id>urn:http-logc-github-io:-blog-2014-04-01-python-egg-tagged-with-git-commit-hash</id>
+  <link rel="alternate" href="http://logc.github.io/2014/04/python-egg-tagged-with-git-commit-hash.html?utm_source=python&amp;utm_medium=Atom" />
+  <id>urn:http-logc-github-io:-2014-04-python-egg-tagged-with-git-commit-hash-html</id>
   <published>2014-04-01T15:22:00Z</published>
   <updated>2014-04-01T15:22:00Z</updated>
   <author>
@@ -29,8 +29,24 @@ tag_svn_revision = 1&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Answer: modify directly the &lt;code&gt;options&lt;/code&gt; dictionary in the call to &lt;code&gt;setup&lt;/code&gt;, in &lt;code&gt;setup.py&lt;/code&gt;. There, you can put anything you can compute with Python or system calls. E.g. for git:&lt;/p&gt;
 
 &lt;div class="brush: python"&gt;
- &lt;div class="source"&gt;
-  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;shlex&lt;/span&gt;
+ &lt;table class="sourcetable"&gt;
+  &lt;tbody&gt;
+   &lt;tr&gt;
+    &lt;td class="linenos"&gt;
+     &lt;div class="linenodiv"&gt;
+      &lt;pre&gt; 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;
+    &lt;td class="code"&gt;
+     &lt;div class="source"&gt;
+      &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;shlex&lt;/span&gt;
 &lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;subprocess&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;check_output&lt;/span&gt;
 
 &lt;span class="n"&gt;GIT_HEAD_REV&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;check_output&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;shlex&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;split&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git rev-parse --short HEAD&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;strip&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
@@ -41,18 +57,27 @@ tag_svn_revision = 1&lt;/code&gt;&lt;/pre&gt;
     &lt;span class="n"&gt;options&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;dict&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;egg_info&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;dict&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;tag_build&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;"dev_"&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;GIT_HEAD_REV&lt;/span&gt;&lt;span class="p"&gt;)),&lt;/span&gt;
 &lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-
+&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
 &lt;/div&gt;
 
 &lt;p&gt;With that setup, distributions (&lt;code&gt;sdist&lt;/code&gt; or &lt;code&gt;bdist&lt;/code&gt;) would be tagged with the string &amp;ldquo;dev&amp;rdquo; and the git hash of the latest commit:&lt;/p&gt;
 
 &lt;div class="brush: console"&gt;
- &lt;div class="source"&gt;
-  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; bin/python setup.py sdist bdist_egg
+ &lt;table class="sourcetable"&gt;
+  &lt;tbody&gt;
+   &lt;tr&gt;
+    &lt;td class="linenos"&gt;
+     &lt;div class="linenodiv"&gt;
+      &lt;pre&gt;1
+2
+3&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;
+    &lt;td class="code"&gt;
+     &lt;div class="source"&gt;
+      &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; bin/python setup.py sdist bdist_egg
 &lt;span class="gp"&gt;$&lt;/span&gt; ls dist
 &lt;span class="go"&gt;pyhello-0.1dev-92ffa06.tar.gz    pyhello-0.1dev_92ffa06-py2.7.egg&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-
+&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
 &lt;/div&gt;
 
 &lt;p&gt;Whenever you want to build a stable release (without any &amp;ldquo;dev&amp;rdquo; tags), just set the key to empty in your &lt;code&gt;setup.cfg&lt;/code&gt;, like this:&lt;/p&gt;
@@ -61,8 +86,8 @@ tag_svn_revision = 1&lt;/code&gt;&lt;/pre&gt;
 tag_build =&lt;/code&gt;&lt;/pre&gt;&lt;/html&gt;</content></entry>
  <entry>
   <title type="text">Instalar Python 2.7 y NumPy sobre RedHat 6</title>
-  <link rel="alternate" href="http://logc.github.io/blog/2013/12/04/instalar-python-2-7-y-numpy-sobre-redhat-6/?utm_source=python&amp;utm_medium=Atom" />
-  <id>urn:http-logc-github-io:-blog-2013-12-04-instalar-python-2-7-y-numpy-sobre-redhat-6</id>
+  <link rel="alternate" href="http://logc.github.io/2013/12/instalar-python-2-7-y-numpy-sobre-redhat-6.html?utm_source=python&amp;utm_medium=Atom" />
+  <id>urn:http-logc-github-io:-2013-12-instalar-python-2-7-y-numpy-sobre-redhat-6-html</id>
   <published>2013-12-04T11:44:57Z</published>
   <updated>2013-12-04T11:44:57Z</updated>
   <author>
@@ -75,22 +100,48 @@ tag_build =&lt;/code&gt;&lt;/pre&gt;&lt;/html&gt;</content></entry>
 &lt;p&gt;La mejor manera, pese a lo que pueda parecer, es &lt;strong&gt;instalar desde fuentes&lt;/strong&gt;, haciendo lo que se conoce como &amp;ldquo;altinstall&amp;rdquo; (instalación alternativa). Esto crea ejecutables llamados &lt;code&gt;python2.7&lt;/code&gt; bajo &lt;code&gt;/usr/local/bin&lt;/code&gt;, que &lt;strong&gt;no sobreescriben&lt;/strong&gt; el comando &lt;code&gt;python&lt;/code&gt; normal del sistema; éste sigue apuntando a un ejecutable bajo &lt;code&gt;/usr/bin&lt;/code&gt;.&lt;/p&gt;
 
 &lt;div class="brush: console"&gt;
- &lt;div class="source"&gt;
-  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; wget http://www.python.org/ftp/python/2.7.6/Python-2.7.6.tgz
+ &lt;table class="sourcetable"&gt;
+  &lt;tbody&gt;
+   &lt;tr&gt;
+    &lt;td class="linenos"&gt;
+     &lt;div class="linenodiv"&gt;
+      &lt;pre&gt;1
+2
+3
+4
+5
+6&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;
+    &lt;td class="code"&gt;
+     &lt;div class="source"&gt;
+      &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; wget http://www.python.org/ftp/python/2.7.6/Python-2.7.6.tgz
 &lt;span class="gp"&gt;$&lt;/span&gt; tar xvfz Python-2.7.6.tgz
 &lt;span class="gp"&gt;$&lt;/span&gt; &lt;span class="nb"&gt;cd&lt;/span&gt; Python-2.7.6
 &lt;span class="gp"&gt;$&lt;/span&gt; ./configure
 &lt;span class="gp"&gt;$&lt;/span&gt; make
 &lt;span class="gp"&gt;$&lt;/span&gt; sudo make altinstall
 &lt;/pre&gt;&lt;/div&gt;
-
+&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
 &lt;/div&gt;
 
 &lt;p&gt;Además de esto, es recomendable instalar &lt;strong&gt;un &lt;code&gt;easy_install&lt;/code&gt; alternativo también&lt;/strong&gt;, ya que, si no, todas las librerías de python se instalarán para la 2.6 y no para la 2.7.&lt;/p&gt;
 
 &lt;div class="brush: console"&gt;
- &lt;div class="source"&gt;
-  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; wget http://pypi.python.org/packages/2.7/s/setuptools/setuptools-0.6c11-py2.7.egg
+ &lt;table class="sourcetable"&gt;
+  &lt;tbody&gt;
+   &lt;tr&gt;
+    &lt;td class="linenos"&gt;
+     &lt;div class="linenodiv"&gt;
+      &lt;pre&gt;1
+2
+3
+4
+5
+6
+7
+8&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;
+    &lt;td class="code"&gt;
+     &lt;div class="source"&gt;
+      &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; wget http://pypi.python.org/packages/2.7/s/setuptools/setuptools-0.6c11-py2.7.egg
 &lt;span class="gp"&gt;$&lt;/span&gt; sudo -i
 &lt;span class="gp"&gt;#&lt;/span&gt; &lt;span class="nb"&gt;export&lt;/span&gt; &lt;span class="nv"&gt;PATH&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;$PATH&lt;/span&gt;:/usr/local/bin
 &lt;span class="gp"&gt;#&lt;/span&gt; sh setuptools-0.6c11-py2.7.egg
@@ -99,14 +150,14 @@ tag_build =&lt;/code&gt;&lt;/pre&gt;&lt;/html&gt;</content></entry>
 &lt;span class="gp"&gt;$&lt;/span&gt; &lt;span class="c1"&gt;# You may now try the easy_install for 2.7 with e.g.:&lt;/span&gt;
 &lt;span class="gp"&gt;$&lt;/span&gt; sudo /usr/local/bin/easy_install-2.7 numpy
 &lt;/pre&gt;&lt;/div&gt;
-
+&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
 &lt;/div&gt;
 
 &lt;p&gt;Este post es una combinación de &lt;a href="http://stackoverflow.com/questions/4149361/on-linux-suse-or-redhat-how-do-i-load-python-2-7"&gt;dos respuestas en Stack Overflow&lt;/a&gt;, y mi propia experiencia con este mismo problema.&lt;/p&gt;&lt;/html&gt;</content></entry>
  <entry>
   <title type="text">Unicode encodings</title>
-  <link rel="alternate" href="http://logc.github.io/blog/2013/12/03/unicode-encodings/?utm_source=python&amp;utm_medium=Atom" />
-  <id>urn:http-logc-github-io:-blog-2013-12-03-unicode-encodings</id>
+  <link rel="alternate" href="http://logc.github.io/2013/12/unicode-encodings.html?utm_source=python&amp;utm_medium=Atom" />
+  <id>urn:http-logc-github-io:-2013-12-unicode-encodings-html</id>
   <published>2013-12-03T13:46:19Z</published>
   <updated>2013-12-03T13:46:19Z</updated>
   <author>
@@ -125,17 +176,26 @@ tag_build =&lt;/code&gt;&lt;/pre&gt;&lt;/html&gt;</content></entry>
 &lt;p&gt;La función &lt;code&gt;unicode&lt;/code&gt; &lt;strong&gt;no utiliza UTF&amp;ndash;8 por defecto&lt;/strong&gt;, sino, absurdamente, ASCII. Por eso &lt;em&gt;sólo es equivalente a poner una &lt;code&gt;u&lt;/code&gt; delante una cadena si se especifica que el &lt;code&gt;encoding&lt;/code&gt; sea &lt;code&gt;'utf-8'&lt;/code&gt;&lt;/em&gt;.&lt;/p&gt;
 
 &lt;div class="brush: python"&gt;
- &lt;div class="source"&gt;
-  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;unicode_string&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;u"Años"&lt;/span&gt;
+ &lt;table class="sourcetable"&gt;
+  &lt;tbody&gt;
+   &lt;tr&gt;
+    &lt;td class="linenos"&gt;
+     &lt;div class="linenodiv"&gt;
+      &lt;pre&gt;1
+2
+3&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;
+    &lt;td class="code"&gt;
+     &lt;div class="source"&gt;
+      &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;unicode_string&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;u"Años"&lt;/span&gt;
 
 &lt;span class="n"&gt;unicode_str&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;unicode&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;open&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;some.txt&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;r&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;read&lt;/span&gt;&lt;span class="p"&gt;(),&lt;/span&gt; &lt;span class="n"&gt;encoding&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;utf-8&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-
+&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
 &lt;/div&gt;&lt;/html&gt;</content></entry>
  <entry>
   <title type="text">py2app excludes</title>
-  <link rel="alternate" href="http://logc.github.io/blog/2013/12/02/py2app-excludes/?utm_source=python&amp;utm_medium=Atom" />
-  <id>urn:http-logc-github-io:-blog-2013-12-02-py2app-excludes</id>
+  <link rel="alternate" href="http://logc.github.io/2013/12/py2app-excludes.html?utm_source=python&amp;utm_medium=Atom" />
+  <id>urn:http-logc-github-io:-2013-12-py2app-excludes-html</id>
   <published>2013-12-02T20:58:08Z</published>
   <updated>2013-12-02T20:58:08Z</updated>
   <author>
@@ -148,8 +208,79 @@ tag_build =&lt;/code&gt;&lt;/pre&gt;&lt;/html&gt;</content></entry>
 &lt;p&gt;Con la lista siguiente, el peso baja de 22 MBs a 6 MBs. Probablemente se puede rebajar aún más.&lt;/p&gt;
 
 &lt;div class="brush: python"&gt;
- &lt;div class="source"&gt;
-  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# File: setup.py&lt;/span&gt;
+ &lt;table class="sourcetable"&gt;
+  &lt;tbody&gt;
+   &lt;tr&gt;
+    &lt;td class="linenos"&gt;
+     &lt;div class="linenodiv"&gt;
+      &lt;pre&gt; 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;
+    &lt;td class="code"&gt;
+     &lt;div class="source"&gt;
+      &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# File: setup.py&lt;/span&gt;
 
 &lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;setuptools&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;setup&lt;/span&gt;
 
@@ -215,12 +346,12 @@ tag_build =&lt;/code&gt;&lt;/pre&gt;&lt;/html&gt;</content></entry>
     &lt;span class="n"&gt;setup_requires&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;py2app&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
 &lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-
+&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
 &lt;/div&gt;&lt;/html&gt;</content></entry>
  <entry>
   <title type="text">Compilar Cython</title>
-  <link rel="alternate" href="http://logc.github.io/blog/2013/11/19/compilar-cython/?utm_source=python&amp;utm_medium=Atom" />
-  <id>urn:http-logc-github-io:-blog-2013-11-19-compilar-cython</id>
+  <link rel="alternate" href="http://logc.github.io/2013/11/compilar-cython.html?utm_source=python&amp;utm_medium=Atom" />
+  <id>urn:http-logc-github-io:-2013-11-compilar-cython-html</id>
   <published>2013-11-19T08:30:14Z</published>
   <updated>2013-11-19T08:30:14Z</updated>
   <author>
@@ -229,8 +360,23 @@ tag_build =&lt;/code&gt;&lt;/pre&gt;&lt;/html&gt;</content></entry>
 &lt;p&gt;Compilar ficheros de Cython es más fácil usando la función &lt;code&gt;cythonize&lt;/code&gt; dentro del setup.py de nuestro proyecto:&lt;/p&gt;
 
 &lt;div class="brush: python"&gt;
- &lt;div class="source"&gt;
-  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# File: setup.py&lt;/span&gt;
+ &lt;table class="sourcetable"&gt;
+  &lt;tbody&gt;
+   &lt;tr&gt;
+    &lt;td class="linenos"&gt;
+     &lt;div class="linenodiv"&gt;
+      &lt;pre&gt;1
+2
+3
+4
+5
+6
+7
+8
+9&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;
+    &lt;td class="code"&gt;
+     &lt;div class="source"&gt;
+      &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# File: setup.py&lt;/span&gt;
 
 &lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;distutils.core&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;setup&lt;/span&gt;
 &lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;Cython.Build&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;cythonize&lt;/span&gt;
@@ -240,14 +386,27 @@ tag_build =&lt;/code&gt;&lt;/pre&gt;&lt;/html&gt;</content></entry>
       &lt;span class="n"&gt;ext_modules&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;cythonize&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;fibonacci.pyx&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="c1"&gt;# accepts a glob pattern&lt;/span&gt;
 &lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-
+&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
 &lt;/div&gt;
 
 &lt;p&gt;Por ejemplo, el fichero a compilar es fibonacci.pyx, que contiene un ejemplo del tutorial de Cython:&lt;/p&gt;
 
 &lt;div class="brush: python"&gt;
- &lt;div class="source"&gt;
-  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# File: fibonacci.pyx&lt;/span&gt;
+ &lt;table class="sourcetable"&gt;
+  &lt;tbody&gt;
+   &lt;tr&gt;
+    &lt;td class="linenos"&gt;
+     &lt;div class="linenodiv"&gt;
+      &lt;pre&gt;1
+2
+3
+4
+5
+6
+7&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;
+    &lt;td class="code"&gt;
+     &lt;div class="source"&gt;
+      &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# File: fibonacci.pyx&lt;/span&gt;
 
 &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;fib&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
     &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
@@ -255,20 +414,31 @@ tag_build =&lt;/code&gt;&lt;/pre&gt;&lt;/html&gt;</content></entry>
         &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
         &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-
+&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
 &lt;/div&gt;
 
 &lt;p&gt;El resultado de compilar &lt;code&gt;fibonacci.pyx&lt;/code&gt; es un fichero con código intermedio en C &lt;code&gt;fibonacci.c&lt;/code&gt; y un fichero compilado &lt;code&gt;fibonacci.so&lt;/code&gt;.&lt;/p&gt;
 
 &lt;div class="brush: bash"&gt;
- &lt;div class="source"&gt;
-  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ python setup.py build
+ &lt;table class="sourcetable"&gt;
+  &lt;tbody&gt;
+   &lt;tr&gt;
+    &lt;td class="linenos"&gt;
+     &lt;div class="linenodiv"&gt;
+      &lt;pre&gt;1
+2
+3
+4
+5&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;
+    &lt;td class="code"&gt;
+     &lt;div class="source"&gt;
+      &lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ python setup.py build
 running build
 running build_ext
 building &lt;span class="s1"&gt;&amp;#39;fibonacci&amp;#39;&lt;/span&gt; extension
 /usr/bin/clang ...snip... -o build/lib.macosx-10.8-x86_64-2.7/fibonacci.so
 &lt;/pre&gt;&lt;/div&gt;
-
+&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
 &lt;/div&gt;
 
 &lt;blockquote&gt;
@@ -278,10 +448,19 @@ building &lt;span class="s1"&gt;&amp;#39;fibonacci&amp;#39;&lt;/span&gt; extensi
 &lt;p&gt;El fichero .so puede usarse desde otros módulos de Python, o directamente desde la shell&lt;/p&gt;
 
 &lt;div class="brush: pycon"&gt;
- &lt;div class="source"&gt;
-  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;&amp;gt;&amp;gt;&amp;gt; &lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;fibonacci&lt;/span&gt;
+ &lt;table class="sourcetable"&gt;
+  &lt;tbody&gt;
+   &lt;tr&gt;
+    &lt;td class="linenos"&gt;
+     &lt;div class="linenodiv"&gt;
+      &lt;pre&gt;1
+2
+3&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;
+    &lt;td class="code"&gt;
+     &lt;div class="source"&gt;
+      &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;&amp;gt;&amp;gt;&amp;gt; &lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;fibonacci&lt;/span&gt;
 &lt;span class="gp"&gt;&amp;gt;&amp;gt;&amp;gt; &lt;/span&gt;&lt;span class="n"&gt;fibonacci&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;fib&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="go"&gt;1 1 2 3&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-
+&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
 &lt;/div&gt;&lt;/html&gt;</content></entry></feed>

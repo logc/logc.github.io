@@ -4,13 +4,13 @@
 
     <meta charset="utf-8">
     <title>Setting up Github Pages with Frog</title>
-    <meta name="description" content="To set up a static blog in Github Pages using the Racket package Frog, you need to do the following:   download and install Racket (duh!)    install Frog with `raco`:    `$ raco install frog`      create a folder and initialize a Frog project there:    `$...">
+    <meta name="description" content="To set up a static blog in Github Pages using the Racket package Frog, you need to do the following:   download and install Racket (duh!) install Frog with raco:  `$ raco install frog`...">
     <meta name="author"      content="logc">
     <meta name="keywords"    content="racket, frog, blog">
     <meta name="viewport"    content="width=device-width, initial-scale=1.0">
     <link rel="icon"      href="/favicon.ico">
     <link rel="canonical" href="http://logc.github.io/blog/2016/10/03/setting-up-github-pages-with-frog/">
-    <link rel="next" href="/blog/2016/09/23/racket-and-vim-syntastic/">
+    <link rel="next" href="/2016/09/racket-and-vim-syntastic.html">
     <link rel="prev" href="/blog/2016/10/20/minimal-c-project-structure-with-scons/">
     <!-- CSS -->
     <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
@@ -37,7 +37,7 @@
   </head>
   <body>
     <!-- A standard Twitter Bootstrap nav bar -->
-    <header class="navbar navbar-default navbar-inverse"
+    <header class="navbar navbar-inverse"
             role="banner">
       <div class="container">
         <div class="navbar-header">
@@ -49,6 +49,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
+          <!-- a href="/index.html" class="navbar-brand">Home</a -->
         </div>
         <div class="collapse navbar-collapse our-nav-collapse"
              role="navigation">
@@ -57,9 +58,11 @@
             <li>
               <a href="/index.html">Home</a>
             </li> 
+
             <li>
               <a href="/About.html">About</a>
             </li> 
+
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 Tags <b class="caret"></b></a>
@@ -74,10 +77,6 @@
 
 <li><a href="/tags/C.html">C++</a></li>
 
-<li><a href="/tags/development.html">development</a></li>
-
-<li><a href="/tags/economy.html">economy</a></li>
-
 <li><a href="/tags/frog.html">frog</a></li>
 
 <li><a href="/tags/git.html">git</a></li>
@@ -88,8 +87,6 @@
 
 <li><a href="/tags/racket.html">racket</a></li>
 
-<li><a href="/tags/rant.html">rant</a></li>
-
 <li><a href="/tags/scons.html">scons</a></li>
 
 <li><a href="/tags/sysadmin.html">sysadmin</a></li>
@@ -99,6 +96,7 @@
 <li><a href="/tags/web.html">web</a></li>
               </ul>
             </li>
+
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 Feeds <b class="caret"></b></a>
@@ -113,13 +111,11 @@
     </header>
     <div class="jumbotron subpages">
       <div class="container">
-        <h1>Development notes</h1>
-        <h2>logc</h2>
+        <h1>This is rocket science</h1>
+        <h2>Development notes by logc</h2>
       </div>
     </div>
-
     <div class="main-content">
-
       <div class="container">
         <div class="row">
 
@@ -137,48 +133,62 @@
 <time datetime="2016-10-03" pubdate="true">2016-10-03</time> :: <span class="tags"><a href="/tags/racket.html">racket</a>, <a href="/tags/frog.html">frog</a>, <a href="/tags/blog.html">blog</a></span></p>
   </header>
 
-<p>To set up a static blog in Github Pages using the Racket package <a href="https://github.com/greghendershott/frog">Frog</a>, you need to do the following:</p>
+<p>To set up a static blog in Github Pages using the Racket package Frog, you need to do the following:</p>
 
-<ol>
+<ul>
  <li>download and install Racket (duh!)</li>
- <li>
-  <p>install Frog with <code>raco</code>:</p>
-  <pre><code>$ raco install frog</code></pre></li>
- <li>
-  <p>create a folder and initialize a Frog project there:</p>
-  <pre><code>$ mkdir new-blog
+ <li>install Frog with raco:</li></ul>
+
+<pre><code>$ raco install frog</code></pre>
+<!-- more-->
+
+<ul>
+ <li>create a folder and initialize a Frog project there:</li></ul>
+
+<pre><code>$ mkdir new-blog
 $ cd new-blog
-$ raco frog --init</code></pre></li>
+$ raco frog --init</code></pre>
+
+<ul>
  <li>
-  <p>customize the <code>.frogrc</code> file. Set at least <code>scheme/host</code> to  <em>https://your-username.github.io</em>, and <code>title</code> &amp; <code>author</code> to whatever you  want.</p></li>
+  <p>customize the .frogrc file. Set at least scheme/host to https://your-username.github.io, and title &amp; author to whatever you want.</p></li>
  <li>
-  <p>add some content of your own:</p>
-  <pre><code>$ raco frog -n "New post"
+  <p>add some content of your own:</p></li></ul>
+
+<pre><code>$ raco frog -n "New post"
 # ... output says something like:
 ~/new-blog/_src/posts/2016-10-03-new-post.md
-# ... edit that file with your preferred editor ...</code></pre></li>
- <li>
-  <p>when you are finished editing, preview your glorious site with</p>
-  <pre><code>$ raco frog -bp</code></pre></li>
- <li>
-  <p>initialize an empty Git repository on the project folder, and tell git to  ignore the Frog machinery and your source directory</p>
-  <pre><code>$ git init .
+# ... edit that file with your preferred editor ...
+when you are finished editing, preview your glorious site with
+
+$ raco frog -bp</code></pre>
+
+<ul>
+ <li>initialize an empty Git repository on the project folder, and tell git to  ignore the Frog machinery and your source directory</li></ul>
+
+<pre><code>$ git init .
 $ cat &lt;&lt; EOF &gt; .gitignore
 /.frog/
 /.frogrc
 /_src/
-EOF</code></pre></li>
- <li>
-  <p>commit everything, except for what we just ignored</p>
-  <pre><code>$ git add .
-$ git commit</code></pre></li>
- <li>
-  <p>on github.com, create a new repository with the name  <em>your-username.github.io</em>. Once created, add it as a remote to your local  repo, and push your local <code>master</code> to it.</p>
-  <pre><code>$ git remote add origin &lt;your new repo&gt;
-$ git push -u origin master</code></pre></li>
- <li>after some seconds, your new blog should be available as <em>http://your-username.github.io</em></li></ol>
+EOF</code></pre>
 
-<p>Now, each time that you want to add a new post, it&rsquo;s just a matter of</p>
+<ul>
+ <li>commit everything, except for what we just ignored</li></ul>
+
+<pre><code>$ git add .
+$ git commit</code></pre>
+
+<ul>
+ <li>on github.com, create a new repository with the name your-username.github.io.  Once created, add it as a remote to your local repo, and push your local master  to it.</li></ul>
+
+<pre><code>$ git remote add origin &lt;your new repo&gt;
+$ git push -u origin master</code></pre>
+
+<ul>
+ <li>after some seconds, your new blog should be available as http://your-username.github.io</li></ul>
+
+<p>Now, each time that you want to add a new post, it’s just a matter of</p>
 
 <pre><code>$ raco frog -n "Another post"
 # ... edit that post ...
@@ -192,26 +202,26 @@ $ git push</code></pre>
       <a href="/blog/2016/10/20/minimal-c-project-structure-with-scons/">&larr; <em>Minimal C project structure with SCons</em></a>
     </li>
     <li class="next">
-      <a href="/blog/2016/09/23/racket-and-vim-syntastic/"><em>Racket and vim-syntastic</em> &rarr;</a>
+      <a href="/2016/09/racket-and-vim-syntastic.html"><em>Racket and vim-syntastic</em> &rarr;</a>
     </li>
     </ul>
   </footer>
 </article>
           </div>
         </div>
-        <footer>
-          <hr />
-          <p>Site generated with
-          <a href="https://github.com/greghendershott/frog">Frog</a>
-          &amp;
-          <a href="http://twitter.github.com/bootstrap/index.html">Bootstrap</a>.
-          Cover image by NASA/Bill Ingalls [Public domain], via Wikimedia Commons.
-          </p>
-          <p>This page was last built on Monday, December 12th, 2016</p>
-
-          <p><em>© Copyright 2016, Luis Osa</em>.</p>
-        </footer>
       </div>
+      <footer>
+        <hr />
+        <p>Site generated with
+        <a href="https://github.com/greghendershott/frog">Frog</a>
+        &amp;
+        <a href="http://twitter.github.com/bootstrap/index.html">Bootstrap</a>.
+        Cover image by NASA/Bill Ingalls [Public domain], via Wikimedia Commons.
+        </p>
+        <p>This page was last built on Monday, December 12th, 2016</p>
+
+        <p><em>© Copyright 2016, Luis Osa</em>.</p>
+      </footer>
     </div>
     <!-- </body> JS -->
     <script type="text/javascript" src="//code.jquery.com/jquery.min.js"></script>

@@ -4,22 +4,22 @@
  <link rel="self" href="http://logc.github.io/feeds/all.atom.xml" />
  <link href="http://logc.github.io/index.html" />
  <id>urn:http-logc-github-io:-index-html</id>
- <updated>2016-10-20T16:39:47Z</updated>
+ <updated>2016-10-20T18:17:59Z</updated>
  <entry>
   <title type="text">Minimal C project structure with SCons</title>
   <link rel="alternate" href="http://logc.github.io/blog/2016/10/20/minimal-c-project-structure-with-scons/?utm_source=all&amp;utm_medium=Atom" />
   <id>urn:http-logc-github-io:-blog-2016-10-20-minimal-c-project-structure-with-scons</id>
-  <published>2016-10-20T16:39:47Z</published>
-  <updated>2016-10-20T16:39:47Z</updated>
+  <published>2016-10-20T18:17:59Z</published>
+  <updated>2016-10-20T18:17:59Z</updated>
   <author>
    <name>logc</name></author>
   <content type="html">&lt;html&gt;
-&lt;p&gt;This is a possible project structure in order to have a C project using SCons as the build system. It enables:&lt;/p&gt;
+&lt;p&gt;This is a possible project structure in order to have a C project using SCons as the build system. It enables you to:&lt;/p&gt;
 
 &lt;ul&gt;
- &lt;li&gt;compile most files as a library, and link that to a &lt;code&gt;main&lt;/code&gt; file with  application code.&lt;/li&gt;
+ &lt;li&gt;compile most files as a library, and link that to a &lt;code&gt;main&lt;/code&gt; file with application code.&lt;/li&gt;
  &lt;li&gt;separate &lt;code&gt;src&lt;/code&gt; and &lt;code&gt;include&lt;/code&gt; directories&lt;/li&gt;
- &lt;li&gt;separate unit tests using &lt;a href="https://libcheck.github.io/check/"&gt;libcheck&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;separate unit tests using libcheck&lt;/li&gt;
  &lt;li&gt;the unit tests link to the library&lt;/li&gt;
  &lt;li&gt;Macports-installed libraries&lt;/li&gt;&lt;/ul&gt;
 &lt;!-- more--&gt;
@@ -28,18 +28,18 @@
 
 &lt;pre&gt;&lt;code&gt;.
 ├── include
-│   └── core
-│       └── mylib.h
+│   └── core
+│       └── mylib.h
 ├── sconstruct
 ├── src
-│   ├── core
-│   │   └── mylib.c
-│   └── main.c
+│   ├── core
+│   │   └── mylib.c
+│   └── main.c
 └── tests
     ├── core
-    │   ├── test_mylib.c
-    │   ├── test_mylib.h
-    │   └── tests.h
+    │   ├── test_mylib.c
+    │   ├── test_mylib.h
+    │   └── tests.h
     └── main.c&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;where &lt;code&gt;mylib&lt;/code&gt; should have a more descriptive name for your project.&lt;/p&gt;
@@ -79,7 +79,7 @@ env.Program(target='test_mylib', source=Glob('tests/*.c') + Glob('tests/**/*.c')
 
 &lt;/div&gt;
 
-&lt;p&gt;&lt;code&gt;main.c&lt;/code&gt; and &lt;code&gt;core/mylib.c&lt;/code&gt; see each other via the header files in the &lt;code&gt;include&lt;/code&gt; directory, where &lt;code&gt;core/mylib.h&lt;/code&gt; holds:&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;main.c&lt;/code&gt; and &lt;code&gt;core/mylib.c&lt;/code&gt; see each other via the header files in the include directory, where &lt;code&gt;core/mylib.h&lt;/code&gt; holds:&lt;/p&gt;
 
 &lt;div class="brush: c"&gt;
  &lt;div class="source"&gt;
@@ -136,7 +136,7 @@ env.Program(target='test_mylib', source=Glob('tests/*.c') + Glob('tests/**/*.c')
 
 &lt;/div&gt;
 
-&lt;p&gt;Finally, the test runner executable is defined in the &lt;code&gt;tests/main.c&lt;/code&gt; file. It includes all &lt;code&gt;tests&lt;/code&gt; headers, uses the exported test suite creating functions to create all test suites, and runs them.&lt;/p&gt;
+&lt;p&gt;Finally, the test runner executable is defined in the tests/main.c file. It includes all tests headers, uses the exported test suite creating functions to create all test suites, and runs them.&lt;/p&gt;
 
 &lt;div class="brush: c"&gt;
  &lt;div class="source"&gt;
@@ -187,53 +187,67 @@ env.Program(target='test_mylib', source=Glob('tests/*.c') + Glob('tests/**/*.c')
   <title type="text">Setting up Github Pages with Frog</title>
   <link rel="alternate" href="http://logc.github.io/blog/2016/10/03/setting-up-github-pages-with-frog/?utm_source=all&amp;utm_medium=Atom" />
   <id>urn:http-logc-github-io:-blog-2016-10-03-setting-up-github-pages-with-frog</id>
-  <published>2016-10-03T17:08:34Z</published>
-  <updated>2016-10-03T17:08:34Z</updated>
+  <published>2016-10-03T18:24:03Z</published>
+  <updated>2016-10-03T18:24:03Z</updated>
   <author>
    <name>logc</name></author>
   <content type="html">&lt;html&gt;
-&lt;p&gt;To set up a static blog in Github Pages using the Racket package &lt;a href="https://github.com/greghendershott/frog"&gt;Frog&lt;/a&gt;, you need to do the following:&lt;/p&gt;
+&lt;p&gt;To set up a static blog in Github Pages using the Racket package Frog, you need to do the following:&lt;/p&gt;
 
-&lt;ol&gt;
+&lt;ul&gt;
  &lt;li&gt;download and install Racket (duh!)&lt;/li&gt;
- &lt;li&gt;
-  &lt;p&gt;install Frog with &lt;code&gt;raco&lt;/code&gt;:&lt;/p&gt;
-  &lt;pre&gt;&lt;code&gt;$ raco install frog&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
- &lt;li&gt;
-  &lt;p&gt;create a folder and initialize a Frog project there:&lt;/p&gt;
-  &lt;pre&gt;&lt;code&gt;$ mkdir new-blog
+ &lt;li&gt;install Frog with raco:&lt;/li&gt;&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code&gt;$ raco install frog&lt;/code&gt;&lt;/pre&gt;
+&lt;!-- more--&gt;
+
+&lt;ul&gt;
+ &lt;li&gt;create a folder and initialize a Frog project there:&lt;/li&gt;&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code&gt;$ mkdir new-blog
 $ cd new-blog
-$ raco frog --init&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+$ raco frog --init&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
  &lt;li&gt;
-  &lt;p&gt;customize the &lt;code&gt;.frogrc&lt;/code&gt; file. Set at least &lt;code&gt;scheme/host&lt;/code&gt; to  &lt;em&gt;https://your-username.github.io&lt;/em&gt;, and &lt;code&gt;title&lt;/code&gt; &amp;amp; &lt;code&gt;author&lt;/code&gt; to whatever you  want.&lt;/p&gt;&lt;/li&gt;
+  &lt;p&gt;customize the .frogrc file. Set at least scheme/host to https://your-username.github.io, and title &amp;amp; author to whatever you want.&lt;/p&gt;&lt;/li&gt;
  &lt;li&gt;
-  &lt;p&gt;add some content of your own:&lt;/p&gt;
-  &lt;pre&gt;&lt;code&gt;$ raco frog -n "New post"
+  &lt;p&gt;add some content of your own:&lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code&gt;$ raco frog -n "New post"
 # ... output says something like:
 ~/new-blog/_src/posts/2016-10-03-new-post.md
-# ... edit that file with your preferred editor ...&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
- &lt;li&gt;
-  &lt;p&gt;when you are finished editing, preview your glorious site with&lt;/p&gt;
-  &lt;pre&gt;&lt;code&gt;$ raco frog -bp&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
- &lt;li&gt;
-  &lt;p&gt;initialize an empty Git repository on the project folder, and tell git to  ignore the Frog machinery and your source directory&lt;/p&gt;
-  &lt;pre&gt;&lt;code&gt;$ git init .
+# ... edit that file with your preferred editor ...
+when you are finished editing, preview your glorious site with
+
+$ raco frog -bp&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+ &lt;li&gt;initialize an empty Git repository on the project folder, and tell git to  ignore the Frog machinery and your source directory&lt;/li&gt;&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code&gt;$ git init .
 $ cat &amp;lt;&amp;lt; EOF &amp;gt; .gitignore
 /.frog/
 /.frogrc
 /_src/
-EOF&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
- &lt;li&gt;
-  &lt;p&gt;commit everything, except for what we just ignored&lt;/p&gt;
-  &lt;pre&gt;&lt;code&gt;$ git add .
-$ git commit&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
- &lt;li&gt;
-  &lt;p&gt;on github.com, create a new repository with the name  &lt;em&gt;your-username.github.io&lt;/em&gt;. Once created, add it as a remote to your local  repo, and push your local &lt;code&gt;master&lt;/code&gt; to it.&lt;/p&gt;
-  &lt;pre&gt;&lt;code&gt;$ git remote add origin &amp;lt;your new repo&amp;gt;
-$ git push -u origin master&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
- &lt;li&gt;after some seconds, your new blog should be available as &lt;em&gt;http://your-username.github.io&lt;/em&gt;&lt;/li&gt;&lt;/ol&gt;
+EOF&lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;Now, each time that you want to add a new post, it&amp;rsquo;s just a matter of&lt;/p&gt;
+&lt;ul&gt;
+ &lt;li&gt;commit everything, except for what we just ignored&lt;/li&gt;&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code&gt;$ git add .
+$ git commit&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+ &lt;li&gt;on github.com, create a new repository with the name your-username.github.io.  Once created, add it as a remote to your local repo, and push your local master  to it.&lt;/li&gt;&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code&gt;$ git remote add origin &amp;lt;your new repo&amp;gt;
+$ git push -u origin master&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+ &lt;li&gt;after some seconds, your new blog should be available as http://your-username.github.io&lt;/li&gt;&lt;/ul&gt;
+
+&lt;p&gt;Now, each time that you want to add a new post, it’s just a matter of&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;$ raco frog -n "Another post"
 # ... edit that post ...
@@ -243,8 +257,8 @@ $ git commit -a
 $ git push&lt;/code&gt;&lt;/pre&gt;&lt;/html&gt;</content></entry>
  <entry>
   <title type="text">Racket and vim-syntastic</title>
-  <link rel="alternate" href="http://logc.github.io/blog/2016/09/23/racket-and-vim-syntastic/?utm_source=all&amp;utm_medium=Atom" />
-  <id>urn:http-logc-github-io:-blog-2016-09-23-racket-and-vim-syntastic</id>
+  <link rel="alternate" href="http://logc.github.io/2016/09/racket-and-vim-syntastic.html?utm_source=all&amp;utm_medium=Atom" />
+  <id>urn:http-logc-github-io:-2016-09-racket-and-vim-syntastic-html</id>
   <published>2016-09-23T19:48:27Z</published>
   <updated>2016-09-23T19:48:27Z</updated>
   <author>
@@ -256,65 +270,9 @@ $ git push&lt;/code&gt;&lt;/pre&gt;&lt;/html&gt;</content></entry>
 
 &lt;pre&gt;&lt;code&gt;let g:syntastic_racket_racket_args="--load"&lt;/code&gt;&lt;/pre&gt;&lt;/html&gt;</content></entry>
  <entry>
-  <title type="text">Binaries and customers</title>
-  <link rel="alternate" href="http://logc.github.io/blog/2016/02/26/binaries-and-customers/?utm_source=all&amp;utm_medium=Atom" />
-  <id>urn:http-logc-github-io:-blog-2016-02-26-binaries-and-customers</id>
-  <published>2016-02-26T22:54:28Z</published>
-  <updated>2016-02-26T22:54:28Z</updated>
-  <author>
-   <name>logc</name></author>
-  <content type="html">&lt;html&gt;
-&lt;p&gt;Just this week I realised that the barrier between binaries and source code is the same barrier that there is between a customer and a collaborator.&lt;/p&gt;
-
-&lt;p&gt;A customer is someone who wants to use your product and does not care about its inner workings: he is prepared to give you money in exchange for both things (using your product, and not having to know how it works).&lt;/p&gt;
-
-&lt;p&gt;A collaborator is someone that works with you in creating the very same product that you intend to sell later on. His interests are exactly the opposite as those of the customer: a collaborator does not necessarily need to use the product, and he needs to know as much as possible about your product in order to contribute as much as possible to it. Otherwise, the collaboration will be wasteful.&lt;/p&gt;
-&lt;!-- more--&gt;
-
-&lt;p&gt;Therefore, you should give to your customer a binary (the end-result of your software), and you should give to your collborator a source code representation of your product (a textual representation of the same software).&lt;/p&gt;
-
-&lt;p&gt;I came to realize this while discussing during a technical speech with one of our tech leads. He was promoting the use of a tool that allowed designers to turn specifications into wireframes, and those wireframes into workable code. He expected this tool to avoid that designers and developers communicated &amp;ldquo;via screenshots&amp;rdquo;. I agreed with him, and said that we needed specification owners to work as close to the code as possible, because the ultimate specification of a feature is the source code itself.&lt;/p&gt;
-
-&lt;p&gt;At that point, he disagreed with me, and said that he did not expect designers to &amp;ldquo;actually code&amp;rdquo;. I said anything that was not a textual representation of the result was wasteful, since the receivers of a binary representation would have to reverse engineer how that binary was created. With &amp;ldquo;binary&amp;rdquo; I meant the screenshots, but also other representations like videos, presentations, etc.&lt;/p&gt;
-
-&lt;p&gt;He contended that why should a designer treat you (the lowly coder) as anything different than a customer. And at that point it suddenly dawned on me: because the customer pays.&lt;/p&gt;
-
-&lt;p&gt;The money transaction marks the frontier between one organization and another, and it also marks this curious effect: the customer is &lt;strong&gt;entitled&lt;/strong&gt; to a &lt;strong&gt;less complex&lt;/strong&gt; representation of the product, precisely because the customer/provider relationship is a hallmark of the division of labour, and in plain words it means &amp;ldquo;I have other shit to do, just give me the plain result of your work &amp;amp; don&amp;rsquo;t bother me with details.&amp;rdquo;&lt;/p&gt;&lt;/html&gt;</content></entry>
- <entry>
-  <title type="text">The difference between Racket and Haskell</title>
-  <link rel="alternate" href="http://logc.github.io/blog/2015/10/16/the-difference-between-racket-and-haskell/?utm_source=all&amp;utm_medium=Atom" />
-  <id>urn:http-logc-github-io:-blog-2015-10-16-the-difference-between-racket-and-haskell</id>
-  <published>2015-10-16T13:10:42Z</published>
-  <updated>2015-10-16T13:10:42Z</updated>
-  <author>
-   <name>logc</name></author>
-  <content type="html">&lt;html&gt;
-&lt;p&gt;During most of 2014, and previous years, I was very fond of Haskell and learnt the basics of developing server applications with it. I was captured by the elegance and expresiveness of the language. I was specifically enthusiastic about the possibility to write multithreaded and type-safe code without all the fuss of C++ or Java. But I was let down by the complexity of &lt;code&gt;cabal&lt;/code&gt; and the seeming inability of the Haskell community to provide stable packages that would compile on different platforms. I mean actually compile, not just promise that they will compile.&lt;/p&gt;
-
-&lt;p&gt;Around the end of 2014, I got word of Racket as a modern Scheme (Scheme, in turn, being the moder Lisp). For a long time, I had kept in my ever-expanding to-do list to learn a bit of Lisp. People told me that, if I should start anywhere in that &amp;ldquo;language space&amp;rdquo;, I should probably start with Racket, so I gave it a go. Here is a list of the differences I have felt between both languages, not exactly from the point of view of abstract language features but from the point of view of pragmatic work.&lt;/p&gt;
-&lt;!-- more--&gt;
-
-&lt;ul&gt;
- &lt;li&gt;
-  &lt;p&gt;&lt;strong&gt;Racket packages just work&lt;/strong&gt;. I know that &lt;code&gt;cabal&lt;/code&gt; problems have been already  &lt;a href="https://www.fpcomplete.com/blog/2015/05/thousand-user-haskell-survey"&gt;identified by the Haskell  community&lt;/a&gt;  as a pain point (not to say a pain in the &amp;hellip;). But I cannot stress enough how  frustrating it can be to read &lt;a href="http://haskell.cs.yale.edu/euterpea/"&gt;the wonderful documentation about a music  library&lt;/a&gt; which is &lt;a href="https://hackage.haskell.org/package/Euterpea"&gt;listed in  Hackage&lt;/a&gt;, try to build it and  fail completely. Or develop a &lt;a href="http://www.yesodweb.com"&gt;Yesod application&lt;/a&gt; and  being unable to pin down all the sub-dependencies of dependencies, so that a  build in my development machine would succeed and on the machine of my  co-worker it would not, even with the same operating system and GHCi version.&lt;/p&gt;&lt;/li&gt;
- &lt;li&gt;
-  &lt;p&gt;&lt;strong&gt;The rest of tooling is wonderful&lt;/strong&gt;. How is it possible that there is a full  IDE for Racket, including plugins developed by third parties, and the only  IDE for Haskell that I am aware of is the &amp;ldquo;IDE in the cloud&amp;rdquo; from FPComplete?  OK, it seems there is a project called Leksah that builds an IDE for Haskell in  Haskell. It comes in fourth place in the &lt;a href="https://wiki.haskell.org/IDEs"&gt;IDEs page of the Haskell  wiki&lt;/a&gt;, after a &amp;ldquo;colorer plugin for Eclipse&amp;rdquo;.  Which, to me, means that the Haskell community is not serious about giving  people the means to learn Haskell: even if I am the kind of developer that  prefers a simple text editor and a shell, when learning a new language I might  need some more help to &amp;ldquo;keep things stable&amp;rdquo; until I have a better grasp on the  language. With Racket, usually I develop on Vim and the Racket REPL, but when I  am in doubt about a problem, I fire up DrRacket and follow its wise advice.&lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;
-
-&lt;p&gt; But it does not stop at the IDE. &lt;code&gt;raco&lt;/code&gt; is a much better tool at handling  packages, documentation and almost all development tasks than &lt;code&gt;cabal&lt;/code&gt; will ever  be. Maybe &lt;code&gt;stack&lt;/code&gt; will get there at some point. However, and I hate to use this  argumentation, &lt;code&gt;raco&lt;/code&gt; is &lt;strong&gt;already there, bundled with Racket just like the  IDE, and is used by the whole community&lt;/strong&gt;. &lt;code&gt;stack&lt;/code&gt; has been in development just  four months at the time of this writing, and it has yet to prove that it is  adopted by the community.&lt;/p&gt;
-
-&lt;ul&gt;
- &lt;li&gt;&lt;strong&gt;The syntax is terse and this is because the community is not out to show  off&lt;/strong&gt;. This is quite a subjective point, but hey, this is my blog. I do not  remember which author famously remarked that &amp;ldquo;software organizations tend to  write software that reflects the mental state of the organization&amp;rdquo;. Whenever  reading up on Haskell, I noticed a &amp;ldquo;climbing&amp;rdquo; feeling: any concept already  covered was only a step in an infinite ladder of abstractions. At first, you  imagine that from some point on you will be able to write &amp;ldquo;good enough&amp;rdquo; Haskell  to tackle at least the lowly tasks that you intend to accomplish. But this is  never the case. There is yet another language extension that does what you  want, if only you had learnt about it before. In my opinion, this reflects the  elite thinking of (at least a part of) the Haskell community. Nothing is ever  clever enough: there must be a new way to define Arrows, Lenses, and Barbed  wires to fool those who have dared to understand Monads.&lt;/li&gt;&lt;/ul&gt;
-
-&lt;p&gt; Contrast this with the simplicity of the Racket syntax, which is a very  intentional heritage from Scheme and Lisp. There is almost nothing to learn.  From around half of the Racket guide you can write Racket programs that work.  The whole language is there to be expanded by you, if you do not find its  features enough. Yes, there are &amp;ldquo;different languages&amp;rdquo; that can be thought of as  equivalent to the &amp;ldquo;language extensions&amp;rdquo; of Haskell, but when did you read on  any Haskell manual how to introduce your own language extensions?&lt;/p&gt;
-
-&lt;ul&gt;
- &lt;li&gt;If you are thinking, &amp;ldquo;oh but Haskell is typed, while Racket is interpreted&amp;rdquo;,  please have a look at  &lt;a href="http://docs.racket-lang.org/guide/contracts.html"&gt;contracts&lt;/a&gt; for the safety,  and at &lt;a href="http://docs.racket-lang.org/ts-guide/index.html"&gt;Typed Racket&lt;/a&gt; for the  performance. Again the day is saved for Racket (yay).&lt;/li&gt;&lt;/ul&gt;
-
-&lt;p&gt;And this is enough ranting. I would really like to see the Haskell language improve and deliver on the promise that it once was, at least for me. Until then, I will be happily writing parenthesis in Racket.&lt;/p&gt;&lt;/html&gt;</content></entry>
- <entry>
   <title type="text">Open files from last commit in Vim</title>
-  <link rel="alternate" href="http://logc.github.io/blog/2015/07/15/open-files-from-last-commit-in-vim/?utm_source=all&amp;utm_medium=Atom" />
-  <id>urn:http-logc-github-io:-blog-2015-07-15-open-files-from-last-commit-in-vim</id>
+  <link rel="alternate" href="http://logc.github.io/2015/07/open-files-from-last-commit-in-vim.html?utm_source=all&amp;utm_medium=Atom" />
+  <id>urn:http-logc-github-io:-2015-07-open-files-from-last-commit-in-vim-html</id>
   <published>2015-07-15T11:05:47Z</published>
   <updated>2015-07-15T11:05:47Z</updated>
   <author>
@@ -335,8 +293,8 @@ $ git push&lt;/code&gt;&lt;/pre&gt;&lt;/html&gt;</content></entry>
 &lt;pre&gt;&lt;code&gt;$ vim $(git lastedited)&lt;/code&gt;&lt;/pre&gt;&lt;/html&gt;</content></entry>
  <entry>
   <title type="text">If programming languages were music genres</title>
-  <link rel="alternate" href="http://logc.github.io/blog/2015/02/27/if-programming-languages-were-music-genres/?utm_source=all&amp;utm_medium=Atom" />
-  <id>urn:http-logc-github-io:-blog-2015-02-27-if-programming-languages-were-music-genres</id>
+  <link rel="alternate" href="http://logc.github.io/2015/02/if-programming-languages-were-music-genres.html?utm_source=all&amp;utm_medium=Atom" />
+  <id>urn:http-logc-github-io:-2015-02-if-programming-languages-were-music-genres-html</id>
   <published>2015-02-27T16:52:41Z</published>
   <updated>2015-02-27T16:52:41Z</updated>
   <author>
@@ -362,8 +320,8 @@ $ git push&lt;/code&gt;&lt;/pre&gt;&lt;/html&gt;</content></entry>
  &lt;li&gt;&lt;strong&gt;Scala: rap rock&lt;/strong&gt; It tries to bring together the best of two worlds and it  largely succeeds. The hardcore fans of each camp will deny there is any need  to blend their styles together, but from time to time find themselves  listening to it and nodding.&lt;/li&gt;&lt;/ul&gt;&lt;/html&gt;</content></entry>
  <entry>
   <title type="text">Python egg tagged with Git commit hash</title>
-  <link rel="alternate" href="http://logc.github.io/blog/2014/04/01/python-egg-tagged-with-git-commit-hash/?utm_source=all&amp;utm_medium=Atom" />
-  <id>urn:http-logc-github-io:-blog-2014-04-01-python-egg-tagged-with-git-commit-hash</id>
+  <link rel="alternate" href="http://logc.github.io/2014/04/python-egg-tagged-with-git-commit-hash.html?utm_source=all&amp;utm_medium=Atom" />
+  <id>urn:http-logc-github-io:-2014-04-python-egg-tagged-with-git-commit-hash-html</id>
   <published>2014-04-01T15:22:00Z</published>
   <updated>2014-04-01T15:22:00Z</updated>
   <author>
@@ -384,8 +342,24 @@ tag_svn_revision = 1&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Answer: modify directly the &lt;code&gt;options&lt;/code&gt; dictionary in the call to &lt;code&gt;setup&lt;/code&gt;, in &lt;code&gt;setup.py&lt;/code&gt;. There, you can put anything you can compute with Python or system calls. E.g. for git:&lt;/p&gt;
 
 &lt;div class="brush: python"&gt;
- &lt;div class="source"&gt;
-  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;shlex&lt;/span&gt;
+ &lt;table class="sourcetable"&gt;
+  &lt;tbody&gt;
+   &lt;tr&gt;
+    &lt;td class="linenos"&gt;
+     &lt;div class="linenodiv"&gt;
+      &lt;pre&gt; 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;
+    &lt;td class="code"&gt;
+     &lt;div class="source"&gt;
+      &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;shlex&lt;/span&gt;
 &lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;subprocess&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;check_output&lt;/span&gt;
 
 &lt;span class="n"&gt;GIT_HEAD_REV&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;check_output&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;shlex&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;split&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git rev-parse --short HEAD&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;strip&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
@@ -396,18 +370,27 @@ tag_svn_revision = 1&lt;/code&gt;&lt;/pre&gt;
     &lt;span class="n"&gt;options&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;dict&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;egg_info&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;dict&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;tag_build&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;"dev_"&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;GIT_HEAD_REV&lt;/span&gt;&lt;span class="p"&gt;)),&lt;/span&gt;
 &lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-
+&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
 &lt;/div&gt;
 
 &lt;p&gt;With that setup, distributions (&lt;code&gt;sdist&lt;/code&gt; or &lt;code&gt;bdist&lt;/code&gt;) would be tagged with the string &amp;ldquo;dev&amp;rdquo; and the git hash of the latest commit:&lt;/p&gt;
 
 &lt;div class="brush: console"&gt;
- &lt;div class="source"&gt;
-  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; bin/python setup.py sdist bdist_egg
+ &lt;table class="sourcetable"&gt;
+  &lt;tbody&gt;
+   &lt;tr&gt;
+    &lt;td class="linenos"&gt;
+     &lt;div class="linenodiv"&gt;
+      &lt;pre&gt;1
+2
+3&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;
+    &lt;td class="code"&gt;
+     &lt;div class="source"&gt;
+      &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; bin/python setup.py sdist bdist_egg
 &lt;span class="gp"&gt;$&lt;/span&gt; ls dist
 &lt;span class="go"&gt;pyhello-0.1dev-92ffa06.tar.gz    pyhello-0.1dev_92ffa06-py2.7.egg&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-
+&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
 &lt;/div&gt;
 
 &lt;p&gt;Whenever you want to build a stable release (without any &amp;ldquo;dev&amp;rdquo; tags), just set the key to empty in your &lt;code&gt;setup.cfg&lt;/code&gt;, like this:&lt;/p&gt;
@@ -416,8 +399,8 @@ tag_svn_revision = 1&lt;/code&gt;&lt;/pre&gt;
 tag_build =&lt;/code&gt;&lt;/pre&gt;&lt;/html&gt;</content></entry>
  <entry>
   <title type="text">Wordcount in C++</title>
-  <link rel="alternate" href="http://logc.github.io/blog/2014/01/21/wordcount-in-c/?utm_source=all&amp;utm_medium=Atom" />
-  <id>urn:http-logc-github-io:-blog-2014-01-21-wordcount-in-c</id>
+  <link rel="alternate" href="http://logc.github.io/2014/01/wordcount-in-c.html?utm_source=all&amp;utm_medium=Atom" />
+  <id>urn:http-logc-github-io:-2014-01-wordcount-in-c-html</id>
   <published>2014-01-21T14:52:26Z</published>
   <updated>2014-01-21T14:52:26Z</updated>
   <author>
@@ -427,8 +410,78 @@ tag_build =&lt;/code&gt;&lt;/pre&gt;&lt;/html&gt;</content></entry>
 &lt;!-- more--&gt;
 
 &lt;div class="brush: c++"&gt;
- &lt;div class="source"&gt;
-  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;fstream&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+ &lt;table class="sourcetable"&gt;
+  &lt;tbody&gt;
+   &lt;tr&gt;
+    &lt;td class="linenos"&gt;
+     &lt;div class="linenodiv"&gt;
+      &lt;pre&gt; 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;
+    &lt;td class="code"&gt;
+     &lt;div class="source"&gt;
+      &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;fstream&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
 &lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;iostream&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
 &lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;numeric&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
 &lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;sstream&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
@@ -493,14 +546,27 @@ tag_build =&lt;/code&gt;&lt;/pre&gt;&lt;/html&gt;</content></entry>
     &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;span class="p"&gt;}&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-
+&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
 &lt;/div&gt;
 
 &lt;p&gt;Compile and run:&lt;/p&gt;
 
 &lt;div class="brush: console"&gt;
- &lt;div class="source"&gt;
-  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; cat &lt;span class="s"&gt;&amp;lt;&amp;lt; EOF &amp;gt; sample.txt&lt;/span&gt;
+ &lt;table class="sourcetable"&gt;
+  &lt;tbody&gt;
+   &lt;tr&gt;
+    &lt;td class="linenos"&gt;
+     &lt;div class="linenodiv"&gt;
+      &lt;pre&gt;1
+2
+3
+4
+5
+6
+7&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;
+    &lt;td class="code"&gt;
+     &lt;div class="source"&gt;
+      &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; cat &lt;span class="s"&gt;&amp;lt;&amp;lt; EOF &amp;gt; sample.txt&lt;/span&gt;
 &lt;span class="gp"&gt;&amp;gt;&lt;/span&gt;&lt;span class="s"&gt; This is a first line&lt;/span&gt;
 &lt;span class="gp"&gt;&amp;gt;&lt;/span&gt;&lt;span class="s"&gt; This is a second line&lt;/span&gt;
 &lt;span class="gp"&gt;&amp;gt;&lt;/span&gt;&lt;span class="s"&gt; EOF&lt;/span&gt;
@@ -508,12 +574,12 @@ tag_build =&lt;/code&gt;&lt;/pre&gt;&lt;/html&gt;</content></entry>
 &lt;span class="gp"&gt;$&lt;/span&gt; c++ main.cpp -o wordcount -std&lt;span class="o"&gt;=&lt;/span&gt;c++11 &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; ./wordcount sample.txt
 &lt;span class="go"&gt;File sample.txt holds 10 words&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-
+&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
 &lt;/div&gt;&lt;/html&gt;</content></entry>
  <entry>
   <title type="text">Reduce in standard C++</title>
-  <link rel="alternate" href="http://logc.github.io/blog/2014/01/20/reduce-in-standard-c/?utm_source=all&amp;utm_medium=Atom" />
-  <id>urn:http-logc-github-io:-blog-2014-01-20-reduce-in-standard-c</id>
+  <link rel="alternate" href="http://logc.github.io/2014/01/reduce-in-standard-c.html?utm_source=all&amp;utm_medium=Atom" />
+  <id>urn:http-logc-github-io:-2014-01-reduce-in-standard-c-html</id>
   <published>2014-01-20T13:47:25Z</published>
   <updated>2014-01-20T13:47:25Z</updated>
   <author>
@@ -525,8 +591,37 @@ tag_build =&lt;/code&gt;&lt;/pre&gt;&lt;/html&gt;</content></entry>
 &lt;!-- more--&gt;
 
 &lt;div class="brush: c++"&gt;
- &lt;div class="source"&gt;
-  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;iostream&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+ &lt;table class="sourcetable"&gt;
+  &lt;tbody&gt;
+   &lt;tr&gt;
+    &lt;td class="linenos"&gt;
+     &lt;div class="linenodiv"&gt;
+      &lt;pre&gt; 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;
+    &lt;td class="code"&gt;
+     &lt;div class="source"&gt;
+      &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;iostream&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
 &lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;vector&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
 &lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;numeric&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
 
@@ -550,7 +645,7 @@ tag_build =&lt;/code&gt;&lt;/pre&gt;&lt;/html&gt;</content></entry>
     &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;span class="p"&gt;}&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-
+&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
 &lt;/div&gt;
 
 &lt;h2 id="compile-and-run"&gt;Compile and run&lt;/h2&gt;
@@ -558,16 +653,24 @@ tag_build =&lt;/code&gt;&lt;/pre&gt;&lt;/html&gt;</content></entry>
 &lt;p&gt;In this example, the compilation needs a &lt;code&gt;-std=c++11&lt;/code&gt; flag in order to set the standard to C++11, a fairly recent standard that is not supported by all compilers and systems. However, the part that is written in this new standard is the &lt;em&gt;accumulating function&lt;/em&gt;, which is expressed as a lambda in this example. If you move its code to a named function outside the &lt;code&gt;main&lt;/code&gt;, this code should compile with many more compilers.&lt;/p&gt;
 
 &lt;div class="brush: console"&gt;
- &lt;div class="source"&gt;
-  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; c++ main.cpp -o example -std&lt;span class="o"&gt;=&lt;/span&gt;c++11 &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; ./example
+ &lt;table class="sourcetable"&gt;
+  &lt;tbody&gt;
+   &lt;tr&gt;
+    &lt;td class="linenos"&gt;
+     &lt;div class="linenodiv"&gt;
+      &lt;pre&gt;1
+2&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;
+    &lt;td class="code"&gt;
+     &lt;div class="source"&gt;
+      &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; c++ main.cpp -o example -std&lt;span class="o"&gt;=&lt;/span&gt;c++11 &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; ./example
 &lt;span class="go"&gt;0.3&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-
+&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
 &lt;/div&gt;&lt;/html&gt;</content></entry>
  <entry>
   <title type="text">How do you develop with Yesod</title>
-  <link rel="alternate" href="http://logc.github.io/blog/2013/12/04/how-do-you-develop-with-yesod/?utm_source=all&amp;utm_medium=Atom" />
-  <id>urn:http-logc-github-io:-blog-2013-12-04-how-do-you-develop-with-yesod</id>
+  <link rel="alternate" href="http://logc.github.io/2013/12/how-do-you-develop-with-yesod.html?utm_source=all&amp;utm_medium=Atom" />
+  <id>urn:http-logc-github-io:-2013-12-how-do-you-develop-with-yesod-html</id>
   <published>2013-12-04T14:39:03Z</published>
   <updated>2013-12-04T14:39:03Z</updated>
   <author>
@@ -580,10 +683,17 @@ tag_build =&lt;/code&gt;&lt;/pre&gt;&lt;/html&gt;</content></entry>
 &lt;p&gt;The purpose of this post is to explain to a new Yesod developer &amp;ldquo;What do I do after &amp;hellip; ?&amp;rdquo; :&lt;/p&gt;
 
 &lt;div class="brush: console"&gt;
- &lt;div class="source"&gt;
-  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; yesod init
+ &lt;table class="sourcetable"&gt;
+  &lt;tbody&gt;
+   &lt;tr&gt;
+    &lt;td class="linenos"&gt;
+     &lt;div class="linenodiv"&gt;
+      &lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;
+    &lt;td class="code"&gt;
+     &lt;div class="source"&gt;
+      &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; yesod init
 &lt;/pre&gt;&lt;/div&gt;
-
+&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;!-- more--&gt;
 
@@ -675,11 +785,19 @@ Email
 &lt;p&gt;Let us see a stub example of one of those functions:&lt;/p&gt;
 
 &lt;div class="brush: haskell"&gt;
- &lt;div class="source"&gt;
-  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nf"&gt;getDonkeyR&lt;/span&gt; &lt;span class="ow"&gt;::&lt;/span&gt; &lt;span class="kt"&gt;DonkeyId&lt;/span&gt; &lt;span class="ow"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kt"&gt;Handler&lt;/span&gt; &lt;span class="kt"&gt;Html&lt;/span&gt;
+ &lt;table class="sourcetable"&gt;
+  &lt;tbody&gt;
+   &lt;tr&gt;
+    &lt;td class="linenos"&gt;
+     &lt;div class="linenodiv"&gt;
+      &lt;pre&gt;1
+2&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;
+    &lt;td class="code"&gt;
+     &lt;div class="source"&gt;
+      &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nf"&gt;getDonkeyR&lt;/span&gt; &lt;span class="ow"&gt;::&lt;/span&gt; &lt;span class="kt"&gt;DonkeyId&lt;/span&gt; &lt;span class="ow"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kt"&gt;Handler&lt;/span&gt; &lt;span class="kt"&gt;Html&lt;/span&gt;
 &lt;span class="nf"&gt;getDonkeyR&lt;/span&gt; &lt;span class="n"&gt;donkeyId&lt;/span&gt; &lt;span class="ow"&gt;=&lt;/span&gt; &lt;span class="n"&gt;undefined&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-
+&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
 &lt;/div&gt;
 
 &lt;h4 id="handler-function-signature"&gt;Handler function signature&lt;/h4&gt;
@@ -709,32 +827,57 @@ Email
 &lt;p&gt;Consider the following function:&lt;/p&gt;
 
 &lt;div class="brush: haskell"&gt;
- &lt;div class="source"&gt;
-  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nf"&gt;getBooksR&lt;/span&gt; &lt;span class="ow"&gt;::&lt;/span&gt; &lt;span class="kt"&gt;Handler&lt;/span&gt; &lt;span class="kt"&gt;Html&lt;/span&gt;
+ &lt;table class="sourcetable"&gt;
+  &lt;tbody&gt;
+   &lt;tr&gt;
+    &lt;td class="linenos"&gt;
+     &lt;div class="linenodiv"&gt;
+      &lt;pre&gt;1
+2
+3
+4
+5&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;
+    &lt;td class="code"&gt;
+     &lt;div class="source"&gt;
+      &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nf"&gt;getBooksR&lt;/span&gt; &lt;span class="ow"&gt;::&lt;/span&gt; &lt;span class="kt"&gt;Handler&lt;/span&gt; &lt;span class="kt"&gt;Html&lt;/span&gt;
 &lt;span class="nf"&gt;getBooksR&lt;/span&gt; &lt;span class="ow"&gt;=&lt;/span&gt; &lt;span class="kr"&gt;do&lt;/span&gt;
         &lt;span class="n"&gt;books&lt;/span&gt; &lt;span class="ow"&gt;&amp;lt;-&lt;/span&gt; &lt;span class="n"&gt;runDB&lt;/span&gt; &lt;span class="o"&gt;$&lt;/span&gt; &lt;span class="n"&gt;selectList&lt;/span&gt; &lt;span class="kt"&gt;[]&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="kt"&gt;Asc&lt;/span&gt; &lt;span class="kt"&gt;BookTitle&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
         &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;formWidget&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;enctype&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="ow"&gt;&amp;lt;-&lt;/span&gt; &lt;span class="n"&gt;generateFormPost&lt;/span&gt; &lt;span class="n"&gt;bookForm&lt;/span&gt;
         &lt;span class="n"&gt;defaultLayout&lt;/span&gt; &lt;span class="o"&gt;$&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;widgetFile&lt;/span&gt; &lt;span class="s"&gt;"books"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-
+&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
 &lt;/div&gt;
 
 &lt;p&gt;The first line after &lt;code&gt;do&lt;/code&gt; allows us to get a Book model out of the database. The &lt;code&gt;runDB&lt;/code&gt; function runs any query on the database, while the &lt;code&gt;selectList&lt;/code&gt; function composes a query that returns its results as a list. The empty first argument means we take &lt;strong&gt;all fields&lt;/strong&gt; from each record, and the second argument accepts a number of filters and modifyers. The example shown is equivalent, in SQL, to:&lt;/p&gt;
 
 &lt;div class="brush: sql"&gt;
- &lt;div class="source"&gt;
-  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;SELECT&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="k"&gt;FROM&lt;/span&gt; &lt;span class="n"&gt;books&lt;/span&gt; &lt;span class="k"&gt;ORDER&lt;/span&gt; &lt;span class="k"&gt;BY&lt;/span&gt; &lt;span class="ss"&gt;"BookTitle"&lt;/span&gt; &lt;span class="k"&gt;ASC&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+ &lt;table class="sourcetable"&gt;
+  &lt;tbody&gt;
+   &lt;tr&gt;
+    &lt;td class="linenos"&gt;
+     &lt;div class="linenodiv"&gt;
+      &lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;
+    &lt;td class="code"&gt;
+     &lt;div class="source"&gt;
+      &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;SELECT&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="k"&gt;FROM&lt;/span&gt; &lt;span class="n"&gt;books&lt;/span&gt; &lt;span class="k"&gt;ORDER&lt;/span&gt; &lt;span class="k"&gt;BY&lt;/span&gt; &lt;span class="ss"&gt;"BookTitle"&lt;/span&gt; &lt;span class="k"&gt;ASC&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-
+&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
 &lt;/div&gt;
 
 &lt;p&gt;Then we would go on to render the correct HTML template with the default layout. The template will have direct access to the &lt;code&gt;books&lt;/code&gt; variable because it is in the same scope (the handler function). We will see how this happens when we discuss templates. The rendering happens with the line:&lt;/p&gt;
 
 &lt;div class="brush: haskell"&gt;
- &lt;div class="source"&gt;
-  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nf"&gt;defaultLayout&lt;/span&gt; &lt;span class="o"&gt;$&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;widgetFile&lt;/span&gt; &lt;span class="s"&gt;"books"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+ &lt;table class="sourcetable"&gt;
+  &lt;tbody&gt;
+   &lt;tr&gt;
+    &lt;td class="linenos"&gt;
+     &lt;div class="linenodiv"&gt;
+      &lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;
+    &lt;td class="code"&gt;
+     &lt;div class="source"&gt;
+      &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nf"&gt;defaultLayout&lt;/span&gt; &lt;span class="o"&gt;$&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;widgetFile&lt;/span&gt; &lt;span class="s"&gt;"books"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-
+&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
 &lt;/div&gt;
 
 &lt;p&gt;The template rendering takes the &lt;code&gt;defaultLayout&lt;/code&gt; function, applied on the result of loading a widgetFile by name. The default layout renders the template found under &lt;code&gt;templates/default-layout.*&lt;/code&gt; and includes within it the result of rendering whatever is on the &lt;code&gt;templates/books.*&lt;/code&gt; files. This helps make the look and feel uniform across the website.&lt;/p&gt;
@@ -746,8 +889,24 @@ Email
 &lt;p&gt;Consider the following function:&lt;/p&gt;
 
 &lt;div class="brush: haskell"&gt;
- &lt;div class="source"&gt;
-  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nf"&gt;postBooksR&lt;/span&gt; &lt;span class="ow"&gt;::&lt;/span&gt; &lt;span class="kt"&gt;Handler&lt;/span&gt; &lt;span class="kt"&gt;Html&lt;/span&gt;
+ &lt;table class="sourcetable"&gt;
+  &lt;tbody&gt;
+   &lt;tr&gt;
+    &lt;td class="linenos"&gt;
+     &lt;div class="linenodiv"&gt;
+      &lt;pre&gt; 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;
+    &lt;td class="code"&gt;
+     &lt;div class="source"&gt;
+      &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nf"&gt;postBooksR&lt;/span&gt; &lt;span class="ow"&gt;::&lt;/span&gt; &lt;span class="kt"&gt;Handler&lt;/span&gt; &lt;span class="kt"&gt;Html&lt;/span&gt;
 &lt;span class="nf"&gt;postBooksR&lt;/span&gt; &lt;span class="ow"&gt;=&lt;/span&gt; &lt;span class="kr"&gt;do&lt;/span&gt;
     &lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="n"&gt;result&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kr"&gt;_&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="kr"&gt;_&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="ow"&gt;&amp;lt;-&lt;/span&gt; &lt;span class="n"&gt;runFormPost&lt;/span&gt; &lt;span class="n"&gt;bookForm&lt;/span&gt;
     &lt;span class="kr"&gt;case&lt;/span&gt; &lt;span class="n"&gt;result&lt;/span&gt; &lt;span class="kr"&gt;of&lt;/span&gt;
@@ -758,16 +917,23 @@ Email
             &lt;span class="n"&gt;setMessage&lt;/span&gt; &lt;span class="s"&gt;"Invalid data"&lt;/span&gt;
             &lt;span class="n"&gt;redirect&lt;/span&gt; &lt;span class="o"&gt;$&lt;/span&gt; &lt;span class="kt"&gt;BooksR&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-
+&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
 &lt;/div&gt;
 
 &lt;p&gt;The first line after &lt;code&gt;do&lt;/code&gt; gets the result out of a form that is defined and rendered elsewhere. The result may be a success, because all inputs are filled out and are of the expected types, or it may be anything else (an error), where we print an error message and do no more. If we have a success, then we can extract the specific &lt;code&gt;book&lt;/code&gt; (of type &lt;code&gt;Book&lt;/code&gt;) out of the &lt;code&gt;FormSuccess&lt;/code&gt; monad via pattern matching, and then insert it into the DB via the Persist &lt;code&gt;insert&lt;/code&gt; function:&lt;/p&gt;
 
 &lt;div class="brush: haskell"&gt;
- &lt;div class="source"&gt;
-  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nf"&gt;bookid&lt;/span&gt; &lt;span class="ow"&gt;&amp;lt;-&lt;/span&gt; &lt;span class="n"&gt;runDB&lt;/span&gt; &lt;span class="o"&gt;$&lt;/span&gt; &lt;span class="n"&gt;insert&lt;/span&gt; &lt;span class="n"&gt;book&lt;/span&gt;
+ &lt;table class="sourcetable"&gt;
+  &lt;tbody&gt;
+   &lt;tr&gt;
+    &lt;td class="linenos"&gt;
+     &lt;div class="linenodiv"&gt;
+      &lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;
+    &lt;td class="code"&gt;
+     &lt;div class="source"&gt;
+      &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nf"&gt;bookid&lt;/span&gt; &lt;span class="ow"&gt;&amp;lt;-&lt;/span&gt; &lt;span class="n"&gt;runDB&lt;/span&gt; &lt;span class="o"&gt;$&lt;/span&gt; &lt;span class="n"&gt;insert&lt;/span&gt; &lt;span class="n"&gt;book&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-
+&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
 &lt;/div&gt;
 
 &lt;p&gt;Notice this works without any more specifications because we know, from the compile process, that the result of parsing the form contents must have enough informations to build a Book model, and a Book model can be written to database because we have already parsed it and created the necessary tables (in the case of a relational DB engine) on app startup.&lt;/p&gt;
@@ -817,8 +983,8 @@ Email
   &lt;p&gt;In &lt;code&gt;templates/&amp;lt;name&amp;gt;.{hamlet,lucius,julius}&lt;/code&gt;: write the &lt;strong&gt;templates&lt;/strong&gt; that  are filled out by the handler functions&lt;/p&gt;&lt;/li&gt;&lt;/ol&gt;&lt;/html&gt;</content></entry>
  <entry>
   <title type="text">Instalar Python 2.7 y NumPy sobre RedHat 6</title>
-  <link rel="alternate" href="http://logc.github.io/blog/2013/12/04/instalar-python-2-7-y-numpy-sobre-redhat-6/?utm_source=all&amp;utm_medium=Atom" />
-  <id>urn:http-logc-github-io:-blog-2013-12-04-instalar-python-2-7-y-numpy-sobre-redhat-6</id>
+  <link rel="alternate" href="http://logc.github.io/2013/12/instalar-python-2-7-y-numpy-sobre-redhat-6.html?utm_source=all&amp;utm_medium=Atom" />
+  <id>urn:http-logc-github-io:-2013-12-instalar-python-2-7-y-numpy-sobre-redhat-6-html</id>
   <published>2013-12-04T11:44:57Z</published>
   <updated>2013-12-04T11:44:57Z</updated>
   <author>
@@ -831,22 +997,48 @@ Email
 &lt;p&gt;La mejor manera, pese a lo que pueda parecer, es &lt;strong&gt;instalar desde fuentes&lt;/strong&gt;, haciendo lo que se conoce como &amp;ldquo;altinstall&amp;rdquo; (instalación alternativa). Esto crea ejecutables llamados &lt;code&gt;python2.7&lt;/code&gt; bajo &lt;code&gt;/usr/local/bin&lt;/code&gt;, que &lt;strong&gt;no sobreescriben&lt;/strong&gt; el comando &lt;code&gt;python&lt;/code&gt; normal del sistema; éste sigue apuntando a un ejecutable bajo &lt;code&gt;/usr/bin&lt;/code&gt;.&lt;/p&gt;
 
 &lt;div class="brush: console"&gt;
- &lt;div class="source"&gt;
-  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; wget http://www.python.org/ftp/python/2.7.6/Python-2.7.6.tgz
+ &lt;table class="sourcetable"&gt;
+  &lt;tbody&gt;
+   &lt;tr&gt;
+    &lt;td class="linenos"&gt;
+     &lt;div class="linenodiv"&gt;
+      &lt;pre&gt;1
+2
+3
+4
+5
+6&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;
+    &lt;td class="code"&gt;
+     &lt;div class="source"&gt;
+      &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; wget http://www.python.org/ftp/python/2.7.6/Python-2.7.6.tgz
 &lt;span class="gp"&gt;$&lt;/span&gt; tar xvfz Python-2.7.6.tgz
 &lt;span class="gp"&gt;$&lt;/span&gt; &lt;span class="nb"&gt;cd&lt;/span&gt; Python-2.7.6
 &lt;span class="gp"&gt;$&lt;/span&gt; ./configure
 &lt;span class="gp"&gt;$&lt;/span&gt; make
 &lt;span class="gp"&gt;$&lt;/span&gt; sudo make altinstall
 &lt;/pre&gt;&lt;/div&gt;
-
+&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
 &lt;/div&gt;
 
 &lt;p&gt;Además de esto, es recomendable instalar &lt;strong&gt;un &lt;code&gt;easy_install&lt;/code&gt; alternativo también&lt;/strong&gt;, ya que, si no, todas las librerías de python se instalarán para la 2.6 y no para la 2.7.&lt;/p&gt;
 
 &lt;div class="brush: console"&gt;
- &lt;div class="source"&gt;
-  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; wget http://pypi.python.org/packages/2.7/s/setuptools/setuptools-0.6c11-py2.7.egg
+ &lt;table class="sourcetable"&gt;
+  &lt;tbody&gt;
+   &lt;tr&gt;
+    &lt;td class="linenos"&gt;
+     &lt;div class="linenodiv"&gt;
+      &lt;pre&gt;1
+2
+3
+4
+5
+6
+7
+8&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;
+    &lt;td class="code"&gt;
+     &lt;div class="source"&gt;
+      &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; wget http://pypi.python.org/packages/2.7/s/setuptools/setuptools-0.6c11-py2.7.egg
 &lt;span class="gp"&gt;$&lt;/span&gt; sudo -i
 &lt;span class="gp"&gt;#&lt;/span&gt; &lt;span class="nb"&gt;export&lt;/span&gt; &lt;span class="nv"&gt;PATH&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;$PATH&lt;/span&gt;:/usr/local/bin
 &lt;span class="gp"&gt;#&lt;/span&gt; sh setuptools-0.6c11-py2.7.egg
@@ -855,14 +1047,14 @@ Email
 &lt;span class="gp"&gt;$&lt;/span&gt; &lt;span class="c1"&gt;# You may now try the easy_install for 2.7 with e.g.:&lt;/span&gt;
 &lt;span class="gp"&gt;$&lt;/span&gt; sudo /usr/local/bin/easy_install-2.7 numpy
 &lt;/pre&gt;&lt;/div&gt;
-
+&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
 &lt;/div&gt;
 
 &lt;p&gt;Este post es una combinación de &lt;a href="http://stackoverflow.com/questions/4149361/on-linux-suse-or-redhat-how-do-i-load-python-2-7"&gt;dos respuestas en Stack Overflow&lt;/a&gt;, y mi propia experiencia con este mismo problema.&lt;/p&gt;&lt;/html&gt;</content></entry>
  <entry>
   <title type="text">Unicode encodings</title>
-  <link rel="alternate" href="http://logc.github.io/blog/2013/12/03/unicode-encodings/?utm_source=all&amp;utm_medium=Atom" />
-  <id>urn:http-logc-github-io:-blog-2013-12-03-unicode-encodings</id>
+  <link rel="alternate" href="http://logc.github.io/2013/12/unicode-encodings.html?utm_source=all&amp;utm_medium=Atom" />
+  <id>urn:http-logc-github-io:-2013-12-unicode-encodings-html</id>
   <published>2013-12-03T13:46:19Z</published>
   <updated>2013-12-03T13:46:19Z</updated>
   <author>
@@ -881,17 +1073,26 @@ Email
 &lt;p&gt;La función &lt;code&gt;unicode&lt;/code&gt; &lt;strong&gt;no utiliza UTF&amp;ndash;8 por defecto&lt;/strong&gt;, sino, absurdamente, ASCII. Por eso &lt;em&gt;sólo es equivalente a poner una &lt;code&gt;u&lt;/code&gt; delante una cadena si se especifica que el &lt;code&gt;encoding&lt;/code&gt; sea &lt;code&gt;'utf-8'&lt;/code&gt;&lt;/em&gt;.&lt;/p&gt;
 
 &lt;div class="brush: python"&gt;
- &lt;div class="source"&gt;
-  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;unicode_string&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;u"Años"&lt;/span&gt;
+ &lt;table class="sourcetable"&gt;
+  &lt;tbody&gt;
+   &lt;tr&gt;
+    &lt;td class="linenos"&gt;
+     &lt;div class="linenodiv"&gt;
+      &lt;pre&gt;1
+2
+3&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;
+    &lt;td class="code"&gt;
+     &lt;div class="source"&gt;
+      &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;unicode_string&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;u"Años"&lt;/span&gt;
 
 &lt;span class="n"&gt;unicode_str&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;unicode&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;open&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;some.txt&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;r&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;read&lt;/span&gt;&lt;span class="p"&gt;(),&lt;/span&gt; &lt;span class="n"&gt;encoding&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;utf-8&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-
+&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
 &lt;/div&gt;&lt;/html&gt;</content></entry>
  <entry>
   <title type="text">py2app excludes</title>
-  <link rel="alternate" href="http://logc.github.io/blog/2013/12/02/py2app-excludes/?utm_source=all&amp;utm_medium=Atom" />
-  <id>urn:http-logc-github-io:-blog-2013-12-02-py2app-excludes</id>
+  <link rel="alternate" href="http://logc.github.io/2013/12/py2app-excludes.html?utm_source=all&amp;utm_medium=Atom" />
+  <id>urn:http-logc-github-io:-2013-12-py2app-excludes-html</id>
   <published>2013-12-02T20:58:08Z</published>
   <updated>2013-12-02T20:58:08Z</updated>
   <author>
@@ -904,8 +1105,79 @@ Email
 &lt;p&gt;Con la lista siguiente, el peso baja de 22 MBs a 6 MBs. Probablemente se puede rebajar aún más.&lt;/p&gt;
 
 &lt;div class="brush: python"&gt;
- &lt;div class="source"&gt;
-  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# File: setup.py&lt;/span&gt;
+ &lt;table class="sourcetable"&gt;
+  &lt;tbody&gt;
+   &lt;tr&gt;
+    &lt;td class="linenos"&gt;
+     &lt;div class="linenodiv"&gt;
+      &lt;pre&gt; 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;
+    &lt;td class="code"&gt;
+     &lt;div class="source"&gt;
+      &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# File: setup.py&lt;/span&gt;
 
 &lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;setuptools&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;setup&lt;/span&gt;
 
@@ -971,12 +1243,12 @@ Email
     &lt;span class="n"&gt;setup_requires&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;py2app&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
 &lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-
+&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
 &lt;/div&gt;&lt;/html&gt;</content></entry>
  <entry>
   <title type="text">Compilar Cython</title>
-  <link rel="alternate" href="http://logc.github.io/blog/2013/11/19/compilar-cython/?utm_source=all&amp;utm_medium=Atom" />
-  <id>urn:http-logc-github-io:-blog-2013-11-19-compilar-cython</id>
+  <link rel="alternate" href="http://logc.github.io/2013/11/compilar-cython.html?utm_source=all&amp;utm_medium=Atom" />
+  <id>urn:http-logc-github-io:-2013-11-compilar-cython-html</id>
   <published>2013-11-19T08:30:14Z</published>
   <updated>2013-11-19T08:30:14Z</updated>
   <author>
@@ -985,8 +1257,23 @@ Email
 &lt;p&gt;Compilar ficheros de Cython es más fácil usando la función &lt;code&gt;cythonize&lt;/code&gt; dentro del setup.py de nuestro proyecto:&lt;/p&gt;
 
 &lt;div class="brush: python"&gt;
- &lt;div class="source"&gt;
-  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# File: setup.py&lt;/span&gt;
+ &lt;table class="sourcetable"&gt;
+  &lt;tbody&gt;
+   &lt;tr&gt;
+    &lt;td class="linenos"&gt;
+     &lt;div class="linenodiv"&gt;
+      &lt;pre&gt;1
+2
+3
+4
+5
+6
+7
+8
+9&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;
+    &lt;td class="code"&gt;
+     &lt;div class="source"&gt;
+      &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# File: setup.py&lt;/span&gt;
 
 &lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;distutils.core&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;setup&lt;/span&gt;
 &lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;Cython.Build&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;cythonize&lt;/span&gt;
@@ -996,14 +1283,27 @@ Email
       &lt;span class="n"&gt;ext_modules&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;cythonize&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;fibonacci.pyx&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="c1"&gt;# accepts a glob pattern&lt;/span&gt;
 &lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-
+&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
 &lt;/div&gt;
 
 &lt;p&gt;Por ejemplo, el fichero a compilar es fibonacci.pyx, que contiene un ejemplo del tutorial de Cython:&lt;/p&gt;
 
 &lt;div class="brush: python"&gt;
- &lt;div class="source"&gt;
-  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# File: fibonacci.pyx&lt;/span&gt;
+ &lt;table class="sourcetable"&gt;
+  &lt;tbody&gt;
+   &lt;tr&gt;
+    &lt;td class="linenos"&gt;
+     &lt;div class="linenodiv"&gt;
+      &lt;pre&gt;1
+2
+3
+4
+5
+6
+7&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;
+    &lt;td class="code"&gt;
+     &lt;div class="source"&gt;
+      &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# File: fibonacci.pyx&lt;/span&gt;
 
 &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;fib&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
     &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
@@ -1011,20 +1311,31 @@ Email
         &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
         &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-
+&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
 &lt;/div&gt;
 
 &lt;p&gt;El resultado de compilar &lt;code&gt;fibonacci.pyx&lt;/code&gt; es un fichero con código intermedio en C &lt;code&gt;fibonacci.c&lt;/code&gt; y un fichero compilado &lt;code&gt;fibonacci.so&lt;/code&gt;.&lt;/p&gt;
 
 &lt;div class="brush: bash"&gt;
- &lt;div class="source"&gt;
-  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ python setup.py build
+ &lt;table class="sourcetable"&gt;
+  &lt;tbody&gt;
+   &lt;tr&gt;
+    &lt;td class="linenos"&gt;
+     &lt;div class="linenodiv"&gt;
+      &lt;pre&gt;1
+2
+3
+4
+5&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;
+    &lt;td class="code"&gt;
+     &lt;div class="source"&gt;
+      &lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ python setup.py build
 running build
 running build_ext
 building &lt;span class="s1"&gt;&amp;#39;fibonacci&amp;#39;&lt;/span&gt; extension
 /usr/bin/clang ...snip... -o build/lib.macosx-10.8-x86_64-2.7/fibonacci.so
 &lt;/pre&gt;&lt;/div&gt;
-
+&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
 &lt;/div&gt;
 
 &lt;blockquote&gt;
@@ -1034,17 +1345,26 @@ building &lt;span class="s1"&gt;&amp;#39;fibonacci&amp;#39;&lt;/span&gt; extensi
 &lt;p&gt;El fichero .so puede usarse desde otros módulos de Python, o directamente desde la shell&lt;/p&gt;
 
 &lt;div class="brush: pycon"&gt;
- &lt;div class="source"&gt;
-  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;&amp;gt;&amp;gt;&amp;gt; &lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;fibonacci&lt;/span&gt;
+ &lt;table class="sourcetable"&gt;
+  &lt;tbody&gt;
+   &lt;tr&gt;
+    &lt;td class="linenos"&gt;
+     &lt;div class="linenodiv"&gt;
+      &lt;pre&gt;1
+2
+3&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;
+    &lt;td class="code"&gt;
+     &lt;div class="source"&gt;
+      &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;&amp;gt;&amp;gt;&amp;gt; &lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;fibonacci&lt;/span&gt;
 &lt;span class="gp"&gt;&amp;gt;&amp;gt;&amp;gt; &lt;/span&gt;&lt;span class="n"&gt;fibonacci&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;fib&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="go"&gt;1 1 2 3&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-
+&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
 &lt;/div&gt;&lt;/html&gt;</content></entry>
  <entry>
   <title type="text">Infraestructura de lanzamientos locales</title>
-  <link rel="alternate" href="http://logc.github.io/blog/2013/11/17/infraestructura-de-lanzamientos-locales/?utm_source=all&amp;utm_medium=Atom" />
-  <id>urn:http-logc-github-io:-blog-2013-11-17-infraestructura-de-lanzamientos-locales</id>
+  <link rel="alternate" href="http://logc.github.io/2013/11/infraestructura-de-lanzamientos-locales.html?utm_source=all&amp;utm_medium=Atom" />
+  <id>urn:http-logc-github-io:-2013-11-infraestructura-de-lanzamientos-locales-html</id>
   <published>2013-11-17T21:43:12Z</published>
   <updated>2013-11-17T21:43:12Z</updated>
   <author>
@@ -1066,21 +1386,45 @@ building &lt;span class="s1"&gt;&amp;#39;fibonacci&amp;#39;&lt;/span&gt; extensi
 &lt;p&gt;Crea un directorio llamado &lt;code&gt;pyhello&lt;/code&gt;, y los siguientes directorios y ficheros dentro de él:&lt;/p&gt;
 
 &lt;div class="brush: console"&gt;
- &lt;div class="source"&gt;
-  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="go"&gt;.&lt;/span&gt;
+ &lt;table class="sourcetable"&gt;
+  &lt;tbody&gt;
+   &lt;tr&gt;
+    &lt;td class="linenos"&gt;
+     &lt;div class="linenodiv"&gt;
+      &lt;pre&gt;1
+2
+3
+4
+5&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;
+    &lt;td class="code"&gt;
+     &lt;div class="source"&gt;
+      &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="go"&gt;.&lt;/span&gt;
 &lt;span class="go"&gt;├── pyhello&lt;/span&gt;
 &lt;span class="go"&gt;│   ├── __init__.py&lt;/span&gt;
 &lt;span class="go"&gt;│   └── main.py&lt;/span&gt;
 &lt;span class="go"&gt;└── setup.py&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-
+&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
 &lt;/div&gt;
 
 &lt;p&gt;El contenido de &lt;code&gt;setup.py&lt;/code&gt;:&lt;/p&gt;
 
 &lt;div class="brush: python"&gt;
- &lt;div class="source"&gt;
-  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;setuptools&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;setup&lt;/span&gt;
+ &lt;table class="sourcetable"&gt;
+  &lt;tbody&gt;
+   &lt;tr&gt;
+    &lt;td class="linenos"&gt;
+     &lt;div class="linenodiv"&gt;
+      &lt;pre&gt;1
+2
+3
+4
+5
+6
+7&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;
+    &lt;td class="code"&gt;
+     &lt;div class="source"&gt;
+      &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;setuptools&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;setup&lt;/span&gt;
 
 &lt;span class="n"&gt;setup&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;pyhello&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
       &lt;span class="n"&gt;version&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;0.1&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
@@ -1088,26 +1432,41 @@ building &lt;span class="s1"&gt;&amp;#39;fibonacci&amp;#39;&lt;/span&gt; extensi
       &lt;span class="n"&gt;entry_points&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
           &lt;span class="s1"&gt;&amp;#39;console_scripts&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;pyhello=pyhello.main:main&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]})&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-
+&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
 &lt;/div&gt;
 
 &lt;p&gt;El contenido de &lt;code&gt;pyhello/main.py&lt;/code&gt;:&lt;/p&gt;
 
 &lt;div class="brush: python"&gt;
- &lt;div class="source"&gt;
-  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+ &lt;table class="sourcetable"&gt;
+  &lt;tbody&gt;
+   &lt;tr&gt;
+    &lt;td class="linenos"&gt;
+     &lt;div class="linenodiv"&gt;
+      &lt;pre&gt;1
+2&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;
+    &lt;td class="code"&gt;
+     &lt;div class="source"&gt;
+      &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
     &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s2"&gt;"Hello from pyhello!"&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-
+&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
 &lt;/div&gt;
 
 &lt;p&gt;Después crea una distribución de fuentes con el comando estándar:&lt;/p&gt;
 
 &lt;div class="brush: console"&gt;
- &lt;div class="source"&gt;
-  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="go"&gt;python setup.py sdist&lt;/span&gt;
+ &lt;table class="sourcetable"&gt;
+  &lt;tbody&gt;
+   &lt;tr&gt;
+    &lt;td class="linenos"&gt;
+     &lt;div class="linenodiv"&gt;
+      &lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;
+    &lt;td class="code"&gt;
+     &lt;div class="source"&gt;
+      &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="go"&gt;python setup.py sdist&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-
+&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
 &lt;/div&gt;
 
 &lt;p&gt;Esto crea un lanzamiento llamado &lt;code&gt;pyhello-0.1.tar.gz&lt;/code&gt; bajo el directorio &lt;code&gt;dist&lt;/code&gt;.&lt;/p&gt;
@@ -1121,33 +1480,59 @@ building &lt;span class="s1"&gt;&amp;#39;fibonacci&amp;#39;&lt;/span&gt; extensi
 &lt;p&gt;El contenido de &lt;code&gt;YOUR_USERNAME.conf&lt;/code&gt;:&lt;/p&gt;
 
 &lt;div class="brush: apacheconf"&gt;
- &lt;div class="source"&gt;
-  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nt"&gt;&amp;lt;Directory&lt;/span&gt; &lt;span class="s"&gt;"/Users/YOUR_USERNAME/Sites/"&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+ &lt;table class="sourcetable"&gt;
+  &lt;tbody&gt;
+   &lt;tr&gt;
+    &lt;td class="linenos"&gt;
+     &lt;div class="linenodiv"&gt;
+      &lt;pre&gt;1
+2
+3
+4
+5
+6&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;
+    &lt;td class="code"&gt;
+     &lt;div class="source"&gt;
+      &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nt"&gt;&amp;lt;Directory&lt;/span&gt; &lt;span class="s"&gt;"/Users/YOUR_USERNAME/Sites/"&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
     &lt;span class="nb"&gt;Options&lt;/span&gt; Indexes Multiviews
     &lt;span class="nb"&gt;AllowOverride&lt;/span&gt; AuthConfig Limit
     &lt;span class="nb"&gt;Order&lt;/span&gt; allow,deny
     &lt;span class="nb"&gt;Allow&lt;/span&gt; from &lt;span class="k"&gt;all&lt;/span&gt;
 &lt;span class="nt"&gt;&amp;lt;/Directory&amp;gt;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-
+&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
 &lt;/div&gt;
 
 &lt;p&gt;Para lanzar Apache sólo durante esta sesión de la máquina:&lt;/p&gt;
 
 &lt;div class="brush: console"&gt;
- &lt;div class="source"&gt;
-  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo apachectl start
+ &lt;table class="sourcetable"&gt;
+  &lt;tbody&gt;
+   &lt;tr&gt;
+    &lt;td class="linenos"&gt;
+     &lt;div class="linenodiv"&gt;
+      &lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;
+    &lt;td class="code"&gt;
+     &lt;div class="source"&gt;
+      &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo apachectl start
 &lt;/pre&gt;&lt;/div&gt;
-
+&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
 &lt;/div&gt;
 
 &lt;p&gt;Para lanzar Apache automáticamente cada vez que se inicia la máquina:&lt;/p&gt;
 
 &lt;div class="brush: console"&gt;
- &lt;div class="source"&gt;
-  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo launchctl load -w /System/Library/LaunchDaemons/org.apache.httpd.plist
+ &lt;table class="sourcetable"&gt;
+  &lt;tbody&gt;
+   &lt;tr&gt;
+    &lt;td class="linenos"&gt;
+     &lt;div class="linenodiv"&gt;
+      &lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;
+    &lt;td class="code"&gt;
+     &lt;div class="source"&gt;
+      &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo launchctl load -w /System/Library/LaunchDaemons/org.apache.httpd.plist
 &lt;/pre&gt;&lt;/div&gt;
-
+&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
 &lt;/div&gt;
 
 &lt;h2 id="crear-un-fichero-portfile"&gt;Crear un fichero Portfile&lt;/h2&gt;
@@ -1195,11 +1580,19 @@ checksums           rmd160 b8a9e7e5db29d407db95310ee95e7048d6fa1cdd \
   &lt;p&gt;para generar los digests del lanzamiento con los siguientes comandos:&lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;
 
 &lt;div class="brush: console"&gt;
- &lt;div class="source"&gt;
-  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; openssl sha256 dist/pyhello-0.1.tar.gz
+ &lt;table class="sourcetable"&gt;
+  &lt;tbody&gt;
+   &lt;tr&gt;
+    &lt;td class="linenos"&gt;
+     &lt;div class="linenodiv"&gt;
+      &lt;pre&gt;1
+2&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;
+    &lt;td class="code"&gt;
+     &lt;div class="source"&gt;
+      &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; openssl sha256 dist/pyhello-0.1.tar.gz
 &lt;span class="gp"&gt;$&lt;/span&gt; openssl rmd160 dist/pyhello-0.1.tar.gz
 &lt;/pre&gt;&lt;/div&gt;
-
+&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
 &lt;/div&gt;
 
 &lt;h2 id="servir-portfiles-por-rsync"&gt;Servir Portfiles por rsync&lt;/h2&gt;
@@ -1207,20 +1600,46 @@ checksums           rmd160 b8a9e7e5db29d407db95310ee95e7048d6fa1cdd \
 &lt;p&gt;Crea un directorio &lt;code&gt;ports&lt;/code&gt; bajo &lt;code&gt;~/Sites&lt;/code&gt;, y los siguentes subdirectorios en él:&lt;/p&gt;
 
 &lt;div class="brush: console"&gt;
- &lt;div class="source"&gt;
-  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="go"&gt;.&lt;/span&gt;
+ &lt;table class="sourcetable"&gt;
+  &lt;tbody&gt;
+   &lt;tr&gt;
+    &lt;td class="linenos"&gt;
+     &lt;div class="linenodiv"&gt;
+      &lt;pre&gt;1
+2
+3
+4&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;
+    &lt;td class="code"&gt;
+     &lt;div class="source"&gt;
+      &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="go"&gt;.&lt;/span&gt;
 &lt;span class="go"&gt;└── python&lt;/span&gt;
 &lt;span class="go"&gt;    └── pyhello&lt;/span&gt;
 &lt;span class="go"&gt;        └── Portfile&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-
+&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
 &lt;/div&gt;
 
 &lt;p&gt;Copia el fichero Portfile a su ubicación mostrada y ejecuta el siguiente comando en el directorio &lt;code&gt;ports&lt;/code&gt;:&lt;/p&gt;
 
 &lt;div class="brush: console"&gt;
- &lt;div class="source"&gt;
-  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; portindex
+ &lt;table class="sourcetable"&gt;
+  &lt;tbody&gt;
+   &lt;tr&gt;
+    &lt;td class="linenos"&gt;
+     &lt;div class="linenodiv"&gt;
+      &lt;pre&gt; 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;
+    &lt;td class="code"&gt;
+     &lt;div class="source"&gt;
+      &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; portindex
 &lt;span class="go"&gt;Creating port index in ...&lt;/span&gt;
 &lt;span class="go"&gt;Adding port python/pyhello&lt;/span&gt;
 &lt;span class="go"&gt;Adding subport py26-pyhello&lt;/span&gt;
@@ -1231,7 +1650,7 @@ checksums           rmd160 b8a9e7e5db29d407db95310ee95e7048d6fa1cdd \
 &lt;span class="go"&gt;Ports failed:			0&lt;/span&gt;
 &lt;span class="go"&gt;Up-to-date ports skipped:	0&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-
+&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
 &lt;/div&gt;
 
 &lt;p&gt;Aunque rsync viene instalado por defecto, usaremos la versión instalada con Macports en lo siguiente. La versión por defecto está en &lt;code&gt;/usr/bin&lt;/code&gt;.&lt;/p&gt;
@@ -1241,8 +1660,47 @@ checksums           rmd160 b8a9e7e5db29d407db95310ee95e7048d6fa1cdd \
 &lt;p&gt;El contenido de &lt;code&gt;rsync.plit&lt;/code&gt;:&lt;/p&gt;
 
 &lt;div class="brush: xml"&gt;
- &lt;div class="source"&gt;
-  &lt;pre&gt;&lt;span&gt;&lt;/span&gt; &lt;span class="cp"&gt;&amp;lt;?xml version="1.0" encoding="UTF-8"?&amp;gt;&lt;/span&gt;
+ &lt;table class="sourcetable"&gt;
+  &lt;tbody&gt;
+   &lt;tr&gt;
+    &lt;td class="linenos"&gt;
+     &lt;div class="linenodiv"&gt;
+      &lt;pre&gt; 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;
+    &lt;td class="code"&gt;
+     &lt;div class="source"&gt;
+      &lt;pre&gt;&lt;span&gt;&lt;/span&gt; &lt;span class="cp"&gt;&amp;lt;?xml version="1.0" encoding="UTF-8"?&amp;gt;&lt;/span&gt;
  &lt;span class="cp"&gt;&amp;lt;!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"&amp;gt;&lt;/span&gt;
  &lt;span class="nt"&gt;&amp;lt;plist&lt;/span&gt; &lt;span class="na"&gt;version=&lt;/span&gt;&lt;span class="s"&gt;"1.0"&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
  &lt;span class="nt"&gt;&amp;lt;dict&amp;gt;&lt;/span&gt;
@@ -1276,40 +1734,67 @@ checksums           rmd160 b8a9e7e5db29d407db95310ee95e7048d6fa1cdd \
  &lt;span class="nt"&gt;&amp;lt;/dict&amp;gt;&lt;/span&gt;
  &lt;span class="nt"&gt;&amp;lt;/plist&amp;gt;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-
+&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
 &lt;/div&gt;
 
 &lt;p&gt;El contenido de &lt;code&gt;/opt/local/etc/rsyncd.conf&lt;/code&gt;:&lt;/p&gt;
 
 &lt;div class="brush: ini"&gt;
- &lt;div class="source"&gt;
-  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;[ports]&lt;/span&gt;
+ &lt;table class="sourcetable"&gt;
+  &lt;tbody&gt;
+   &lt;tr&gt;
+    &lt;td class="linenos"&gt;
+     &lt;div class="linenodiv"&gt;
+      &lt;pre&gt;1
+2
+3
+4
+5
+6&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;
+    &lt;td class="code"&gt;
+     &lt;div class="source"&gt;
+      &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;[ports]&lt;/span&gt;
 
 &lt;span class="na"&gt;path&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;/Users/YOUR_USERNAME/Sites/ports&lt;/span&gt;
 &lt;span class="na"&gt;log file&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;/opt/local/var/log/rsyncd.log&lt;/span&gt;
 &lt;span class="na"&gt;pid file&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;/opt/local/var/run/rsyncd.pid&lt;/span&gt;
 &lt;span class="na"&gt;read only&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;true&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-
+&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
 &lt;/div&gt;
 
 &lt;p&gt;Añadir rsync a &lt;code&gt;launchctl&lt;/code&gt;:&lt;/p&gt;
 
 &lt;div class="brush: console"&gt;
- &lt;div class="source"&gt;
-  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo launchctl load -w /Library/LaunchDaemons/name.YOUR_USERNAME.rsync.plist
+ &lt;table class="sourcetable"&gt;
+  &lt;tbody&gt;
+   &lt;tr&gt;
+    &lt;td class="linenos"&gt;
+     &lt;div class="linenodiv"&gt;
+      &lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;
+    &lt;td class="code"&gt;
+     &lt;div class="source"&gt;
+      &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo launchctl load -w /Library/LaunchDaemons/name.YOUR_USERNAME.rsync.plist
 &lt;/pre&gt;&lt;/div&gt;
-
+&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
 &lt;/div&gt;
 
 &lt;p&gt;Comprueba que sólo se pueden listar los ports y nada más del sistema de fichero:&lt;/p&gt;
 
 &lt;div class="brush: console"&gt;
- &lt;div class="source"&gt;
-  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; rsync -axv rsync://localhost/
+ &lt;table class="sourcetable"&gt;
+  &lt;tbody&gt;
+   &lt;tr&gt;
+    &lt;td class="linenos"&gt;
+     &lt;div class="linenodiv"&gt;
+      &lt;pre&gt;1
+2&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;
+    &lt;td class="code"&gt;
+     &lt;div class="source"&gt;
+      &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; rsync -axv rsync://localhost/
 &lt;span class="gp"&gt;$&lt;/span&gt; rsync -axv rsync://localhost/ports/
 &lt;/pre&gt;&lt;/div&gt;
-
+&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
 &lt;/div&gt;
 
 &lt;h2 id="configurar-macports"&gt;Configurar Macports&lt;/h2&gt;
@@ -1322,8 +1807,23 @@ rsync://rsync.macports.org/release/ports/ [default]&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Comprueba desde otras máquinas que se pueden encontrar los nuevos paquetes:&lt;/p&gt;
 
 &lt;div class="brush: console"&gt;
- &lt;div class="source"&gt;
-  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; port search pyhello
+ &lt;table class="sourcetable"&gt;
+  &lt;tbody&gt;
+   &lt;tr&gt;
+    &lt;td class="linenos"&gt;
+     &lt;div class="linenodiv"&gt;
+      &lt;pre&gt;1
+2
+3
+4
+5
+6
+7
+8
+9&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;
+    &lt;td class="code"&gt;
+     &lt;div class="source"&gt;
+      &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; port search pyhello
 &lt;span class="go"&gt;py-pyhello @0.1 (python, devel)&lt;/span&gt;
 &lt;span class="go"&gt;    An example Python app&lt;/span&gt;
 
@@ -1333,16 +1833,25 @@ rsync://rsync.macports.org/release/ports/ [default]&lt;/code&gt;&lt;/pre&gt;
 &lt;span class="go"&gt;py27-pyhello @0.1 (python, devel)&lt;/span&gt;
 &lt;span class="go"&gt;    An example Python app&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-
+&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
 &lt;/div&gt;
 
 &lt;p&gt;Después de instalar el nuevo paquete, sus comandos están a nuestra disposición:&lt;/p&gt;
 
 &lt;div class="brush: console"&gt;
- &lt;div class="source"&gt;
-  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo port install py27-pyhello
+ &lt;table class="sourcetable"&gt;
+  &lt;tbody&gt;
+   &lt;tr&gt;
+    &lt;td class="linenos"&gt;
+     &lt;div class="linenodiv"&gt;
+      &lt;pre&gt;1
+2
+3&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;
+    &lt;td class="code"&gt;
+     &lt;div class="source"&gt;
+      &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo port install py27-pyhello
 &lt;span class="gp"&gt;$&lt;/span&gt; pyhello
 &lt;span class="go"&gt;Hello from pyhello!&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-
+&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
 &lt;/div&gt;&lt;/html&gt;</content></entry></feed>

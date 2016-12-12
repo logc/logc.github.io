@@ -4,57 +4,71 @@
   <title>logc io: Posts tagged 'frog'</title>
   <description>logc io: Posts tagged 'frog'</description>
   <link>http://logc.github.io/tags/frog.html</link>
-  <lastBuildDate>Mon, 03 Oct 2016 17:08:34 UT</lastBuildDate>
-  <pubDate>Mon, 03 Oct 2016 17:08:34 UT</pubDate>
+  <lastBuildDate>Mon, 03 Oct 2016 18:24:03 UT</lastBuildDate>
+  <pubDate>Mon, 03 Oct 2016 18:24:03 UT</pubDate>
   <ttl>1800</ttl>
   <item>
    <title>Setting up Github Pages with Frog</title>
    <link>http://logc.github.io/blog/2016/10/03/setting-up-github-pages-with-frog/?utm_source=frog&amp;utm_medium=RSS</link>
    <guid>urn:http-logc-github-io:-blog-2016-10-03-setting-up-github-pages-with-frog</guid>
-   <pubDate>Mon, 03 Oct 2016 17:08:34 UT</pubDate>
+   <pubDate>Mon, 03 Oct 2016 18:24:03 UT</pubDate>
    <description>&lt;html&gt;
-&lt;p&gt;To set up a static blog in Github Pages using the Racket package &lt;a href="https://github.com/greghendershott/frog"&gt;Frog&lt;/a&gt;, you need to do the following:&lt;/p&gt;
+&lt;p&gt;To set up a static blog in Github Pages using the Racket package Frog, you need to do the following:&lt;/p&gt;
 
-&lt;ol&gt;
+&lt;ul&gt;
  &lt;li&gt;download and install Racket (duh!)&lt;/li&gt;
- &lt;li&gt;
-  &lt;p&gt;install Frog with &lt;code&gt;raco&lt;/code&gt;:&lt;/p&gt;
-  &lt;pre&gt;&lt;code&gt;$ raco install frog&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
- &lt;li&gt;
-  &lt;p&gt;create a folder and initialize a Frog project there:&lt;/p&gt;
-  &lt;pre&gt;&lt;code&gt;$ mkdir new-blog
+ &lt;li&gt;install Frog with raco:&lt;/li&gt;&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code&gt;$ raco install frog&lt;/code&gt;&lt;/pre&gt;
+&lt;!-- more--&gt;
+
+&lt;ul&gt;
+ &lt;li&gt;create a folder and initialize a Frog project there:&lt;/li&gt;&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code&gt;$ mkdir new-blog
 $ cd new-blog
-$ raco frog --init&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+$ raco frog --init&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
  &lt;li&gt;
-  &lt;p&gt;customize the &lt;code&gt;.frogrc&lt;/code&gt; file. Set at least &lt;code&gt;scheme/host&lt;/code&gt; to  &lt;em&gt;https://your-username.github.io&lt;/em&gt;, and &lt;code&gt;title&lt;/code&gt; &amp;amp; &lt;code&gt;author&lt;/code&gt; to whatever you  want.&lt;/p&gt;&lt;/li&gt;
+  &lt;p&gt;customize the .frogrc file. Set at least scheme/host to https://your-username.github.io, and title &amp;amp; author to whatever you want.&lt;/p&gt;&lt;/li&gt;
  &lt;li&gt;
-  &lt;p&gt;add some content of your own:&lt;/p&gt;
-  &lt;pre&gt;&lt;code&gt;$ raco frog -n "New post"
+  &lt;p&gt;add some content of your own:&lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code&gt;$ raco frog -n "New post"
 # ... output says something like:
 ~/new-blog/_src/posts/2016-10-03-new-post.md
-# ... edit that file with your preferred editor ...&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
- &lt;li&gt;
-  &lt;p&gt;when you are finished editing, preview your glorious site with&lt;/p&gt;
-  &lt;pre&gt;&lt;code&gt;$ raco frog -bp&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
- &lt;li&gt;
-  &lt;p&gt;initialize an empty Git repository on the project folder, and tell git to  ignore the Frog machinery and your source directory&lt;/p&gt;
-  &lt;pre&gt;&lt;code&gt;$ git init .
+# ... edit that file with your preferred editor ...
+when you are finished editing, preview your glorious site with
+
+$ raco frog -bp&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+ &lt;li&gt;initialize an empty Git repository on the project folder, and tell git to  ignore the Frog machinery and your source directory&lt;/li&gt;&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code&gt;$ git init .
 $ cat &amp;lt;&amp;lt; EOF &amp;gt; .gitignore
 /.frog/
 /.frogrc
 /_src/
-EOF&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
- &lt;li&gt;
-  &lt;p&gt;commit everything, except for what we just ignored&lt;/p&gt;
-  &lt;pre&gt;&lt;code&gt;$ git add .
-$ git commit&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
- &lt;li&gt;
-  &lt;p&gt;on github.com, create a new repository with the name  &lt;em&gt;your-username.github.io&lt;/em&gt;. Once created, add it as a remote to your local  repo, and push your local &lt;code&gt;master&lt;/code&gt; to it.&lt;/p&gt;
-  &lt;pre&gt;&lt;code&gt;$ git remote add origin &amp;lt;your new repo&amp;gt;
-$ git push -u origin master&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
- &lt;li&gt;after some seconds, your new blog should be available as &lt;em&gt;http://your-username.github.io&lt;/em&gt;&lt;/li&gt;&lt;/ol&gt;
+EOF&lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;Now, each time that you want to add a new post, it&amp;rsquo;s just a matter of&lt;/p&gt;
+&lt;ul&gt;
+ &lt;li&gt;commit everything, except for what we just ignored&lt;/li&gt;&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code&gt;$ git add .
+$ git commit&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+ &lt;li&gt;on github.com, create a new repository with the name your-username.github.io.  Once created, add it as a remote to your local repo, and push your local master  to it.&lt;/li&gt;&lt;/ul&gt;
+
+&lt;pre&gt;&lt;code&gt;$ git remote add origin &amp;lt;your new repo&amp;gt;
+$ git push -u origin master&lt;/code&gt;&lt;/pre&gt;
+
+&lt;ul&gt;
+ &lt;li&gt;after some seconds, your new blog should be available as http://your-username.github.io&lt;/li&gt;&lt;/ul&gt;
+
+&lt;p&gt;Now, each time that you want to add a new post, it’s just a matter of&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;$ raco frog -n "Another post"
 # ... edit that post ...

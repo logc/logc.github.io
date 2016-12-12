@@ -4,22 +4,22 @@
  <link rel="self" href="http://logc.github.io/feeds/build.atom.xml" />
  <link href="http://logc.github.io/tags/build.html" />
  <id>urn:http-logc-github-io:-tags-build-html</id>
- <updated>2016-10-20T16:39:47Z</updated>
+ <updated>2016-10-20T18:17:59Z</updated>
  <entry>
   <title type="text">Minimal C project structure with SCons</title>
   <link rel="alternate" href="http://logc.github.io/blog/2016/10/20/minimal-c-project-structure-with-scons/?utm_source=build&amp;utm_medium=Atom" />
   <id>urn:http-logc-github-io:-blog-2016-10-20-minimal-c-project-structure-with-scons</id>
-  <published>2016-10-20T16:39:47Z</published>
-  <updated>2016-10-20T16:39:47Z</updated>
+  <published>2016-10-20T18:17:59Z</published>
+  <updated>2016-10-20T18:17:59Z</updated>
   <author>
    <name>logc</name></author>
   <content type="html">&lt;html&gt;
-&lt;p&gt;This is a possible project structure in order to have a C project using SCons as the build system. It enables:&lt;/p&gt;
+&lt;p&gt;This is a possible project structure in order to have a C project using SCons as the build system. It enables you to:&lt;/p&gt;
 
 &lt;ul&gt;
- &lt;li&gt;compile most files as a library, and link that to a &lt;code&gt;main&lt;/code&gt; file with  application code.&lt;/li&gt;
+ &lt;li&gt;compile most files as a library, and link that to a &lt;code&gt;main&lt;/code&gt; file with application code.&lt;/li&gt;
  &lt;li&gt;separate &lt;code&gt;src&lt;/code&gt; and &lt;code&gt;include&lt;/code&gt; directories&lt;/li&gt;
- &lt;li&gt;separate unit tests using &lt;a href="https://libcheck.github.io/check/"&gt;libcheck&lt;/a&gt;&lt;/li&gt;
+ &lt;li&gt;separate unit tests using libcheck&lt;/li&gt;
  &lt;li&gt;the unit tests link to the library&lt;/li&gt;
  &lt;li&gt;Macports-installed libraries&lt;/li&gt;&lt;/ul&gt;
 &lt;!-- more--&gt;
@@ -28,18 +28,18 @@
 
 &lt;pre&gt;&lt;code&gt;.
 ├── include
-│   └── core
-│       └── mylib.h
+│   └── core
+│       └── mylib.h
 ├── sconstruct
 ├── src
-│   ├── core
-│   │   └── mylib.c
-│   └── main.c
+│   ├── core
+│   │   └── mylib.c
+│   └── main.c
 └── tests
     ├── core
-    │   ├── test_mylib.c
-    │   ├── test_mylib.h
-    │   └── tests.h
+    │   ├── test_mylib.c
+    │   ├── test_mylib.h
+    │   └── tests.h
     └── main.c&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;where &lt;code&gt;mylib&lt;/code&gt; should have a more descriptive name for your project.&lt;/p&gt;
@@ -79,7 +79,7 @@ env.Program(target='test_mylib', source=Glob('tests/*.c') + Glob('tests/**/*.c')
 
 &lt;/div&gt;
 
-&lt;p&gt;&lt;code&gt;main.c&lt;/code&gt; and &lt;code&gt;core/mylib.c&lt;/code&gt; see each other via the header files in the &lt;code&gt;include&lt;/code&gt; directory, where &lt;code&gt;core/mylib.h&lt;/code&gt; holds:&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;main.c&lt;/code&gt; and &lt;code&gt;core/mylib.c&lt;/code&gt; see each other via the header files in the include directory, where &lt;code&gt;core/mylib.h&lt;/code&gt; holds:&lt;/p&gt;
 
 &lt;div class="brush: c"&gt;
  &lt;div class="source"&gt;
@@ -136,7 +136,7 @@ env.Program(target='test_mylib', source=Glob('tests/*.c') + Glob('tests/**/*.c')
 
 &lt;/div&gt;
 
-&lt;p&gt;Finally, the test runner executable is defined in the &lt;code&gt;tests/main.c&lt;/code&gt; file. It includes all &lt;code&gt;tests&lt;/code&gt; headers, uses the exported test suite creating functions to create all test suites, and runs them.&lt;/p&gt;
+&lt;p&gt;Finally, the test runner executable is defined in the tests/main.c file. It includes all tests headers, uses the exported test suite creating functions to create all test suites, and runs them.&lt;/p&gt;
 
 &lt;div class="brush: c"&gt;
  &lt;div class="source"&gt;
