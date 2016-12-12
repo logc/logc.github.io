@@ -165,10 +165,7 @@ pre {
 }
 
 footer {
-    width: 80%;
-    margin: 0 auto;
     padding: 5%;
-    padding-bottom: 0px;
     font-size: 70%;
 }
 
@@ -184,8 +181,8 @@ blockquote p {
 }
 
 .pagination > .active a {
-    background-color: #a63e14;
-    border-color: #a63e14;
+    background-color: #558a86;
+    border-color: #558a86;
 }
 
 .footnotes {
