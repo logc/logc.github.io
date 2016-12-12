@@ -128,7 +128,7 @@
 
             <article>
   <header>
-    <h2><a href='/2015/07/open-files-from-last-commit-in-vim.html'>Open files from last commit in Vim</a></h2>
+    <h2><a href='/blog/2015/07/15/open-files-from-last-commit-in-vim/'>Open files from last commit in Vim</a></h2>
     <p class='date-and-tags'>
 <time datetime="2015-07-15" pubdate="true">2015-07-15</time> :: <span class="tags"><a href="/tags/vim.html">vim</a>, <a href="/tags/git.html">git</a></span></p>
   </header>
@@ -150,7 +150,7 @@
 </article>
 <article>
   <header>
-    <h2><a href='/2014/04/python-egg-tagged-with-git-commit-hash.html'>Python egg tagged with Git commit hash</a></h2>
+    <h2><a href='/blog/2014/04/01/python-egg-tagged-with-git-commit-hash/'>Python egg tagged with Git commit hash</a></h2>
     <p class='date-and-tags'>
 <time datetime="2014-04-01" pubdate="true">2014-04-01</time> :: <span class="tags"><a href="/tags/python.html">python</a>, <a href="/tags/git.html">git</a></span></p>
   </header>
@@ -170,24 +170,8 @@ tag_svn_revision = 1</code></pre>
 <p>Answer: modify directly the <code>options</code> dictionary in the call to <code>setup</code>, in <code>setup.py</code>. There, you can put anything you can compute with Python or system calls. E.g. for git:</p>
 
 <div class="brush: python">
- <table class="sourcetable">
-  <tbody>
-   <tr>
-    <td class="linenos">
-     <div class="linenodiv">
-      <pre> 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10</pre></div></td>
-    <td class="code">
-     <div class="source">
-      <pre><span></span><span class="kn">import</span> <span class="nn">shlex</span>
+ <div class="source">
+  <pre><span></span><span class="kn">import</span> <span class="nn">shlex</span>
 <span class="kn">from</span> <span class="nn">subprocess</span> <span class="kn">import</span> <span class="n">check_output</span>
 
 <span class="n">GIT_HEAD_REV</span> <span class="o">=</span> <span class="n">check_output</span><span class="p">(</span><span class="n">shlex</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;git rev-parse --short HEAD&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
@@ -198,27 +182,18 @@ tag_svn_revision = 1</code></pre>
     <span class="n">options</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">egg_info</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">tag_build</span> <span class="o">=</span> <span class="s2">"dev_"</span> <span class="o">+</span> <span class="n">GIT_HEAD_REV</span><span class="p">)),</span>
 <span class="p">)</span>
 </pre></div>
-</td></tr></tbody></table>
+
 </div>
 
 <p>With that setup, distributions (<code>sdist</code> or <code>bdist</code>) would be tagged with the string &ldquo;dev&rdquo; and the git hash of the latest commit:</p>
 
 <div class="brush: console">
- <table class="sourcetable">
-  <tbody>
-   <tr>
-    <td class="linenos">
-     <div class="linenodiv">
-      <pre>1
-2
-3</pre></div></td>
-    <td class="code">
-     <div class="source">
-      <pre><span></span><span class="gp">$</span> bin/python setup.py sdist bdist_egg
+ <div class="source">
+  <pre><span></span><span class="gp">$</span> bin/python setup.py sdist bdist_egg
 <span class="gp">$</span> ls dist
 <span class="go">pyhello-0.1dev-92ffa06.tar.gz    pyhello-0.1dev_92ffa06-py2.7.egg</span>
 </pre></div>
-</td></tr></tbody></table>
+
 </div>
 
 <p>Whenever you want to build a stable release (without any &ldquo;dev&rdquo; tags), just set the key to empty in your <code>setup.cfg</code>, like this:</p>

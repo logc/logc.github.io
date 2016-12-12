@@ -9,8 +9,8 @@
   <ttl>1800</ttl>
   <item>
    <title>How do you develop with Yesod</title>
-   <link>http://logc.github.io/2013/12/how-do-you-develop-with-yesod.html?utm_source=web&amp;utm_medium=RSS</link>
-   <guid>urn:http-logc-github-io:-2013-12-how-do-you-develop-with-yesod-html</guid>
+   <link>http://logc.github.io/blog/2013/12/04/how-do-you-develop-with-yesod/?utm_source=web&amp;utm_medium=RSS</link>
+   <guid>urn:http-logc-github-io:-blog-2013-12-04-how-do-you-develop-with-yesod</guid>
    <pubDate>Sun, 04 Dec 2013 14:39:03 UT</pubDate>
    <description>&lt;html&gt;
 &lt;p&gt;Yesod tutorials and examples can be found on the &lt;a href="http://www.yesodweb.com/book"&gt;Yesod book&lt;/a&gt;, which is freely available online.&lt;/p&gt;
@@ -20,17 +20,10 @@
 &lt;p&gt;The purpose of this post is to explain to a new Yesod developer &amp;ldquo;What do I do after &amp;hellip; ?&amp;rdquo; :&lt;/p&gt;
 
 &lt;div class="brush: console"&gt;
- &lt;table class="sourcetable"&gt;
-  &lt;tbody&gt;
-   &lt;tr&gt;
-    &lt;td class="linenos"&gt;
-     &lt;div class="linenodiv"&gt;
-      &lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;
-    &lt;td class="code"&gt;
-     &lt;div class="source"&gt;
-      &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; yesod init
+ &lt;div class="source"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; yesod init
 &lt;/pre&gt;&lt;/div&gt;
-&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
+
 &lt;/div&gt;
 &lt;!-- more--&gt;
 
@@ -122,19 +115,11 @@ Email
 &lt;p&gt;Let us see a stub example of one of those functions:&lt;/p&gt;
 
 &lt;div class="brush: haskell"&gt;
- &lt;table class="sourcetable"&gt;
-  &lt;tbody&gt;
-   &lt;tr&gt;
-    &lt;td class="linenos"&gt;
-     &lt;div class="linenodiv"&gt;
-      &lt;pre&gt;1
-2&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;
-    &lt;td class="code"&gt;
-     &lt;div class="source"&gt;
-      &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nf"&gt;getDonkeyR&lt;/span&gt; &lt;span class="ow"&gt;::&lt;/span&gt; &lt;span class="kt"&gt;DonkeyId&lt;/span&gt; &lt;span class="ow"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kt"&gt;Handler&lt;/span&gt; &lt;span class="kt"&gt;Html&lt;/span&gt;
+ &lt;div class="source"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nf"&gt;getDonkeyR&lt;/span&gt; &lt;span class="ow"&gt;::&lt;/span&gt; &lt;span class="kt"&gt;DonkeyId&lt;/span&gt; &lt;span class="ow"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kt"&gt;Handler&lt;/span&gt; &lt;span class="kt"&gt;Html&lt;/span&gt;
 &lt;span class="nf"&gt;getDonkeyR&lt;/span&gt; &lt;span class="n"&gt;donkeyId&lt;/span&gt; &lt;span class="ow"&gt;=&lt;/span&gt; &lt;span class="n"&gt;undefined&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
+
 &lt;/div&gt;
 
 &lt;h4 id="handler-function-signature"&gt;Handler function signature&lt;/h4&gt;
@@ -164,57 +149,32 @@ Email
 &lt;p&gt;Consider the following function:&lt;/p&gt;
 
 &lt;div class="brush: haskell"&gt;
- &lt;table class="sourcetable"&gt;
-  &lt;tbody&gt;
-   &lt;tr&gt;
-    &lt;td class="linenos"&gt;
-     &lt;div class="linenodiv"&gt;
-      &lt;pre&gt;1
-2
-3
-4
-5&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;
-    &lt;td class="code"&gt;
-     &lt;div class="source"&gt;
-      &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nf"&gt;getBooksR&lt;/span&gt; &lt;span class="ow"&gt;::&lt;/span&gt; &lt;span class="kt"&gt;Handler&lt;/span&gt; &lt;span class="kt"&gt;Html&lt;/span&gt;
+ &lt;div class="source"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nf"&gt;getBooksR&lt;/span&gt; &lt;span class="ow"&gt;::&lt;/span&gt; &lt;span class="kt"&gt;Handler&lt;/span&gt; &lt;span class="kt"&gt;Html&lt;/span&gt;
 &lt;span class="nf"&gt;getBooksR&lt;/span&gt; &lt;span class="ow"&gt;=&lt;/span&gt; &lt;span class="kr"&gt;do&lt;/span&gt;
         &lt;span class="n"&gt;books&lt;/span&gt; &lt;span class="ow"&gt;&amp;lt;-&lt;/span&gt; &lt;span class="n"&gt;runDB&lt;/span&gt; &lt;span class="o"&gt;$&lt;/span&gt; &lt;span class="n"&gt;selectList&lt;/span&gt; &lt;span class="kt"&gt;[]&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="kt"&gt;Asc&lt;/span&gt; &lt;span class="kt"&gt;BookTitle&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
         &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;formWidget&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;enctype&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="ow"&gt;&amp;lt;-&lt;/span&gt; &lt;span class="n"&gt;generateFormPost&lt;/span&gt; &lt;span class="n"&gt;bookForm&lt;/span&gt;
         &lt;span class="n"&gt;defaultLayout&lt;/span&gt; &lt;span class="o"&gt;$&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;widgetFile&lt;/span&gt; &lt;span class="s"&gt;"books"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
+
 &lt;/div&gt;
 
 &lt;p&gt;The first line after &lt;code&gt;do&lt;/code&gt; allows us to get a Book model out of the database. The &lt;code&gt;runDB&lt;/code&gt; function runs any query on the database, while the &lt;code&gt;selectList&lt;/code&gt; function composes a query that returns its results as a list. The empty first argument means we take &lt;strong&gt;all fields&lt;/strong&gt; from each record, and the second argument accepts a number of filters and modifyers. The example shown is equivalent, in SQL, to:&lt;/p&gt;
 
 &lt;div class="brush: sql"&gt;
- &lt;table class="sourcetable"&gt;
-  &lt;tbody&gt;
-   &lt;tr&gt;
-    &lt;td class="linenos"&gt;
-     &lt;div class="linenodiv"&gt;
-      &lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;
-    &lt;td class="code"&gt;
-     &lt;div class="source"&gt;
-      &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;SELECT&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="k"&gt;FROM&lt;/span&gt; &lt;span class="n"&gt;books&lt;/span&gt; &lt;span class="k"&gt;ORDER&lt;/span&gt; &lt;span class="k"&gt;BY&lt;/span&gt; &lt;span class="ss"&gt;"BookTitle"&lt;/span&gt; &lt;span class="k"&gt;ASC&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+ &lt;div class="source"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;SELECT&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="k"&gt;FROM&lt;/span&gt; &lt;span class="n"&gt;books&lt;/span&gt; &lt;span class="k"&gt;ORDER&lt;/span&gt; &lt;span class="k"&gt;BY&lt;/span&gt; &lt;span class="ss"&gt;"BookTitle"&lt;/span&gt; &lt;span class="k"&gt;ASC&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
+
 &lt;/div&gt;
 
 &lt;p&gt;Then we would go on to render the correct HTML template with the default layout. The template will have direct access to the &lt;code&gt;books&lt;/code&gt; variable because it is in the same scope (the handler function). We will see how this happens when we discuss templates. The rendering happens with the line:&lt;/p&gt;
 
 &lt;div class="brush: haskell"&gt;
- &lt;table class="sourcetable"&gt;
-  &lt;tbody&gt;
-   &lt;tr&gt;
-    &lt;td class="linenos"&gt;
-     &lt;div class="linenodiv"&gt;
-      &lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;
-    &lt;td class="code"&gt;
-     &lt;div class="source"&gt;
-      &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nf"&gt;defaultLayout&lt;/span&gt; &lt;span class="o"&gt;$&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;widgetFile&lt;/span&gt; &lt;span class="s"&gt;"books"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+ &lt;div class="source"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nf"&gt;defaultLayout&lt;/span&gt; &lt;span class="o"&gt;$&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;widgetFile&lt;/span&gt; &lt;span class="s"&gt;"books"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
+
 &lt;/div&gt;
 
 &lt;p&gt;The template rendering takes the &lt;code&gt;defaultLayout&lt;/code&gt; function, applied on the result of loading a widgetFile by name. The default layout renders the template found under &lt;code&gt;templates/default-layout.*&lt;/code&gt; and includes within it the result of rendering whatever is on the &lt;code&gt;templates/books.*&lt;/code&gt; files. This helps make the look and feel uniform across the website.&lt;/p&gt;
@@ -226,24 +186,8 @@ Email
 &lt;p&gt;Consider the following function:&lt;/p&gt;
 
 &lt;div class="brush: haskell"&gt;
- &lt;table class="sourcetable"&gt;
-  &lt;tbody&gt;
-   &lt;tr&gt;
-    &lt;td class="linenos"&gt;
-     &lt;div class="linenodiv"&gt;
-      &lt;pre&gt; 1
- 2
- 3
- 4
- 5
- 6
- 7
- 8
- 9
-10&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;
-    &lt;td class="code"&gt;
-     &lt;div class="source"&gt;
-      &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nf"&gt;postBooksR&lt;/span&gt; &lt;span class="ow"&gt;::&lt;/span&gt; &lt;span class="kt"&gt;Handler&lt;/span&gt; &lt;span class="kt"&gt;Html&lt;/span&gt;
+ &lt;div class="source"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nf"&gt;postBooksR&lt;/span&gt; &lt;span class="ow"&gt;::&lt;/span&gt; &lt;span class="kt"&gt;Handler&lt;/span&gt; &lt;span class="kt"&gt;Html&lt;/span&gt;
 &lt;span class="nf"&gt;postBooksR&lt;/span&gt; &lt;span class="ow"&gt;=&lt;/span&gt; &lt;span class="kr"&gt;do&lt;/span&gt;
     &lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="n"&gt;result&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kr"&gt;_&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="kr"&gt;_&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="ow"&gt;&amp;lt;-&lt;/span&gt; &lt;span class="n"&gt;runFormPost&lt;/span&gt; &lt;span class="n"&gt;bookForm&lt;/span&gt;
     &lt;span class="kr"&gt;case&lt;/span&gt; &lt;span class="n"&gt;result&lt;/span&gt; &lt;span class="kr"&gt;of&lt;/span&gt;
@@ -254,23 +198,16 @@ Email
             &lt;span class="n"&gt;setMessage&lt;/span&gt; &lt;span class="s"&gt;"Invalid data"&lt;/span&gt;
             &lt;span class="n"&gt;redirect&lt;/span&gt; &lt;span class="o"&gt;$&lt;/span&gt; &lt;span class="kt"&gt;BooksR&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
+
 &lt;/div&gt;
 
 &lt;p&gt;The first line after &lt;code&gt;do&lt;/code&gt; gets the result out of a form that is defined and rendered elsewhere. The result may be a success, because all inputs are filled out and are of the expected types, or it may be anything else (an error), where we print an error message and do no more. If we have a success, then we can extract the specific &lt;code&gt;book&lt;/code&gt; (of type &lt;code&gt;Book&lt;/code&gt;) out of the &lt;code&gt;FormSuccess&lt;/code&gt; monad via pattern matching, and then insert it into the DB via the Persist &lt;code&gt;insert&lt;/code&gt; function:&lt;/p&gt;
 
 &lt;div class="brush: haskell"&gt;
- &lt;table class="sourcetable"&gt;
-  &lt;tbody&gt;
-   &lt;tr&gt;
-    &lt;td class="linenos"&gt;
-     &lt;div class="linenodiv"&gt;
-      &lt;pre&gt;1&lt;/pre&gt;&lt;/div&gt;&lt;/td&gt;
-    &lt;td class="code"&gt;
-     &lt;div class="source"&gt;
-      &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nf"&gt;bookid&lt;/span&gt; &lt;span class="ow"&gt;&amp;lt;-&lt;/span&gt; &lt;span class="n"&gt;runDB&lt;/span&gt; &lt;span class="o"&gt;$&lt;/span&gt; &lt;span class="n"&gt;insert&lt;/span&gt; &lt;span class="n"&gt;book&lt;/span&gt;
+ &lt;div class="source"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nf"&gt;bookid&lt;/span&gt; &lt;span class="ow"&gt;&amp;lt;-&lt;/span&gt; &lt;span class="n"&gt;runDB&lt;/span&gt; &lt;span class="o"&gt;$&lt;/span&gt; &lt;span class="n"&gt;insert&lt;/span&gt; &lt;span class="n"&gt;book&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;
+
 &lt;/div&gt;
 
 &lt;p&gt;Notice this works without any more specifications because we know, from the compile process, that the result of parsing the form contents must have enough informations to build a Book model, and a Book model can be written to database because we have already parsed it and created the necessary tables (in the case of a relational DB engine) on app startup.&lt;/p&gt;
