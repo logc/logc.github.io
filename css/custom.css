@@ -96,24 +96,23 @@
 
 }
 
-body {
-    font-family: 'texgyretermesregular', serif;
-    font-size: 18px;
-    text-align: left;
-    color: #c8c8c8;
-    background-color: #272b30;
-}
-
 .navbar, .navbar-brand, .dropdown-toggle, .navbar-nav>.dropdown>a .caret {
     font-family: 'texgyreherosbold', 'Helvetica Neue', Helvetica, Arial, sans-serif;
     font-size: 20px;
-    color: #c8c8c8 !important;
-    background: #3a3f44;
-    background: -webkit-linear-gradient(#3a3f44, #3a3f44, #3a3f44, #666666); /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient(#3a3f44, #3a3f44, #3a3f44, #666666); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(#3a3f44, #3a3f44, #3a3f44, #666666); /* For Firefox 3.6 to 15 */
-    background: linear-gradient(#3a3f44, #3a3f44, #3a3f44, #666666); /* Standard syntax */
+    margin-bottom: 0px;
 }
+
+body {
+    font-family: 'texgyreherosregular', sans-serif;
+    font-size: 18px;
+    text-align: left;
+}
+
+article {
+    padding-top: 1px;
+    padding-bottom: 75px;
+}
+
 
 .navbar-inverse .navbar-nav>.dropdown>a .caret {
     border-top-color: #c8c8c8 !important;;
@@ -202,10 +201,6 @@ h4 {
     color: #558a86;
 }
 
-article {
-    padding-bottom: 18px;
-}
-
 .read-more {
     font-style: italic;
 }
@@ -224,3 +219,133 @@ article {
     margin-top: 1em;
     margin-bottom: 1em;
 }
+
+/* Start taken from http://prl.ccs.neu.edu/blog/index.html */
+
+.jumbotron
+{
+  color: white;
+  text-align: center;
+  text-shadow: 2px 2px rgba(0, 0, 0, 0.62);
+  background-color: transparent;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.7)), url('../img/background.jpg') no-repeat center center transparent;
+  background-repeat:no-repeat;
+  background-size:cover;
+}
+
+.jumbotron img.pn-logo
+{
+    height: 70px;
+}
+
+.jumbotron h1
+{
+  font-size: 35px;
+  line-height: 50px;
+  margin-top: 20px;
+}
+
+.jumbotron h2
+{
+  font-size: 22px;
+  color: white !important;
+  margin-bottom: 15px;
+}
+
+.jumbotron h3
+{
+  font-size: 17px;
+  margin-bottom: 12px;
+}
+
+.jumbotron.subpages h1
+{
+  margin-top: 0;
+}
+
+.main-content
+{
+  width: 100%;
+  color: #c8c8c8;
+  background-color: #272b30;
+}
+
+@media (min-width: 768px)
+{
+
+  body
+  {
+    background: linear-gradient(rgba(0, 0, 0, 0.7),
+                                rgba(0, 0, 0, 0.2),
+                                rgba(0, 0, 0, 0.7),
+                       rgba(0, 0, 0, 0.7)), url('../img/background.jpg') no-repeat center center transparent;
+    background-repeat:no-repeat;
+    background-size:cover;
+    background-attachment: fixed;
+    background-position: 50% 0px;
+    background-color: #051122;
+  }
+
+  article
+  {
+    width: 80%;
+    margin: 0 auto;
+    padding: 5%;
+  }
+
+  .navbar {
+      border-radius: 0;
+      border-top: 0;
+      border-bottom: 0;
+  }
+
+  #pn-mobile-indicator
+  {
+    display: block;
+  }
+
+  .navbar.navbar-inverse
+  {
+    background-color: transparent;
+  }
+
+  .jumbotron
+  {  
+      padding-top: 100px;
+      color: white;
+      padding-bottom: 110px;
+      background: transparent;
+  }
+
+  .jumbotron img.pn-logo
+  {
+      height: 131px;
+  }
+
+  .jumbotron h1
+  {  
+    font-size: 50px;
+    line-height: 50px;
+    margin-top: 40px;  
+  }
+
+  .jumbotron h2
+  {
+    font-size: 25px;
+    margin-bottom: 25px;
+  }
+
+  .jumbotron h3
+  {
+    font-size: 20px;
+    margin-bottom: 25px;
+  }
+
+  .main-content
+  {
+    padding-top: 50px;
+  }
+}
+/* End taken from PRL blog */
