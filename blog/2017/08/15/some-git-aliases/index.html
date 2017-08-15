@@ -3,15 +3,15 @@
   <head>
 
     <meta charset="utf-8">
-    <title>Compilar Cython</title>
-    <meta name="description" content="Compilar ficheros de Cython es más fácil usando la función `cythonize` dentro del setup.py de nuestro proyecto:   `# File: setup.py from distutils.core import setup from Cython.Build import cythonize setup(       name = &quot;My hello app&quot;,       ext_modules =...">
+    <title>Some Git aliases</title>
+    <meta name="description" content="Here are some of the Git alias configurations that I use. My philosophy in writing them was to keep them descriptive, and _not to keep them easy to type_, following the approach in this blog post. In order to keep my typing short, I use the fish shell....">
     <meta name="author"      content="logc">
-    <meta name="keywords"    content="python">
+    <meta name="keywords"    content="git">
     <meta name="viewport"    content="width=device-width, initial-scale=1.0">
     <link rel="icon"      href="/favicon.ico">
-    <link rel="canonical" href="http://logc.github.io/blog/2013/11/19/compilar-cython">
-    <link rel="next" href="/blog/2013/11/17/infraestructura-de-lanzamientos-locales">
-    <link rel="prev" href="/blog/2013/12/02/py2app-excludes">
+    <link rel="canonical" href="http://logc.github.io/blog/2017/08/15/some-git-aliases">
+    <link rel="next" href="/blog/2016/10/20/minimal-c-project-structure-with-scons">
+
     <!-- CSS -->
     <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="/css/pygments.css">
@@ -128,61 +128,41 @@
 
             <article>
   <header>
-    <h1>Compilar Cython</h1>
+    <h1>Some Git aliases</h1>
     <p class='date-and-tags'>
-<time datetime="2013-11-19" pubdate="true">2013-11-19</time> :: <span class="tags"><a href="/tags/python.html">python</a></span></p>
+<time datetime="2017-08-15" pubdate="true">2017-08-15</time> :: <span class="tags"><a href="/tags/git.html">git</a></span></p>
   </header>
 
-<p>Compilar ficheros de Cython es más fácil usando la función <code>cythonize</code> dentro del setup.py de nuestro proyecto:</p>
+<p>Here are some of the Git alias configurations that I use. My philosophy in writing them was to keep them descriptive, and <em>not to keep them easy to type</em>, following the approach in <a href="http://blog.wittchen.biz.pl/my-approach-to-git-aliases/">this blog post</a>. In order to keep my typing short, I use the <a href="http://fishshell.com">fish shell</a>.</p>
+<!-- more-->
 
-<div class="brush: python">
- <pre><code># File: setup.py
+<pre><code>[alias]
+	amend = commit --amend
+	discard = checkout --
+	docommit = commit --verbose --all
+	hist = log --color --pretty=format:\"%C(yellow)%h%C(reset) %s%C(bold red)%d%C(reset) %C(green)%ad%C(reset) %C(blue)[%an]%C(reset)\" --relative-date --decorate
+	lastedit = log --pretty=format: --name-only -n 1
+	logshort = log --oneline -n 10
+    lsmodified = diff --name-only head
+	mkbranch = checkout -b
+	rmbranch = branch -d</code></pre>
 
-from distutils.core import setup
-from Cython.Build import cythonize
+<p>The aliases <code>amend</code> and <code>discard</code> are pretty self-explanatory. <code>docommit</code> reflects my own preferences when finishing a commit: just commit everything that is currently modified and add a diff under the commit message, so that I can review what I actually modified everywhere. <code>hist</code> is something I don&rsquo;t use very much; I copied it from somewhere and I keep it around to avoid going to a GUI when I need to review history in-depth.</p>
 
-setup(
-      name = "My hello app",
-      ext_modules = cythonize('fibonacci.pyx'), # accepts a glob pattern
-)</code></pre></div>
+<p><code>lastedit</code> lists which files were edited in the last commit. I find it useful to just open them again in an editor:</p>
 
-<p>Por ejemplo, el fichero a compilar es fibonacci.pyx, que contiene un ejemplo del tutorial de Cython:</p>
+<pre><code>$ vim (git lastedit)</code></pre>
 
-<div class="brush: python">
- <pre><code># File: fibonacci.pyx
+<p><code>logshort</code> is probably the alias I use the most. It just gives me an idea of what was going on in a branch, without defaulting to show me all history since the beginning of time. <code>lsmodified</code> is a recent addition. It lists all files modified but not commited. It is intended to be used together with other aliases:</p>
 
-def fib(n):
-    a, b = 0, 1
-    while b &lt; n:
-        print b,
-        a, b = b, a + b</code></pre></div>
+<pre><code>$ git discard (git lsmodified)</code></pre>
 
-<p>El resultado de compilar <code>fibonacci.pyx</code> es un fichero con código intermedio en C <code>fibonacci.c</code> y un fichero compilado <code>fibonacci.so</code>.</p>
-
-<div class="brush: bash">
- <pre><code>$ python setup.py build
-running build
-running build_ext
-building 'fibonacci' extension
-/usr/bin/clang ...snip... -o build/lib.macosx-10.8-x86_64-2.7/fibonacci.so</code></pre></div>
-
-<blockquote>
- <p><strong>note</strong></p>
- <p>El compilador que se utiliza es el que sea por defecto del sistema en ese momento. Aún estoy investigando cómo seleccionar un compilador en concreto, o añadir librerías y flags.</p></blockquote>
-
-<p>El fichero .so puede usarse desde otros módulos de Python, o directamente desde la shell</p>
-
-<div class="brush: pycon">
- <pre><code>&gt;&gt;&gt; import fibonacci
-&gt;&gt;&gt; fibonacci.fib(5)
-1 1 2 3</code></pre></div>
+<p><code>mkbranch</code> and <code>rmbranch</code> are also quite useful to me. I tend to see Git sometimes as a file system: sometimes I start to type <code>ls -l</code> when I actually need <code>git status</code>. In that mindset, I tend to identify branches with directories, and therefore creating and deleting them as if they were directories makes sense.</p>
   <footer>
     <ul class="pager">
-    <li class="previous">
-      <a href="/blog/2013/12/02/py2app-excludes">&larr; <em>py2app excludes</em></a>
-    </li>
+
     <li class="next">
-      <a href="/blog/2013/11/17/infraestructura-de-lanzamientos-locales"><em>Infraestructura de lanzamientos locales</em> &rarr;</a>
+      <a href="/blog/2016/10/20/minimal-c-project-structure-with-scons"><em>Minimal C project structure with SCons</em> &rarr;</a>
     </li>
     </ul>
   </footer>

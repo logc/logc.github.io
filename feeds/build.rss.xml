@@ -9,10 +9,11 @@
   <ttl>1800</ttl>
   <item>
    <title>Minimal C project structure with SCons</title>
-   <link>http://logc.github.io/blog/2016/10/20/minimal-c-project-structure-with-scons/?utm_source=build&amp;utm_medium=RSS</link>
-   <guid>urn:http-logc-github-io:-blog-2016-10-20-minimal-c-project-structure-with-scons</guid>
+   <link>http://logc.github.io/blog/2016/10/20/minimal-c-project-structure-with-scons?utm_source=build&amp;utm_medium=RSS</link>
+   <guid isPermaLink="false">urn:http-logc-github-io:-blog-2016-10-20-minimal-c-project-structure-with-scons</guid>
    <pubDate>Thu, 20 Oct 2016 18:17:59 UT</pubDate>
-   <description>&lt;html&gt;
+   <author>logc</author>
+   <description>
 &lt;p&gt;This is a possible project structure in order to have a C project using SCons as the build system. It enables you to:&lt;/p&gt;
 
 &lt;ul&gt;
@@ -57,35 +58,23 @@ env.Program(target='test_mylib', source=Glob('tests/*.c') + Glob('tests/**/*.c')
 &lt;p&gt;&lt;code&gt;src/core/mylib.c&lt;/code&gt; (and all other files in subdirectories of &lt;code&gt;src/&lt;/code&gt;) holds the core logic without user interactions (pure functions, if you wish :) ). It can look like this:&lt;/p&gt;
 
 &lt;div class="brush: c"&gt;
- &lt;div class="source"&gt;
-  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;whatever&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;span class="p"&gt;}&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;/div&gt;
+ &lt;pre&gt;&lt;code&gt;int whatever() {
+    return 0;
+}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;&lt;code&gt;src/main.c&lt;/code&gt; uses all other files in order to do something useful for a user. For instance:&lt;/p&gt;
 
 &lt;div class="brush: c"&gt;
- &lt;div class="source"&gt;
-  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;"core/mylib.h"&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+ &lt;pre&gt;&lt;code&gt;#include "core/mylib.h"
 
-&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;whatever&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
-&lt;span class="p"&gt;}&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;/div&gt;
+int main() {
+    return whatever();
+}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;&lt;code&gt;main.c&lt;/code&gt; and &lt;code&gt;core/mylib.c&lt;/code&gt; see each other via the header files in the include directory, where &lt;code&gt;core/mylib.h&lt;/code&gt; holds:&lt;/p&gt;
 
 &lt;div class="brush: c"&gt;
- &lt;div class="source"&gt;
-  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;whatever&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;/div&gt;
+ &lt;pre&gt;&lt;code&gt;int whatever();&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;h2 id="tests"&gt;Tests&lt;/h2&gt;
 
@@ -94,75 +83,63 @@ env.Program(target='test_mylib', source=Glob('tests/*.c') + Glob('tests/**/*.c')
 &lt;p&gt;A typical test file, e.g. &lt;code&gt;tests/core/test_mylib.c&lt;/code&gt;, should define tests, and then define a function that puts them together into a test suite. This is the function that we will want to expose via a header file:&lt;/p&gt;
 
 &lt;div class="brush: c"&gt;
- &lt;div class="source"&gt;
-  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;check.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+ &lt;pre&gt;&lt;code&gt;#include &amp;lt;check.h&amp;gt;
 
-&lt;span class="n"&gt;START_TEST&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;test_fails&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="p"&gt;{&lt;/span&gt;
-    &lt;span class="n"&gt;ck_assert_int_eq&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-&lt;span class="p"&gt;}&lt;/span&gt;
-&lt;span class="n"&gt;END_TEST&lt;/span&gt;
+START_TEST(test_fails)
+{
+    ck_assert_int_eq(1, 2);
+}
+END_TEST
 
-&lt;span class="n"&gt;Suite&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;core_suite&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;void&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="p"&gt;{&lt;/span&gt;
-    &lt;span class="n"&gt;Suite&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-    &lt;span class="n"&gt;TCase&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;tc_core&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+Suite * core_suite(void)
+{
+    Suite *s;
+    TCase *tc_core;
 
-    &lt;span class="n"&gt;s&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;suite_create&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"Core/mylib"&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    s = suite_create("Core/mylib");
 
-    &lt;span class="cm"&gt;/* Core test case */&lt;/span&gt;
-    &lt;span class="n"&gt;tc_core&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;tcase_create&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"Core"&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    /* Core test case */
+    tc_core = tcase_create("Core");
 
-    &lt;span class="n"&gt;tcase_add_test&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;tc_core&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;test_fails&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-    &lt;span class="n"&gt;suite_add_tcase&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;tc_core&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    tcase_add_test(tc_core, test_fails);
+    suite_add_tcase(s, tc_core);
 
-    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;span class="p"&gt;}&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;/div&gt;
+    return s;
+}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;In this example, we create a header file for each test file in a directory, and then an aggregated header file called &lt;code&gt;tests.h&lt;/code&gt; which includes all other header files in the same directory:&lt;/p&gt;
 
 &lt;div class="brush: c"&gt;
- &lt;div class="source"&gt;
-  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;// test_mylib.h&lt;/span&gt;
-&lt;span class="n"&gt;Suite&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="nf"&gt;core_suite&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;void&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+ &lt;pre&gt;&lt;code&gt;// test_mylib.h
+Suite * core_suite(void);
 
-&lt;span class="c1"&gt;// tests.h&lt;/span&gt;
-&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;"test_mylib.h"&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;/div&gt;
+// tests.h
+#include "test_mylib.h"&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;Finally, the test runner executable is defined in the tests/main.c file. It includes all tests headers, uses the exported test suite creating functions to create all test suites, and runs them.&lt;/p&gt;
 
 &lt;div class="brush: c"&gt;
- &lt;div class="source"&gt;
-  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;// tests/main.c&lt;/span&gt;
-&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;stdlib.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+ &lt;pre&gt;&lt;code&gt;// tests/main.c
+#include &amp;lt;stdlib.h&amp;gt;
 
-&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;check.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+#include &amp;lt;check.h&amp;gt;
 
-&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;"core/tests.h"&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+#include "core/tests.h"
 
-&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;void&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;span class="p"&gt;{&lt;/span&gt;
-    &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;number_failed&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-    &lt;span class="n"&gt;Suite&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-    &lt;span class="n"&gt;SRunner&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;sr&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+int main(void)
+{
+    int number_failed;
+    Suite *s;
+    SRunner *sr;
 
-    &lt;span class="n"&gt;s&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;core_suite&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
-    &lt;span class="n"&gt;sr&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;srunner_create&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    s = core_suite();
+    sr = srunner_create(s);
 
-    &lt;span class="n"&gt;srunner_run_all&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sr&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;CK_NORMAL&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-    &lt;span class="n"&gt;number_failed&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;srunner_ntests_failed&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sr&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-    &lt;span class="n"&gt;srunner_free&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sr&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;number_failed&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;?&lt;/span&gt; &lt;span class="nl"&gt;EXIT_SUCCESS&lt;/span&gt; &lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;EXIT_FAILURE&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;span class="p"&gt;}&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;/div&gt;
+    srunner_run_all(sr, CK_NORMAL);
+    number_failed = srunner_ntests_failed(sr);
+    srunner_free(sr);
+    return (number_failed == 0) ? EXIT_SUCCESS : EXIT_FAILURE;
+}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;h2 id="usage"&gt;Usage&lt;/h2&gt;
 
@@ -181,4 +158,4 @@ env.Program(target='test_mylib', source=Glob('tests/*.c') + Glob('tests/**/*.c')
 
 &lt;p&gt;You can clean all object files and the products with&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;$ scons --clean&lt;/code&gt;&lt;/pre&gt;&lt;/html&gt;</description></item></channel></rss>
+&lt;pre&gt;&lt;code&gt;$ scons --clean&lt;/code&gt;&lt;/pre&gt;</description></item></channel></rss>

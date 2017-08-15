@@ -128,7 +128,19 @@
 
             <article>
   <header>
-    <h2><a href='/blog/2015/07/15/open-files-from-last-commit-in-vim/'>Open files from last commit in Vim</a></h2>
+    <h2><a href='/blog/2017/08/15/some-git-aliases'>Some Git aliases</a></h2>
+    <p class='date-and-tags'>
+<time datetime="2017-08-15" pubdate="true">2017-08-15</time> :: <span class="tags"><a href="/tags/git.html">git</a></span></p>
+  </header>
+
+<p>Here are some of the Git alias configurations that I use. My philosophy in writing them was to keep them descriptive, and <em>not to keep them easy to type</em>, following the approach in <a href="http://blog.wittchen.biz.pl/my-approach-to-git-aliases/">this blog post</a>. In order to keep my typing short, I use the <a href="http://fishshell.com">fish shell</a>.</p>
+  <footer>
+    <a href='/blog/2017/08/15/some-git-aliases'>&hellip; more &hellip;</a>
+  </footer>
+</article>
+<article>
+  <header>
+    <h2><a href='/blog/2015/07/15/open-files-from-last-commit-in-vim'>Open files from last commit in Vim</a></h2>
     <p class='date-and-tags'>
 <time datetime="2015-07-15" pubdate="true">2015-07-15</time> :: <span class="tags"><a href="/tags/vim.html">vim</a>, <a href="/tags/git.html">git</a></span></p>
   </header>
@@ -150,7 +162,7 @@
 </article>
 <article>
   <header>
-    <h2><a href='/blog/2014/04/01/python-egg-tagged-with-git-commit-hash/'>Python egg tagged with Git commit hash</a></h2>
+    <h2><a href='/blog/2014/04/01/python-egg-tagged-with-git-commit-hash'>Python egg tagged with Git commit hash</a></h2>
     <p class='date-and-tags'>
 <time datetime="2014-04-01" pubdate="true">2014-04-01</time> :: <span class="tags"><a href="/tags/python.html">python</a>, <a href="/tags/git.html">git</a></span></p>
   </header>
@@ -170,31 +182,23 @@ tag_svn_revision = 1</code></pre>
 <p>Answer: modify directly the <code>options</code> dictionary in the call to <code>setup</code>, in <code>setup.py</code>. There, you can put anything you can compute with Python or system calls. E.g. for git:</p>
 
 <div class="brush: python">
- <div class="source">
-  <pre><span></span><span class="kn">import</span> <span class="nn">shlex</span>
-<span class="kn">from</span> <span class="nn">subprocess</span> <span class="kn">import</span> <span class="n">check_output</span>
+ <pre><code>import shlex
+from subprocess import check_output
 
-<span class="n">GIT_HEAD_REV</span> <span class="o">=</span> <span class="n">check_output</span><span class="p">(</span><span class="n">shlex</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;git rev-parse --short HEAD&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+GIT_HEAD_REV = check_output(shlex.split('git rev-parse --short HEAD')).strip()
 
 
-<span class="n">setup</span><span class="p">(</span>
-    <span class="c1"># ... other keys like project name, version, etc ...</span>
-    <span class="n">options</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">egg_info</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">tag_build</span> <span class="o">=</span> <span class="s2">"dev_"</span> <span class="o">+</span> <span class="n">GIT_HEAD_REV</span><span class="p">)),</span>
-<span class="p">)</span>
-</pre></div>
-
-</div>
+setup(
+    # ... other keys like project name, version, etc ...
+    options = dict(egg_info = dict(tag_build = "dev_" + GIT_HEAD_REV)),
+)</code></pre></div>
 
 <p>With that setup, distributions (<code>sdist</code> or <code>bdist</code>) would be tagged with the string &ldquo;dev&rdquo; and the git hash of the latest commit:</p>
 
 <div class="brush: console">
- <div class="source">
-  <pre><span></span><span class="gp">$</span> bin/python setup.py sdist bdist_egg
-<span class="gp">$</span> ls dist
-<span class="go">pyhello-0.1dev-92ffa06.tar.gz    pyhello-0.1dev_92ffa06-py2.7.egg</span>
-</pre></div>
-
-</div>
+ <pre><code>$ bin/python setup.py sdist bdist_egg
+$ ls dist
+pyhello-0.1dev-92ffa06.tar.gz    pyhello-0.1dev_92ffa06-py2.7.egg</code></pre></div>
 
 <p>Whenever you want to build a stable release (without any &ldquo;dev&rdquo; tags), just set the key to empty in your <code>setup.cfg</code>, like this:</p>
 
@@ -213,9 +217,9 @@ tag_build =</code></pre>
         <a href="http://twitter.github.com/bootstrap/index.html">Bootstrap</a>.
         Cover image by NASA/Bill Ingalls [Public domain], via Wikimedia Commons.
         </p>
-        <p>This page was last built on Monday, December 12th, 2016</p>
+        <p>This page was last built on Tuesday, August 15th, 2017</p>
 
-        <p><em>© Copyright 2016, Luis Osa</em>.</p>
+        <p><em>© Copyright 2017, Luis Osa</em>.</p>
       </footer>
     </div>
     <!-- </body> JS -->

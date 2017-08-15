@@ -9,9 +9,9 @@
     <meta name="keywords"    content="python">
     <meta name="viewport"    content="width=device-width, initial-scale=1.0">
     <link rel="icon"      href="/favicon.ico">
-    <link rel="canonical" href="http://logc.github.io/blog/2013/12/02/py2app-excludes/">
-    <link rel="next" href="/blog/2013/11/19/compilar-cython/">
-    <link rel="prev" href="/blog/2013/12/03/unicode-encodings/">
+    <link rel="canonical" href="http://logc.github.io/blog/2013/12/02/py2app-excludes">
+    <link rel="next" href="/blog/2013/11/19/compilar-cython">
+    <link rel="prev" href="/blog/2013/12/03/unicode-encodings">
     <!-- CSS -->
     <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="/css/pygments.css">
@@ -140,82 +140,78 @@
 <p>Con la lista siguiente, el peso baja de 22 MBs a 6 MBs. Probablemente se puede rebajar aún más.</p>
 
 <div class="brush: python">
- <div class="source">
-  <pre><span></span><span class="c1"># File: setup.py</span>
+ <pre><code># File: setup.py
 
-<span class="kn">from</span> <span class="nn">setuptools</span> <span class="kn">import</span> <span class="n">setup</span>
+from setuptools import setup
 
-<span class="n">APP</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;path/main.py&#39;</span><span class="p">]</span>
-<span class="n">Plist</span> <span class="o">=</span> <span class="p">{}</span>
-<span class="n">DATA_FILES</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">OPTIONS</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;argv_emulation&#39;</span><span class="p">:</span> <span class="bp">True</span><span class="p">,</span>
-           <span class="c1">#&#39;iconfile&#39;: &#39;Icons/ConverterIcon.icns&#39;,</span>
-           <span class="s1">&#39;plist&#39;</span><span class="p">:</span> <span class="n">Plist</span><span class="p">,</span>
-           <span class="s1">&#39;excludes&#39;</span><span class="p">:</span> <span class="p">[</span>
-               <span class="s1">&#39;aetypes&#39;</span><span class="p">,</span>
-               <span class="s1">&#39;ast&#39;</span><span class="p">,</span>
-               <span class="s1">&#39;bz2&#39;</span><span class="p">,</span>
-               <span class="s1">&#39;calendar&#39;</span><span class="p">,</span>
-               <span class="s1">&#39;codecs&#39;</span><span class="p">,</span>
-               <span class="s1">&#39;collections&#39;</span><span class="p">,</span>
-               <span class="s1">&#39;ctypes&#39;</span><span class="p">,</span>
-               <span class="s1">&#39;distutils&#39;</span><span class="p">,</span>
-               <span class="s1">&#39;doctest&#39;</span><span class="p">,</span>
-               <span class="s1">&#39;email&#39;</span><span class="p">,</span>
-               <span class="s1">&#39;encodings&#39;</span><span class="p">,</span>
-               <span class="s1">&#39;functools&#39;</span><span class="p">,</span>
-               <span class="s1">&#39;gzip&#39;</span><span class="p">,</span>
-               <span class="s1">&#39;inspect&#39;</span><span class="p">,</span>
-               <span class="s1">&#39;itertools&#39;</span><span class="p">,</span>
-               <span class="s1">&#39;locale&#39;</span><span class="p">,</span>
-               <span class="s1">&#39;logging&#39;</span><span class="p">,</span>
-               <span class="s1">&#39;optparse&#39;</span><span class="p">,</span>
-               <span class="s1">&#39;pickle&#39;</span><span class="p">,</span>
-               <span class="s1">&#39;platform&#39;</span><span class="p">,</span>
-               <span class="s1">&#39;pprint&#39;</span><span class="p">,</span>
-               <span class="s1">&#39;random&#39;</span><span class="p">,</span>
-               <span class="s1">&#39;re&#39;</span><span class="p">,</span>
-               <span class="s1">&#39;sets&#39;</span><span class="p">,</span>
-               <span class="s1">&#39;shutil&#39;</span><span class="p">,</span>
-               <span class="s1">&#39;socket&#39;</span><span class="p">,</span>
-               <span class="s1">&#39;ssl&#39;</span><span class="p">,</span>
-               <span class="s1">&#39;subprocess&#39;</span><span class="p">,</span>
-               <span class="s1">&#39;tarfile&#39;</span><span class="p">,</span>
-               <span class="s1">&#39;tempfile&#39;</span><span class="p">,</span>
-               <span class="s1">&#39;threading&#39;</span><span class="p">,</span>
-               <span class="s1">&#39;traceback&#39;</span><span class="p">,</span>
-               <span class="s1">&#39;types&#39;</span><span class="p">,</span>
-               <span class="s1">&#39;unittest&#39;</span><span class="p">,</span>
-               <span class="s1">&#39;urllib&#39;</span><span class="p">,</span>
-               <span class="s1">&#39;urllib2&#39;</span><span class="p">,</span>
-               <span class="s1">&#39;urlparse&#39;</span><span class="p">,</span>
-               <span class="s1">&#39;weakref&#39;</span><span class="p">,</span>
-               <span class="s1">&#39;xml&#39;</span><span class="p">,</span>
-               <span class="s1">&#39;zipfile&#39;</span><span class="p">,</span>
-           <span class="p">]</span>
-           <span class="p">}</span>
+APP = ['path/main.py']
+Plist = {}
+DATA_FILES = []
+OPTIONS = {'argv_emulation': True,
+           #'iconfile': 'Icons/ConverterIcon.icns',
+           'plist': Plist,
+           'excludes': [
+               'aetypes',
+               'ast',
+               'bz2',
+               'calendar',
+               'codecs',
+               'collections',
+               'ctypes',
+               'distutils',
+               'doctest',
+               'email',
+               'encodings',
+               'functools',
+               'gzip',
+               'inspect',
+               'itertools',
+               'locale',
+               'logging',
+               'optparse',
+               'pickle',
+               'platform',
+               'pprint',
+               'random',
+               're',
+               'sets',
+               'shutil',
+               'socket',
+               'ssl',
+               'subprocess',
+               'tarfile',
+               'tempfile',
+               'threading',
+               'traceback',
+               'types',
+               'unittest',
+               'urllib',
+               'urllib2',
+               'urlparse',
+               'weakref',
+               'xml',
+               'zipfile',
+           ]
+           }
 
-<span class="n">setup</span><span class="p">(</span>
-    <span class="n">app</span><span class="o">=</span><span class="n">APP</span><span class="p">,</span>
-    <span class="n">package_dir</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;&#39;</span><span class="p">:</span> <span class="s1">&#39;src&#39;</span><span class="p">},</span> <span class="c1"># you may not need this</span>
-    <span class="n">data_files</span><span class="o">=</span><span class="n">DATA_FILES</span><span class="p">,</span>
-    <span class="n">version</span><span class="o">=</span><span class="s2">"0.1"</span><span class="p">,</span>
-    <span class="n">description</span><span class="o">=</span><span class="s2">"&lt;Your description&gt;"</span><span class="p">,</span>
-    <span class="n">author</span><span class="o">=</span><span class="s2">"&lt;Your name&gt;"</span><span class="p">,</span>
-    <span class="n">author_email</span><span class="o">=</span><span class="s2">"&lt;Your email&gt;"</span><span class="p">,</span>
-    <span class="n">options</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;py2app&#39;</span><span class="p">:</span> <span class="n">OPTIONS</span><span class="p">},</span>
-    <span class="n">setup_requires</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;py2app&#39;</span><span class="p">],</span>
-<span class="p">)</span>
-</pre></div>
-
-</div>
+setup(
+    app=APP,
+    package_dir={'': 'src'}, # you may not need this
+    data_files=DATA_FILES,
+    version="0.1",
+    description="&lt;Your description&gt;",
+    author="&lt;Your name&gt;",
+    author_email="&lt;Your email&gt;",
+    options={'py2app': OPTIONS},
+    setup_requires=['py2app'],
+)</code></pre></div>
   <footer>
     <ul class="pager">
     <li class="previous">
-      <a href="/blog/2013/12/03/unicode-encodings/">&larr; <em>Unicode encodings</em></a>
+      <a href="/blog/2013/12/03/unicode-encodings">&larr; <em>Unicode encodings</em></a>
     </li>
     <li class="next">
-      <a href="/blog/2013/11/19/compilar-cython/"><em>Compilar Cython</em> &rarr;</a>
+      <a href="/blog/2013/11/19/compilar-cython"><em>Compilar Cython</em> &rarr;</a>
     </li>
     </ul>
   </footer>
@@ -231,9 +227,9 @@
         <a href="http://twitter.github.com/bootstrap/index.html">Bootstrap</a>.
         Cover image by NASA/Bill Ingalls [Public domain], via Wikimedia Commons.
         </p>
-        <p>This page was last built on Monday, December 12th, 2016</p>
+        <p>This page was last built on Tuesday, August 15th, 2017</p>
 
-        <p><em>© Copyright 2016, Luis Osa</em>.</p>
+        <p><em>© Copyright 2017, Luis Osa</em>.</p>
       </footer>
     </div>
     <!-- </body> JS -->

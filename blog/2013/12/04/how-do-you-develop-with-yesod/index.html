@@ -9,9 +9,9 @@
     <meta name="keywords"    content="haskell, web">
     <meta name="viewport"    content="width=device-width, initial-scale=1.0">
     <link rel="icon"      href="/favicon.ico">
-    <link rel="canonical" href="http://logc.github.io/blog/2013/12/04/how-do-you-develop-with-yesod/">
-    <link rel="next" href="/blog/2013/12/04/instalar-python-2-7-y-numpy-sobre-redhat-6/">
-    <link rel="prev" href="/blog/2014/01/20/reduce-in-standard-c/">
+    <link rel="canonical" href="http://logc.github.io/blog/2013/12/04/how-do-you-develop-with-yesod">
+    <link rel="next" href="/blog/2013/12/04/instalar-python-2-7-y-numpy-sobre-redhat-6">
+    <link rel="prev" href="/blog/2014/01/20/reduce-in-standard-c">
     <!-- CSS -->
     <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="/css/pygments.css">
@@ -140,11 +140,7 @@
 <p>The purpose of this post is to explain to a new Yesod developer &ldquo;What do I do after &hellip; ?&rdquo; :</p>
 
 <div class="brush: console">
- <div class="source">
-  <pre><span></span><span class="gp">$</span> yesod init
-</pre></div>
-
-</div>
+ <pre><code>$ yesod init</code></pre></div>
 <!-- more-->
 
 <p>Briefly summarized, what you need after this command is:</p>
@@ -235,12 +231,8 @@ Email
 <p>Let us see a stub example of one of those functions:</p>
 
 <div class="brush: haskell">
- <div class="source">
-  <pre><span></span><span class="nf">getDonkeyR</span> <span class="ow">::</span> <span class="kt">DonkeyId</span> <span class="ow">-&gt;</span> <span class="kt">Handler</span> <span class="kt">Html</span>
-<span class="nf">getDonkeyR</span> <span class="n">donkeyId</span> <span class="ow">=</span> <span class="n">undefined</span>
-</pre></div>
-
-</div>
+ <pre><code>getDonkeyR :: DonkeyId -&gt; Handler Html
+getDonkeyR donkeyId = undefined</code></pre></div>
 
 <h4 id="handler-function-signature">Handler function signature</h4>
 
@@ -269,33 +261,21 @@ Email
 <p>Consider the following function:</p>
 
 <div class="brush: haskell">
- <div class="source">
-  <pre><span></span><span class="nf">getBooksR</span> <span class="ow">::</span> <span class="kt">Handler</span> <span class="kt">Html</span>
-<span class="nf">getBooksR</span> <span class="ow">=</span> <span class="kr">do</span>
-        <span class="n">books</span> <span class="ow">&lt;-</span> <span class="n">runDB</span> <span class="o">$</span> <span class="n">selectList</span> <span class="kt">[]</span> <span class="p">[</span><span class="kt">Asc</span> <span class="kt">BookTitle</span><span class="p">]</span>
-        <span class="p">(</span><span class="n">formWidget</span><span class="p">,</span> <span class="n">enctype</span><span class="p">)</span> <span class="ow">&lt;-</span> <span class="n">generateFormPost</span> <span class="n">bookForm</span>
-        <span class="n">defaultLayout</span> <span class="o">$</span><span class="p">(</span><span class="n">widgetFile</span> <span class="s">"books"</span><span class="p">)</span>
-</pre></div>
-
-</div>
+ <pre><code>getBooksR :: Handler Html
+getBooksR = do
+        books &lt;- runDB $ selectList [] [Asc BookTitle]
+        (formWidget, enctype) &lt;- generateFormPost bookForm
+        defaultLayout $(widgetFile "books")</code></pre></div>
 
 <p>The first line after <code>do</code> allows us to get a Book model out of the database. The <code>runDB</code> function runs any query on the database, while the <code>selectList</code> function composes a query that returns its results as a list. The empty first argument means we take <strong>all fields</strong> from each record, and the second argument accepts a number of filters and modifyers. The example shown is equivalent, in SQL, to:</p>
 
 <div class="brush: sql">
- <div class="source">
-  <pre><span></span><span class="k">SELECT</span> <span class="o">*</span> <span class="k">FROM</span> <span class="n">books</span> <span class="k">ORDER</span> <span class="k">BY</span> <span class="ss">"BookTitle"</span> <span class="k">ASC</span><span class="p">;</span>
-</pre></div>
-
-</div>
+ <pre><code>SELECT * FROM books ORDER BY "BookTitle" ASC;</code></pre></div>
 
 <p>Then we would go on to render the correct HTML template with the default layout. The template will have direct access to the <code>books</code> variable because it is in the same scope (the handler function). We will see how this happens when we discuss templates. The rendering happens with the line:</p>
 
 <div class="brush: haskell">
- <div class="source">
-  <pre><span></span><span class="nf">defaultLayout</span> <span class="o">$</span><span class="p">(</span><span class="n">widgetFile</span> <span class="s">"books"</span><span class="p">)</span>
-</pre></div>
-
-</div>
+ <pre><code>defaultLayout $(widgetFile "books")</code></pre></div>
 
 <p>The template rendering takes the <code>defaultLayout</code> function, applied on the result of loading a widgetFile by name. The default layout renders the template found under <code>templates/default-layout.*</code> and includes within it the result of rendering whatever is on the <code>templates/books.*</code> files. This helps make the look and feel uniform across the website.</p>
 
@@ -306,29 +286,21 @@ Email
 <p>Consider the following function:</p>
 
 <div class="brush: haskell">
- <div class="source">
-  <pre><span></span><span class="nf">postBooksR</span> <span class="ow">::</span> <span class="kt">Handler</span> <span class="kt">Html</span>
-<span class="nf">postBooksR</span> <span class="ow">=</span> <span class="kr">do</span>
-    <span class="p">((</span><span class="n">result</span><span class="p">,</span> <span class="kr">_</span><span class="p">),</span> <span class="kr">_</span><span class="p">)</span> <span class="ow">&lt;-</span> <span class="n">runFormPost</span> <span class="n">bookForm</span>
-    <span class="kr">case</span> <span class="n">result</span> <span class="kr">of</span>
-        <span class="kt">FormSuccess</span> <span class="n">book</span> <span class="ow">-&gt;</span> <span class="kr">do</span>
-            <span class="n">bookid</span> <span class="ow">&lt;-</span> <span class="n">runDB</span> <span class="o">$</span> <span class="n">insert</span> <span class="n">book</span>
-            <span class="n">setMessage</span> <span class="s">"Book registered"</span>
-        <span class="kr">_</span> <span class="ow">-&gt;</span> <span class="kr">do</span>
-            <span class="n">setMessage</span> <span class="s">"Invalid data"</span>
-            <span class="n">redirect</span> <span class="o">$</span> <span class="kt">BooksR</span>
-</pre></div>
-
-</div>
+ <pre><code>postBooksR :: Handler Html
+postBooksR = do
+    ((result, _), _) &lt;- runFormPost bookForm
+    case result of
+        FormSuccess book -&gt; do
+            bookid &lt;- runDB $ insert book
+            setMessage "Book registered"
+        _ -&gt; do
+            setMessage "Invalid data"
+            redirect $ BooksR</code></pre></div>
 
 <p>The first line after <code>do</code> gets the result out of a form that is defined and rendered elsewhere. The result may be a success, because all inputs are filled out and are of the expected types, or it may be anything else (an error), where we print an error message and do no more. If we have a success, then we can extract the specific <code>book</code> (of type <code>Book</code>) out of the <code>FormSuccess</code> monad via pattern matching, and then insert it into the DB via the Persist <code>insert</code> function:</p>
 
 <div class="brush: haskell">
- <div class="source">
-  <pre><span></span><span class="nf">bookid</span> <span class="ow">&lt;-</span> <span class="n">runDB</span> <span class="o">$</span> <span class="n">insert</span> <span class="n">book</span>
-</pre></div>
-
-</div>
+ <pre><code>bookid &lt;- runDB $ insert book</code></pre></div>
 
 <p>Notice this works without any more specifications because we know, from the compile process, that the result of parsing the form contents must have enough informations to build a Book model, and a Book model can be written to database because we have already parsed it and created the necessary tables (in the case of a relational DB engine) on app startup.</p>
 
@@ -378,10 +350,10 @@ Email
   <footer>
     <ul class="pager">
     <li class="previous">
-      <a href="/blog/2014/01/20/reduce-in-standard-c/">&larr; <em>Reduce in standard C++</em></a>
+      <a href="/blog/2014/01/20/reduce-in-standard-c">&larr; <em>Reduce in standard C++</em></a>
     </li>
     <li class="next">
-      <a href="/blog/2013/12/04/instalar-python-2-7-y-numpy-sobre-redhat-6/"><em>Instalar Python 2.7 y NumPy sobre RedHat 6</em> &rarr;</a>
+      <a href="/blog/2013/12/04/instalar-python-2-7-y-numpy-sobre-redhat-6"><em>Instalar Python 2.7 y NumPy sobre RedHat 6</em> &rarr;</a>
     </li>
     </ul>
   </footer>
@@ -397,9 +369,9 @@ Email
         <a href="http://twitter.github.com/bootstrap/index.html">Bootstrap</a>.
         Cover image by NASA/Bill Ingalls [Public domain], via Wikimedia Commons.
         </p>
-        <p>This page was last built on Monday, December 12th, 2016</p>
+        <p>This page was last built on Tuesday, August 15th, 2017</p>
 
-        <p><em>© Copyright 2016, Luis Osa</em>.</p>
+        <p><em>© Copyright 2017, Luis Osa</em>.</p>
       </footer>
     </div>
     <!-- </body> JS -->

@@ -9,9 +9,9 @@
     <meta name="keywords"    content="sysadmin">
     <meta name="viewport"    content="width=device-width, initial-scale=1.0">
     <link rel="icon"      href="/favicon.ico">
-    <link rel="canonical" href="http://logc.github.io/blog/2013/11/17/infraestructura-de-lanzamientos-locales/">
+    <link rel="canonical" href="http://logc.github.io/blog/2013/11/17/infraestructura-de-lanzamientos-locales">
 
-    <link rel="prev" href="/blog/2013/11/19/compilar-cython/">
+    <link rel="prev" href="/blog/2013/11/19/compilar-cython">
     <!-- CSS -->
     <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="/css/pygments.css">
@@ -149,49 +149,33 @@
 <p>Crea un directorio llamado <code>pyhello</code>, y los siguientes directorios y ficheros dentro de él:</p>
 
 <div class="brush: console">
- <div class="source">
-  <pre><span></span><span class="go">.</span>
-<span class="go">├── pyhello</span>
-<span class="go">│   ├── __init__.py</span>
-<span class="go">│   └── main.py</span>
-<span class="go">└── setup.py</span>
-</pre></div>
-
-</div>
+ <pre><code>.
+├── pyhello
+│   ├── __init__.py
+│   └── main.py
+└── setup.py</code></pre></div>
 
 <p>El contenido de <code>setup.py</code>:</p>
 
 <div class="brush: python">
- <div class="source">
-  <pre><span></span><span class="kn">from</span> <span class="nn">setuptools</span> <span class="kn">import</span> <span class="n">setup</span>
+ <pre><code>from setuptools import setup
 
-<span class="n">setup</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;pyhello&#39;</span><span class="p">,</span>
-      <span class="n">version</span><span class="o">=</span><span class="s1">&#39;0.1&#39;</span><span class="p">,</span>
-      <span class="n">packages</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;pyhello&#39;</span><span class="p">],</span>
-      <span class="n">entry_points</span><span class="o">=</span><span class="p">{</span>
-          <span class="s1">&#39;console_scripts&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;pyhello=pyhello.main:main&#39;</span><span class="p">]})</span>
-</pre></div>
-
-</div>
+setup(name='pyhello',
+      version='0.1',
+      packages=['pyhello'],
+      entry_points={
+          'console_scripts': ['pyhello=pyhello.main:main']})</code></pre></div>
 
 <p>El contenido de <code>pyhello/main.py</code>:</p>
 
 <div class="brush: python">
- <div class="source">
-  <pre><span></span><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
-    <span class="k">print</span> <span class="s2">"Hello from pyhello!"</span>
-</pre></div>
-
-</div>
+ <pre><code>def main():
+    print "Hello from pyhello!"</code></pre></div>
 
 <p>Después crea una distribución de fuentes con el comando estándar:</p>
 
 <div class="brush: console">
- <div class="source">
-  <pre><span></span><span class="go">python setup.py sdist</span>
-</pre></div>
-
-</div>
+ <pre><code>python setup.py sdist</code></pre></div>
 
 <p>Esto crea un lanzamiento llamado <code>pyhello-0.1.tar.gz</code> bajo el directorio <code>dist</code>.</p>
 
@@ -204,34 +188,22 @@
 <p>El contenido de <code>YOUR_USERNAME.conf</code>:</p>
 
 <div class="brush: apacheconf">
- <div class="source">
-  <pre><span></span><span class="nt">&lt;Directory</span> <span class="s">"/Users/YOUR_USERNAME/Sites/"</span><span class="nt">&gt;</span>
-    <span class="nb">Options</span> Indexes Multiviews
-    <span class="nb">AllowOverride</span> AuthConfig Limit
-    <span class="nb">Order</span> allow,deny
-    <span class="nb">Allow</span> from <span class="k">all</span>
-<span class="nt">&lt;/Directory&gt;</span>
-</pre></div>
-
-</div>
+ <pre><code>&lt;Directory "/Users/YOUR_USERNAME/Sites/"&gt;
+    Options Indexes Multiviews
+    AllowOverride AuthConfig Limit
+    Order allow,deny
+    Allow from all
+&lt;/Directory&gt;</code></pre></div>
 
 <p>Para lanzar Apache sólo durante esta sesión de la máquina:</p>
 
 <div class="brush: console">
- <div class="source">
-  <pre><span></span><span class="gp">$</span> sudo apachectl start
-</pre></div>
-
-</div>
+ <pre><code>$ sudo apachectl start</code></pre></div>
 
 <p>Para lanzar Apache automáticamente cada vez que se inicia la máquina:</p>
 
 <div class="brush: console">
- <div class="source">
-  <pre><span></span><span class="gp">$</span> sudo launchctl load -w /System/Library/LaunchDaemons/org.apache.httpd.plist
-</pre></div>
-
-</div>
+ <pre><code>$ sudo launchctl load -w /System/Library/LaunchDaemons/org.apache.httpd.plist</code></pre></div>
 
 <h2 id="crear-un-fichero-portfile">Crear un fichero Portfile</h2>
 
@@ -278,44 +250,32 @@ checksums           rmd160 b8a9e7e5db29d407db95310ee95e7048d6fa1cdd \
   <p>para generar los digests del lanzamiento con los siguientes comandos:</p></li></ul>
 
 <div class="brush: console">
- <div class="source">
-  <pre><span></span><span class="gp">$</span> openssl sha256 dist/pyhello-0.1.tar.gz
-<span class="gp">$</span> openssl rmd160 dist/pyhello-0.1.tar.gz
-</pre></div>
-
-</div>
+ <pre><code>$ openssl sha256 dist/pyhello-0.1.tar.gz
+$ openssl rmd160 dist/pyhello-0.1.tar.gz</code></pre></div>
 
 <h2 id="servir-portfiles-por-rsync">Servir Portfiles por rsync</h2>
 
 <p>Crea un directorio <code>ports</code> bajo <code>~/Sites</code>, y los siguentes subdirectorios en él:</p>
 
 <div class="brush: console">
- <div class="source">
-  <pre><span></span><span class="go">.</span>
-<span class="go">└── python</span>
-<span class="go">    └── pyhello</span>
-<span class="go">        └── Portfile</span>
-</pre></div>
-
-</div>
+ <pre><code>.
+└── python
+    └── pyhello
+        └── Portfile</code></pre></div>
 
 <p>Copia el fichero Portfile a su ubicación mostrada y ejecuta el siguiente comando en el directorio <code>ports</code>:</p>
 
 <div class="brush: console">
- <div class="source">
-  <pre><span></span><span class="gp">$</span> portindex
-<span class="go">Creating port index in ...</span>
-<span class="go">Adding port python/pyhello</span>
-<span class="go">Adding subport py26-pyhello</span>
-<span class="go">Adding subport py27-pyhello</span>
+ <pre><code>$ portindex
+Creating port index in ...
+Adding port python/pyhello
+Adding subport py26-pyhello
+Adding subport py27-pyhello
 
-<span class="go">Total number of ports parsed:	3</span>
-<span class="go">Ports successfully parsed:	3</span>
-<span class="go">Ports failed:			0</span>
-<span class="go">Up-to-date ports skipped:	0</span>
-</pre></div>
-
-</div>
+Total number of ports parsed:	3
+Ports successfully parsed:	3
+Ports failed:			0
+Up-to-date ports skipped:	0</code></pre></div>
 
 <p>Aunque rsync viene instalado por defecto, usaremos la versión instalada con Macports en lo siguiente. La versión por defecto está en <code>/usr/bin</code>.</p>
 
@@ -324,76 +284,60 @@ checksums           rmd160 b8a9e7e5db29d407db95310ee95e7048d6fa1cdd \
 <p>El contenido de <code>rsync.plit</code>:</p>
 
 <div class="brush: xml">
- <div class="source">
-  <pre><span></span> <span class="cp">&lt;?xml version="1.0" encoding="UTF-8"?&gt;</span>
- <span class="cp">&lt;!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"&gt;</span>
- <span class="nt">&lt;plist</span> <span class="na">version=</span><span class="s">"1.0"</span><span class="nt">&gt;</span>
- <span class="nt">&lt;dict&gt;</span>
-        <span class="nt">&lt;key&gt;</span>Disabled<span class="nt">&lt;/key&gt;</span>
-        <span class="nt">&lt;false/&gt;</span>
-        <span class="nt">&lt;key&gt;</span>Label<span class="nt">&lt;/key&gt;</span>
-        <span class="nt">&lt;string&gt;</span>name.YOUR_USERNAME.rsync<span class="nt">&lt;/string&gt;</span>
-        <span class="nt">&lt;key&gt;</span>Program<span class="nt">&lt;/key&gt;</span>
-        <span class="nt">&lt;string&gt;</span>/opt/local/bin/rsync<span class="nt">&lt;/string&gt;</span>
-        <span class="nt">&lt;key&gt;</span>ProgramArguments<span class="nt">&lt;/key&gt;</span>
-        <span class="nt">&lt;array&gt;</span>
-                <span class="nt">&lt;string&gt;</span>/opt/local/bin/rsync<span class="nt">&lt;/string&gt;</span>
-                <span class="nt">&lt;string&gt;</span>--daemon<span class="nt">&lt;/string&gt;</span>
-                <span class="nt">&lt;string&gt;</span>--config=/opt/local/etc/rsyncd.conf<span class="nt">&lt;/string&gt;</span>
-        <span class="nt">&lt;/array&gt;</span>
-        <span class="nt">&lt;key&gt;</span>inetdCompatibility<span class="nt">&lt;/key&gt;</span>
-        <span class="nt">&lt;dict&gt;</span>
-                <span class="nt">&lt;key&gt;</span>Wait<span class="nt">&lt;/key&gt;</span>
-                <span class="nt">&lt;false/&gt;</span>
-        <span class="nt">&lt;/dict&gt;</span>
-        <span class="nt">&lt;key&gt;</span>Sockets<span class="nt">&lt;/key&gt;</span>
-        <span class="nt">&lt;dict&gt;</span>
-            <span class="nt">&lt;key&gt;</span>Listeners<span class="nt">&lt;/key&gt;</span>
-            <span class="nt">&lt;dict&gt;</span>
-                <span class="nt">&lt;key&gt;</span>SockServiceName<span class="nt">&lt;/key&gt;</span>
-                <span class="nt">&lt;string&gt;</span>rsync<span class="nt">&lt;/string&gt;</span>
-                <span class="nt">&lt;key&gt;</span>SockType<span class="nt">&lt;/key&gt;</span>
-                <span class="nt">&lt;string&gt;</span>stream<span class="nt">&lt;/string&gt;</span>
-            <span class="nt">&lt;/dict&gt;</span>
-        <span class="nt">&lt;/dict&gt;</span>
- <span class="nt">&lt;/dict&gt;</span>
- <span class="nt">&lt;/plist&gt;</span>
-</pre></div>
-
-</div>
+ <pre><code> &lt;?xml version="1.0" encoding="UTF-8"?&gt;
+ &lt;!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"&gt;
+ &lt;plist version="1.0"&gt;
+ &lt;dict&gt;
+        &lt;key&gt;Disabled&lt;/key&gt;
+        &lt;false/&gt;
+        &lt;key&gt;Label&lt;/key&gt;
+        &lt;string&gt;name.YOUR_USERNAME.rsync&lt;/string&gt;
+        &lt;key&gt;Program&lt;/key&gt;
+        &lt;string&gt;/opt/local/bin/rsync&lt;/string&gt;
+        &lt;key&gt;ProgramArguments&lt;/key&gt;
+        &lt;array&gt;
+                &lt;string&gt;/opt/local/bin/rsync&lt;/string&gt;
+                &lt;string&gt;--daemon&lt;/string&gt;
+                &lt;string&gt;--config=/opt/local/etc/rsyncd.conf&lt;/string&gt;
+        &lt;/array&gt;
+        &lt;key&gt;inetdCompatibility&lt;/key&gt;
+        &lt;dict&gt;
+                &lt;key&gt;Wait&lt;/key&gt;
+                &lt;false/&gt;
+        &lt;/dict&gt;
+        &lt;key&gt;Sockets&lt;/key&gt;
+        &lt;dict&gt;
+            &lt;key&gt;Listeners&lt;/key&gt;
+            &lt;dict&gt;
+                &lt;key&gt;SockServiceName&lt;/key&gt;
+                &lt;string&gt;rsync&lt;/string&gt;
+                &lt;key&gt;SockType&lt;/key&gt;
+                &lt;string&gt;stream&lt;/string&gt;
+            &lt;/dict&gt;
+        &lt;/dict&gt;
+ &lt;/dict&gt;
+ &lt;/plist&gt;</code></pre></div>
 
 <p>El contenido de <code>/opt/local/etc/rsyncd.conf</code>:</p>
 
 <div class="brush: ini">
- <div class="source">
-  <pre><span></span><span class="k">[ports]</span>
+ <pre><code>[ports]
 
-<span class="na">path</span><span class="o">=</span><span class="s">/Users/YOUR_USERNAME/Sites/ports</span>
-<span class="na">log file</span><span class="o">=</span><span class="s">/opt/local/var/log/rsyncd.log</span>
-<span class="na">pid file</span><span class="o">=</span><span class="s">/opt/local/var/run/rsyncd.pid</span>
-<span class="na">read only</span><span class="o">=</span><span class="s">true</span>
-</pre></div>
-
-</div>
+path=/Users/YOUR_USERNAME/Sites/ports
+log file=/opt/local/var/log/rsyncd.log
+pid file=/opt/local/var/run/rsyncd.pid
+read only=true</code></pre></div>
 
 <p>Añadir rsync a <code>launchctl</code>:</p>
 
 <div class="brush: console">
- <div class="source">
-  <pre><span></span><span class="gp">$</span> sudo launchctl load -w /Library/LaunchDaemons/name.YOUR_USERNAME.rsync.plist
-</pre></div>
-
-</div>
+ <pre><code>$ sudo launchctl load -w /Library/LaunchDaemons/name.YOUR_USERNAME.rsync.plist</code></pre></div>
 
 <p>Comprueba que sólo se pueden listar los ports y nada más del sistema de fichero:</p>
 
 <div class="brush: console">
- <div class="source">
-  <pre><span></span><span class="gp">$</span> rsync -axv rsync://localhost/
-<span class="gp">$</span> rsync -axv rsync://localhost/ports/
-</pre></div>
-
-</div>
+ <pre><code>$ rsync -axv rsync://localhost/
+$ rsync -axv rsync://localhost/ports/</code></pre></div>
 
 <h2 id="configurar-macports">Configurar Macports</h2>
 
@@ -405,34 +349,26 @@ rsync://rsync.macports.org/release/ports/ [default]</code></pre>
 <p>Comprueba desde otras máquinas que se pueden encontrar los nuevos paquetes:</p>
 
 <div class="brush: console">
- <div class="source">
-  <pre><span></span><span class="gp">$</span> port search pyhello
-<span class="go">py-pyhello @0.1 (python, devel)</span>
-<span class="go">    An example Python app</span>
+ <pre><code>$ port search pyhello
+py-pyhello @0.1 (python, devel)
+    An example Python app
 
-<span class="go">py26-pyhello @0.1 (python, devel)</span>
-<span class="go">    An example Python app</span>
+py26-pyhello @0.1 (python, devel)
+    An example Python app
 
-<span class="go">py27-pyhello @0.1 (python, devel)</span>
-<span class="go">    An example Python app</span>
-</pre></div>
-
-</div>
+py27-pyhello @0.1 (python, devel)
+    An example Python app</code></pre></div>
 
 <p>Después de instalar el nuevo paquete, sus comandos están a nuestra disposición:</p>
 
 <div class="brush: console">
- <div class="source">
-  <pre><span></span><span class="gp">$</span> sudo port install py27-pyhello
-<span class="gp">$</span> pyhello
-<span class="go">Hello from pyhello!</span>
-</pre></div>
-
-</div>
+ <pre><code>$ sudo port install py27-pyhello
+$ pyhello
+Hello from pyhello!</code></pre></div>
   <footer>
     <ul class="pager">
     <li class="previous">
-      <a href="/blog/2013/11/19/compilar-cython/">&larr; <em>Compilar Cython</em></a>
+      <a href="/blog/2013/11/19/compilar-cython">&larr; <em>Compilar Cython</em></a>
     </li>
 
     </ul>
@@ -449,9 +385,9 @@ rsync://rsync.macports.org/release/ports/ [default]</code></pre>
         <a href="http://twitter.github.com/bootstrap/index.html">Bootstrap</a>.
         Cover image by NASA/Bill Ingalls [Public domain], via Wikimedia Commons.
         </p>
-        <p>This page was last built on Monday, December 12th, 2016</p>
+        <p>This page was last built on Tuesday, August 15th, 2017</p>
 
-        <p><em>© Copyright 2016, Luis Osa</em>.</p>
+        <p><em>© Copyright 2017, Luis Osa</em>.</p>
       </footer>
     </div>
     <!-- </body> JS -->

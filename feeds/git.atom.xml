@@ -4,16 +4,50 @@
  <link rel="self" href="http://logc.github.io/feeds/git.atom.xml" />
  <link href="http://logc.github.io/tags/git.html" />
  <id>urn:http-logc-github-io:-tags-git-html</id>
- <updated>2015-07-15T11:05:47Z</updated>
+ <updated>2017-08-15T16:18:11Z</updated>
+ <entry>
+  <title type="text">Some Git aliases</title>
+  <link rel="alternate" href="http://logc.github.io/blog/2017/08/15/some-git-aliases?utm_source=git&amp;utm_medium=Atom" />
+  <id>urn:http-logc-github-io:-blog-2017-08-15-some-git-aliases</id>
+  <published>2017-08-15T16:18:11Z</published>
+  <updated>2017-08-15T16:18:11Z</updated>
+  <author>
+   <name>logc</name></author>
+  <content type="html">
+&lt;p&gt;Here are some of the Git alias configurations that I use. My philosophy in writing them was to keep them descriptive, and &lt;em&gt;not to keep them easy to type&lt;/em&gt;, following the approach in &lt;a href="http://blog.wittchen.biz.pl/my-approach-to-git-aliases/"&gt;this blog post&lt;/a&gt;. In order to keep my typing short, I use the &lt;a href="http://fishshell.com"&gt;fish shell&lt;/a&gt;.&lt;/p&gt;
+&lt;!-- more--&gt;
+
+&lt;pre&gt;&lt;code&gt;[alias]
+	amend = commit --amend
+	discard = checkout --
+	docommit = commit --verbose --all
+	hist = log --color --pretty=format:\"%C(yellow)%h%C(reset) %s%C(bold red)%d%C(reset) %C(green)%ad%C(reset) %C(blue)[%an]%C(reset)\" --relative-date --decorate
+	lastedit = log --pretty=format: --name-only -n 1
+	logshort = log --oneline -n 10
+    lsmodified = diff --name-only head
+	mkbranch = checkout -b
+	rmbranch = branch -d&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The aliases &lt;code&gt;amend&lt;/code&gt; and &lt;code&gt;discard&lt;/code&gt; are pretty self-explanatory. &lt;code&gt;docommit&lt;/code&gt; reflects my own preferences when finishing a commit: just commit everything that is currently modified and add a diff under the commit message, so that I can review what I actually modified everywhere. &lt;code&gt;hist&lt;/code&gt; is something I don&amp;rsquo;t use very much; I copied it from somewhere and I keep it around to avoid going to a GUI when I need to review history in-depth.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;lastedit&lt;/code&gt; lists which files were edited in the last commit. I find it useful to just open them again in an editor:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ vim (git lastedit)&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;logshort&lt;/code&gt; is probably the alias I use the most. It just gives me an idea of what was going on in a branch, without defaulting to show me all history since the beginning of time. &lt;code&gt;lsmodified&lt;/code&gt; is a recent addition. It lists all files modified but not commited. It is intended to be used together with other aliases:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ git discard (git lsmodified)&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;mkbranch&lt;/code&gt; and &lt;code&gt;rmbranch&lt;/code&gt; are also quite useful to me. I tend to see Git sometimes as a file system: sometimes I start to type &lt;code&gt;ls -l&lt;/code&gt; when I actually need &lt;code&gt;git status&lt;/code&gt;. In that mindset, I tend to identify branches with directories, and therefore creating and deleting them as if they were directories makes sense.&lt;/p&gt;</content></entry>
  <entry>
   <title type="text">Open files from last commit in Vim</title>
-  <link rel="alternate" href="http://logc.github.io/blog/2015/07/15/open-files-from-last-commit-in-vim/?utm_source=git&amp;utm_medium=Atom" />
+  <link rel="alternate" href="http://logc.github.io/blog/2015/07/15/open-files-from-last-commit-in-vim?utm_source=git&amp;utm_medium=Atom" />
   <id>urn:http-logc-github-io:-blog-2015-07-15-open-files-from-last-commit-in-vim</id>
   <published>2015-07-15T11:05:47Z</published>
   <updated>2015-07-15T11:05:47Z</updated>
   <author>
    <name>logc</name></author>
-  <content type="html">&lt;html&gt;
+  <content type="html">
 &lt;p&gt;It is always a nuisance to remember which files were you working on when you last exited your editing session. I have tried different approaches, including:&lt;/p&gt;
 
 &lt;ul&gt;
@@ -26,16 +60,16 @@
 
 &lt;p&gt;If you alias that command in your &lt;code&gt;.gitconfig&lt;/code&gt;, e.g. to &lt;code&gt;lastedited&lt;/code&gt;, you can then open the files in your editor by command subtitution:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;$ vim $(git lastedited)&lt;/code&gt;&lt;/pre&gt;&lt;/html&gt;</content></entry>
+&lt;pre&gt;&lt;code&gt;$ vim $(git lastedited)&lt;/code&gt;&lt;/pre&gt;</content></entry>
  <entry>
   <title type="text">Python egg tagged with Git commit hash</title>
-  <link rel="alternate" href="http://logc.github.io/blog/2014/04/01/python-egg-tagged-with-git-commit-hash/?utm_source=git&amp;utm_medium=Atom" />
+  <link rel="alternate" href="http://logc.github.io/blog/2014/04/01/python-egg-tagged-with-git-commit-hash?utm_source=git&amp;utm_medium=Atom" />
   <id>urn:http-logc-github-io:-blog-2014-04-01-python-egg-tagged-with-git-commit-hash</id>
   <published>2014-04-01T15:22:00Z</published>
   <updated>2014-04-01T15:22:00Z</updated>
   <author>
    <name>logc</name></author>
-  <content type="html">&lt;html&gt;
+  <content type="html">
 &lt;h2 id="svn"&gt;SVN&lt;/h2&gt;
 
 &lt;p&gt;Python&amp;rsquo;s setuptools provide a simple mechanism to tag your built distributions with the SVN revision they belong to, by creating a &lt;code&gt;setup.cfg&lt;/code&gt; file along the normal &lt;code&gt;setup.py&lt;/code&gt;, and there write&lt;/p&gt;
@@ -51,33 +85,25 @@ tag_svn_revision = 1&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Answer: modify directly the &lt;code&gt;options&lt;/code&gt; dictionary in the call to &lt;code&gt;setup&lt;/code&gt;, in &lt;code&gt;setup.py&lt;/code&gt;. There, you can put anything you can compute with Python or system calls. E.g. for git:&lt;/p&gt;
 
 &lt;div class="brush: python"&gt;
- &lt;div class="source"&gt;
-  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;shlex&lt;/span&gt;
-&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;subprocess&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;check_output&lt;/span&gt;
+ &lt;pre&gt;&lt;code&gt;import shlex
+from subprocess import check_output
 
-&lt;span class="n"&gt;GIT_HEAD_REV&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;check_output&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;shlex&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;split&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git rev-parse --short HEAD&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;strip&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+GIT_HEAD_REV = check_output(shlex.split('git rev-parse --short HEAD')).strip()
 
 
-&lt;span class="n"&gt;setup&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
-    &lt;span class="c1"&gt;# ... other keys like project name, version, etc ...&lt;/span&gt;
-    &lt;span class="n"&gt;options&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;dict&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;egg_info&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;dict&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;tag_build&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;"dev_"&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;GIT_HEAD_REV&lt;/span&gt;&lt;span class="p"&gt;)),&lt;/span&gt;
-&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;/div&gt;
+setup(
+    # ... other keys like project name, version, etc ...
+    options = dict(egg_info = dict(tag_build = "dev_" + GIT_HEAD_REV)),
+)&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;With that setup, distributions (&lt;code&gt;sdist&lt;/code&gt; or &lt;code&gt;bdist&lt;/code&gt;) would be tagged with the string &amp;ldquo;dev&amp;rdquo; and the git hash of the latest commit:&lt;/p&gt;
 
 &lt;div class="brush: console"&gt;
- &lt;div class="source"&gt;
-  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; bin/python setup.py sdist bdist_egg
-&lt;span class="gp"&gt;$&lt;/span&gt; ls dist
-&lt;span class="go"&gt;pyhello-0.1dev-92ffa06.tar.gz    pyhello-0.1dev_92ffa06-py2.7.egg&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;/div&gt;
+ &lt;pre&gt;&lt;code&gt;$ bin/python setup.py sdist bdist_egg
+$ ls dist
+pyhello-0.1dev-92ffa06.tar.gz    pyhello-0.1dev_92ffa06-py2.7.egg&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;Whenever you want to build a stable release (without any &amp;ldquo;dev&amp;rdquo; tags), just set the key to empty in your &lt;code&gt;setup.cfg&lt;/code&gt;, like this:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code&gt;[egg_info]
-tag_build =&lt;/code&gt;&lt;/pre&gt;&lt;/html&gt;</content></entry></feed>
+tag_build =&lt;/code&gt;&lt;/pre&gt;</content></entry></feed>

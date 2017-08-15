@@ -9,21 +9,23 @@
   <ttl>1800</ttl>
   <item>
    <title>Racket and vim-syntastic</title>
-   <link>http://logc.github.io/blog/2016/09/23/racket-and-vim-syntastic/?utm_source=vim&amp;utm_medium=RSS</link>
-   <guid>urn:http-logc-github-io:-blog-2016-09-23-racket-and-vim-syntastic</guid>
+   <link>http://logc.github.io/blog/2016/09/23/racket-and-vim-syntastic?utm_source=vim&amp;utm_medium=RSS</link>
+   <guid isPermaLink="false">urn:http-logc-github-io:-blog-2016-09-23-racket-and-vim-syntastic</guid>
    <pubDate>Fri, 23 Sep 2016 19:48:27 UT</pubDate>
-   <description>&lt;html&gt;
+   <author>logc</author>
+   <description>
 &lt;p&gt;The current Syntastic checker for Racket syntax in Vim is the &lt;code&gt;racket&lt;/code&gt; executable itself. This means that the current buffer is executed by Racket whenever it is checked for syntax, and this can have unintended consequences, e.g. entering an infinite loop, if you happen to open the wrong file.&lt;/p&gt;
 
 &lt;p&gt;In order to just get the syntax errors, add this to your &lt;code&gt;.vimrc&lt;/code&gt;:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;let g:syntastic_racket_racket_args="--load"&lt;/code&gt;&lt;/pre&gt;&lt;/html&gt;</description></item>
+&lt;pre&gt;&lt;code&gt;let g:syntastic_racket_racket_args="--load"&lt;/code&gt;&lt;/pre&gt;</description></item>
   <item>
    <title>Open files from last commit in Vim</title>
-   <link>http://logc.github.io/blog/2015/07/15/open-files-from-last-commit-in-vim/?utm_source=vim&amp;utm_medium=RSS</link>
-   <guid>urn:http-logc-github-io:-blog-2015-07-15-open-files-from-last-commit-in-vim</guid>
+   <link>http://logc.github.io/blog/2015/07/15/open-files-from-last-commit-in-vim?utm_source=vim&amp;utm_medium=RSS</link>
+   <guid isPermaLink="false">urn:http-logc-github-io:-blog-2015-07-15-open-files-from-last-commit-in-vim</guid>
    <pubDate>Sun, 15 Jul 2015 11:05:47 UT</pubDate>
-   <description>&lt;html&gt;
+   <author>logc</author>
+   <description>
 &lt;p&gt;It is always a nuisance to remember which files were you working on when you last exited your editing session. I have tried different approaches, including:&lt;/p&gt;
 
 &lt;ul&gt;
@@ -36,4 +38,4 @@
 
 &lt;p&gt;If you alias that command in your &lt;code&gt;.gitconfig&lt;/code&gt;, e.g. to &lt;code&gt;lastedited&lt;/code&gt;, you can then open the files in your editor by command subtitution:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;$ vim $(git lastedited)&lt;/code&gt;&lt;/pre&gt;&lt;/html&gt;</description></item></channel></rss>
+&lt;pre&gt;&lt;code&gt;$ vim $(git lastedited)&lt;/code&gt;&lt;/pre&gt;</description></item></channel></rss>

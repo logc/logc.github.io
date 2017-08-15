@@ -6,7 +6,7 @@
     <title>logc io (page 2)</title>
     <meta name="description" content="logc io (page 2)">
     <meta name="author"      content="logc">
-    <meta name="keywords"    content="C++, blog, python, web, all, build, git, frog, scons, sysadmin, racket, vim, haskell, C">
+    <meta name="keywords"    content="C++, blog, python, web, all, build, git, frog, scons, haskell, racket, vim, sysadmin, C">
     <meta name="viewport"    content="width=device-width, initial-scale=1.0">
     <link rel="icon"      href="/favicon.ico">
     <link rel="canonical" href="http://logc.github.io/index-2.html">
@@ -128,7 +128,23 @@
 
             <article>
   <header>
-    <h2><a href='/blog/2014/04/01/python-egg-tagged-with-git-commit-hash/'>Python egg tagged with Git commit hash</a></h2>
+    <h2><a href='/blog/2015/02/27/if-programming-languages-were-music-genres'>If programming languages were music genres</a></h2>
+    <p class='date-and-tags'>
+<time datetime="2015-02-27" pubdate="true">2015-02-27</time> :: <span class="tags"></span></p>
+  </header>
+
+<p>There are quite some posts out there that compare programming languages to something else, like religions, rock bands, types of women &hellip; There is a <a href="http://lambda-the-ultimate.org/node/3133">compilation of these over at Lambda the Ultimate</a>.</p>
+
+<p>One comparison that I find missing is that of programming languages to music genres (maybe the &ldquo;Subcultures&rdquo; post was simmilar, but it seems to be a dead link now). This is the more surprising since it looks like developers tend to argue about their favourite languages just like most people about music: everyone knows it is a highly subjective preference, but no-one escapes trying to convince others that they are not listening to the &ldquo;right&rdquo; music!</p>
+
+<p>So, here is my (completely subjective) view on programming languages as music genres:</p>
+  <footer>
+    <a href='/blog/2015/02/27/if-programming-languages-were-music-genres'>&hellip; more &hellip;</a>
+  </footer>
+</article>
+<article>
+  <header>
+    <h2><a href='/blog/2014/04/01/python-egg-tagged-with-git-commit-hash'>Python egg tagged with Git commit hash</a></h2>
     <p class='date-and-tags'>
 <time datetime="2014-04-01" pubdate="true">2014-04-01</time> :: <span class="tags"><a href="/tags/python.html">python</a>, <a href="/tags/git.html">git</a></span></p>
   </header>
@@ -148,31 +164,23 @@ tag_svn_revision = 1</code></pre>
 <p>Answer: modify directly the <code>options</code> dictionary in the call to <code>setup</code>, in <code>setup.py</code>. There, you can put anything you can compute with Python or system calls. E.g. for git:</p>
 
 <div class="brush: python">
- <div class="source">
-  <pre><span></span><span class="kn">import</span> <span class="nn">shlex</span>
-<span class="kn">from</span> <span class="nn">subprocess</span> <span class="kn">import</span> <span class="n">check_output</span>
+ <pre><code>import shlex
+from subprocess import check_output
 
-<span class="n">GIT_HEAD_REV</span> <span class="o">=</span> <span class="n">check_output</span><span class="p">(</span><span class="n">shlex</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;git rev-parse --short HEAD&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+GIT_HEAD_REV = check_output(shlex.split('git rev-parse --short HEAD')).strip()
 
 
-<span class="n">setup</span><span class="p">(</span>
-    <span class="c1"># ... other keys like project name, version, etc ...</span>
-    <span class="n">options</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">egg_info</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">tag_build</span> <span class="o">=</span> <span class="s2">"dev_"</span> <span class="o">+</span> <span class="n">GIT_HEAD_REV</span><span class="p">)),</span>
-<span class="p">)</span>
-</pre></div>
-
-</div>
+setup(
+    # ... other keys like project name, version, etc ...
+    options = dict(egg_info = dict(tag_build = "dev_" + GIT_HEAD_REV)),
+)</code></pre></div>
 
 <p>With that setup, distributions (<code>sdist</code> or <code>bdist</code>) would be tagged with the string &ldquo;dev&rdquo; and the git hash of the latest commit:</p>
 
 <div class="brush: console">
- <div class="source">
-  <pre><span></span><span class="gp">$</span> bin/python setup.py sdist bdist_egg
-<span class="gp">$</span> ls dist
-<span class="go">pyhello-0.1dev-92ffa06.tar.gz    pyhello-0.1dev_92ffa06-py2.7.egg</span>
-</pre></div>
-
-</div>
+ <pre><code>$ bin/python setup.py sdist bdist_egg
+$ ls dist
+pyhello-0.1dev-92ffa06.tar.gz    pyhello-0.1dev_92ffa06-py2.7.egg</code></pre></div>
 
 <p>Whenever you want to build a stable release (without any &ldquo;dev&rdquo; tags), just set the key to empty in your <code>setup.cfg</code>, like this:</p>
 
@@ -182,19 +190,19 @@ tag_build =</code></pre>
 </article>
 <article>
   <header>
-    <h2><a href='/blog/2014/01/21/wordcount-in-c/'>Wordcount in C++</a></h2>
+    <h2><a href='/blog/2014/01/21/wordcount-in-c'>Wordcount in C++</a></h2>
     <p class='date-and-tags'>
 <time datetime="2014-01-21" pubdate="true">2014-01-21</time> :: <span class="tags"><a href="/tags/C.html">C++</a></span></p>
   </header>
 
 <p>This is the standard example for MapReduce applications, counting the words in a file. Note that this snippet is not threaded nor distributed. It is just a curiosity: how to implement the same in C++, using the STL to avoid having any <code>for</code> loop!</p>
   <footer>
-    <a href='/blog/2014/01/21/wordcount-in-c/'>&hellip; more &hellip;</a>
+    <a href='/blog/2014/01/21/wordcount-in-c'>&hellip; more &hellip;</a>
   </footer>
 </article>
 <article>
   <header>
-    <h2><a href='/blog/2014/01/20/reduce-in-standard-c/'>Reduce in standard C++</a></h2>
+    <h2><a href='/blog/2014/01/20/reduce-in-standard-c'>Reduce in standard C++</a></h2>
     <p class='date-and-tags'>
 <time datetime="2014-01-20" pubdate="true">2014-01-20</time> :: <span class="tags"><a href="/tags/C.html">C++</a></span></p>
   </header>
@@ -203,12 +211,12 @@ tag_build =</code></pre>
 
 <p>You can traverse a C++ vector in many ways. Looping over a counter variable that goes from 0 to the vector size or taking an iterator from the vector&rsquo;s <code>begin</code> to its <code>end</code> pointer positions are well-known ways to access its elements. When you are collapsing the elements into a single accumulator value (an operation usually called <code>reduce</code> in functional programming), you can use the <code>std::accumulate</code> function in the <code>numeric</code> header.</p>
   <footer>
-    <a href='/blog/2014/01/20/reduce-in-standard-c/'>&hellip; more &hellip;</a>
+    <a href='/blog/2014/01/20/reduce-in-standard-c'>&hellip; more &hellip;</a>
   </footer>
 </article>
 <article>
   <header>
-    <h2><a href='/blog/2013/12/04/how-do-you-develop-with-yesod/'>How do you develop with Yesod</a></h2>
+    <h2><a href='/blog/2013/12/04/how-do-you-develop-with-yesod'>How do you develop with Yesod</a></h2>
     <p class='date-and-tags'>
 <time datetime="2013-12-04" pubdate="true">2013-12-04</time> :: <span class="tags"><a href="/tags/haskell.html">haskell</a>, <a href="/tags/web.html">web</a></span></p>
   </header>
@@ -220,58 +228,10 @@ tag_build =</code></pre>
 <p>The purpose of this post is to explain to a new Yesod developer &ldquo;What do I do after &hellip; ?&rdquo; :</p>
 
 <div class="brush: console">
- <div class="source">
-  <pre><span></span><span class="gp">$</span> yesod init
-</pre></div>
-
-</div>
+ <pre><code>$ yesod init</code></pre></div>
   <footer>
-    <a href='/blog/2013/12/04/how-do-you-develop-with-yesod/'>&hellip; more &hellip;</a>
+    <a href='/blog/2013/12/04/how-do-you-develop-with-yesod'>&hellip; more &hellip;</a>
   </footer>
-</article>
-<article>
-  <header>
-    <h2><a href='/blog/2013/12/04/instalar-python-2-7-y-numpy-sobre-redhat-6/'>Instalar Python 2.7 y NumPy sobre RedHat 6</a></h2>
-    <p class='date-and-tags'>
-<time datetime="2013-12-04" pubdate="true">2013-12-04</time> :: <span class="tags"><a href="/tags/python.html">python</a></span></p>
-  </header>
-
-<p>RedHat y centOS tienen la fastidiosa dependencia de su gestor de paquetes, yum, con la versión 2.6 de Python desde tiempos inmemoriales. Lo que en tecnología son unos seis o siete años.</p>
-
-<p>Instalar Python 2.7 no es posible con los repositorios instalados por defecto, y si tienes la mala idea de instalar un repositorio donde sí esté y meterlo como paquete que supedita al python por defecto, te acabas de cargar yum (y la posibilidad más sencilla de deshacer tus cambios).</p>
-
-<p>La mejor manera, pese a lo que pueda parecer, es <strong>instalar desde fuentes</strong>, haciendo lo que se conoce como &ldquo;altinstall&rdquo; (instalación alternativa). Esto crea ejecutables llamados <code>python2.7</code> bajo <code>/usr/local/bin</code>, que <strong>no sobreescriben</strong> el comando <code>python</code> normal del sistema; éste sigue apuntando a un ejecutable bajo <code>/usr/bin</code>.</p>
-
-<div class="brush: console">
- <div class="source">
-  <pre><span></span><span class="gp">$</span> wget http://www.python.org/ftp/python/2.7.6/Python-2.7.6.tgz
-<span class="gp">$</span> tar xvfz Python-2.7.6.tgz
-<span class="gp">$</span> <span class="nb">cd</span> Python-2.7.6
-<span class="gp">$</span> ./configure
-<span class="gp">$</span> make
-<span class="gp">$</span> sudo make altinstall
-</pre></div>
-
-</div>
-
-<p>Además de esto, es recomendable instalar <strong>un <code>easy_install</code> alternativo también</strong>, ya que, si no, todas las librerías de python se instalarán para la 2.6 y no para la 2.7.</p>
-
-<div class="brush: console">
- <div class="source">
-  <pre><span></span><span class="gp">$</span> wget http://pypi.python.org/packages/2.7/s/setuptools/setuptools-0.6c11-py2.7.egg
-<span class="gp">$</span> sudo -i
-<span class="gp">#</span> <span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:/usr/local/bin
-<span class="gp">#</span> sh setuptools-0.6c11-py2.7.egg
-<span class="gp">#</span> <span class="nb">exit</span>
-<span class="gp">$</span> sudo rm /usr/local/bin/easy_install <span class="c1">## remove the symlink that shadows the system easy_install</span>
-<span class="gp">$</span> <span class="c1"># You may now try the easy_install for 2.7 with e.g.:</span>
-<span class="gp">$</span> sudo /usr/local/bin/easy_install-2.7 numpy
-</pre></div>
-
-</div>
-
-<p>Este post es una combinación de <a href="http://stackoverflow.com/questions/4149361/on-linux-suse-or-redhat-how-do-i-load-python-2-7">dos respuestas en Stack Overflow</a>, y mi propia experiencia con este mismo problema.</p>
-
 </article>
 <footer>
  <ul class="pagination">
@@ -293,9 +253,9 @@ tag_build =</code></pre>
         <a href="http://twitter.github.com/bootstrap/index.html">Bootstrap</a>.
         Cover image by NASA/Bill Ingalls [Public domain], via Wikimedia Commons.
         </p>
-        <p>This page was last built on Monday, December 12th, 2016</p>
+        <p>This page was last built on Tuesday, August 15th, 2017</p>
 
-        <p><em>© Copyright 2016, Luis Osa</em>.</p>
+        <p><em>© Copyright 2017, Luis Osa</em>.</p>
       </footer>
     </div>
     <!-- </body> JS -->

@@ -9,9 +9,9 @@
     <meta name="keywords"    content="python">
     <meta name="viewport"    content="width=device-width, initial-scale=1.0">
     <link rel="icon"      href="/favicon.ico">
-    <link rel="canonical" href="http://logc.github.io/blog/2013/12/03/unicode-encodings/">
-    <link rel="next" href="/blog/2013/12/02/py2app-excludes/">
-    <link rel="prev" href="/blog/2013/12/04/instalar-python-2-7-y-numpy-sobre-redhat-6/">
+    <link rel="canonical" href="http://logc.github.io/blog/2013/12/03/unicode-encodings">
+    <link rel="next" href="/blog/2013/12/02/py2app-excludes">
+    <link rel="prev" href="/blog/2013/12/04/instalar-python-2-7-y-numpy-sobre-redhat-6">
     <!-- CSS -->
     <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="/css/pygments.css">
@@ -146,20 +146,16 @@
 <p>La función <code>unicode</code> <strong>no utiliza UTF&ndash;8 por defecto</strong>, sino, absurdamente, ASCII. Por eso <em>sólo es equivalente a poner una <code>u</code> delante una cadena si se especifica que el <code>encoding</code> sea <code>'utf-8'</code></em>.</p>
 
 <div class="brush: python">
- <div class="source">
-  <pre><span></span><span class="n">unicode_string</span> <span class="o">=</span> <span class="s2">u"Años"</span>
+ <pre><code>unicode_string = u"Años"
 
-<span class="n">unicode_str</span> <span class="o">=</span> <span class="nb">unicode</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s1">&#39;some.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">(),</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
-</pre></div>
-
-</div>
+unicode_str = unicode(open('some.txt', 'r').read(), encoding='utf-8')</code></pre></div>
   <footer>
     <ul class="pager">
     <li class="previous">
-      <a href="/blog/2013/12/04/instalar-python-2-7-y-numpy-sobre-redhat-6/">&larr; <em>Instalar Python 2.7 y NumPy sobre RedHat 6</em></a>
+      <a href="/blog/2013/12/04/instalar-python-2-7-y-numpy-sobre-redhat-6">&larr; <em>Instalar Python 2.7 y NumPy sobre RedHat 6</em></a>
     </li>
     <li class="next">
-      <a href="/blog/2013/12/02/py2app-excludes/"><em>py2app excludes</em> &rarr;</a>
+      <a href="/blog/2013/12/02/py2app-excludes"><em>py2app excludes</em> &rarr;</a>
     </li>
     </ul>
   </footer>
@@ -175,9 +171,9 @@
         <a href="http://twitter.github.com/bootstrap/index.html">Bootstrap</a>.
         Cover image by NASA/Bill Ingalls [Public domain], via Wikimedia Commons.
         </p>
-        <p>This page was last built on Monday, December 12th, 2016</p>
+        <p>This page was last built on Tuesday, August 15th, 2017</p>
 
-        <p><em>© Copyright 2016, Luis Osa</em>.</p>
+        <p><em>© Copyright 2017, Luis Osa</em>.</p>
       </footer>
     </div>
     <!-- </body> JS -->

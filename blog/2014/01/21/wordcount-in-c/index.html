@@ -9,9 +9,9 @@
     <meta name="keywords"    content="C++">
     <meta name="viewport"    content="width=device-width, initial-scale=1.0">
     <link rel="icon"      href="/favicon.ico">
-    <link rel="canonical" href="http://logc.github.io/blog/2014/01/21/wordcount-in-c/">
-    <link rel="next" href="/blog/2014/01/20/reduce-in-standard-c/">
-    <link rel="prev" href="/blog/2014/04/01/python-egg-tagged-with-git-commit-hash/">
+    <link rel="canonical" href="http://logc.github.io/blog/2014/01/21/wordcount-in-c">
+    <link rel="next" href="/blog/2014/01/20/reduce-in-standard-c">
+    <link rel="prev" href="/blog/2014/04/01/python-egg-tagged-with-git-commit-hash">
     <!-- CSS -->
     <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="/css/pygments.css">
@@ -137,96 +137,88 @@
 <!-- more-->
 
 <div class="brush: c++">
- <div class="source">
-  <pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;fstream&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;iostream&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;numeric&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;sstream&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;string&gt;</span><span class="cp"></span>
-<span class="cp">#include</span> <span class="cpf">&lt;vector&gt;</span><span class="cp"></span>
+ <pre><code>#include &lt;fstream&gt;
+#include &lt;iostream&gt;
+#include &lt;numeric&gt;
+#include &lt;sstream&gt;
+#include &lt;string&gt;
+#include &lt;vector&gt;
 
-<span class="k">using</span> <span class="n">std</span><span class="o">::</span><span class="n">pair</span><span class="p">;</span>
-<span class="k">using</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">;</span>
-<span class="k">using</span> <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="p">;</span>
-<span class="k">using</span> <span class="n">std</span><span class="o">::</span><span class="n">istringstream</span><span class="p">;</span>
-<span class="k">using</span> <span class="n">std</span><span class="o">::</span><span class="n">istream_iterator</span><span class="p">;</span>
+using std::pair;
+using std::string;
+using std::vector;
+using std::istringstream;
+using std::istream_iterator;
 
 
-<span class="n">vector</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span> <span class="n">split_at_whitespace</span><span class="p">(</span><span class="n">string</span> <span class="n">line</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="n">istringstream</span> <span class="n">iss</span><span class="p">(</span><span class="n">line</span><span class="p">);</span>
-    <span class="n">vector</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span> <span class="n">tokens</span><span class="p">{</span>
-        <span class="n">istream_iterator</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span><span class="p">{</span><span class="n">iss</span><span class="p">},</span>
-        <span class="n">istream_iterator</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span><span class="p">{}};</span>
-    <span class="k">return</span> <span class="n">tokens</span><span class="p">;</span>
-<span class="p">}</span>
+vector&lt;string&gt; split_at_whitespace(string line)
+{
+    istringstream iss(line);
+    vector&lt;string&gt; tokens{
+        istream_iterator&lt;string&gt;{iss},
+        istream_iterator&lt;string&gt;{}};
+    return tokens;
+}
 
-<span class="n">vector</span><span class="o">&lt;</span> <span class="n">pair</span><span class="o">&lt;</span><span class="n">string</span><span class="p">,</span> <span class="kt">int</span><span class="o">&gt;</span> <span class="o">&gt;</span> <span class="n">map</span><span class="p">(</span><span class="n">string</span> <span class="n">line</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="n">vector</span><span class="o">&lt;</span><span class="n">string</span><span class="o">&gt;</span> <span class="n">tokens</span> <span class="o">=</span> <span class="n">split_at_whitespace</span><span class="p">(</span><span class="n">line</span><span class="p">);</span>
-    <span class="n">vector</span><span class="o">&lt;</span> <span class="n">pair</span><span class="o">&lt;</span><span class="n">string</span><span class="p">,</span> <span class="kt">int</span><span class="o">&gt;</span> <span class="o">&gt;</span> <span class="n">current_outputs</span><span class="p">(</span><span class="n">tokens</span><span class="p">.</span><span class="n">size</span><span class="p">());</span>
-    <span class="n">std</span><span class="o">::</span><span class="n">transform</span><span class="p">(</span>
-        <span class="n">tokens</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">tokens</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="n">current_outputs</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span>
-        <span class="p">[]</span> <span class="p">(</span><span class="k">const</span> <span class="n">string</span> <span class="n">output</span><span class="p">)</span> <span class="p">{</span>
-            <span class="k">return</span> <span class="n">std</span><span class="o">::</span><span class="n">make_pair</span><span class="p">(</span><span class="n">output</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
-        <span class="p">});</span>
-    <span class="k">return</span> <span class="n">current_outputs</span><span class="p">;</span>
-<span class="p">}</span>
+vector&lt; pair&lt;string, int&gt; &gt; map(string line)
+{
+    vector&lt;string&gt; tokens = split_at_whitespace(line);
+    vector&lt; pair&lt;string, int&gt; &gt; current_outputs(tokens.size());
+    std::transform(
+        tokens.begin(), tokens.end(), current_outputs.begin(),
+        [] (const string output) {
+            return std::make_pair(output, 1);
+        });
+    return current_outputs;
+}
 
-<span class="kt">int</span> <span class="n">reduce</span><span class="p">(</span><span class="n">vector</span><span class="o">&lt;</span> <span class="n">pair</span><span class="o">&lt;</span><span class="n">string</span><span class="p">,</span> <span class="kt">int</span><span class="o">&gt;</span> <span class="o">&gt;</span> <span class="n">outputs</span><span class="p">)</span>
-<span class="p">{</span>
-    <span class="k">return</span> <span class="n">std</span><span class="o">::</span><span class="n">accumulate</span><span class="p">(</span>
-        <span class="n">outputs</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">outputs</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="mf">0.0</span><span class="p">,</span>
-        <span class="p">[]</span> <span class="p">(</span><span class="kt">int</span> <span class="n">sum</span><span class="p">,</span> <span class="k">const</span> <span class="n">pair</span><span class="o">&lt;</span><span class="n">string</span><span class="p">,</span> <span class="kt">int</span><span class="o">&gt;</span> <span class="n">output</span><span class="p">)</span> <span class="p">{</span>
-                <span class="k">return</span> <span class="n">sum</span> <span class="o">+</span> <span class="n">output</span><span class="p">.</span><span class="n">second</span><span class="p">;</span>
-            <span class="p">});</span>
-<span class="p">}</span>
+int reduce(vector&lt; pair&lt;string, int&gt; &gt; outputs)
+{
+    return std::accumulate(
+        outputs.begin(), outputs.end(), 0.0,
+        [] (int sum, const pair&lt;string, int&gt; output) {
+                return sum + output.second;
+            });
+}
 
-<span class="kt">int</span> <span class="n">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="k">const</span> <span class="kt">char</span> <span class="o">*</span><span class="n">argv</span><span class="p">[])</span>
-<span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">argc</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">)</span> <span class="p">{</span>
-        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"Usage: "</span> <span class="o">&lt;&lt;</span> <span class="n">argv</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&lt;&lt;</span> <span class="s">" infile"</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-        <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
-    <span class="p">}</span>
+int main(int argc, const char *argv[])
+{
+    if (argc &lt; 2) {
+        std::cout &lt;&lt; "Usage: " &lt;&lt; argv[0] &lt;&lt; " infile" &lt;&lt; std::endl;
+        return 1;
+    }
 
-    <span class="n">string</span> <span class="n">filename</span> <span class="o">=</span> <span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
-    <span class="n">std</span><span class="o">::</span><span class="n">ifstream</span> <span class="n">infile</span><span class="p">(</span><span class="n">filename</span><span class="p">);</span>
-    <span class="n">string</span> <span class="n">line</span><span class="p">;</span>
-    <span class="n">vector</span><span class="o">&lt;</span> <span class="n">pair</span><span class="o">&lt;</span><span class="n">string</span><span class="p">,</span> <span class="kt">int</span><span class="o">&gt;</span> <span class="o">&gt;</span> <span class="n">occurences</span><span class="p">;</span>
-    <span class="k">while</span> <span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">getline</span><span class="p">(</span><span class="n">infile</span><span class="p">,</span> <span class="n">line</span><span class="p">))</span> <span class="p">{</span>
-        <span class="k">auto</span> <span class="n">line_occurences</span> <span class="o">=</span> <span class="n">map</span><span class="p">(</span><span class="n">line</span><span class="p">);</span>
-        <span class="n">occurences</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span>
-            <span class="n">occurences</span><span class="p">.</span><span class="n">end</span><span class="p">(),</span> <span class="n">line_occurences</span><span class="p">.</span><span class="n">begin</span><span class="p">(),</span> <span class="n">line_occurences</span><span class="p">.</span><span class="n">end</span><span class="p">());</span>
-    <span class="p">}</span>
-    <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="n">reduce</span><span class="p">(</span><span class="n">occurences</span><span class="p">);</span>
-    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"File "</span> <span class="o">&lt;&lt;</span> <span class="n">filename</span> <span class="o">&lt;&lt;</span> <span class="s">" holds "</span> <span class="o">&lt;&lt;</span> <span class="n">n</span> <span class="o">&lt;&lt;</span> <span class="s">" words"</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
-    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span>
-</pre></div>
-
-</div>
+    string filename = argv[1];
+    std::ifstream infile(filename);
+    string line;
+    vector&lt; pair&lt;string, int&gt; &gt; occurences;
+    while (std::getline(infile, line)) {
+        auto line_occurences = map(line);
+        occurences.insert(
+            occurences.end(), line_occurences.begin(), line_occurences.end());
+    }
+    int n = reduce(occurences);
+    std::cout &lt;&lt; "File " &lt;&lt; filename &lt;&lt; " holds " &lt;&lt; n &lt;&lt; " words" &lt;&lt; std::endl;
+    return 0;
+}</code></pre></div>
 
 <p>Compile and run:</p>
 
 <div class="brush: console">
- <div class="source">
-  <pre><span></span><span class="gp">$</span> cat <span class="s">&lt;&lt; EOF &gt; sample.txt</span>
-<span class="gp">&gt;</span><span class="s"> This is a first line</span>
-<span class="gp">&gt;</span><span class="s"> This is a second line</span>
-<span class="gp">&gt;</span><span class="s"> EOF</span>
+ <pre><code>$ cat &lt;&lt; EOF &gt; sample.txt
+&gt; This is a first line
+&gt; This is a second line
+&gt; EOF
 
-<span class="gp">$</span> c++ main.cpp -o wordcount -std<span class="o">=</span>c++11 <span class="o">&amp;&amp;</span> ./wordcount sample.txt
-<span class="go">File sample.txt holds 10 words</span>
-</pre></div>
-
-</div>
+$ c++ main.cpp -o wordcount -std=c++11 &amp;&amp; ./wordcount sample.txt
+File sample.txt holds 10 words</code></pre></div>
   <footer>
     <ul class="pager">
     <li class="previous">
-      <a href="/blog/2014/04/01/python-egg-tagged-with-git-commit-hash/">&larr; <em>Python egg tagged with Git commit hash</em></a>
+      <a href="/blog/2014/04/01/python-egg-tagged-with-git-commit-hash">&larr; <em>Python egg tagged with Git commit hash</em></a>
     </li>
     <li class="next">
-      <a href="/blog/2014/01/20/reduce-in-standard-c/"><em>Reduce in standard C++</em> &rarr;</a>
+      <a href="/blog/2014/01/20/reduce-in-standard-c"><em>Reduce in standard C++</em> &rarr;</a>
     </li>
     </ul>
   </footer>
@@ -242,9 +234,9 @@
         <a href="http://twitter.github.com/bootstrap/index.html">Bootstrap</a>.
         Cover image by NASA/Bill Ingalls [Public domain], via Wikimedia Commons.
         </p>
-        <p>This page was last built on Monday, December 12th, 2016</p>
+        <p>This page was last built on Tuesday, August 15th, 2017</p>
 
-        <p><em>© Copyright 2016, Luis Osa</em>.</p>
+        <p><em>© Copyright 2017, Luis Osa</em>.</p>
       </footer>
     </div>
     <!-- </body> JS -->
