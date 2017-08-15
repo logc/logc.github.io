@@ -47,8 +47,7 @@ aliases:
 $ git discard (git lsmodified)
 ```
 
-`mkbranch` and `rmbranch` are also quite useful to me. I tend to see Git
-sometimes as a file system: sometimes I start to type `ls -l` when I actually
-need `git status`. In that mindset, I tend to identify branches with
-directories, and therefore creating and deleting them as if they were
-directories makes sense.
+`mkbranch` and `rmbranch` are also quite useful to me. I tend to see Git as a
+file system: sometimes I start to type `ls -l` when I actually need `git
+status`. In that mindset, I tend to identify branches with directories, and
+therefore creating and deleting them as if they were directories makes sense.
