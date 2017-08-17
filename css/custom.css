@@ -151,7 +151,7 @@ h4 {
     color: #558a86;
 }
 
-/* This is not code blocks, but only inline code */
+/* This is not code blocks, but only inline code
 code {
     font-family: 'Fira Mono', Menlo, Monaco, Consolas, 'Courier New', monospace;
     font-size: 80%;
@@ -159,10 +159,12 @@ code {
     background-color: #c8c8c8;
 }
 
+
 pre {
-    background-color: #c8c8c8 !important;
-    font-family: 'Fira Mono', Menlo, Monaco, Consolas, 'Courier New', monospace;
+    background-color: #49483e !important;
 }
+*/
+
 
 footer {
     padding: 5%;

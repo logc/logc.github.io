@@ -29,23 +29,31 @@ tag_svn_revision = 1&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Answer: modify directly the &lt;code&gt;options&lt;/code&gt; dictionary in the call to &lt;code&gt;setup&lt;/code&gt;, in &lt;code&gt;setup.py&lt;/code&gt;. There, you can put anything you can compute with Python or system calls. E.g. for git:&lt;/p&gt;
 
 &lt;div class="brush: python"&gt;
- &lt;pre&gt;&lt;code&gt;import shlex
-from subprocess import check_output
+ &lt;div class="highlight"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;shlex&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;subprocess&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;check_output&lt;/span&gt;
 
-GIT_HEAD_REV = check_output(shlex.split('git rev-parse --short HEAD')).strip()
+&lt;span class="n"&gt;GIT_HEAD_REV&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;check_output&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;shlex&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;split&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git rev-parse --short HEAD&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;strip&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
 
 
-setup(
-    # ... other keys like project name, version, etc ...
-    options = dict(egg_info = dict(tag_build = "dev_" + GIT_HEAD_REV)),
-)&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;span class="n"&gt;setup&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+    &lt;span class="c1"&gt;# ... other keys like project name, version, etc ...&lt;/span&gt;
+    &lt;span class="n"&gt;options&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;dict&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;egg_info&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;dict&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;tag_build&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;"dev_"&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;GIT_HEAD_REV&lt;/span&gt;&lt;span class="p"&gt;)),&lt;/span&gt;
+&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
 
 &lt;p&gt;With that setup, distributions (&lt;code&gt;sdist&lt;/code&gt; or &lt;code&gt;bdist&lt;/code&gt;) would be tagged with the string &amp;ldquo;dev&amp;rdquo; and the git hash of the latest commit:&lt;/p&gt;
 
 &lt;div class="brush: console"&gt;
- &lt;pre&gt;&lt;code&gt;$ bin/python setup.py sdist bdist_egg
-$ ls dist
-pyhello-0.1dev-92ffa06.tar.gz    pyhello-0.1dev_92ffa06-py2.7.egg&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;div class="highlight"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; bin/python setup.py sdist bdist_egg
+&lt;span class="gp"&gt;$&lt;/span&gt; ls dist
+&lt;span class="go"&gt;pyhello-0.1dev-92ffa06.tar.gz    pyhello-0.1dev_92ffa06-py2.7.egg&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
 
 &lt;p&gt;Whenever you want to build a stable release (without any &amp;ldquo;dev&amp;rdquo; tags), just set the key to empty in your &lt;code&gt;setup.cfg&lt;/code&gt;, like this:&lt;/p&gt;
 
@@ -67,24 +75,32 @@ tag_build =&lt;/code&gt;&lt;/pre&gt;</content></entry>
 &lt;p&gt;La mejor manera, pese a lo que pueda parecer, es &lt;strong&gt;instalar desde fuentes&lt;/strong&gt;, haciendo lo que se conoce como &amp;ldquo;altinstall&amp;rdquo; (instalación alternativa). Esto crea ejecutables llamados &lt;code&gt;python2.7&lt;/code&gt; bajo &lt;code&gt;/usr/local/bin&lt;/code&gt;, que &lt;strong&gt;no sobreescriben&lt;/strong&gt; el comando &lt;code&gt;python&lt;/code&gt; normal del sistema; éste sigue apuntando a un ejecutable bajo &lt;code&gt;/usr/bin&lt;/code&gt;.&lt;/p&gt;
 
 &lt;div class="brush: console"&gt;
- &lt;pre&gt;&lt;code&gt;$ wget http://www.python.org/ftp/python/2.7.6/Python-2.7.6.tgz
-$ tar xvfz Python-2.7.6.tgz
-$ cd Python-2.7.6
-$ ./configure
-$ make
-$ sudo make altinstall&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;div class="highlight"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; wget http://www.python.org/ftp/python/2.7.6/Python-2.7.6.tgz
+&lt;span class="gp"&gt;$&lt;/span&gt; tar xvfz Python-2.7.6.tgz
+&lt;span class="gp"&gt;$&lt;/span&gt; &lt;span class="nb"&gt;cd&lt;/span&gt; Python-2.7.6
+&lt;span class="gp"&gt;$&lt;/span&gt; ./configure
+&lt;span class="gp"&gt;$&lt;/span&gt; make
+&lt;span class="gp"&gt;$&lt;/span&gt; sudo make altinstall
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
 
 &lt;p&gt;Además de esto, es recomendable instalar &lt;strong&gt;un &lt;code&gt;easy_install&lt;/code&gt; alternativo también&lt;/strong&gt;, ya que, si no, todas las librerías de python se instalarán para la 2.6 y no para la 2.7.&lt;/p&gt;
 
 &lt;div class="brush: console"&gt;
- &lt;pre&gt;&lt;code&gt;$ wget http://pypi.python.org/packages/2.7/s/setuptools/setuptools-0.6c11-py2.7.egg
-$ sudo -i
-# export PATH=$PATH:/usr/local/bin
-# sh setuptools-0.6c11-py2.7.egg
-# exit
-$ sudo rm /usr/local/bin/easy_install ## remove the symlink that shadows the system easy_install
-$ # You may now try the easy_install for 2.7 with e.g.:
-$ sudo /usr/local/bin/easy_install-2.7 numpy&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;div class="highlight"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; wget http://pypi.python.org/packages/2.7/s/setuptools/setuptools-0.6c11-py2.7.egg
+&lt;span class="gp"&gt;$&lt;/span&gt; sudo -i
+&lt;span class="gp"&gt;#&lt;/span&gt; &lt;span class="nb"&gt;export&lt;/span&gt; &lt;span class="nv"&gt;PATH&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;$PATH&lt;/span&gt;:/usr/local/bin
+&lt;span class="gp"&gt;#&lt;/span&gt; sh setuptools-0.6c11-py2.7.egg
+&lt;span class="gp"&gt;#&lt;/span&gt; &lt;span class="nb"&gt;exit&lt;/span&gt;
+&lt;span class="gp"&gt;$&lt;/span&gt; sudo rm /usr/local/bin/easy_install &lt;span class="c1"&gt;## remove the symlink that shadows the system easy_install&lt;/span&gt;
+&lt;span class="gp"&gt;$&lt;/span&gt; &lt;span class="c1"&gt;# You may now try the easy_install for 2.7 with e.g.:&lt;/span&gt;
+&lt;span class="gp"&gt;$&lt;/span&gt; sudo /usr/local/bin/easy_install-2.7 numpy
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
 
 &lt;p&gt;Este post es una combinación de &lt;a href="http://stackoverflow.com/questions/4149361/on-linux-suse-or-redhat-how-do-i-load-python-2-7"&gt;dos respuestas en Stack Overflow&lt;/a&gt;, y mi propia experiencia con este mismo problema.&lt;/p&gt;</content></entry>
  <entry>
@@ -109,9 +125,13 @@ $ sudo /usr/local/bin/easy_install-2.7 numpy&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt
 &lt;p&gt;La función &lt;code&gt;unicode&lt;/code&gt; &lt;strong&gt;no utiliza UTF&amp;ndash;8 por defecto&lt;/strong&gt;, sino, absurdamente, ASCII. Por eso &lt;em&gt;sólo es equivalente a poner una &lt;code&gt;u&lt;/code&gt; delante una cadena si se especifica que el &lt;code&gt;encoding&lt;/code&gt; sea &lt;code&gt;'utf-8'&lt;/code&gt;&lt;/em&gt;.&lt;/p&gt;
 
 &lt;div class="brush: python"&gt;
- &lt;pre&gt;&lt;code&gt;unicode_string = u"Años"
+ &lt;div class="highlight"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;unicode_string&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="sa"&gt;u&lt;/span&gt;&lt;span class="s2"&gt;"Años"&lt;/span&gt;
 
-unicode_str = unicode(open('some.txt', 'r').read(), encoding='utf-8')&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content></entry>
+&lt;span class="n"&gt;unicode_str&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;unicode&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;open&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;some.txt&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;r&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;read&lt;/span&gt;&lt;span class="p"&gt;(),&lt;/span&gt; &lt;span class="n"&gt;encoding&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;utf-8&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;</content></entry>
  <entry>
   <title type="text">py2app excludes</title>
   <link rel="alternate" href="http://logc.github.io/blog/2013/12/02/py2app-excludes?utm_source=python&amp;utm_medium=Atom" />
@@ -128,71 +148,75 @@ unicode_str = unicode(open('some.txt', 'r').read(), encoding='utf-8')&lt;/code&g
 &lt;p&gt;Con la lista siguiente, el peso baja de 22 MBs a 6 MBs. Probablemente se puede rebajar aún más.&lt;/p&gt;
 
 &lt;div class="brush: python"&gt;
- &lt;pre&gt;&lt;code&gt;# File: setup.py
+ &lt;div class="highlight"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# File: setup.py&lt;/span&gt;
 
-from setuptools import setup
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;setuptools&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;setup&lt;/span&gt;
 
-APP = ['path/main.py']
-Plist = {}
-DATA_FILES = []
-OPTIONS = {'argv_emulation': True,
-           #'iconfile': 'Icons/ConverterIcon.icns',
-           'plist': Plist,
-           'excludes': [
-               'aetypes',
-               'ast',
-               'bz2',
-               'calendar',
-               'codecs',
-               'collections',
-               'ctypes',
-               'distutils',
-               'doctest',
-               'email',
-               'encodings',
-               'functools',
-               'gzip',
-               'inspect',
-               'itertools',
-               'locale',
-               'logging',
-               'optparse',
-               'pickle',
-               'platform',
-               'pprint',
-               'random',
-               're',
-               'sets',
-               'shutil',
-               'socket',
-               'ssl',
-               'subprocess',
-               'tarfile',
-               'tempfile',
-               'threading',
-               'traceback',
-               'types',
-               'unittest',
-               'urllib',
-               'urllib2',
-               'urlparse',
-               'weakref',
-               'xml',
-               'zipfile',
-           ]
-           }
+&lt;span class="n"&gt;APP&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;path/main.py&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="n"&gt;Plist&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{}&lt;/span&gt;
+&lt;span class="n"&gt;DATA_FILES&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[]&lt;/span&gt;
+&lt;span class="n"&gt;OPTIONS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;argv_emulation&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="bp"&gt;True&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+           &lt;span class="c1"&gt;#&amp;#39;iconfile&amp;#39;: &amp;#39;Icons/ConverterIcon.icns&amp;#39;,&lt;/span&gt;
+           &lt;span class="s1"&gt;&amp;#39;plist&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Plist&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+           &lt;span class="s1"&gt;&amp;#39;excludes&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;
+               &lt;span class="s1"&gt;&amp;#39;aetypes&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+               &lt;span class="s1"&gt;&amp;#39;ast&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+               &lt;span class="s1"&gt;&amp;#39;bz2&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+               &lt;span class="s1"&gt;&amp;#39;calendar&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+               &lt;span class="s1"&gt;&amp;#39;codecs&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+               &lt;span class="s1"&gt;&amp;#39;collections&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+               &lt;span class="s1"&gt;&amp;#39;ctypes&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+               &lt;span class="s1"&gt;&amp;#39;distutils&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+               &lt;span class="s1"&gt;&amp;#39;doctest&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+               &lt;span class="s1"&gt;&amp;#39;email&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+               &lt;span class="s1"&gt;&amp;#39;encodings&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+               &lt;span class="s1"&gt;&amp;#39;functools&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+               &lt;span class="s1"&gt;&amp;#39;gzip&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+               &lt;span class="s1"&gt;&amp;#39;inspect&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+               &lt;span class="s1"&gt;&amp;#39;itertools&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+               &lt;span class="s1"&gt;&amp;#39;locale&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+               &lt;span class="s1"&gt;&amp;#39;logging&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+               &lt;span class="s1"&gt;&amp;#39;optparse&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+               &lt;span class="s1"&gt;&amp;#39;pickle&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+               &lt;span class="s1"&gt;&amp;#39;platform&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+               &lt;span class="s1"&gt;&amp;#39;pprint&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+               &lt;span class="s1"&gt;&amp;#39;random&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+               &lt;span class="s1"&gt;&amp;#39;re&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+               &lt;span class="s1"&gt;&amp;#39;sets&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+               &lt;span class="s1"&gt;&amp;#39;shutil&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+               &lt;span class="s1"&gt;&amp;#39;socket&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+               &lt;span class="s1"&gt;&amp;#39;ssl&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+               &lt;span class="s1"&gt;&amp;#39;subprocess&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+               &lt;span class="s1"&gt;&amp;#39;tarfile&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+               &lt;span class="s1"&gt;&amp;#39;tempfile&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+               &lt;span class="s1"&gt;&amp;#39;threading&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+               &lt;span class="s1"&gt;&amp;#39;traceback&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+               &lt;span class="s1"&gt;&amp;#39;types&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+               &lt;span class="s1"&gt;&amp;#39;unittest&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+               &lt;span class="s1"&gt;&amp;#39;urllib&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+               &lt;span class="s1"&gt;&amp;#39;urllib2&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+               &lt;span class="s1"&gt;&amp;#39;urlparse&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+               &lt;span class="s1"&gt;&amp;#39;weakref&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+               &lt;span class="s1"&gt;&amp;#39;xml&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+               &lt;span class="s1"&gt;&amp;#39;zipfile&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+           &lt;span class="p"&gt;]&lt;/span&gt;
+           &lt;span class="p"&gt;}&lt;/span&gt;
 
-setup(
-    app=APP,
-    package_dir={'': 'src'}, # you may not need this
-    data_files=DATA_FILES,
-    version="0.1",
-    description="&amp;lt;Your description&amp;gt;",
-    author="&amp;lt;Your name&amp;gt;",
-    author_email="&amp;lt;Your email&amp;gt;",
-    options={'py2app': OPTIONS},
-    setup_requires=['py2app'],
-)&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content></entry>
+&lt;span class="n"&gt;setup&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+    &lt;span class="n"&gt;app&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;APP&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="n"&gt;package_dir&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;src&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;},&lt;/span&gt; &lt;span class="c1"&gt;# you may not need this&lt;/span&gt;
+    &lt;span class="n"&gt;data_files&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;DATA_FILES&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="n"&gt;version&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;"0.1"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="n"&gt;description&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;"&amp;lt;Your description&amp;gt;"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="n"&gt;author&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;"&amp;lt;Your name&amp;gt;"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="n"&gt;author_email&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;"&amp;lt;Your email&amp;gt;"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="n"&gt;options&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;py2app&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;OPTIONS&lt;/span&gt;&lt;span class="p"&gt;},&lt;/span&gt;
+    &lt;span class="n"&gt;setup_requires&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;py2app&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
+&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;</content></entry>
  <entry>
   <title type="text">Compilar Cython</title>
   <link rel="alternate" href="http://logc.github.io/blog/2013/11/19/compilar-cython?utm_source=python&amp;utm_medium=Atom" />
@@ -205,35 +229,47 @@ setup(
 &lt;p&gt;Compilar ficheros de Cython es más fácil usando la función &lt;code&gt;cythonize&lt;/code&gt; dentro del setup.py de nuestro proyecto:&lt;/p&gt;
 
 &lt;div class="brush: python"&gt;
- &lt;pre&gt;&lt;code&gt;# File: setup.py
+ &lt;div class="highlight"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# File: setup.py&lt;/span&gt;
 
-from distutils.core import setup
-from Cython.Build import cythonize
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;distutils.core&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;setup&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;Cython.Build&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;cythonize&lt;/span&gt;
 
-setup(
-      name = "My hello app",
-      ext_modules = cythonize('fibonacci.pyx'), # accepts a glob pattern
-)&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;span class="n"&gt;setup&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+      &lt;span class="n"&gt;name&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;"My hello app"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+      &lt;span class="n"&gt;ext_modules&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;cythonize&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;fibonacci.pyx&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="c1"&gt;# accepts a glob pattern&lt;/span&gt;
+&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
 
 &lt;p&gt;Por ejemplo, el fichero a compilar es fibonacci.pyx, que contiene un ejemplo del tutorial de Cython:&lt;/p&gt;
 
 &lt;div class="brush: python"&gt;
- &lt;pre&gt;&lt;code&gt;# File: fibonacci.pyx
+ &lt;div class="highlight"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# File: fibonacci.pyx&lt;/span&gt;
 
-def fib(n):
-    a, b = 0, 1
-    while b &amp;lt; n:
-        print b,
-        a, b = b, a + b&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;fib&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
+    &lt;span class="k"&gt;while&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
 
 &lt;p&gt;El resultado de compilar &lt;code&gt;fibonacci.pyx&lt;/code&gt; es un fichero con código intermedio en C &lt;code&gt;fibonacci.c&lt;/code&gt; y un fichero compilado &lt;code&gt;fibonacci.so&lt;/code&gt;.&lt;/p&gt;
 
 &lt;div class="brush: bash"&gt;
- &lt;pre&gt;&lt;code&gt;$ python setup.py build
+ &lt;div class="highlight"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ python setup.py build
 running build
 running build_ext
-building 'fibonacci' extension
-/usr/bin/clang ...snip... -o build/lib.macosx-10.8-x86_64-2.7/fibonacci.so&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+building &lt;span class="s1"&gt;&amp;#39;fibonacci&amp;#39;&lt;/span&gt; extension
+/usr/bin/clang ...snip... -o build/lib.macosx-10.8-x86_64-2.7/fibonacci.so
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
 
 &lt;blockquote&gt;
  &lt;p&gt;&lt;strong&gt;note&lt;/strong&gt;&lt;/p&gt;
@@ -242,6 +278,10 @@ building 'fibonacci' extension
 &lt;p&gt;El fichero .so puede usarse desde otros módulos de Python, o directamente desde la shell&lt;/p&gt;
 
 &lt;div class="brush: pycon"&gt;
- &lt;pre&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; import fibonacci
-&amp;gt;&amp;gt;&amp;gt; fibonacci.fib(5)
-1 1 2 3&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content></entry></feed>
+ &lt;div class="highlight"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;&amp;gt;&amp;gt;&amp;gt; &lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;fibonacci&lt;/span&gt;
+&lt;span class="gp"&gt;&amp;gt;&amp;gt;&amp;gt; &lt;/span&gt;&lt;span class="n"&gt;fibonacci&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;fib&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="go"&gt;1 1 2 3&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;</content></entry></feed>

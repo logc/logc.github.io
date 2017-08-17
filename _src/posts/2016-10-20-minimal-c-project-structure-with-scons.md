@@ -11,8 +11,6 @@ as the build system. It enables you to:
 - the unit tests link to the library
 - Macports-installed libraries
 
-<!-- more -->
-
 Layout your code like this:
 
 ```
@@ -37,7 +35,7 @@ where `mylib` should have a more descriptive name for your project.
 
 `sconstruct` is:
 
-```
+```python
 env = Environment(CPPPATH=['include', '/opt/local/include'])
 env.Library(target='mylib', source=Glob('src/core/*.c'))
 env.Program(target='mylib', source=Glob('src/*.c'),
@@ -45,6 +43,8 @@ env.Program(target='mylib', source=Glob('src/*.c'),
 env.Program(target='test_mylib', source=Glob('tests/*.c') + Glob('tests/**/*.c'),
             LIBS=['mylib', 'check'], LIBPATH=['.', '/opt/local/lib/'])
 ```
+
+<!-- more -->
 
 ## Implementation
 

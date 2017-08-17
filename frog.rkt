@@ -28,9 +28,9 @@
   (-> (listof xexpr/c) (listof xexpr/c))
   ;; Here we pass the xexprs through a series of functions.
   (~> xs
-      (syntax-highlight #:python-executable "python"
+      (syntax-highlight #:python-executable "python2"
                         #:line-numbers? #f
-                        #:css-class "source")
+                        #:css-class "highlight")
       (auto-embed-tweets #:parents? #t)
       (add-racket-doc-links #:code? #t #:prose? #t)))
 

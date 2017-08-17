@@ -83,6 +83,8 @@
 
 <li><a href="/tags/haskell.html">haskell</a></li>
 
+<li><a href="/tags/programming.html">programming</a></li>
+
 <li><a href="/tags/python.html">python</a></li>
 
 <li><a href="/tags/racket.html">racket</a></li>
@@ -134,9 +136,31 @@
   </header>
 
 <p>Here are some of the Git alias configurations that I use. My philosophy in writing them was to keep them descriptive, and <em>not to keep them easy to type</em>, following the approach in <a href="http://blog.wittchen.biz.pl/my-approach-to-git-aliases/">this blog post</a>. In order to keep my typing short, I use the <a href="http://fishshell.com">fish shell</a>.</p>
-  <footer>
-    <a href='/blog/2017/08/15/some-git-aliases'>&hellip; more &hellip;</a>
-  </footer>
+
+<pre><code>[alias]
+	amend = commit --amend
+	discard = checkout --
+	docommit = commit --verbose --all
+	hist = log --color --pretty=format:\"%C(yellow)%h%C(reset) %s%C(bold red)%d%C(reset) %C(green)%ad%C(reset) %C(blue)[%an]%C(reset)\" --relative-date --decorate
+	lastedit = log --pretty=format: --name-only -n 1
+	logshort = log --oneline -n 10
+    lsmodified = diff --name-only head
+	mkbranch = checkout -b
+	rmbranch = branch -d</code></pre>
+
+<p>The aliases <code>amend</code> and <code>discard</code> are pretty self-explanatory. <code>docommit</code> reflects my own preferences when finishing a commit: just commit everything that is currently modified and add a diff under the commit message, so that I can review what I actually modified everywhere. <code>hist</code> is something I don&rsquo;t use very much; I copied it from somewhere and I keep it around to avoid going to a GUI when I need to review history in-depth.</p>
+
+<p><code>lastedit</code> lists which files were edited in the last commit. I find it useful to just open them again in an editor:</p>
+
+<pre><code>$ vim (git lastedit)</code></pre>
+
+<p><code>logshort</code> is probably the alias I use the most. It just gives me an idea of what was going on in a branch, without defaulting to show me all history since the beginning of time. <code>lsmodified</code> is a recent addition. It lists all files modified but not commited. It is intended to be used together with other aliases:</p>
+
+<pre><code>$ git discard (git lsmodified)</code></pre>
+
+<p><code>mkbranch</code> and <code>rmbranch</code> are also quite useful to me. I tend to see Git as a file system: sometimes I start to type <code>ls -l</code> when I actually need <code>git
+status</code>. In that mindset, I tend to identify branches with directories, and therefore creating and deleting them as if they were directories makes sense.</p>
+
 </article>
 <article>
   <header>
@@ -182,23 +206,31 @@ tag_svn_revision = 1</code></pre>
 <p>Answer: modify directly the <code>options</code> dictionary in the call to <code>setup</code>, in <code>setup.py</code>. There, you can put anything you can compute with Python or system calls. E.g. for git:</p>
 
 <div class="brush: python">
- <pre><code>import shlex
-from subprocess import check_output
+ <div class="highlight">
+  <pre><span></span><span class="kn">import</span> <span class="nn">shlex</span>
+<span class="kn">from</span> <span class="nn">subprocess</span> <span class="kn">import</span> <span class="n">check_output</span>
 
-GIT_HEAD_REV = check_output(shlex.split('git rev-parse --short HEAD')).strip()
+<span class="n">GIT_HEAD_REV</span> <span class="o">=</span> <span class="n">check_output</span><span class="p">(</span><span class="n">shlex</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;git rev-parse --short HEAD&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
 
 
-setup(
-    # ... other keys like project name, version, etc ...
-    options = dict(egg_info = dict(tag_build = "dev_" + GIT_HEAD_REV)),
-)</code></pre></div>
+<span class="n">setup</span><span class="p">(</span>
+    <span class="c1"># ... other keys like project name, version, etc ...</span>
+    <span class="n">options</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">egg_info</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">tag_build</span> <span class="o">=</span> <span class="s2">"dev_"</span> <span class="o">+</span> <span class="n">GIT_HEAD_REV</span><span class="p">)),</span>
+<span class="p">)</span>
+</pre></div>
+
+</div>
 
 <p>With that setup, distributions (<code>sdist</code> or <code>bdist</code>) would be tagged with the string &ldquo;dev&rdquo; and the git hash of the latest commit:</p>
 
 <div class="brush: console">
- <pre><code>$ bin/python setup.py sdist bdist_egg
-$ ls dist
-pyhello-0.1dev-92ffa06.tar.gz    pyhello-0.1dev_92ffa06-py2.7.egg</code></pre></div>
+ <div class="highlight">
+  <pre><span></span><span class="gp">$</span> bin/python setup.py sdist bdist_egg
+<span class="gp">$</span> ls dist
+<span class="go">pyhello-0.1dev-92ffa06.tar.gz    pyhello-0.1dev_92ffa06-py2.7.egg</span>
+</pre></div>
+
+</div>
 
 <p>Whenever you want to build a stable release (without any &ldquo;dev&rdquo; tags), just set the key to empty in your <code>setup.cfg</code>, like this:</p>
 
@@ -217,7 +249,7 @@ tag_build =</code></pre>
         <a href="http://twitter.github.com/bootstrap/index.html">Bootstrap</a>.
         Cover image by NASA/Bill Ingalls [Public domain], via Wikimedia Commons.
         </p>
-        <p>This page was last built on Tuesday, August 15th, 2017</p>
+        <p>This page was last built on Friday, August 18th, 2017</p>
 
         <p><em>© Copyright 2017, Luis Osa</em>.</p>
       </footer>

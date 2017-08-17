@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?> 
+<rss version="2.0">
+ <channel>
+  <title>logc io: Posts tagged 'programming'</title>
+  <description>logc io: Posts tagged 'programming'</description>
+  <link>http://logc.github.io/tags/programming.html</link>
+  <lastBuildDate>Sun, 27 Feb 2015 16:52:41 UT</lastBuildDate>
+  <pubDate>Sun, 27 Feb 2015 16:52:41 UT</pubDate>
+  <ttl>1800</ttl>
+  <item>
+   <title>If programming languages were music genres</title>
+   <link>http://logc.github.io/blog/2015/02/27/if-programming-languages-were-music-genres?utm_source=programming&amp;utm_medium=RSS</link>
+   <guid isPermaLink="false">urn:http-logc-github-io:-blog-2015-02-27-if-programming-languages-were-music-genres</guid>
+   <pubDate>Sun, 27 Feb 2015 16:52:41 UT</pubDate>
+   <author>logc</author>
+   <description>
+&lt;p&gt;There are quite some posts out there that compare programming languages to something else, like religions, rock bands, types of women &amp;hellip; There is a &lt;a href="http://lambda-the-ultimate.org/node/3133"&gt;compilation of these over at Lambda the Ultimate&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;One comparison that I find missing is that of programming languages to music genres (maybe the &amp;ldquo;Subcultures&amp;rdquo; post was simmilar, but it seems to be a dead link now). This is the more surprising since it looks like developers tend to argue about their favourite languages just like most people about music: everyone knows it is a highly subjective preference, but no-one escapes trying to convince others that they are not listening to the &amp;ldquo;right&amp;rdquo; music!&lt;/p&gt;
+
+&lt;p&gt;So, here is my (completely subjective) view on programming languages as music genres:&lt;/p&gt;
+&lt;!-- more--&gt;
+
+&lt;ul&gt;
+ &lt;li&gt;&lt;strong&gt;C: punk rock&lt;/strong&gt; It only has three chords, it was born in the late 70&amp;rsquo;s, and,  despite several reports to the contrary, it is not dead yet.&lt;/li&gt;
+ &lt;li&gt;&lt;strong&gt;C++: heavy metal&lt;/strong&gt; It claims to be similar but more technical than C, it is  subdivided in dozens of different subgenres that you will never totally  master, and despite the whole technical allure, at some point you start  thinking it is a bit commercial and superficial.&lt;/li&gt;
+ &lt;li&gt;&lt;strong&gt;Java: techno&lt;/strong&gt; No one likes it really, but peer pressure drives you at some  point to go to a place where they are playing it loudly, and you have to do  as if you enjoy it.&lt;/li&gt;
+ &lt;li&gt;&lt;strong&gt;Python: blues rock&lt;/strong&gt; It does what C does, but slower and with one and two  more chords thrown here and there. Everyone likes it for a while, but then,  after some hours of listening to it, you start wondering if there is something  else.&lt;/li&gt;
+ &lt;li&gt;&lt;strong&gt;Ruby: reggae&lt;/strong&gt; Coming from an exotic place, it has gained mainstream  acceptance, it is as slow as Python, and people in that scene tend to regard  themselves as cool without further explanation.&lt;/li&gt;
+ &lt;li&gt;&lt;strong&gt;LISP: classical music&lt;/strong&gt; Someone in a position of authority told you long  ago to learn its basics because it was important for your education, you  thought at the time that it was a hateful and obsolete past-time, but as time  goes by, you go back to it and find comfort in its beauty.&lt;/li&gt;
+ &lt;li&gt;&lt;strong&gt;Haskell: mathcore&lt;/strong&gt; Not everyone knows it, and those who do think they are  some kind of elite. It is 100% faster and more complex than anything else  out there. It is several layers of purity removed from C, although they  share some distant roots.&lt;/li&gt;
+ &lt;li&gt;&lt;strong&gt;Erlang: world music&lt;/strong&gt; A lot of different musical styles thrown together and  whose unifying trait seems to be that, apparently, very few people listen to  them.&lt;/li&gt;
+ &lt;li&gt;&lt;strong&gt;Clojure: hip hop&lt;/strong&gt; The base is made with the same tools as techno, but with  old soul records played on top. Who would have thought that those sweet  performers from Motown sounded so aggresive when played with a bad attitude?&lt;/li&gt;
+ &lt;li&gt;&lt;strong&gt;Scala: rap rock&lt;/strong&gt; It tries to bring together the best of two worlds and it  largely succeeds. The hardcore fans of each camp will deny there is any need  to blend their styles together, but from time to time find themselves  listening to it and nodding.&lt;/li&gt;&lt;/ul&gt;</description></item></channel></rss>

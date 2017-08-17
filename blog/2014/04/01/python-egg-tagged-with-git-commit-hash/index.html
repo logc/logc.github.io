@@ -83,6 +83,8 @@
 
 <li><a href="/tags/haskell.html">haskell</a></li>
 
+<li><a href="/tags/programming.html">programming</a></li>
+
 <li><a href="/tags/python.html">python</a></li>
 
 <li><a href="/tags/racket.html">racket</a></li>
@@ -148,23 +150,31 @@ tag_svn_revision = 1</code></pre>
 <p>Answer: modify directly the <code>options</code> dictionary in the call to <code>setup</code>, in <code>setup.py</code>. There, you can put anything you can compute with Python or system calls. E.g. for git:</p>
 
 <div class="brush: python">
- <pre><code>import shlex
-from subprocess import check_output
+ <div class="highlight">
+  <pre><span></span><span class="kn">import</span> <span class="nn">shlex</span>
+<span class="kn">from</span> <span class="nn">subprocess</span> <span class="kn">import</span> <span class="n">check_output</span>
 
-GIT_HEAD_REV = check_output(shlex.split('git rev-parse --short HEAD')).strip()
+<span class="n">GIT_HEAD_REV</span> <span class="o">=</span> <span class="n">check_output</span><span class="p">(</span><span class="n">shlex</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;git rev-parse --short HEAD&#39;</span><span class="p">))</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
 
 
-setup(
-    # ... other keys like project name, version, etc ...
-    options = dict(egg_info = dict(tag_build = "dev_" + GIT_HEAD_REV)),
-)</code></pre></div>
+<span class="n">setup</span><span class="p">(</span>
+    <span class="c1"># ... other keys like project name, version, etc ...</span>
+    <span class="n">options</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">egg_info</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">tag_build</span> <span class="o">=</span> <span class="s2">"dev_"</span> <span class="o">+</span> <span class="n">GIT_HEAD_REV</span><span class="p">)),</span>
+<span class="p">)</span>
+</pre></div>
+
+</div>
 
 <p>With that setup, distributions (<code>sdist</code> or <code>bdist</code>) would be tagged with the string &ldquo;dev&rdquo; and the git hash of the latest commit:</p>
 
 <div class="brush: console">
- <pre><code>$ bin/python setup.py sdist bdist_egg
-$ ls dist
-pyhello-0.1dev-92ffa06.tar.gz    pyhello-0.1dev_92ffa06-py2.7.egg</code></pre></div>
+ <div class="highlight">
+  <pre><span></span><span class="gp">$</span> bin/python setup.py sdist bdist_egg
+<span class="gp">$</span> ls dist
+<span class="go">pyhello-0.1dev-92ffa06.tar.gz    pyhello-0.1dev_92ffa06-py2.7.egg</span>
+</pre></div>
+
+</div>
 
 <p>Whenever you want to build a stable release (without any &ldquo;dev&rdquo; tags), just set the key to empty in your <code>setup.cfg</code>, like this:</p>
 
@@ -192,7 +202,7 @@ tag_build =</code></pre>
         <a href="http://twitter.github.com/bootstrap/index.html">Bootstrap</a>.
         Cover image by NASA/Bill Ingalls [Public domain], via Wikimedia Commons.
         </p>
-        <p>This page was last built on Tuesday, August 15th, 2017</p>
+        <p>This page was last built on Friday, August 18th, 2017</p>
 
         <p><em>© Copyright 2017, Luis Osa</em>.</p>
       </footer>

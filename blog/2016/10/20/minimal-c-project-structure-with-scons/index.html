@@ -83,6 +83,8 @@
 
 <li><a href="/tags/haskell.html">haskell</a></li>
 
+<li><a href="/tags/programming.html">programming</a></li>
+
 <li><a href="/tags/python.html">python</a></li>
 
 <li><a href="/tags/racket.html">racket</a></li>
@@ -141,7 +143,6 @@
  <li>separate unit tests using libcheck</li>
  <li>the unit tests link to the library</li>
  <li>Macports-installed libraries</li></ul>
-<!-- more-->
 
 <p>Layout your code like this:</p>
 
@@ -165,35 +166,53 @@
 
 <p><code>sconstruct</code> is:</p>
 
-<pre><code>env = Environment(CPPPATH=['include', '/opt/local/include'])
-env.Library(target='mylib', source=Glob('src/core/*.c'))
-env.Program(target='mylib', source=Glob('src/*.c'),
-            LIBS=['mylib'], LIBPATH=['.'])
-env.Program(target='test_mylib', source=Glob('tests/*.c') + Glob('tests/**/*.c'),
-            LIBS=['mylib', 'check'], LIBPATH=['.', '/opt/local/lib/'])</code></pre>
+<div class="brush: python">
+ <div class="highlight">
+  <pre><span></span><span class="n">env</span> <span class="o">=</span> <span class="n">Environment</span><span class="p">(</span><span class="n">CPPPATH</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;include&#39;</span><span class="p">,</span> <span class="s1">&#39;/opt/local/include&#39;</span><span class="p">])</span>
+<span class="n">env</span><span class="o">.</span><span class="n">Library</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="s1">&#39;mylib&#39;</span><span class="p">,</span> <span class="n">source</span><span class="o">=</span><span class="n">Glob</span><span class="p">(</span><span class="s1">&#39;src/core/*.c&#39;</span><span class="p">))</span>
+<span class="n">env</span><span class="o">.</span><span class="n">Program</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="s1">&#39;mylib&#39;</span><span class="p">,</span> <span class="n">source</span><span class="o">=</span><span class="n">Glob</span><span class="p">(</span><span class="s1">&#39;src/*.c&#39;</span><span class="p">),</span>
+            <span class="n">LIBS</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;mylib&#39;</span><span class="p">],</span> <span class="n">LIBPATH</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;.&#39;</span><span class="p">])</span>
+<span class="n">env</span><span class="o">.</span><span class="n">Program</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="s1">&#39;test_mylib&#39;</span><span class="p">,</span> <span class="n">source</span><span class="o">=</span><span class="n">Glob</span><span class="p">(</span><span class="s1">&#39;tests/*.c&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="n">Glob</span><span class="p">(</span><span class="s1">&#39;tests/**/*.c&#39;</span><span class="p">),</span>
+            <span class="n">LIBS</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;mylib&#39;</span><span class="p">,</span> <span class="s1">&#39;check&#39;</span><span class="p">],</span> <span class="n">LIBPATH</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="s1">&#39;/opt/local/lib/&#39;</span><span class="p">])</span>
+</pre></div>
+
+</div>
+<!-- more-->
 
 <h2 id="implementation">Implementation</h2>
 
 <p><code>src/core/mylib.c</code> (and all other files in subdirectories of <code>src/</code>) holds the core logic without user interactions (pure functions, if you wish :) ). It can look like this:</p>
 
 <div class="brush: c">
- <pre><code>int whatever() {
-    return 0;
-}</code></pre></div>
+ <div class="highlight">
+  <pre><span></span><span class="kt">int</span> <span class="nf">whatever</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+</div>
 
 <p><code>src/main.c</code> uses all other files in order to do something useful for a user. For instance:</p>
 
 <div class="brush: c">
- <pre><code>#include "core/mylib.h"
+ <div class="highlight">
+  <pre><span></span><span class="cp">#include</span> <span class="cpf">"core/mylib.h"</span><span class="cp"></span>
 
-int main() {
-    return whatever();
-}</code></pre></div>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="n">whatever</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+
+</div>
 
 <p><code>main.c</code> and <code>core/mylib.c</code> see each other via the header files in the include directory, where <code>core/mylib.h</code> holds:</p>
 
 <div class="brush: c">
- <pre><code>int whatever();</code></pre></div>
+ <div class="highlight">
+  <pre><span></span><span class="kt">int</span> <span class="nf">whatever</span><span class="p">();</span>
+</pre></div>
+
+</div>
 
 <h2 id="tests">Tests</h2>
 
@@ -202,63 +221,75 @@ int main() {
 <p>A typical test file, e.g. <code>tests/core/test_mylib.c</code>, should define tests, and then define a function that puts them together into a test suite. This is the function that we will want to expose via a header file:</p>
 
 <div class="brush: c">
- <pre><code>#include &lt;check.h&gt;
+ <div class="highlight">
+  <pre><span></span><span class="cp">#include</span> <span class="cpf">&lt;check.h&gt;</span><span class="cp"></span>
 
-START_TEST(test_fails)
-{
-    ck_assert_int_eq(1, 2);
-}
-END_TEST
+<span class="n">START_TEST</span><span class="p">(</span><span class="n">test_fails</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">ck_assert_int_eq</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="n">END_TEST</span>
 
-Suite * core_suite(void)
-{
-    Suite *s;
-    TCase *tc_core;
+<span class="n">Suite</span> <span class="o">*</span> <span class="n">core_suite</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">Suite</span> <span class="o">*</span><span class="n">s</span><span class="p">;</span>
+    <span class="n">TCase</span> <span class="o">*</span><span class="n">tc_core</span><span class="p">;</span>
 
-    s = suite_create("Core/mylib");
+    <span class="n">s</span> <span class="o">=</span> <span class="n">suite_create</span><span class="p">(</span><span class="s">"Core/mylib"</span><span class="p">);</span>
 
-    /* Core test case */
-    tc_core = tcase_create("Core");
+    <span class="cm">/* Core test case */</span>
+    <span class="n">tc_core</span> <span class="o">=</span> <span class="n">tcase_create</span><span class="p">(</span><span class="s">"Core"</span><span class="p">);</span>
 
-    tcase_add_test(tc_core, test_fails);
-    suite_add_tcase(s, tc_core);
+    <span class="n">tcase_add_test</span><span class="p">(</span><span class="n">tc_core</span><span class="p">,</span> <span class="n">test_fails</span><span class="p">);</span>
+    <span class="n">suite_add_tcase</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">tc_core</span><span class="p">);</span>
 
-    return s;
-}</code></pre></div>
+    <span class="k">return</span> <span class="n">s</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+</div>
 
 <p>In this example, we create a header file for each test file in a directory, and then an aggregated header file called <code>tests.h</code> which includes all other header files in the same directory:</p>
 
 <div class="brush: c">
- <pre><code>// test_mylib.h
-Suite * core_suite(void);
+ <div class="highlight">
+  <pre><span></span><span class="c1">// test_mylib.h</span>
+<span class="n">Suite</span> <span class="o">*</span> <span class="nf">core_suite</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
 
-// tests.h
-#include "test_mylib.h"</code></pre></div>
+<span class="c1">// tests.h</span>
+<span class="cp">#include</span> <span class="cpf">"test_mylib.h"</span><span class="cp"></span>
+</pre></div>
+
+</div>
 
 <p>Finally, the test runner executable is defined in the tests/main.c file. It includes all tests headers, uses the exported test suite creating functions to create all test suites, and runs them.</p>
 
 <div class="brush: c">
- <pre><code>// tests/main.c
-#include &lt;stdlib.h&gt;
+ <div class="highlight">
+  <pre><span></span><span class="c1">// tests/main.c</span>
+<span class="cp">#include</span> <span class="cpf">&lt;stdlib.h&gt;</span><span class="cp"></span>
 
-#include &lt;check.h&gt;
+<span class="cp">#include</span> <span class="cpf">&lt;check.h&gt;</span><span class="cp"></span>
 
-#include "core/tests.h"
+<span class="cp">#include</span> <span class="cpf">"core/tests.h"</span><span class="cp"></span>
 
-int main(void)
-{
-    int number_failed;
-    Suite *s;
-    SRunner *sr;
+<span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">number_failed</span><span class="p">;</span>
+    <span class="n">Suite</span> <span class="o">*</span><span class="n">s</span><span class="p">;</span>
+    <span class="n">SRunner</span> <span class="o">*</span><span class="n">sr</span><span class="p">;</span>
 
-    s = core_suite();
-    sr = srunner_create(s);
+    <span class="n">s</span> <span class="o">=</span> <span class="n">core_suite</span><span class="p">();</span>
+    <span class="n">sr</span> <span class="o">=</span> <span class="n">srunner_create</span><span class="p">(</span><span class="n">s</span><span class="p">);</span>
 
-    srunner_run_all(sr, CK_NORMAL);
-    number_failed = srunner_ntests_failed(sr);
-    srunner_free(sr);
-    return (number_failed == 0) ? EXIT_SUCCESS : EXIT_FAILURE;
-}</code></pre></div>
+    <span class="n">srunner_run_all</span><span class="p">(</span><span class="n">sr</span><span class="p">,</span> <span class="n">CK_NORMAL</span><span class="p">);</span>
+    <span class="n">number_failed</span> <span class="o">=</span> <span class="n">srunner_ntests_failed</span><span class="p">(</span><span class="n">sr</span><span class="p">);</span>
+    <span class="n">srunner_free</span><span class="p">(</span><span class="n">sr</span><span class="p">);</span>
+    <span class="k">return</span> <span class="p">(</span><span class="n">number_failed</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="o">?</span> <span class="nl">EXIT_SUCCESS</span> <span class="p">:</span> <span class="n">EXIT_FAILURE</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+</div>
 
 <h2 id="usage">Usage</h2>
 
@@ -300,7 +331,7 @@ int main(void)
         <a href="http://twitter.github.com/bootstrap/index.html">Bootstrap</a>.
         Cover image by NASA/Bill Ingalls [Public domain], via Wikimedia Commons.
         </p>
-        <p>This page was last built on Tuesday, August 15th, 2017</p>
+        <p>This page was last built on Friday, August 18th, 2017</p>
 
         <p><em>© Copyright 2017, Luis Osa</em>.</p>
       </footer>

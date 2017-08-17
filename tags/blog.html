@@ -83,6 +83,8 @@
 
 <li><a href="/tags/haskell.html">haskell</a></li>
 
+<li><a href="/tags/programming.html">programming</a></li>
+
 <li><a href="/tags/python.html">python</a></li>
 
 <li><a href="/tags/racket.html">racket</a></li>
@@ -140,9 +142,62 @@
  <li>install Frog with raco:</li></ul>
 
 <pre><code>$ raco install frog</code></pre>
-  <footer>
-    <a href='/blog/2016/10/03/setting-up-github-pages-with-frog'>&hellip; more &hellip;</a>
-  </footer>
+
+<ul>
+ <li>create a folder and initialize a Frog project there:</li></ul>
+
+<pre><code>$ mkdir new-blog
+$ cd new-blog
+$ raco frog --init</code></pre>
+
+<ul>
+ <li>
+  <p>customize the .frogrc file. Set at least scheme/host to https://your-username.github.io, and title &amp; author to whatever you want.</p></li>
+ <li>
+  <p>add some content of your own:</p></li></ul>
+
+<pre><code>$ raco frog -n "New post"
+# ... output says something like:
+~/new-blog/_src/posts/2016-10-03-new-post.md
+# ... edit that file with your preferred editor ...
+when you are finished editing, preview your glorious site with
+
+$ raco frog -bp</code></pre>
+
+<ul>
+ <li>initialize an empty Git repository on the project folder, and tell git to  ignore the Frog machinery and your source directory</li></ul>
+
+<pre><code>$ git init .
+$ cat &lt;&lt; EOF &gt; .gitignore
+/.frog/
+/.frogrc
+/_src/
+EOF</code></pre>
+
+<ul>
+ <li>commit everything, except for what we just ignored</li></ul>
+
+<pre><code>$ git add .
+$ git commit</code></pre>
+
+<ul>
+ <li>on github.com, create a new repository with the name your-username.github.io.  Once created, add it as a remote to your local repo, and push your local master  to it.</li></ul>
+
+<pre><code>$ git remote add origin &lt;your new repo&gt;
+$ git push -u origin master</code></pre>
+
+<ul>
+ <li>after some seconds, your new blog should be available as http://your-username.github.io</li></ul>
+
+<p>Now, each time that you want to add a new post, it’s just a matter of</p>
+
+<pre><code>$ raco frog -n "Another post"
+# ... edit that post ...
+$ raco frog -b
+$ git add .
+$ git commit -a
+$ git push</code></pre>
+
 </article>
           </div>
         </div>
@@ -155,7 +210,7 @@
         <a href="http://twitter.github.com/bootstrap/index.html">Bootstrap</a>.
         Cover image by NASA/Bill Ingalls [Public domain], via Wikimedia Commons.
         </p>
-        <p>This page was last built on Tuesday, August 15th, 2017</p>
+        <p>This page was last built on Friday, August 18th, 2017</p>
 
         <p><em>© Copyright 2017, Luis Osa</em>.</p>
       </footer>

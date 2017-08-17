@@ -6,7 +6,7 @@
     <title>logc io (page 3)</title>
     <meta name="description" content="logc io (page 3)">
     <meta name="author"      content="logc">
-    <meta name="keywords"    content="C++, blog, python, web, all, build, git, frog, scons, haskell, racket, vim, sysadmin, C">
+    <meta name="keywords"    content="C++, blog, python, web, all, build, git, frog, scons, sysadmin, racket, programming, vim, haskell, C">
     <meta name="viewport"    content="width=device-width, initial-scale=1.0">
     <link rel="icon"      href="/favicon.ico">
     <link rel="canonical" href="http://logc.github.io/index-3.html">
@@ -83,6 +83,8 @@
 
 <li><a href="/tags/haskell.html">haskell</a></li>
 
+<li><a href="/tags/programming.html">programming</a></li>
+
 <li><a href="/tags/python.html">python</a></li>
 
 <li><a href="/tags/racket.html">racket</a></li>
@@ -140,24 +142,32 @@
 <p>La mejor manera, pese a lo que pueda parecer, es <strong>instalar desde fuentes</strong>, haciendo lo que se conoce como &ldquo;altinstall&rdquo; (instalación alternativa). Esto crea ejecutables llamados <code>python2.7</code> bajo <code>/usr/local/bin</code>, que <strong>no sobreescriben</strong> el comando <code>python</code> normal del sistema; éste sigue apuntando a un ejecutable bajo <code>/usr/bin</code>.</p>
 
 <div class="brush: console">
- <pre><code>$ wget http://www.python.org/ftp/python/2.7.6/Python-2.7.6.tgz
-$ tar xvfz Python-2.7.6.tgz
-$ cd Python-2.7.6
-$ ./configure
-$ make
-$ sudo make altinstall</code></pre></div>
+ <div class="highlight">
+  <pre><span></span><span class="gp">$</span> wget http://www.python.org/ftp/python/2.7.6/Python-2.7.6.tgz
+<span class="gp">$</span> tar xvfz Python-2.7.6.tgz
+<span class="gp">$</span> <span class="nb">cd</span> Python-2.7.6
+<span class="gp">$</span> ./configure
+<span class="gp">$</span> make
+<span class="gp">$</span> sudo make altinstall
+</pre></div>
+
+</div>
 
 <p>Además de esto, es recomendable instalar <strong>un <code>easy_install</code> alternativo también</strong>, ya que, si no, todas las librerías de python se instalarán para la 2.6 y no para la 2.7.</p>
 
 <div class="brush: console">
- <pre><code>$ wget http://pypi.python.org/packages/2.7/s/setuptools/setuptools-0.6c11-py2.7.egg
-$ sudo -i
-# export PATH=$PATH:/usr/local/bin
-# sh setuptools-0.6c11-py2.7.egg
-# exit
-$ sudo rm /usr/local/bin/easy_install ## remove the symlink that shadows the system easy_install
-$ # You may now try the easy_install for 2.7 with e.g.:
-$ sudo /usr/local/bin/easy_install-2.7 numpy</code></pre></div>
+ <div class="highlight">
+  <pre><span></span><span class="gp">$</span> wget http://pypi.python.org/packages/2.7/s/setuptools/setuptools-0.6c11-py2.7.egg
+<span class="gp">$</span> sudo -i
+<span class="gp">#</span> <span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:/usr/local/bin
+<span class="gp">#</span> sh setuptools-0.6c11-py2.7.egg
+<span class="gp">#</span> <span class="nb">exit</span>
+<span class="gp">$</span> sudo rm /usr/local/bin/easy_install <span class="c1">## remove the symlink that shadows the system easy_install</span>
+<span class="gp">$</span> <span class="c1"># You may now try the easy_install for 2.7 with e.g.:</span>
+<span class="gp">$</span> sudo /usr/local/bin/easy_install-2.7 numpy
+</pre></div>
+
+</div>
 
 <p>Este post es una combinación de <a href="http://stackoverflow.com/questions/4149361/on-linux-suse-or-redhat-how-do-i-load-python-2-7">dos respuestas en Stack Overflow</a>, y mi propia experiencia con este mismo problema.</p>
 
@@ -182,9 +192,13 @@ $ sudo /usr/local/bin/easy_install-2.7 numpy</code></pre></div>
 <p>La función <code>unicode</code> <strong>no utiliza UTF&ndash;8 por defecto</strong>, sino, absurdamente, ASCII. Por eso <em>sólo es equivalente a poner una <code>u</code> delante una cadena si se especifica que el <code>encoding</code> sea <code>'utf-8'</code></em>.</p>
 
 <div class="brush: python">
- <pre><code>unicode_string = u"Años"
+ <div class="highlight">
+  <pre><span></span><span class="n">unicode_string</span> <span class="o">=</span> <span class="sa">u</span><span class="s2">"Años"</span>
 
-unicode_str = unicode(open('some.txt', 'r').read(), encoding='utf-8')</code></pre></div>
+<span class="n">unicode_str</span> <span class="o">=</span> <span class="nb">unicode</span><span class="p">(</span><span class="nb">open</span><span class="p">(</span><span class="s1">&#39;some.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">read</span><span class="p">(),</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+</pre></div>
+
+</div>
 
 </article>
 <article>
@@ -201,71 +215,75 @@ unicode_str = unicode(open('some.txt', 'r').read(), encoding='utf-8')</code></pr
 <p>Con la lista siguiente, el peso baja de 22 MBs a 6 MBs. Probablemente se puede rebajar aún más.</p>
 
 <div class="brush: python">
- <pre><code># File: setup.py
+ <div class="highlight">
+  <pre><span></span><span class="c1"># File: setup.py</span>
 
-from setuptools import setup
+<span class="kn">from</span> <span class="nn">setuptools</span> <span class="kn">import</span> <span class="n">setup</span>
 
-APP = ['path/main.py']
-Plist = {}
-DATA_FILES = []
-OPTIONS = {'argv_emulation': True,
-           #'iconfile': 'Icons/ConverterIcon.icns',
-           'plist': Plist,
-           'excludes': [
-               'aetypes',
-               'ast',
-               'bz2',
-               'calendar',
-               'codecs',
-               'collections',
-               'ctypes',
-               'distutils',
-               'doctest',
-               'email',
-               'encodings',
-               'functools',
-               'gzip',
-               'inspect',
-               'itertools',
-               'locale',
-               'logging',
-               'optparse',
-               'pickle',
-               'platform',
-               'pprint',
-               'random',
-               're',
-               'sets',
-               'shutil',
-               'socket',
-               'ssl',
-               'subprocess',
-               'tarfile',
-               'tempfile',
-               'threading',
-               'traceback',
-               'types',
-               'unittest',
-               'urllib',
-               'urllib2',
-               'urlparse',
-               'weakref',
-               'xml',
-               'zipfile',
-           ]
-           }
+<span class="n">APP</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;path/main.py&#39;</span><span class="p">]</span>
+<span class="n">Plist</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="n">DATA_FILES</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">OPTIONS</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;argv_emulation&#39;</span><span class="p">:</span> <span class="bp">True</span><span class="p">,</span>
+           <span class="c1">#&#39;iconfile&#39;: &#39;Icons/ConverterIcon.icns&#39;,</span>
+           <span class="s1">&#39;plist&#39;</span><span class="p">:</span> <span class="n">Plist</span><span class="p">,</span>
+           <span class="s1">&#39;excludes&#39;</span><span class="p">:</span> <span class="p">[</span>
+               <span class="s1">&#39;aetypes&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;ast&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;bz2&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;calendar&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;codecs&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;collections&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;ctypes&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;distutils&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;doctest&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;email&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;encodings&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;functools&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;gzip&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;inspect&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;itertools&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;locale&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;logging&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;optparse&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;pickle&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;platform&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;pprint&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;random&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;re&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;sets&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;shutil&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;socket&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;ssl&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;subprocess&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;tarfile&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;tempfile&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;threading&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;traceback&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;types&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;unittest&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;urllib&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;urllib2&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;urlparse&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;weakref&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;xml&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;zipfile&#39;</span><span class="p">,</span>
+           <span class="p">]</span>
+           <span class="p">}</span>
 
-setup(
-    app=APP,
-    package_dir={'': 'src'}, # you may not need this
-    data_files=DATA_FILES,
-    version="0.1",
-    description="&lt;Your description&gt;",
-    author="&lt;Your name&gt;",
-    author_email="&lt;Your email&gt;",
-    options={'py2app': OPTIONS},
-    setup_requires=['py2app'],
-)</code></pre></div>
+<span class="n">setup</span><span class="p">(</span>
+    <span class="n">app</span><span class="o">=</span><span class="n">APP</span><span class="p">,</span>
+    <span class="n">package_dir</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;&#39;</span><span class="p">:</span> <span class="s1">&#39;src&#39;</span><span class="p">},</span> <span class="c1"># you may not need this</span>
+    <span class="n">data_files</span><span class="o">=</span><span class="n">DATA_FILES</span><span class="p">,</span>
+    <span class="n">version</span><span class="o">=</span><span class="s2">"0.1"</span><span class="p">,</span>
+    <span class="n">description</span><span class="o">=</span><span class="s2">"&lt;Your description&gt;"</span><span class="p">,</span>
+    <span class="n">author</span><span class="o">=</span><span class="s2">"&lt;Your name&gt;"</span><span class="p">,</span>
+    <span class="n">author_email</span><span class="o">=</span><span class="s2">"&lt;Your email&gt;"</span><span class="p">,</span>
+    <span class="n">options</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;py2app&#39;</span><span class="p">:</span> <span class="n">OPTIONS</span><span class="p">},</span>
+    <span class="n">setup_requires</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;py2app&#39;</span><span class="p">],</span>
+<span class="p">)</span>
+</pre></div>
+
+</div>
 
 </article>
 <article>
@@ -278,35 +296,47 @@ setup(
 <p>Compilar ficheros de Cython es más fácil usando la función <code>cythonize</code> dentro del setup.py de nuestro proyecto:</p>
 
 <div class="brush: python">
- <pre><code># File: setup.py
+ <div class="highlight">
+  <pre><span></span><span class="c1"># File: setup.py</span>
 
-from distutils.core import setup
-from Cython.Build import cythonize
+<span class="kn">from</span> <span class="nn">distutils.core</span> <span class="kn">import</span> <span class="n">setup</span>
+<span class="kn">from</span> <span class="nn">Cython.Build</span> <span class="kn">import</span> <span class="n">cythonize</span>
 
-setup(
-      name = "My hello app",
-      ext_modules = cythonize('fibonacci.pyx'), # accepts a glob pattern
-)</code></pre></div>
+<span class="n">setup</span><span class="p">(</span>
+      <span class="n">name</span> <span class="o">=</span> <span class="s2">"My hello app"</span><span class="p">,</span>
+      <span class="n">ext_modules</span> <span class="o">=</span> <span class="n">cythonize</span><span class="p">(</span><span class="s1">&#39;fibonacci.pyx&#39;</span><span class="p">),</span> <span class="c1"># accepts a glob pattern</span>
+<span class="p">)</span>
+</pre></div>
+
+</div>
 
 <p>Por ejemplo, el fichero a compilar es fibonacci.pyx, que contiene un ejemplo del tutorial de Cython:</p>
 
 <div class="brush: python">
- <pre><code># File: fibonacci.pyx
+ <div class="highlight">
+  <pre><span></span><span class="c1"># File: fibonacci.pyx</span>
 
-def fib(n):
-    a, b = 0, 1
-    while b &lt; n:
-        print b,
-        a, b = b, a + b</code></pre></div>
+<span class="k">def</span> <span class="nf">fib</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span>
+    <span class="k">while</span> <span class="n">b</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">:</span>
+        <span class="k">print</span> <span class="n">b</span><span class="p">,</span>
+        <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">b</span><span class="p">,</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
+</pre></div>
+
+</div>
 
 <p>El resultado de compilar <code>fibonacci.pyx</code> es un fichero con código intermedio en C <code>fibonacci.c</code> y un fichero compilado <code>fibonacci.so</code>.</p>
 
 <div class="brush: bash">
- <pre><code>$ python setup.py build
+ <div class="highlight">
+  <pre><span></span>$ python setup.py build
 running build
 running build_ext
-building 'fibonacci' extension
-/usr/bin/clang ...snip... -o build/lib.macosx-10.8-x86_64-2.7/fibonacci.so</code></pre></div>
+building <span class="s1">&#39;fibonacci&#39;</span> extension
+/usr/bin/clang ...snip... -o build/lib.macosx-10.8-x86_64-2.7/fibonacci.so
+</pre></div>
+
+</div>
 
 <blockquote>
  <p><strong>note</strong></p>
@@ -315,9 +345,13 @@ building 'fibonacci' extension
 <p>El fichero .so puede usarse desde otros módulos de Python, o directamente desde la shell</p>
 
 <div class="brush: pycon">
- <pre><code>&gt;&gt;&gt; import fibonacci
-&gt;&gt;&gt; fibonacci.fib(5)
-1 1 2 3</code></pre></div>
+ <div class="highlight">
+  <pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">fibonacci</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fibonacci</span><span class="o">.</span><span class="n">fib</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="go">1 1 2 3</span>
+</pre></div>
+
+</div>
 
 </article>
 <article>
@@ -360,7 +394,7 @@ building 'fibonacci' extension
         <a href="http://twitter.github.com/bootstrap/index.html">Bootstrap</a>.
         Cover image by NASA/Bill Ingalls [Public domain], via Wikimedia Commons.
         </p>
-        <p>This page was last built on Tuesday, August 15th, 2017</p>
+        <p>This page was last built on Friday, August 18th, 2017</p>
 
         <p><em>© Copyright 2017, Luis Osa</em>.</p>
       </footer>

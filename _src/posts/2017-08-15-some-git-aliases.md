@@ -8,8 +8,6 @@ following the approach in [this blog
 post](http://blog.wittchen.biz.pl/my-approach-to-git-aliases/). In order to keep
 my typing short, I use the [fish shell](http://fishshell.com).
 
-<!-- more -->
-
 ```
 [alias]
 	amend = commit --amend

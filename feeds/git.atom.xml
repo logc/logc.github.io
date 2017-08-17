@@ -15,7 +15,6 @@
    <name>logc</name></author>
   <content type="html">
 &lt;p&gt;Here are some of the Git alias configurations that I use. My philosophy in writing them was to keep them descriptive, and &lt;em&gt;not to keep them easy to type&lt;/em&gt;, following the approach in &lt;a href="http://blog.wittchen.biz.pl/my-approach-to-git-aliases/"&gt;this blog post&lt;/a&gt;. In order to keep my typing short, I use the &lt;a href="http://fishshell.com"&gt;fish shell&lt;/a&gt;.&lt;/p&gt;
-&lt;!-- more--&gt;
 
 &lt;pre&gt;&lt;code&gt;[alias]
 	amend = commit --amend
@@ -86,23 +85,31 @@ tag_svn_revision = 1&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Answer: modify directly the &lt;code&gt;options&lt;/code&gt; dictionary in the call to &lt;code&gt;setup&lt;/code&gt;, in &lt;code&gt;setup.py&lt;/code&gt;. There, you can put anything you can compute with Python or system calls. E.g. for git:&lt;/p&gt;
 
 &lt;div class="brush: python"&gt;
- &lt;pre&gt;&lt;code&gt;import shlex
-from subprocess import check_output
+ &lt;div class="highlight"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;shlex&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;subprocess&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;check_output&lt;/span&gt;
 
-GIT_HEAD_REV = check_output(shlex.split('git rev-parse --short HEAD')).strip()
+&lt;span class="n"&gt;GIT_HEAD_REV&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;check_output&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;shlex&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;split&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git rev-parse --short HEAD&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;strip&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
 
 
-setup(
-    # ... other keys like project name, version, etc ...
-    options = dict(egg_info = dict(tag_build = "dev_" + GIT_HEAD_REV)),
-)&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;span class="n"&gt;setup&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+    &lt;span class="c1"&gt;# ... other keys like project name, version, etc ...&lt;/span&gt;
+    &lt;span class="n"&gt;options&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;dict&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;egg_info&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;dict&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;tag_build&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;"dev_"&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;GIT_HEAD_REV&lt;/span&gt;&lt;span class="p"&gt;)),&lt;/span&gt;
+&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
 
 &lt;p&gt;With that setup, distributions (&lt;code&gt;sdist&lt;/code&gt; or &lt;code&gt;bdist&lt;/code&gt;) would be tagged with the string &amp;ldquo;dev&amp;rdquo; and the git hash of the latest commit:&lt;/p&gt;
 
 &lt;div class="brush: console"&gt;
- &lt;pre&gt;&lt;code&gt;$ bin/python setup.py sdist bdist_egg
-$ ls dist
-pyhello-0.1dev-92ffa06.tar.gz    pyhello-0.1dev_92ffa06-py2.7.egg&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;div class="highlight"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; bin/python setup.py sdist bdist_egg
+&lt;span class="gp"&gt;$&lt;/span&gt; ls dist
+&lt;span class="go"&gt;pyhello-0.1dev-92ffa06.tar.gz    pyhello-0.1dev_92ffa06-py2.7.egg&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
 
 &lt;p&gt;Whenever you want to build a stable release (without any &amp;ldquo;dev&amp;rdquo; tags), just set the key to empty in your &lt;code&gt;setup.cfg&lt;/code&gt;, like this:&lt;/p&gt;
 

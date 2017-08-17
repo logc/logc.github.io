@@ -21,7 +21,6 @@
  &lt;li&gt;install Frog with raco:&lt;/li&gt;&lt;/ul&gt;
 
 &lt;pre&gt;&lt;code&gt;$ raco install frog&lt;/code&gt;&lt;/pre&gt;
-&lt;!-- more--&gt;
 
 &lt;ul&gt;
  &lt;li&gt;create a folder and initialize a Frog project there:&lt;/li&gt;&lt;/ul&gt;

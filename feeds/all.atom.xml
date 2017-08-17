@@ -15,7 +15,6 @@
    <name>logc</name></author>
   <content type="html">
 &lt;p&gt;Here are some of the Git alias configurations that I use. My philosophy in writing them was to keep them descriptive, and &lt;em&gt;not to keep them easy to type&lt;/em&gt;, following the approach in &lt;a href="http://blog.wittchen.biz.pl/my-approach-to-git-aliases/"&gt;this blog post&lt;/a&gt;. In order to keep my typing short, I use the &lt;a href="http://fishshell.com"&gt;fish shell&lt;/a&gt;.&lt;/p&gt;
-&lt;!-- more--&gt;
 
 &lt;pre&gt;&lt;code&gt;[alias]
 	amend = commit --amend
@@ -57,7 +56,6 @@ status&lt;/code&gt;. In that mindset, I tend to identify branches with directori
  &lt;li&gt;separate unit tests using libcheck&lt;/li&gt;
  &lt;li&gt;the unit tests link to the library&lt;/li&gt;
  &lt;li&gt;Macports-installed libraries&lt;/li&gt;&lt;/ul&gt;
-&lt;!-- more--&gt;
 
 &lt;p&gt;Layout your code like this:&lt;/p&gt;
 
@@ -81,35 +79,53 @@ status&lt;/code&gt;. In that mindset, I tend to identify branches with directori
 
 &lt;p&gt;&lt;code&gt;sconstruct&lt;/code&gt; is:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;env = Environment(CPPPATH=['include', '/opt/local/include'])
-env.Library(target='mylib', source=Glob('src/core/*.c'))
-env.Program(target='mylib', source=Glob('src/*.c'),
-            LIBS=['mylib'], LIBPATH=['.'])
-env.Program(target='test_mylib', source=Glob('tests/*.c') + Glob('tests/**/*.c'),
-            LIBS=['mylib', 'check'], LIBPATH=['.', '/opt/local/lib/'])&lt;/code&gt;&lt;/pre&gt;
+&lt;div class="brush: python"&gt;
+ &lt;div class="highlight"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;env&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Environment&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;CPPPATH&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;include&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;/opt/local/include&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+&lt;span class="n"&gt;env&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Library&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;target&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;mylib&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;source&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;Glob&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;src/core/*.c&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;span class="n"&gt;env&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Program&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;target&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;mylib&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;source&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;Glob&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;src/*.c&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+            &lt;span class="n"&gt;LIBS&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;mylib&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="n"&gt;LIBPATH&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;.&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+&lt;span class="n"&gt;env&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Program&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;target&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;test_mylib&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;source&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;Glob&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;tests/*.c&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;Glob&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;tests/**/*.c&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;
+            &lt;span class="n"&gt;LIBS&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;mylib&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;check&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="n"&gt;LIBPATH&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;.&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;/opt/local/lib/&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+&lt;!-- more--&gt;
 
 &lt;h2 id="implementation"&gt;Implementation&lt;/h2&gt;
 
 &lt;p&gt;&lt;code&gt;src/core/mylib.c&lt;/code&gt; (and all other files in subdirectories of &lt;code&gt;src/&lt;/code&gt;) holds the core logic without user interactions (pure functions, if you wish :) ). It can look like this:&lt;/p&gt;
 
 &lt;div class="brush: c"&gt;
- &lt;pre&gt;&lt;code&gt;int whatever() {
-    return 0;
-}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;div class="highlight"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;whatever&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
 
 &lt;p&gt;&lt;code&gt;src/main.c&lt;/code&gt; uses all other files in order to do something useful for a user. For instance:&lt;/p&gt;
 
 &lt;div class="brush: c"&gt;
- &lt;pre&gt;&lt;code&gt;#include "core/mylib.h"
+ &lt;div class="highlight"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;"core/mylib.h"&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
 
-int main() {
-    return whatever();
-}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;whatever&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
 
 &lt;p&gt;&lt;code&gt;main.c&lt;/code&gt; and &lt;code&gt;core/mylib.c&lt;/code&gt; see each other via the header files in the include directory, where &lt;code&gt;core/mylib.h&lt;/code&gt; holds:&lt;/p&gt;
 
 &lt;div class="brush: c"&gt;
- &lt;pre&gt;&lt;code&gt;int whatever();&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;div class="highlight"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;whatever&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
 
 &lt;h2 id="tests"&gt;Tests&lt;/h2&gt;
 
@@ -118,63 +134,75 @@ int main() {
 &lt;p&gt;A typical test file, e.g. &lt;code&gt;tests/core/test_mylib.c&lt;/code&gt;, should define tests, and then define a function that puts them together into a test suite. This is the function that we will want to expose via a header file:&lt;/p&gt;
 
 &lt;div class="brush: c"&gt;
- &lt;pre&gt;&lt;code&gt;#include &amp;lt;check.h&amp;gt;
+ &lt;div class="highlight"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;check.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
 
-START_TEST(test_fails)
-{
-    ck_assert_int_eq(1, 2);
-}
-END_TEST
+&lt;span class="n"&gt;START_TEST&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;test_fails&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="n"&gt;ck_assert_int_eq&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="n"&gt;END_TEST&lt;/span&gt;
 
-Suite * core_suite(void)
-{
-    Suite *s;
-    TCase *tc_core;
+&lt;span class="n"&gt;Suite&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;core_suite&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;void&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="n"&gt;Suite&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="n"&gt;TCase&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;tc_core&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 
-    s = suite_create("Core/mylib");
+    &lt;span class="n"&gt;s&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;suite_create&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"Core/mylib"&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
 
-    /* Core test case */
-    tc_core = tcase_create("Core");
+    &lt;span class="cm"&gt;/* Core test case */&lt;/span&gt;
+    &lt;span class="n"&gt;tc_core&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;tcase_create&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"Core"&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
 
-    tcase_add_test(tc_core, test_fails);
-    suite_add_tcase(s, tc_core);
+    &lt;span class="n"&gt;tcase_add_test&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;tc_core&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;test_fails&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="n"&gt;suite_add_tcase&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;tc_core&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
 
-    return s;
-}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
 
 &lt;p&gt;In this example, we create a header file for each test file in a directory, and then an aggregated header file called &lt;code&gt;tests.h&lt;/code&gt; which includes all other header files in the same directory:&lt;/p&gt;
 
 &lt;div class="brush: c"&gt;
- &lt;pre&gt;&lt;code&gt;// test_mylib.h
-Suite * core_suite(void);
+ &lt;div class="highlight"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;// test_mylib.h&lt;/span&gt;
+&lt;span class="n"&gt;Suite&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="nf"&gt;core_suite&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;void&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
 
-// tests.h
-#include "test_mylib.h"&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;span class="c1"&gt;// tests.h&lt;/span&gt;
+&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;"test_mylib.h"&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
 
 &lt;p&gt;Finally, the test runner executable is defined in the tests/main.c file. It includes all tests headers, uses the exported test suite creating functions to create all test suites, and runs them.&lt;/p&gt;
 
 &lt;div class="brush: c"&gt;
- &lt;pre&gt;&lt;code&gt;// tests/main.c
-#include &amp;lt;stdlib.h&amp;gt;
+ &lt;div class="highlight"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;// tests/main.c&lt;/span&gt;
+&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;stdlib.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
 
-#include &amp;lt;check.h&amp;gt;
+&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;check.h&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
 
-#include "core/tests.h"
+&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;"core/tests.h"&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
 
-int main(void)
-{
-    int number_failed;
-    Suite *s;
-    SRunner *sr;
+&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;void&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;number_failed&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="n"&gt;Suite&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="n"&gt;SRunner&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;sr&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 
-    s = core_suite();
-    sr = srunner_create(s);
+    &lt;span class="n"&gt;s&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;core_suite&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+    &lt;span class="n"&gt;sr&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;srunner_create&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;s&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
 
-    srunner_run_all(sr, CK_NORMAL);
-    number_failed = srunner_ntests_failed(sr);
-    srunner_free(sr);
-    return (number_failed == 0) ? EXIT_SUCCESS : EXIT_FAILURE;
-}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+    &lt;span class="n"&gt;srunner_run_all&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sr&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;CK_NORMAL&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="n"&gt;number_failed&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;srunner_ntests_failed&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sr&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="n"&gt;srunner_free&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;sr&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;number_failed&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="o"&gt;?&lt;/span&gt; &lt;span class="nl"&gt;EXIT_SUCCESS&lt;/span&gt; &lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;EXIT_FAILURE&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
 
 &lt;h2 id="usage"&gt;Usage&lt;/h2&gt;
 
@@ -210,7 +238,6 @@ int main(void)
  &lt;li&gt;install Frog with raco:&lt;/li&gt;&lt;/ul&gt;
 
 &lt;pre&gt;&lt;code&gt;$ raco install frog&lt;/code&gt;&lt;/pre&gt;
-&lt;!-- more--&gt;
 
 &lt;ul&gt;
  &lt;li&gt;create a folder and initialize a Frog project there:&lt;/li&gt;&lt;/ul&gt;
@@ -353,23 +380,31 @@ tag_svn_revision = 1&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Answer: modify directly the &lt;code&gt;options&lt;/code&gt; dictionary in the call to &lt;code&gt;setup&lt;/code&gt;, in &lt;code&gt;setup.py&lt;/code&gt;. There, you can put anything you can compute with Python or system calls. E.g. for git:&lt;/p&gt;
 
 &lt;div class="brush: python"&gt;
- &lt;pre&gt;&lt;code&gt;import shlex
-from subprocess import check_output
+ &lt;div class="highlight"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;shlex&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;subprocess&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;check_output&lt;/span&gt;
 
-GIT_HEAD_REV = check_output(shlex.split('git rev-parse --short HEAD')).strip()
+&lt;span class="n"&gt;GIT_HEAD_REV&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;check_output&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;shlex&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;split&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;git rev-parse --short HEAD&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;strip&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
 
 
-setup(
-    # ... other keys like project name, version, etc ...
-    options = dict(egg_info = dict(tag_build = "dev_" + GIT_HEAD_REV)),
-)&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;span class="n"&gt;setup&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+    &lt;span class="c1"&gt;# ... other keys like project name, version, etc ...&lt;/span&gt;
+    &lt;span class="n"&gt;options&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;dict&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;egg_info&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;dict&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;tag_build&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;"dev_"&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;GIT_HEAD_REV&lt;/span&gt;&lt;span class="p"&gt;)),&lt;/span&gt;
+&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
 
 &lt;p&gt;With that setup, distributions (&lt;code&gt;sdist&lt;/code&gt; or &lt;code&gt;bdist&lt;/code&gt;) would be tagged with the string &amp;ldquo;dev&amp;rdquo; and the git hash of the latest commit:&lt;/p&gt;
 
 &lt;div class="brush: console"&gt;
- &lt;pre&gt;&lt;code&gt;$ bin/python setup.py sdist bdist_egg
-$ ls dist
-pyhello-0.1dev-92ffa06.tar.gz    pyhello-0.1dev_92ffa06-py2.7.egg&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;div class="highlight"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; bin/python setup.py sdist bdist_egg
+&lt;span class="gp"&gt;$&lt;/span&gt; ls dist
+&lt;span class="go"&gt;pyhello-0.1dev-92ffa06.tar.gz    pyhello-0.1dev_92ffa06-py2.7.egg&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
 
 &lt;p&gt;Whenever you want to build a stable release (without any &amp;ldquo;dev&amp;rdquo; tags), just set the key to empty in your &lt;code&gt;setup.cfg&lt;/code&gt;, like this:&lt;/p&gt;
 
@@ -388,81 +423,89 @@ tag_build =&lt;/code&gt;&lt;/pre&gt;</content></entry>
 &lt;!-- more--&gt;
 
 &lt;div class="brush: c++"&gt;
- &lt;pre&gt;&lt;code&gt;#include &amp;lt;fstream&amp;gt;
-#include &amp;lt;iostream&amp;gt;
-#include &amp;lt;numeric&amp;gt;
-#include &amp;lt;sstream&amp;gt;
-#include &amp;lt;string&amp;gt;
-#include &amp;lt;vector&amp;gt;
+ &lt;div class="highlight"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;fstream&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;iostream&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;numeric&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;sstream&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;string&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;vector&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
 
-using std::pair;
-using std::string;
-using std::vector;
-using std::istringstream;
-using std::istream_iterator;
+&lt;span class="k"&gt;using&lt;/span&gt; &lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;pair&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="k"&gt;using&lt;/span&gt; &lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;string&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="k"&gt;using&lt;/span&gt; &lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;vector&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="k"&gt;using&lt;/span&gt; &lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;istringstream&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="k"&gt;using&lt;/span&gt; &lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;istream_iterator&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 
 
-vector&amp;lt;string&amp;gt; split_at_whitespace(string line)
-{
-    istringstream iss(line);
-    vector&amp;lt;string&amp;gt; tokens{
-        istream_iterator&amp;lt;string&amp;gt;{iss},
-        istream_iterator&amp;lt;string&amp;gt;{}};
-    return tokens;
-}
+&lt;span class="n"&gt;vector&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;string&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;split_at_whitespace&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;string&lt;/span&gt; &lt;span class="n"&gt;line&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="n"&gt;istringstream&lt;/span&gt; &lt;span class="n"&gt;iss&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;line&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="n"&gt;vector&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;string&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;tokens&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="n"&gt;istream_iterator&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;string&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="n"&gt;iss&lt;/span&gt;&lt;span class="p"&gt;},&lt;/span&gt;
+        &lt;span class="n"&gt;istream_iterator&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;string&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="p"&gt;{}};&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;tokens&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
 
-vector&amp;lt; pair&amp;lt;string, int&amp;gt; &amp;gt; map(string line)
-{
-    vector&amp;lt;string&amp;gt; tokens = split_at_whitespace(line);
-    vector&amp;lt; pair&amp;lt;string, int&amp;gt; &amp;gt; current_outputs(tokens.size());
-    std::transform(
-        tokens.begin(), tokens.end(), current_outputs.begin(),
-        [] (const string output) {
-            return std::make_pair(output, 1);
-        });
-    return current_outputs;
-}
+&lt;span class="n"&gt;vector&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;pair&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;string&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;map&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;string&lt;/span&gt; &lt;span class="n"&gt;line&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="n"&gt;vector&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;string&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;tokens&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;split_at_whitespace&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;line&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="n"&gt;vector&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;pair&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;string&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;current_outputs&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;tokens&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;size&lt;/span&gt;&lt;span class="p"&gt;());&lt;/span&gt;
+    &lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;transform&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+        &lt;span class="n"&gt;tokens&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;begin&lt;/span&gt;&lt;span class="p"&gt;(),&lt;/span&gt; &lt;span class="n"&gt;tokens&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;end&lt;/span&gt;&lt;span class="p"&gt;(),&lt;/span&gt; &lt;span class="n"&gt;current_outputs&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;begin&lt;/span&gt;&lt;span class="p"&gt;(),&lt;/span&gt;
+        &lt;span class="p"&gt;[]&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="n"&gt;string&lt;/span&gt; &lt;span class="n"&gt;output&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+            &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;make_pair&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;output&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+        &lt;span class="p"&gt;});&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;current_outputs&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
 
-int reduce(vector&amp;lt; pair&amp;lt;string, int&amp;gt; &amp;gt; outputs)
-{
-    return std::accumulate(
-        outputs.begin(), outputs.end(), 0.0,
-        [] (int sum, const pair&amp;lt;string, int&amp;gt; output) {
-                return sum + output.second;
-            });
-}
+&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;reduce&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;vector&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;pair&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;string&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;outputs&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;accumulate&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+        &lt;span class="n"&gt;outputs&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;begin&lt;/span&gt;&lt;span class="p"&gt;(),&lt;/span&gt; &lt;span class="n"&gt;outputs&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;end&lt;/span&gt;&lt;span class="p"&gt;(),&lt;/span&gt; &lt;span class="mf"&gt;0.0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="p"&gt;[]&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;sum&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="n"&gt;pair&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;string&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;output&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+                &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;sum&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;output&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;second&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+            &lt;span class="p"&gt;});&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
 
-int main(int argc, const char *argv[])
-{
-    if (argc &amp;lt; 2) {
-        std::cout &amp;lt;&amp;lt; "Usage: " &amp;lt;&amp;lt; argv[0] &amp;lt;&amp;lt; " infile" &amp;lt;&amp;lt; std::endl;
-        return 1;
-    }
+&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;main&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;argc&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="kt"&gt;char&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="n"&gt;argv&lt;/span&gt;&lt;span class="p"&gt;[])&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;argc&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;cout&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="s"&gt;"Usage: "&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;argv&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="s"&gt;" infile"&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;endl&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+        &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
 
-    string filename = argv[1];
-    std::ifstream infile(filename);
-    string line;
-    vector&amp;lt; pair&amp;lt;string, int&amp;gt; &amp;gt; occurences;
-    while (std::getline(infile, line)) {
-        auto line_occurences = map(line);
-        occurences.insert(
-            occurences.end(), line_occurences.begin(), line_occurences.end());
-    }
-    int n = reduce(occurences);
-    std::cout &amp;lt;&amp;lt; "File " &amp;lt;&amp;lt; filename &amp;lt;&amp;lt; " holds " &amp;lt;&amp;lt; n &amp;lt;&amp;lt; " words" &amp;lt;&amp;lt; std::endl;
-    return 0;
-}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+    &lt;span class="n"&gt;string&lt;/span&gt; &lt;span class="n"&gt;filename&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;argv&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt;
+    &lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;ifstream&lt;/span&gt; &lt;span class="n"&gt;infile&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;filename&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="n"&gt;string&lt;/span&gt; &lt;span class="n"&gt;line&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="n"&gt;vector&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;pair&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;string&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kt"&gt;int&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;occurences&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="k"&gt;while&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;getline&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;infile&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;line&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="k"&gt;auto&lt;/span&gt; &lt;span class="n"&gt;line_occurences&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;map&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;line&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+        &lt;span class="n"&gt;occurences&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;insert&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+            &lt;span class="n"&gt;occurences&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;end&lt;/span&gt;&lt;span class="p"&gt;(),&lt;/span&gt; &lt;span class="n"&gt;line_occurences&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;begin&lt;/span&gt;&lt;span class="p"&gt;(),&lt;/span&gt; &lt;span class="n"&gt;line_occurences&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;end&lt;/span&gt;&lt;span class="p"&gt;());&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+    &lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;reduce&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;occurences&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;cout&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="s"&gt;"File "&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;filename&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="s"&gt;" holds "&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="s"&gt;" words"&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;endl&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
 
 &lt;p&gt;Compile and run:&lt;/p&gt;
 
 &lt;div class="brush: console"&gt;
- &lt;pre&gt;&lt;code&gt;$ cat &amp;lt;&amp;lt; EOF &amp;gt; sample.txt
-&amp;gt; This is a first line
-&amp;gt; This is a second line
-&amp;gt; EOF
+ &lt;div class="highlight"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; cat &lt;span class="s"&gt;&amp;lt;&amp;lt; EOF &amp;gt; sample.txt&lt;/span&gt;
+&lt;span class="gp"&gt;&amp;gt;&lt;/span&gt;&lt;span class="s"&gt; This is a first line&lt;/span&gt;
+&lt;span class="gp"&gt;&amp;gt;&lt;/span&gt;&lt;span class="s"&gt; This is a second line&lt;/span&gt;
+&lt;span class="gp"&gt;&amp;gt;&lt;/span&gt;&lt;span class="s"&gt; EOF&lt;/span&gt;
 
-$ c++ main.cpp -o wordcount -std=c++11 &amp;amp;&amp;amp; ./wordcount sample.txt
-File sample.txt holds 10 words&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content></entry>
+&lt;span class="gp"&gt;$&lt;/span&gt; c++ main.cpp -o wordcount -std&lt;span class="o"&gt;=&lt;/span&gt;c++11 &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; ./wordcount sample.txt
+&lt;span class="go"&gt;File sample.txt holds 10 words&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;</content></entry>
  <entry>
   <title type="text">Reduce in standard C++</title>
   <link rel="alternate" href="http://logc.github.io/blog/2014/01/20/reduce-in-standard-c?utm_source=all&amp;utm_medium=Atom" />
@@ -478,37 +521,45 @@ File sample.txt holds 10 words&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content></e
 &lt;!-- more--&gt;
 
 &lt;div class="brush: c++"&gt;
- &lt;pre&gt;&lt;code&gt;#include &amp;lt;iostream&amp;gt;
-#include &amp;lt;vector&amp;gt;
-#include &amp;lt;numeric&amp;gt;
+ &lt;div class="highlight"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;iostream&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;vector&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
+&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;numeric&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
 
-struct cell {
-    double probability;
-};
+&lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="n"&gt;cell&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="kt"&gt;double&lt;/span&gt; &lt;span class="n"&gt;probability&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;};&lt;/span&gt;
 
-int main()
-{
-    double result;
-    std::vector&amp;lt;cell&amp;gt; grid;
-    for (size_t i = 0; i &amp;lt; 3; i++) {
-        cell c = {.probability = 0.1 * i};
-        grid.push_back(c);
-    }
+&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="kt"&gt;double&lt;/span&gt; &lt;span class="n"&gt;result&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;vector&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;cell&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;grid&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;size_t&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="o"&gt;++&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="n"&gt;cell&lt;/span&gt; &lt;span class="n"&gt;c&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{.&lt;/span&gt;&lt;span class="n"&gt;probability&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mf"&gt;0.1&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;};&lt;/span&gt;
+        &lt;span class="n"&gt;grid&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;push_back&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;c&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
 
-    result = std::accumulate(
-        grid.begin(), grid.end(), 0.0,
-        [] (double sum, const cell&amp;amp; c) {return sum + c.probability;});
-    std::cout &amp;lt;&amp;lt; result;
-    return 0;
-}&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+    &lt;span class="n"&gt;result&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;accumulate&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+        &lt;span class="n"&gt;grid&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;begin&lt;/span&gt;&lt;span class="p"&gt;(),&lt;/span&gt; &lt;span class="n"&gt;grid&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;end&lt;/span&gt;&lt;span class="p"&gt;(),&lt;/span&gt; &lt;span class="mf"&gt;0.0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="p"&gt;[]&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;double&lt;/span&gt; &lt;span class="n"&gt;sum&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="n"&gt;cell&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt; &lt;span class="n"&gt;c&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;sum&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;c&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;probability&lt;/span&gt;&lt;span class="p"&gt;;});&lt;/span&gt;
+    &lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;cout&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;result&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
 
 &lt;h2 id="compile-and-run"&gt;Compile and run&lt;/h2&gt;
 
 &lt;p&gt;In this example, the compilation needs a &lt;code&gt;-std=c++11&lt;/code&gt; flag in order to set the standard to C++11, a fairly recent standard that is not supported by all compilers and systems. However, the part that is written in this new standard is the &lt;em&gt;accumulating function&lt;/em&gt;, which is expressed as a lambda in this example. If you move its code to a named function outside the &lt;code&gt;main&lt;/code&gt;, this code should compile with many more compilers.&lt;/p&gt;
 
 &lt;div class="brush: console"&gt;
- &lt;pre&gt;&lt;code&gt;$ c++ main.cpp -o example -std=c++11 &amp;amp;&amp;amp; ./example
-0.3&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content></entry>
+ &lt;div class="highlight"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; c++ main.cpp -o example -std&lt;span class="o"&gt;=&lt;/span&gt;c++11 &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; ./example
+&lt;span class="go"&gt;0.3&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;</content></entry>
  <entry>
   <title type="text">How do you develop with Yesod</title>
   <link rel="alternate" href="http://logc.github.io/blog/2013/12/04/how-do-you-develop-with-yesod?utm_source=all&amp;utm_medium=Atom" />
@@ -525,7 +576,11 @@ int main()
 &lt;p&gt;The purpose of this post is to explain to a new Yesod developer &amp;ldquo;What do I do after &amp;hellip; ?&amp;rdquo; :&lt;/p&gt;
 
 &lt;div class="brush: console"&gt;
- &lt;pre&gt;&lt;code&gt;$ yesod init&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;div class="highlight"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; yesod init
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
 &lt;!-- more--&gt;
 
 &lt;p&gt;Briefly summarized, what you need after this command is:&lt;/p&gt;
@@ -616,8 +671,12 @@ Email
 &lt;p&gt;Let us see a stub example of one of those functions:&lt;/p&gt;
 
 &lt;div class="brush: haskell"&gt;
- &lt;pre&gt;&lt;code&gt;getDonkeyR :: DonkeyId -&amp;gt; Handler Html
-getDonkeyR donkeyId = undefined&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;div class="highlight"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nf"&gt;getDonkeyR&lt;/span&gt; &lt;span class="ow"&gt;::&lt;/span&gt; &lt;span class="kt"&gt;DonkeyId&lt;/span&gt; &lt;span class="ow"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kt"&gt;Handler&lt;/span&gt; &lt;span class="kt"&gt;Html&lt;/span&gt;
+&lt;span class="nf"&gt;getDonkeyR&lt;/span&gt; &lt;span class="n"&gt;donkeyId&lt;/span&gt; &lt;span class="ow"&gt;=&lt;/span&gt; &lt;span class="n"&gt;undefined&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
 
 &lt;h4 id="handler-function-signature"&gt;Handler function signature&lt;/h4&gt;
 
@@ -646,21 +705,33 @@ getDonkeyR donkeyId = undefined&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Consider the following function:&lt;/p&gt;
 
 &lt;div class="brush: haskell"&gt;
- &lt;pre&gt;&lt;code&gt;getBooksR :: Handler Html
-getBooksR = do
-        books &amp;lt;- runDB $ selectList [] [Asc BookTitle]
-        (formWidget, enctype) &amp;lt;- generateFormPost bookForm
-        defaultLayout $(widgetFile "books")&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;div class="highlight"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nf"&gt;getBooksR&lt;/span&gt; &lt;span class="ow"&gt;::&lt;/span&gt; &lt;span class="kt"&gt;Handler&lt;/span&gt; &lt;span class="kt"&gt;Html&lt;/span&gt;
+&lt;span class="nf"&gt;getBooksR&lt;/span&gt; &lt;span class="ow"&gt;=&lt;/span&gt; &lt;span class="kr"&gt;do&lt;/span&gt;
+        &lt;span class="n"&gt;books&lt;/span&gt; &lt;span class="ow"&gt;&amp;lt;-&lt;/span&gt; &lt;span class="n"&gt;runDB&lt;/span&gt; &lt;span class="o"&gt;$&lt;/span&gt; &lt;span class="n"&gt;selectList&lt;/span&gt; &lt;span class="kt"&gt;[]&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="kt"&gt;Asc&lt;/span&gt; &lt;span class="kt"&gt;BookTitle&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+        &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;formWidget&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;enctype&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="ow"&gt;&amp;lt;-&lt;/span&gt; &lt;span class="n"&gt;generateFormPost&lt;/span&gt; &lt;span class="n"&gt;bookForm&lt;/span&gt;
+        &lt;span class="n"&gt;defaultLayout&lt;/span&gt; &lt;span class="o"&gt;$&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;widgetFile&lt;/span&gt; &lt;span class="s"&gt;"books"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
 
 &lt;p&gt;The first line after &lt;code&gt;do&lt;/code&gt; allows us to get a Book model out of the database. The &lt;code&gt;runDB&lt;/code&gt; function runs any query on the database, while the &lt;code&gt;selectList&lt;/code&gt; function composes a query that returns its results as a list. The empty first argument means we take &lt;strong&gt;all fields&lt;/strong&gt; from each record, and the second argument accepts a number of filters and modifyers. The example shown is equivalent, in SQL, to:&lt;/p&gt;
 
 &lt;div class="brush: sql"&gt;
- &lt;pre&gt;&lt;code&gt;SELECT * FROM books ORDER BY "BookTitle" ASC;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;div class="highlight"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;SELECT&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="k"&gt;FROM&lt;/span&gt; &lt;span class="n"&gt;books&lt;/span&gt; &lt;span class="k"&gt;ORDER&lt;/span&gt; &lt;span class="k"&gt;BY&lt;/span&gt; &lt;span class="ss"&gt;"BookTitle"&lt;/span&gt; &lt;span class="k"&gt;ASC&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
 
 &lt;p&gt;Then we would go on to render the correct HTML template with the default layout. The template will have direct access to the &lt;code&gt;books&lt;/code&gt; variable because it is in the same scope (the handler function). We will see how this happens when we discuss templates. The rendering happens with the line:&lt;/p&gt;
 
 &lt;div class="brush: haskell"&gt;
- &lt;pre&gt;&lt;code&gt;defaultLayout $(widgetFile "books")&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;div class="highlight"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nf"&gt;defaultLayout&lt;/span&gt; &lt;span class="o"&gt;$&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;widgetFile&lt;/span&gt; &lt;span class="s"&gt;"books"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
 
 &lt;p&gt;The template rendering takes the &lt;code&gt;defaultLayout&lt;/code&gt; function, applied on the result of loading a widgetFile by name. The default layout renders the template found under &lt;code&gt;templates/default-layout.*&lt;/code&gt; and includes within it the result of rendering whatever is on the &lt;code&gt;templates/books.*&lt;/code&gt; files. This helps make the look and feel uniform across the website.&lt;/p&gt;
 
@@ -671,21 +742,29 @@ getBooksR = do
 &lt;p&gt;Consider the following function:&lt;/p&gt;
 
 &lt;div class="brush: haskell"&gt;
- &lt;pre&gt;&lt;code&gt;postBooksR :: Handler Html
-postBooksR = do
-    ((result, _), _) &amp;lt;- runFormPost bookForm
-    case result of
-        FormSuccess book -&amp;gt; do
-            bookid &amp;lt;- runDB $ insert book
-            setMessage "Book registered"
-        _ -&amp;gt; do
-            setMessage "Invalid data"
-            redirect $ BooksR&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;div class="highlight"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nf"&gt;postBooksR&lt;/span&gt; &lt;span class="ow"&gt;::&lt;/span&gt; &lt;span class="kt"&gt;Handler&lt;/span&gt; &lt;span class="kt"&gt;Html&lt;/span&gt;
+&lt;span class="nf"&gt;postBooksR&lt;/span&gt; &lt;span class="ow"&gt;=&lt;/span&gt; &lt;span class="kr"&gt;do&lt;/span&gt;
+    &lt;span class="p"&gt;((&lt;/span&gt;&lt;span class="n"&gt;result&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="kr"&gt;_&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="kr"&gt;_&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="ow"&gt;&amp;lt;-&lt;/span&gt; &lt;span class="n"&gt;runFormPost&lt;/span&gt; &lt;span class="n"&gt;bookForm&lt;/span&gt;
+    &lt;span class="kr"&gt;case&lt;/span&gt; &lt;span class="n"&gt;result&lt;/span&gt; &lt;span class="kr"&gt;of&lt;/span&gt;
+        &lt;span class="kt"&gt;FormSuccess&lt;/span&gt; &lt;span class="n"&gt;book&lt;/span&gt; &lt;span class="ow"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kr"&gt;do&lt;/span&gt;
+            &lt;span class="n"&gt;bookid&lt;/span&gt; &lt;span class="ow"&gt;&amp;lt;-&lt;/span&gt; &lt;span class="n"&gt;runDB&lt;/span&gt; &lt;span class="o"&gt;$&lt;/span&gt; &lt;span class="n"&gt;insert&lt;/span&gt; &lt;span class="n"&gt;book&lt;/span&gt;
+            &lt;span class="n"&gt;setMessage&lt;/span&gt; &lt;span class="s"&gt;"Book registered"&lt;/span&gt;
+        &lt;span class="kr"&gt;_&lt;/span&gt; &lt;span class="ow"&gt;-&amp;gt;&lt;/span&gt; &lt;span class="kr"&gt;do&lt;/span&gt;
+            &lt;span class="n"&gt;setMessage&lt;/span&gt; &lt;span class="s"&gt;"Invalid data"&lt;/span&gt;
+            &lt;span class="n"&gt;redirect&lt;/span&gt; &lt;span class="o"&gt;$&lt;/span&gt; &lt;span class="kt"&gt;BooksR&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
 
 &lt;p&gt;The first line after &lt;code&gt;do&lt;/code&gt; gets the result out of a form that is defined and rendered elsewhere. The result may be a success, because all inputs are filled out and are of the expected types, or it may be anything else (an error), where we print an error message and do no more. If we have a success, then we can extract the specific &lt;code&gt;book&lt;/code&gt; (of type &lt;code&gt;Book&lt;/code&gt;) out of the &lt;code&gt;FormSuccess&lt;/code&gt; monad via pattern matching, and then insert it into the DB via the Persist &lt;code&gt;insert&lt;/code&gt; function:&lt;/p&gt;
 
 &lt;div class="brush: haskell"&gt;
- &lt;pre&gt;&lt;code&gt;bookid &amp;lt;- runDB $ insert book&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;div class="highlight"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nf"&gt;bookid&lt;/span&gt; &lt;span class="ow"&gt;&amp;lt;-&lt;/span&gt; &lt;span class="n"&gt;runDB&lt;/span&gt; &lt;span class="o"&gt;$&lt;/span&gt; &lt;span class="n"&gt;insert&lt;/span&gt; &lt;span class="n"&gt;book&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
 
 &lt;p&gt;Notice this works without any more specifications because we know, from the compile process, that the result of parsing the form contents must have enough informations to build a Book model, and a Book model can be written to database because we have already parsed it and created the necessary tables (in the case of a relational DB engine) on app startup.&lt;/p&gt;
 
@@ -748,24 +827,32 @@ postBooksR = do
 &lt;p&gt;La mejor manera, pese a lo que pueda parecer, es &lt;strong&gt;instalar desde fuentes&lt;/strong&gt;, haciendo lo que se conoce como &amp;ldquo;altinstall&amp;rdquo; (instalación alternativa). Esto crea ejecutables llamados &lt;code&gt;python2.7&lt;/code&gt; bajo &lt;code&gt;/usr/local/bin&lt;/code&gt;, que &lt;strong&gt;no sobreescriben&lt;/strong&gt; el comando &lt;code&gt;python&lt;/code&gt; normal del sistema; éste sigue apuntando a un ejecutable bajo &lt;code&gt;/usr/bin&lt;/code&gt;.&lt;/p&gt;
 
 &lt;div class="brush: console"&gt;
- &lt;pre&gt;&lt;code&gt;$ wget http://www.python.org/ftp/python/2.7.6/Python-2.7.6.tgz
-$ tar xvfz Python-2.7.6.tgz
-$ cd Python-2.7.6
-$ ./configure
-$ make
-$ sudo make altinstall&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;div class="highlight"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; wget http://www.python.org/ftp/python/2.7.6/Python-2.7.6.tgz
+&lt;span class="gp"&gt;$&lt;/span&gt; tar xvfz Python-2.7.6.tgz
+&lt;span class="gp"&gt;$&lt;/span&gt; &lt;span class="nb"&gt;cd&lt;/span&gt; Python-2.7.6
+&lt;span class="gp"&gt;$&lt;/span&gt; ./configure
+&lt;span class="gp"&gt;$&lt;/span&gt; make
+&lt;span class="gp"&gt;$&lt;/span&gt; sudo make altinstall
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
 
 &lt;p&gt;Además de esto, es recomendable instalar &lt;strong&gt;un &lt;code&gt;easy_install&lt;/code&gt; alternativo también&lt;/strong&gt;, ya que, si no, todas las librerías de python se instalarán para la 2.6 y no para la 2.7.&lt;/p&gt;
 
 &lt;div class="brush: console"&gt;
- &lt;pre&gt;&lt;code&gt;$ wget http://pypi.python.org/packages/2.7/s/setuptools/setuptools-0.6c11-py2.7.egg
-$ sudo -i
-# export PATH=$PATH:/usr/local/bin
-# sh setuptools-0.6c11-py2.7.egg
-# exit
-$ sudo rm /usr/local/bin/easy_install ## remove the symlink that shadows the system easy_install
-$ # You may now try the easy_install for 2.7 with e.g.:
-$ sudo /usr/local/bin/easy_install-2.7 numpy&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;div class="highlight"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; wget http://pypi.python.org/packages/2.7/s/setuptools/setuptools-0.6c11-py2.7.egg
+&lt;span class="gp"&gt;$&lt;/span&gt; sudo -i
+&lt;span class="gp"&gt;#&lt;/span&gt; &lt;span class="nb"&gt;export&lt;/span&gt; &lt;span class="nv"&gt;PATH&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;$PATH&lt;/span&gt;:/usr/local/bin
+&lt;span class="gp"&gt;#&lt;/span&gt; sh setuptools-0.6c11-py2.7.egg
+&lt;span class="gp"&gt;#&lt;/span&gt; &lt;span class="nb"&gt;exit&lt;/span&gt;
+&lt;span class="gp"&gt;$&lt;/span&gt; sudo rm /usr/local/bin/easy_install &lt;span class="c1"&gt;## remove the symlink that shadows the system easy_install&lt;/span&gt;
+&lt;span class="gp"&gt;$&lt;/span&gt; &lt;span class="c1"&gt;# You may now try the easy_install for 2.7 with e.g.:&lt;/span&gt;
+&lt;span class="gp"&gt;$&lt;/span&gt; sudo /usr/local/bin/easy_install-2.7 numpy
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
 
 &lt;p&gt;Este post es una combinación de &lt;a href="http://stackoverflow.com/questions/4149361/on-linux-suse-or-redhat-how-do-i-load-python-2-7"&gt;dos respuestas en Stack Overflow&lt;/a&gt;, y mi propia experiencia con este mismo problema.&lt;/p&gt;</content></entry>
  <entry>
@@ -790,9 +877,13 @@ $ sudo /usr/local/bin/easy_install-2.7 numpy&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt
 &lt;p&gt;La función &lt;code&gt;unicode&lt;/code&gt; &lt;strong&gt;no utiliza UTF&amp;ndash;8 por defecto&lt;/strong&gt;, sino, absurdamente, ASCII. Por eso &lt;em&gt;sólo es equivalente a poner una &lt;code&gt;u&lt;/code&gt; delante una cadena si se especifica que el &lt;code&gt;encoding&lt;/code&gt; sea &lt;code&gt;'utf-8'&lt;/code&gt;&lt;/em&gt;.&lt;/p&gt;
 
 &lt;div class="brush: python"&gt;
- &lt;pre&gt;&lt;code&gt;unicode_string = u"Años"
+ &lt;div class="highlight"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;unicode_string&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="sa"&gt;u&lt;/span&gt;&lt;span class="s2"&gt;"Años"&lt;/span&gt;
 
-unicode_str = unicode(open('some.txt', 'r').read(), encoding='utf-8')&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content></entry>
+&lt;span class="n"&gt;unicode_str&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;unicode&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;open&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;some.txt&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;r&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;read&lt;/span&gt;&lt;span class="p"&gt;(),&lt;/span&gt; &lt;span class="n"&gt;encoding&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;utf-8&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;</content></entry>
  <entry>
   <title type="text">py2app excludes</title>
   <link rel="alternate" href="http://logc.github.io/blog/2013/12/02/py2app-excludes?utm_source=all&amp;utm_medium=Atom" />
@@ -809,71 +900,75 @@ unicode_str = unicode(open('some.txt', 'r').read(), encoding='utf-8')&lt;/code&g
 &lt;p&gt;Con la lista siguiente, el peso baja de 22 MBs a 6 MBs. Probablemente se puede rebajar aún más.&lt;/p&gt;
 
 &lt;div class="brush: python"&gt;
- &lt;pre&gt;&lt;code&gt;# File: setup.py
+ &lt;div class="highlight"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# File: setup.py&lt;/span&gt;
 
-from setuptools import setup
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;setuptools&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;setup&lt;/span&gt;
 
-APP = ['path/main.py']
-Plist = {}
-DATA_FILES = []
-OPTIONS = {'argv_emulation': True,
-           #'iconfile': 'Icons/ConverterIcon.icns',
-           'plist': Plist,
-           'excludes': [
-               'aetypes',
-               'ast',
-               'bz2',
-               'calendar',
-               'codecs',
-               'collections',
-               'ctypes',
-               'distutils',
-               'doctest',
-               'email',
-               'encodings',
-               'functools',
-               'gzip',
-               'inspect',
-               'itertools',
-               'locale',
-               'logging',
-               'optparse',
-               'pickle',
-               'platform',
-               'pprint',
-               'random',
-               're',
-               'sets',
-               'shutil',
-               'socket',
-               'ssl',
-               'subprocess',
-               'tarfile',
-               'tempfile',
-               'threading',
-               'traceback',
-               'types',
-               'unittest',
-               'urllib',
-               'urllib2',
-               'urlparse',
-               'weakref',
-               'xml',
-               'zipfile',
-           ]
-           }
+&lt;span class="n"&gt;APP&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;path/main.py&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="n"&gt;Plist&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{}&lt;/span&gt;
+&lt;span class="n"&gt;DATA_FILES&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[]&lt;/span&gt;
+&lt;span class="n"&gt;OPTIONS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;argv_emulation&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="bp"&gt;True&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+           &lt;span class="c1"&gt;#&amp;#39;iconfile&amp;#39;: &amp;#39;Icons/ConverterIcon.icns&amp;#39;,&lt;/span&gt;
+           &lt;span class="s1"&gt;&amp;#39;plist&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Plist&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+           &lt;span class="s1"&gt;&amp;#39;excludes&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;
+               &lt;span class="s1"&gt;&amp;#39;aetypes&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+               &lt;span class="s1"&gt;&amp;#39;ast&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+               &lt;span class="s1"&gt;&amp;#39;bz2&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+               &lt;span class="s1"&gt;&amp;#39;calendar&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+               &lt;span class="s1"&gt;&amp;#39;codecs&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+               &lt;span class="s1"&gt;&amp;#39;collections&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+               &lt;span class="s1"&gt;&amp;#39;ctypes&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+               &lt;span class="s1"&gt;&amp;#39;distutils&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+               &lt;span class="s1"&gt;&amp;#39;doctest&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+               &lt;span class="s1"&gt;&amp;#39;email&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+               &lt;span class="s1"&gt;&amp;#39;encodings&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+               &lt;span class="s1"&gt;&amp;#39;functools&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+               &lt;span class="s1"&gt;&amp;#39;gzip&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+               &lt;span class="s1"&gt;&amp;#39;inspect&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+               &lt;span class="s1"&gt;&amp;#39;itertools&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+               &lt;span class="s1"&gt;&amp;#39;locale&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+               &lt;span class="s1"&gt;&amp;#39;logging&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+               &lt;span class="s1"&gt;&amp;#39;optparse&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+               &lt;span class="s1"&gt;&amp;#39;pickle&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+               &lt;span class="s1"&gt;&amp;#39;platform&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+               &lt;span class="s1"&gt;&amp;#39;pprint&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+               &lt;span class="s1"&gt;&amp;#39;random&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+               &lt;span class="s1"&gt;&amp;#39;re&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+               &lt;span class="s1"&gt;&amp;#39;sets&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+               &lt;span class="s1"&gt;&amp;#39;shutil&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+               &lt;span class="s1"&gt;&amp;#39;socket&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+               &lt;span class="s1"&gt;&amp;#39;ssl&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+               &lt;span class="s1"&gt;&amp;#39;subprocess&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+               &lt;span class="s1"&gt;&amp;#39;tarfile&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+               &lt;span class="s1"&gt;&amp;#39;tempfile&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+               &lt;span class="s1"&gt;&amp;#39;threading&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+               &lt;span class="s1"&gt;&amp;#39;traceback&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+               &lt;span class="s1"&gt;&amp;#39;types&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+               &lt;span class="s1"&gt;&amp;#39;unittest&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+               &lt;span class="s1"&gt;&amp;#39;urllib&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+               &lt;span class="s1"&gt;&amp;#39;urllib2&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+               &lt;span class="s1"&gt;&amp;#39;urlparse&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+               &lt;span class="s1"&gt;&amp;#39;weakref&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+               &lt;span class="s1"&gt;&amp;#39;xml&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+               &lt;span class="s1"&gt;&amp;#39;zipfile&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+           &lt;span class="p"&gt;]&lt;/span&gt;
+           &lt;span class="p"&gt;}&lt;/span&gt;
 
-setup(
-    app=APP,
-    package_dir={'': 'src'}, # you may not need this
-    data_files=DATA_FILES,
-    version="0.1",
-    description="&amp;lt;Your description&amp;gt;",
-    author="&amp;lt;Your name&amp;gt;",
-    author_email="&amp;lt;Your email&amp;gt;",
-    options={'py2app': OPTIONS},
-    setup_requires=['py2app'],
-)&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content></entry>
+&lt;span class="n"&gt;setup&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+    &lt;span class="n"&gt;app&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;APP&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="n"&gt;package_dir&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;src&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;},&lt;/span&gt; &lt;span class="c1"&gt;# you may not need this&lt;/span&gt;
+    &lt;span class="n"&gt;data_files&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;DATA_FILES&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="n"&gt;version&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;"0.1"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="n"&gt;description&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;"&amp;lt;Your description&amp;gt;"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="n"&gt;author&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;"&amp;lt;Your name&amp;gt;"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="n"&gt;author_email&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;"&amp;lt;Your email&amp;gt;"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="n"&gt;options&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;py2app&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;OPTIONS&lt;/span&gt;&lt;span class="p"&gt;},&lt;/span&gt;
+    &lt;span class="n"&gt;setup_requires&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;py2app&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
+&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;</content></entry>
  <entry>
   <title type="text">Compilar Cython</title>
   <link rel="alternate" href="http://logc.github.io/blog/2013/11/19/compilar-cython?utm_source=all&amp;utm_medium=Atom" />
@@ -886,35 +981,47 @@ setup(
 &lt;p&gt;Compilar ficheros de Cython es más fácil usando la función &lt;code&gt;cythonize&lt;/code&gt; dentro del setup.py de nuestro proyecto:&lt;/p&gt;
 
 &lt;div class="brush: python"&gt;
- &lt;pre&gt;&lt;code&gt;# File: setup.py
+ &lt;div class="highlight"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# File: setup.py&lt;/span&gt;
 
-from distutils.core import setup
-from Cython.Build import cythonize
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;distutils.core&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;setup&lt;/span&gt;
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;Cython.Build&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;cythonize&lt;/span&gt;
 
-setup(
-      name = "My hello app",
-      ext_modules = cythonize('fibonacci.pyx'), # accepts a glob pattern
-)&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;span class="n"&gt;setup&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
+      &lt;span class="n"&gt;name&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;"My hello app"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+      &lt;span class="n"&gt;ext_modules&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;cythonize&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;fibonacci.pyx&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt; &lt;span class="c1"&gt;# accepts a glob pattern&lt;/span&gt;
+&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
 
 &lt;p&gt;Por ejemplo, el fichero a compilar es fibonacci.pyx, que contiene un ejemplo del tutorial de Cython:&lt;/p&gt;
 
 &lt;div class="brush: python"&gt;
- &lt;pre&gt;&lt;code&gt;# File: fibonacci.pyx
+ &lt;div class="highlight"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# File: fibonacci.pyx&lt;/span&gt;
 
-def fib(n):
-    a, b = 0, 1
-    while b &amp;lt; n:
-        print b,
-        a, b = b, a + b&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;fib&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;
+    &lt;span class="k"&gt;while&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;n&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+        &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="n"&gt;a&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;a&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;b&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
 
 &lt;p&gt;El resultado de compilar &lt;code&gt;fibonacci.pyx&lt;/code&gt; es un fichero con código intermedio en C &lt;code&gt;fibonacci.c&lt;/code&gt; y un fichero compilado &lt;code&gt;fibonacci.so&lt;/code&gt;.&lt;/p&gt;
 
 &lt;div class="brush: bash"&gt;
- &lt;pre&gt;&lt;code&gt;$ python setup.py build
+ &lt;div class="highlight"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ python setup.py build
 running build
 running build_ext
-building 'fibonacci' extension
-/usr/bin/clang ...snip... -o build/lib.macosx-10.8-x86_64-2.7/fibonacci.so&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+building &lt;span class="s1"&gt;&amp;#39;fibonacci&amp;#39;&lt;/span&gt; extension
+/usr/bin/clang ...snip... -o build/lib.macosx-10.8-x86_64-2.7/fibonacci.so
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
 
 &lt;blockquote&gt;
  &lt;p&gt;&lt;strong&gt;note&lt;/strong&gt;&lt;/p&gt;
@@ -923,9 +1030,13 @@ building 'fibonacci' extension
 &lt;p&gt;El fichero .so puede usarse desde otros módulos de Python, o directamente desde la shell&lt;/p&gt;
 
 &lt;div class="brush: pycon"&gt;
- &lt;pre&gt;&lt;code&gt;&amp;gt;&amp;gt;&amp;gt; import fibonacci
-&amp;gt;&amp;gt;&amp;gt; fibonacci.fib(5)
-1 1 2 3&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content></entry>
+ &lt;div class="highlight"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;&amp;gt;&amp;gt;&amp;gt; &lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;fibonacci&lt;/span&gt;
+&lt;span class="gp"&gt;&amp;gt;&amp;gt;&amp;gt; &lt;/span&gt;&lt;span class="n"&gt;fibonacci&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;fib&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="go"&gt;1 1 2 3&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;</content></entry>
  <entry>
   <title type="text">Infraestructura de lanzamientos locales</title>
   <link rel="alternate" href="http://logc.github.io/blog/2013/11/17/infraestructura-de-lanzamientos-locales?utm_source=all&amp;utm_medium=Atom" />
@@ -951,33 +1062,49 @@ building 'fibonacci' extension
 &lt;p&gt;Crea un directorio llamado &lt;code&gt;pyhello&lt;/code&gt;, y los siguientes directorios y ficheros dentro de él:&lt;/p&gt;
 
 &lt;div class="brush: console"&gt;
- &lt;pre&gt;&lt;code&gt;.
-├── pyhello
-│   ├── __init__.py
-│   └── main.py
-└── setup.py&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;div class="highlight"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="go"&gt;.&lt;/span&gt;
+&lt;span class="go"&gt;├── pyhello&lt;/span&gt;
+&lt;span class="go"&gt;│   ├── __init__.py&lt;/span&gt;
+&lt;span class="go"&gt;│   └── main.py&lt;/span&gt;
+&lt;span class="go"&gt;└── setup.py&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
 
 &lt;p&gt;El contenido de &lt;code&gt;setup.py&lt;/code&gt;:&lt;/p&gt;
 
 &lt;div class="brush: python"&gt;
- &lt;pre&gt;&lt;code&gt;from setuptools import setup
+ &lt;div class="highlight"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;setuptools&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;setup&lt;/span&gt;
 
-setup(name='pyhello',
-      version='0.1',
-      packages=['pyhello'],
-      entry_points={
-          'console_scripts': ['pyhello=pyhello.main:main']})&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;span class="n"&gt;setup&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;pyhello&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+      &lt;span class="n"&gt;version&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;0.1&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+      &lt;span class="n"&gt;packages&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;pyhello&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
+      &lt;span class="n"&gt;entry_points&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+          &lt;span class="s1"&gt;&amp;#39;console_scripts&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;pyhello=pyhello.main:main&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]})&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
 
 &lt;p&gt;El contenido de &lt;code&gt;pyhello/main.py&lt;/code&gt;:&lt;/p&gt;
 
 &lt;div class="brush: python"&gt;
- &lt;pre&gt;&lt;code&gt;def main():
-    print "Hello from pyhello!"&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;div class="highlight"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+    &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s2"&gt;"Hello from pyhello!"&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
 
 &lt;p&gt;Después crea una distribución de fuentes con el comando estándar:&lt;/p&gt;
 
 &lt;div class="brush: console"&gt;
- &lt;pre&gt;&lt;code&gt;python setup.py sdist&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;div class="highlight"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="go"&gt;python setup.py sdist&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
 
 &lt;p&gt;Esto crea un lanzamiento llamado &lt;code&gt;pyhello-0.1.tar.gz&lt;/code&gt; bajo el directorio &lt;code&gt;dist&lt;/code&gt;.&lt;/p&gt;
 
@@ -990,22 +1117,34 @@ setup(name='pyhello',
 &lt;p&gt;El contenido de &lt;code&gt;YOUR_USERNAME.conf&lt;/code&gt;:&lt;/p&gt;
 
 &lt;div class="brush: apacheconf"&gt;
- &lt;pre&gt;&lt;code&gt;&amp;lt;Directory "/Users/YOUR_USERNAME/Sites/"&amp;gt;
-    Options Indexes Multiviews
-    AllowOverride AuthConfig Limit
-    Order allow,deny
-    Allow from all
-&amp;lt;/Directory&amp;gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;div class="highlight"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nt"&gt;&amp;lt;Directory&lt;/span&gt; &lt;span class="s"&gt;"/Users/YOUR_USERNAME/Sites/"&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class="nb"&gt;Options&lt;/span&gt; Indexes Multiviews
+    &lt;span class="nb"&gt;AllowOverride&lt;/span&gt; AuthConfig Limit
+    &lt;span class="nb"&gt;Order&lt;/span&gt; allow,deny
+    &lt;span class="nb"&gt;Allow&lt;/span&gt; from &lt;span class="k"&gt;all&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/Directory&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
 
 &lt;p&gt;Para lanzar Apache sólo durante esta sesión de la máquina:&lt;/p&gt;
 
 &lt;div class="brush: console"&gt;
- &lt;pre&gt;&lt;code&gt;$ sudo apachectl start&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;div class="highlight"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo apachectl start
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
 
 &lt;p&gt;Para lanzar Apache automáticamente cada vez que se inicia la máquina:&lt;/p&gt;
 
 &lt;div class="brush: console"&gt;
- &lt;pre&gt;&lt;code&gt;$ sudo launchctl load -w /System/Library/LaunchDaemons/org.apache.httpd.plist&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;div class="highlight"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo launchctl load -w /System/Library/LaunchDaemons/org.apache.httpd.plist
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
 
 &lt;h2 id="crear-un-fichero-portfile"&gt;Crear un fichero Portfile&lt;/h2&gt;
 
@@ -1052,32 +1191,44 @@ checksums           rmd160 b8a9e7e5db29d407db95310ee95e7048d6fa1cdd \
   &lt;p&gt;para generar los digests del lanzamiento con los siguientes comandos:&lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;
 
 &lt;div class="brush: console"&gt;
- &lt;pre&gt;&lt;code&gt;$ openssl sha256 dist/pyhello-0.1.tar.gz
-$ openssl rmd160 dist/pyhello-0.1.tar.gz&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;div class="highlight"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; openssl sha256 dist/pyhello-0.1.tar.gz
+&lt;span class="gp"&gt;$&lt;/span&gt; openssl rmd160 dist/pyhello-0.1.tar.gz
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
 
 &lt;h2 id="servir-portfiles-por-rsync"&gt;Servir Portfiles por rsync&lt;/h2&gt;
 
 &lt;p&gt;Crea un directorio &lt;code&gt;ports&lt;/code&gt; bajo &lt;code&gt;~/Sites&lt;/code&gt;, y los siguentes subdirectorios en él:&lt;/p&gt;
 
 &lt;div class="brush: console"&gt;
- &lt;pre&gt;&lt;code&gt;.
-└── python
-    └── pyhello
-        └── Portfile&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;div class="highlight"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="go"&gt;.&lt;/span&gt;
+&lt;span class="go"&gt;└── python&lt;/span&gt;
+&lt;span class="go"&gt;    └── pyhello&lt;/span&gt;
+&lt;span class="go"&gt;        └── Portfile&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
 
 &lt;p&gt;Copia el fichero Portfile a su ubicación mostrada y ejecuta el siguiente comando en el directorio &lt;code&gt;ports&lt;/code&gt;:&lt;/p&gt;
 
 &lt;div class="brush: console"&gt;
- &lt;pre&gt;&lt;code&gt;$ portindex
-Creating port index in ...
-Adding port python/pyhello
-Adding subport py26-pyhello
-Adding subport py27-pyhello
+ &lt;div class="highlight"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; portindex
+&lt;span class="go"&gt;Creating port index in ...&lt;/span&gt;
+&lt;span class="go"&gt;Adding port python/pyhello&lt;/span&gt;
+&lt;span class="go"&gt;Adding subport py26-pyhello&lt;/span&gt;
+&lt;span class="go"&gt;Adding subport py27-pyhello&lt;/span&gt;
 
-Total number of ports parsed:	3
-Ports successfully parsed:	3
-Ports failed:			0
-Up-to-date ports skipped:	0&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;span class="go"&gt;Total number of ports parsed:	3&lt;/span&gt;
+&lt;span class="go"&gt;Ports successfully parsed:	3&lt;/span&gt;
+&lt;span class="go"&gt;Ports failed:			0&lt;/span&gt;
+&lt;span class="go"&gt;Up-to-date ports skipped:	0&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
 
 &lt;p&gt;Aunque rsync viene instalado por defecto, usaremos la versión instalada con Macports en lo siguiente. La versión por defecto está en &lt;code&gt;/usr/bin&lt;/code&gt;.&lt;/p&gt;
 
@@ -1086,60 +1237,76 @@ Up-to-date ports skipped:	0&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;El contenido de &lt;code&gt;rsync.plit&lt;/code&gt;:&lt;/p&gt;
 
 &lt;div class="brush: xml"&gt;
- &lt;pre&gt;&lt;code&gt; &amp;lt;?xml version="1.0" encoding="UTF-8"?&amp;gt;
- &amp;lt;!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"&amp;gt;
- &amp;lt;plist version="1.0"&amp;gt;
- &amp;lt;dict&amp;gt;
-        &amp;lt;key&amp;gt;Disabled&amp;lt;/key&amp;gt;
-        &amp;lt;false/&amp;gt;
-        &amp;lt;key&amp;gt;Label&amp;lt;/key&amp;gt;
-        &amp;lt;string&amp;gt;name.YOUR_USERNAME.rsync&amp;lt;/string&amp;gt;
-        &amp;lt;key&amp;gt;Program&amp;lt;/key&amp;gt;
-        &amp;lt;string&amp;gt;/opt/local/bin/rsync&amp;lt;/string&amp;gt;
-        &amp;lt;key&amp;gt;ProgramArguments&amp;lt;/key&amp;gt;
-        &amp;lt;array&amp;gt;
-                &amp;lt;string&amp;gt;/opt/local/bin/rsync&amp;lt;/string&amp;gt;
-                &amp;lt;string&amp;gt;--daemon&amp;lt;/string&amp;gt;
-                &amp;lt;string&amp;gt;--config=/opt/local/etc/rsyncd.conf&amp;lt;/string&amp;gt;
-        &amp;lt;/array&amp;gt;
-        &amp;lt;key&amp;gt;inetdCompatibility&amp;lt;/key&amp;gt;
-        &amp;lt;dict&amp;gt;
-                &amp;lt;key&amp;gt;Wait&amp;lt;/key&amp;gt;
-                &amp;lt;false/&amp;gt;
-        &amp;lt;/dict&amp;gt;
-        &amp;lt;key&amp;gt;Sockets&amp;lt;/key&amp;gt;
-        &amp;lt;dict&amp;gt;
-            &amp;lt;key&amp;gt;Listeners&amp;lt;/key&amp;gt;
-            &amp;lt;dict&amp;gt;
-                &amp;lt;key&amp;gt;SockServiceName&amp;lt;/key&amp;gt;
-                &amp;lt;string&amp;gt;rsync&amp;lt;/string&amp;gt;
-                &amp;lt;key&amp;gt;SockType&amp;lt;/key&amp;gt;
-                &amp;lt;string&amp;gt;stream&amp;lt;/string&amp;gt;
-            &amp;lt;/dict&amp;gt;
-        &amp;lt;/dict&amp;gt;
- &amp;lt;/dict&amp;gt;
- &amp;lt;/plist&amp;gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;div class="highlight"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt; &lt;span class="cp"&gt;&amp;lt;?xml version="1.0" encoding="UTF-8"?&amp;gt;&lt;/span&gt;
+ &lt;span class="cp"&gt;&amp;lt;!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"&amp;gt;&lt;/span&gt;
+ &lt;span class="nt"&gt;&amp;lt;plist&lt;/span&gt; &lt;span class="na"&gt;version=&lt;/span&gt;&lt;span class="s"&gt;"1.0"&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+ &lt;span class="nt"&gt;&amp;lt;dict&amp;gt;&lt;/span&gt;
+        &lt;span class="nt"&gt;&amp;lt;key&amp;gt;&lt;/span&gt;Disabled&lt;span class="nt"&gt;&amp;lt;/key&amp;gt;&lt;/span&gt;
+        &lt;span class="nt"&gt;&amp;lt;false/&amp;gt;&lt;/span&gt;
+        &lt;span class="nt"&gt;&amp;lt;key&amp;gt;&lt;/span&gt;Label&lt;span class="nt"&gt;&amp;lt;/key&amp;gt;&lt;/span&gt;
+        &lt;span class="nt"&gt;&amp;lt;string&amp;gt;&lt;/span&gt;name.YOUR_USERNAME.rsync&lt;span class="nt"&gt;&amp;lt;/string&amp;gt;&lt;/span&gt;
+        &lt;span class="nt"&gt;&amp;lt;key&amp;gt;&lt;/span&gt;Program&lt;span class="nt"&gt;&amp;lt;/key&amp;gt;&lt;/span&gt;
+        &lt;span class="nt"&gt;&amp;lt;string&amp;gt;&lt;/span&gt;/opt/local/bin/rsync&lt;span class="nt"&gt;&amp;lt;/string&amp;gt;&lt;/span&gt;
+        &lt;span class="nt"&gt;&amp;lt;key&amp;gt;&lt;/span&gt;ProgramArguments&lt;span class="nt"&gt;&amp;lt;/key&amp;gt;&lt;/span&gt;
+        &lt;span class="nt"&gt;&amp;lt;array&amp;gt;&lt;/span&gt;
+                &lt;span class="nt"&gt;&amp;lt;string&amp;gt;&lt;/span&gt;/opt/local/bin/rsync&lt;span class="nt"&gt;&amp;lt;/string&amp;gt;&lt;/span&gt;
+                &lt;span class="nt"&gt;&amp;lt;string&amp;gt;&lt;/span&gt;--daemon&lt;span class="nt"&gt;&amp;lt;/string&amp;gt;&lt;/span&gt;
+                &lt;span class="nt"&gt;&amp;lt;string&amp;gt;&lt;/span&gt;--config=/opt/local/etc/rsyncd.conf&lt;span class="nt"&gt;&amp;lt;/string&amp;gt;&lt;/span&gt;
+        &lt;span class="nt"&gt;&amp;lt;/array&amp;gt;&lt;/span&gt;
+        &lt;span class="nt"&gt;&amp;lt;key&amp;gt;&lt;/span&gt;inetdCompatibility&lt;span class="nt"&gt;&amp;lt;/key&amp;gt;&lt;/span&gt;
+        &lt;span class="nt"&gt;&amp;lt;dict&amp;gt;&lt;/span&gt;
+                &lt;span class="nt"&gt;&amp;lt;key&amp;gt;&lt;/span&gt;Wait&lt;span class="nt"&gt;&amp;lt;/key&amp;gt;&lt;/span&gt;
+                &lt;span class="nt"&gt;&amp;lt;false/&amp;gt;&lt;/span&gt;
+        &lt;span class="nt"&gt;&amp;lt;/dict&amp;gt;&lt;/span&gt;
+        &lt;span class="nt"&gt;&amp;lt;key&amp;gt;&lt;/span&gt;Sockets&lt;span class="nt"&gt;&amp;lt;/key&amp;gt;&lt;/span&gt;
+        &lt;span class="nt"&gt;&amp;lt;dict&amp;gt;&lt;/span&gt;
+            &lt;span class="nt"&gt;&amp;lt;key&amp;gt;&lt;/span&gt;Listeners&lt;span class="nt"&gt;&amp;lt;/key&amp;gt;&lt;/span&gt;
+            &lt;span class="nt"&gt;&amp;lt;dict&amp;gt;&lt;/span&gt;
+                &lt;span class="nt"&gt;&amp;lt;key&amp;gt;&lt;/span&gt;SockServiceName&lt;span class="nt"&gt;&amp;lt;/key&amp;gt;&lt;/span&gt;
+                &lt;span class="nt"&gt;&amp;lt;string&amp;gt;&lt;/span&gt;rsync&lt;span class="nt"&gt;&amp;lt;/string&amp;gt;&lt;/span&gt;
+                &lt;span class="nt"&gt;&amp;lt;key&amp;gt;&lt;/span&gt;SockType&lt;span class="nt"&gt;&amp;lt;/key&amp;gt;&lt;/span&gt;
+                &lt;span class="nt"&gt;&amp;lt;string&amp;gt;&lt;/span&gt;stream&lt;span class="nt"&gt;&amp;lt;/string&amp;gt;&lt;/span&gt;
+            &lt;span class="nt"&gt;&amp;lt;/dict&amp;gt;&lt;/span&gt;
+        &lt;span class="nt"&gt;&amp;lt;/dict&amp;gt;&lt;/span&gt;
+ &lt;span class="nt"&gt;&amp;lt;/dict&amp;gt;&lt;/span&gt;
+ &lt;span class="nt"&gt;&amp;lt;/plist&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
 
 &lt;p&gt;El contenido de &lt;code&gt;/opt/local/etc/rsyncd.conf&lt;/code&gt;:&lt;/p&gt;
 
 &lt;div class="brush: ini"&gt;
- &lt;pre&gt;&lt;code&gt;[ports]
+ &lt;div class="highlight"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;[ports]&lt;/span&gt;
 
-path=/Users/YOUR_USERNAME/Sites/ports
-log file=/opt/local/var/log/rsyncd.log
-pid file=/opt/local/var/run/rsyncd.pid
-read only=true&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;span class="na"&gt;path&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;/Users/YOUR_USERNAME/Sites/ports&lt;/span&gt;
+&lt;span class="na"&gt;log file&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;/opt/local/var/log/rsyncd.log&lt;/span&gt;
+&lt;span class="na"&gt;pid file&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;/opt/local/var/run/rsyncd.pid&lt;/span&gt;
+&lt;span class="na"&gt;read only&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;true&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
 
 &lt;p&gt;Añadir rsync a &lt;code&gt;launchctl&lt;/code&gt;:&lt;/p&gt;
 
 &lt;div class="brush: console"&gt;
- &lt;pre&gt;&lt;code&gt;$ sudo launchctl load -w /Library/LaunchDaemons/name.YOUR_USERNAME.rsync.plist&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;div class="highlight"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo launchctl load -w /Library/LaunchDaemons/name.YOUR_USERNAME.rsync.plist
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
 
 &lt;p&gt;Comprueba que sólo se pueden listar los ports y nada más del sistema de fichero:&lt;/p&gt;
 
 &lt;div class="brush: console"&gt;
- &lt;pre&gt;&lt;code&gt;$ rsync -axv rsync://localhost/
-$ rsync -axv rsync://localhost/ports/&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+ &lt;div class="highlight"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; rsync -axv rsync://localhost/
+&lt;span class="gp"&gt;$&lt;/span&gt; rsync -axv rsync://localhost/ports/
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
 
 &lt;h2 id="configurar-macports"&gt;Configurar Macports&lt;/h2&gt;
 
@@ -1151,19 +1318,27 @@ rsync://rsync.macports.org/release/ports/ [default]&lt;/code&gt;&lt;/pre&gt;
 &lt;p&gt;Comprueba desde otras máquinas que se pueden encontrar los nuevos paquetes:&lt;/p&gt;
 
 &lt;div class="brush: console"&gt;
- &lt;pre&gt;&lt;code&gt;$ port search pyhello
-py-pyhello @0.1 (python, devel)
-    An example Python app
+ &lt;div class="highlight"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; port search pyhello
+&lt;span class="go"&gt;py-pyhello @0.1 (python, devel)&lt;/span&gt;
+&lt;span class="go"&gt;    An example Python app&lt;/span&gt;
 
-py26-pyhello @0.1 (python, devel)
-    An example Python app
+&lt;span class="go"&gt;py26-pyhello @0.1 (python, devel)&lt;/span&gt;
+&lt;span class="go"&gt;    An example Python app&lt;/span&gt;
 
-py27-pyhello @0.1 (python, devel)
-    An example Python app&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;span class="go"&gt;py27-pyhello @0.1 (python, devel)&lt;/span&gt;
+&lt;span class="go"&gt;    An example Python app&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
 
 &lt;p&gt;Después de instalar el nuevo paquete, sus comandos están a nuestra disposición:&lt;/p&gt;
 
 &lt;div class="brush: console"&gt;
- &lt;pre&gt;&lt;code&gt;$ sudo port install py27-pyhello
-$ pyhello
-Hello from pyhello!&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content></entry></feed>
+ &lt;div class="highlight"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo port install py27-pyhello
+&lt;span class="gp"&gt;$&lt;/span&gt; pyhello
+&lt;span class="go"&gt;Hello from pyhello!&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;</content></entry></feed>

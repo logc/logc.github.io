@@ -12,7 +12,6 @@ to do the following:
 $ raco install frog
 ```
 
-<!-- more -->
 
 - create a folder and initialize a Frog project there:
 

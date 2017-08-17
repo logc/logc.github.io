@@ -1,6 +1,6 @@
     Title: If programming languages were music genres
     Date: 2015-02-27T16:52:41Z+0100
-    Tags:
+    Tags: programming
 
 There are quite some posts out there that compare programming languages to
 something else, like religions, rock bands, types of women ... There is a
