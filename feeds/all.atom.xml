@@ -4,7 +4,17 @@
  <link rel="self" href="http://logc.github.io/feeds/all.atom.xml" />
  <link href="http://logc.github.io/index.html" />
  <id>urn:http-logc-github-io:-index-html</id>
- <updated>2017-08-15T16:18:11Z</updated>
+ <updated>2017-08-24T14:33:11Z</updated>
+ <entry>
+  <title type="text">IntelliJ context menu from keyboard</title>
+  <link rel="alternate" href="http://logc.github.io/blog/2017/08/24/intellij-context-menu-from-keyboard?utm_source=all&amp;utm_medium=Atom" />
+  <id>urn:http-logc-github-io:-blog-2017-08-24-intellij-context-menu-from-keyboard</id>
+  <published>2017-08-24T14:33:11Z</published>
+  <updated>2017-08-24T14:33:11Z</updated>
+  <author>
+   <name>logc</name></author>
+  <content type="html">
+&lt;p&gt;Looked for this for a long time. Somehow, never found &lt;a href="https://intellij-support.jetbrains.com/hc/en-us/community/posts/206326619-Invoke-popup-menu-from-keyboard"&gt;the existing support answer&lt;/a&gt;. Just created a new shortcut on my personal keymap, with &amp;ldquo;Ctrl + Shift + Enter&amp;rdquo; =&amp;gt; a new life.&lt;/p&gt;</content></entry>
  <entry>
   <title type="text">Some Git aliases</title>
   <link rel="alternate" href="http://logc.github.io/blog/2017/08/15/some-git-aliases?utm_source=all&amp;utm_medium=Atom" />
