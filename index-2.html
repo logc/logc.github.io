@@ -6,7 +6,7 @@
     <title>logc io (page 2)</title>
     <meta name="description" content="logc io (page 2)">
     <meta name="author"      content="logc">
-    <meta name="keywords"    content="C++, C, IntelliJ, blog, python, web, all, build, git, scons, haskell, racket, programming, vim, sysadmin, frog">
+    <meta name="keywords"    content="C++, C, IntelliJ, blog, python, web, all, build, git, java, maven, scons, haskell, fish, racket, programming, vim, sysadmin, frog">
     <meta name="viewport"    content="width=device-width, initial-scale=1.0">
     <link rel="icon"      href="/favicon.ico">
     <link rel="canonical" href="http://logc.github.io/index-2.html">
@@ -77,6 +77,8 @@
 
 <li><a href="/tags/C.html">C++</a></li>
 
+<li><a href="/tags/fish.html">fish</a></li>
+
 <li><a href="/tags/frog.html">frog</a></li>
 
 <li><a href="/tags/git.html">git</a></li>
@@ -84,6 +86,10 @@
 <li><a href="/tags/haskell.html">haskell</a></li>
 
 <li><a href="/tags/IntelliJ.html">IntelliJ</a></li>
+
+<li><a href="/tags/java.html">java</a></li>
+
+<li><a href="/tags/maven.html">maven</a></li>
 
 <li><a href="/tags/programming.html">programming</a></li>
 
@@ -131,6 +137,20 @@
 
 
             <article>
+  <header>
+    <h2><a href='/blog/2016/09/23/racket-and-vim-syntastic'>Racket and vim-syntastic</a></h2>
+    <p class='date-and-tags'>
+<time datetime="2016-09-23" pubdate="true">2016-09-23</time> :: <span class="tags"><a href="/tags/racket.html">racket</a>, <a href="/tags/vim.html">vim</a></span></p>
+  </header>
+
+<p>The current Syntastic checker for Racket syntax in Vim is the <code>racket</code> executable itself. This means that the current buffer is executed by Racket whenever it is checked for syntax, and this can have unintended consequences, e.g. entering an infinite loop, if you happen to open the wrong file.</p>
+
+<p>In order to just get the syntax errors, add this to your <code>.vimrc</code>:</p>
+
+<pre><code>let g:syntastic_racket_racket_args="--load"</code></pre>
+
+</article>
+<article>
   <header>
     <h2><a href='/blog/2015/07/15/open-files-from-last-commit-in-vim'>Open files from last commit in Vim</a></h2>
     <p class='date-and-tags'>
@@ -234,20 +254,6 @@ tag_build =</code></pre>
     <a href='/blog/2014/01/21/wordcount-in-c'>&hellip; more &hellip;</a>
   </footer>
 </article>
-<article>
-  <header>
-    <h2><a href='/blog/2014/01/20/reduce-in-standard-c'>Reduce in standard C++</a></h2>
-    <p class='date-and-tags'>
-<time datetime="2014-01-20" pubdate="true">2014-01-20</time> :: <span class="tags"><a href="/tags/C.html">C++</a></span></p>
-  </header>
-
-<h2 id="accumulate-instead-of-loop">Accumulate instead of loop</h2>
-
-<p>You can traverse a C++ vector in many ways. Looping over a counter variable that goes from 0 to the vector size or taking an iterator from the vector&rsquo;s <code>begin</code> to its <code>end</code> pointer positions are well-known ways to access its elements. When you are collapsing the elements into a single accumulator value (an operation usually called <code>reduce</code> in functional programming), you can use the <code>std::accumulate</code> function in the <code>numeric</code> header.</p>
-  <footer>
-    <a href='/blog/2014/01/20/reduce-in-standard-c'>&hellip; more &hellip;</a>
-  </footer>
-</article>
 <footer>
  <ul class="pagination">
   <li><a href="/index.html">
@@ -269,7 +275,7 @@ tag_build =</code></pre>
         <a href="http://twitter.github.com/bootstrap/index.html">Bootstrap</a>.
         Cover image by NASA/Bill Ingalls [Public domain], via Wikimedia Commons.
         </p>
-        <p>This page was last built on Thursday, August 24th, 2017</p>
+        <p>This page was last built on Friday, August 25th, 2017</p>
 
         <p><em>© Copyright 2017, Luis Osa</em>.</p>
       </footer>

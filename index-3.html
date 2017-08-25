@@ -6,7 +6,7 @@
     <title>logc io (page 3)</title>
     <meta name="description" content="logc io (page 3)">
     <meta name="author"      content="logc">
-    <meta name="keywords"    content="C++, C, IntelliJ, blog, python, web, all, build, git, scons, haskell, racket, programming, vim, sysadmin, frog">
+    <meta name="keywords"    content="C++, C, IntelliJ, blog, python, web, all, build, git, java, maven, scons, haskell, fish, racket, programming, vim, sysadmin, frog">
     <meta name="viewport"    content="width=device-width, initial-scale=1.0">
     <link rel="icon"      href="/favicon.ico">
     <link rel="canonical" href="http://logc.github.io/index-3.html">
@@ -77,6 +77,8 @@
 
 <li><a href="/tags/C.html">C++</a></li>
 
+<li><a href="/tags/fish.html">fish</a></li>
+
 <li><a href="/tags/frog.html">frog</a></li>
 
 <li><a href="/tags/git.html">git</a></li>
@@ -84,6 +86,10 @@
 <li><a href="/tags/haskell.html">haskell</a></li>
 
 <li><a href="/tags/IntelliJ.html">IntelliJ</a></li>
+
+<li><a href="/tags/java.html">java</a></li>
+
+<li><a href="/tags/maven.html">maven</a></li>
 
 <li><a href="/tags/programming.html">programming</a></li>
 
@@ -131,6 +137,20 @@
 
 
             <article>
+  <header>
+    <h2><a href='/blog/2014/01/20/reduce-in-standard-c'>Reduce in standard C++</a></h2>
+    <p class='date-and-tags'>
+<time datetime="2014-01-20" pubdate="true">2014-01-20</time> :: <span class="tags"><a href="/tags/C.html">C++</a></span></p>
+  </header>
+
+<h2 id="accumulate-instead-of-loop">Accumulate instead of loop</h2>
+
+<p>You can traverse a C++ vector in many ways. Looping over a counter variable that goes from 0 to the vector size or taking an iterator from the vector&rsquo;s <code>begin</code> to its <code>end</code> pointer positions are well-known ways to access its elements. When you are collapsing the elements into a single accumulator value (an operation usually called <code>reduce</code> in functional programming), you can use the <code>std::accumulate</code> function in the <code>numeric</code> header.</p>
+  <footer>
+    <a href='/blog/2014/01/20/reduce-in-standard-c'>&hellip; more &hellip;</a>
+  </footer>
+</article>
+<article>
   <header>
     <h2><a href='/blog/2013/12/04/how-do-you-develop-with-yesod'>How do you develop with Yesod</a></h2>
     <p class='date-and-tags'>
@@ -311,74 +331,6 @@
 </div>
 
 </article>
-<article>
-  <header>
-    <h2><a href='/blog/2013/11/19/compilar-cython'>Compilar Cython</a></h2>
-    <p class='date-and-tags'>
-<time datetime="2013-11-19" pubdate="true">2013-11-19</time> :: <span class="tags"><a href="/tags/python.html">python</a></span></p>
-  </header>
-
-<p>Compilar ficheros de Cython es más fácil usando la función <code>cythonize</code> dentro del setup.py de nuestro proyecto:</p>
-
-<div class="brush: python">
- <div class="highlight">
-  <pre><span></span><span class="c1"># File: setup.py</span>
-
-<span class="kn">from</span> <span class="nn">distutils.core</span> <span class="kn">import</span> <span class="n">setup</span>
-<span class="kn">from</span> <span class="nn">Cython.Build</span> <span class="kn">import</span> <span class="n">cythonize</span>
-
-<span class="n">setup</span><span class="p">(</span>
-      <span class="n">name</span> <span class="o">=</span> <span class="s2">"My hello app"</span><span class="p">,</span>
-      <span class="n">ext_modules</span> <span class="o">=</span> <span class="n">cythonize</span><span class="p">(</span><span class="s1">&#39;fibonacci.pyx&#39;</span><span class="p">),</span> <span class="c1"># accepts a glob pattern</span>
-<span class="p">)</span>
-</pre></div>
-
-</div>
-
-<p>Por ejemplo, el fichero a compilar es fibonacci.pyx, que contiene un ejemplo del tutorial de Cython:</p>
-
-<div class="brush: python">
- <div class="highlight">
-  <pre><span></span><span class="c1"># File: fibonacci.pyx</span>
-
-<span class="k">def</span> <span class="nf">fib</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-    <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span>
-    <span class="k">while</span> <span class="n">b</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">:</span>
-        <span class="k">print</span> <span class="n">b</span><span class="p">,</span>
-        <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">b</span><span class="p">,</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
-</pre></div>
-
-</div>
-
-<p>El resultado de compilar <code>fibonacci.pyx</code> es un fichero con código intermedio en C <code>fibonacci.c</code> y un fichero compilado <code>fibonacci.so</code>.</p>
-
-<div class="brush: bash">
- <div class="highlight">
-  <pre><span></span>$ python setup.py build
-running build
-running build_ext
-building <span class="s1">&#39;fibonacci&#39;</span> extension
-/usr/bin/clang ...snip... -o build/lib.macosx-10.8-x86_64-2.7/fibonacci.so
-</pre></div>
-
-</div>
-
-<blockquote>
- <p><strong>note</strong></p>
- <p>El compilador que se utiliza es el que sea por defecto del sistema en ese momento. Aún estoy investigando cómo seleccionar un compilador en concreto, o añadir librerías y flags.</p></blockquote>
-
-<p>El fichero .so puede usarse desde otros módulos de Python, o directamente desde la shell</p>
-
-<div class="brush: pycon">
- <div class="highlight">
-  <pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">fibonacci</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">fibonacci</span><span class="o">.</span><span class="n">fib</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
-<span class="go">1 1 2 3</span>
-</pre></div>
-
-</div>
-
-</article>
 <footer>
  <ul class="pagination">
   <li><a href="/index-2.html">
@@ -400,7 +352,7 @@ building <span class="s1">&#39;fibonacci&#39;</span> extension
         <a href="http://twitter.github.com/bootstrap/index.html">Bootstrap</a>.
         Cover image by NASA/Bill Ingalls [Public domain], via Wikimedia Commons.
         </p>
-        <p>This page was last built on Thursday, August 24th, 2017</p>
+        <p>This page was last built on Friday, August 25th, 2017</p>
 
         <p><em>© Copyright 2017, Luis Osa</em>.</p>
       </footer>

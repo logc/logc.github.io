@@ -4,7 +4,36 @@
  <link rel="self" href="http://logc.github.io/feeds/all.atom.xml" />
  <link href="http://logc.github.io/index.html" />
  <id>urn:http-logc-github-io:-index-html</id>
- <updated>2017-08-24T14:33:11Z</updated>
+ <updated>2017-08-25T12:37:39Z</updated>
+ <entry>
+  <title type="text">Maven does not find JAVA_HOME in Fish shell</title>
+  <link rel="alternate" href="http://logc.github.io/blog/2017/08/25/maven-does-not-find-java-home-in-fish-shell?utm_source=all&amp;utm_medium=Atom" />
+  <id>urn:http-logc-github-io:-blog-2017-08-25-maven-does-not-find-java-home-in-fish-shell</id>
+  <published>2017-08-25T12:37:39Z</published>
+  <updated>2017-08-25T12:37:39Z</updated>
+  <author>
+   <name>logc</name></author>
+  <content type="html">
+&lt;p&gt;After reinstalling &lt;code&gt;java&lt;/code&gt; from &lt;code&gt;brew cask&lt;/code&gt;, it could happen that Maven does not find anymore the JAVA_HOME. The error looks like this:&lt;/p&gt;
+
+&lt;div class="brush: console"&gt;
+ &lt;div class="highlight"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; mvn clean install
+&lt;span class="go"&gt;The JAVA_HOME environment variable is not defined correctly&lt;/span&gt;
+&lt;span class="go"&gt;This environment variable is needed to run this program&lt;/span&gt;
+&lt;span class="go"&gt;NB: JAVA_HOME should point to a JDK not a JR&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;p&gt;In Fish shell, on Mac OS X, the solution is to set the variable in universal mode:&lt;/p&gt;
+
+&lt;div class="brush: console"&gt;
+ &lt;div class="highlight"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; &lt;span class="nb"&gt;set&lt;/span&gt; -U JAVA_HOME &lt;span class="o"&gt;(&lt;/span&gt;/usr/libexec/java_home&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;</content></entry>
  <entry>
   <title type="text">IntelliJ context menu from keyboard</title>
   <link rel="alternate" href="http://logc.github.io/blog/2017/08/24/intellij-context-menu-from-keyboard?utm_source=all&amp;utm_medium=Atom" />
