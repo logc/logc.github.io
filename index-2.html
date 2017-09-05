@@ -6,7 +6,7 @@
     <title>logc io (page 2)</title>
     <meta name="description" content="logc io (page 2)">
     <meta name="author"      content="logc">
-    <meta name="keywords"    content="C++, C, IntelliJ, blog, python, web, all, build, git, java, maven, scons, haskell, fish, racket, programming, vim, sysadmin, frog">
+    <meta name="keywords"    content="C++, C, IntelliJ, blog, python, web, all, build, git, java, maven, scons, vim, haskell, fish, racket, programming, Scala, Emacs, sysadmin, frog">
     <meta name="viewport"    content="width=device-width, initial-scale=1.0">
     <link rel="icon"      href="/favicon.ico">
     <link rel="canonical" href="http://logc.github.io/index-2.html">
@@ -77,6 +77,8 @@
 
 <li><a href="/tags/C.html">C++</a></li>
 
+<li><a href="/tags/Emacs.html">Emacs</a></li>
+
 <li><a href="/tags/fish.html">fish</a></li>
 
 <li><a href="/tags/frog.html">frog</a></li>
@@ -96,6 +98,8 @@
 <li><a href="/tags/python.html">python</a></li>
 
 <li><a href="/tags/racket.html">racket</a></li>
+
+<li><a href="/tags/Scala.html">Scala</a></li>
 
 <li><a href="/tags/scons.html">scons</a></li>
 
@@ -137,6 +141,77 @@
 
 
             <article>
+  <header>
+    <h2><a href='/blog/2016/10/03/setting-up-github-pages-with-frog'>Setting up Github Pages with Frog</a></h2>
+    <p class='date-and-tags'>
+<time datetime="2016-10-03" pubdate="true">2016-10-03</time> :: <span class="tags"><a href="/tags/racket.html">racket</a>, <a href="/tags/frog.html">frog</a>, <a href="/tags/blog.html">blog</a></span></p>
+  </header>
+
+<p>To set up a static blog in Github Pages using the Racket package Frog, you need to do the following:</p>
+
+<ul>
+ <li>download and install Racket (duh!)</li>
+ <li>install Frog with raco:</li></ul>
+
+<pre><code>$ raco install frog</code></pre>
+
+<ul>
+ <li>create a folder and initialize a Frog project there:</li></ul>
+
+<pre><code>$ mkdir new-blog
+$ cd new-blog
+$ raco frog --init</code></pre>
+
+<ul>
+ <li>
+  <p>customize the .frogrc file. Set at least scheme/host to https://your-username.github.io, and title &amp; author to whatever you want.</p></li>
+ <li>
+  <p>add some content of your own:</p></li></ul>
+
+<pre><code>$ raco frog -n "New post"
+# ... output says something like:
+~/new-blog/_src/posts/2016-10-03-new-post.md
+# ... edit that file with your preferred editor ...
+when you are finished editing, preview your glorious site with
+
+$ raco frog -bp</code></pre>
+
+<ul>
+ <li>initialize an empty Git repository on the project folder, and tell git to  ignore the Frog machinery and your source directory</li></ul>
+
+<pre><code>$ git init .
+$ cat &lt;&lt; EOF &gt; .gitignore
+/.frog/
+/.frogrc
+/_src/
+EOF</code></pre>
+
+<ul>
+ <li>commit everything, except for what we just ignored</li></ul>
+
+<pre><code>$ git add .
+$ git commit</code></pre>
+
+<ul>
+ <li>on github.com, create a new repository with the name your-username.github.io.  Once created, add it as a remote to your local repo, and push your local master  to it.</li></ul>
+
+<pre><code>$ git remote add origin &lt;your new repo&gt;
+$ git push -u origin master</code></pre>
+
+<ul>
+ <li>after some seconds, your new blog should be available as http://your-username.github.io</li></ul>
+
+<p>Now, each time that you want to add a new post, it’s just a matter of</p>
+
+<pre><code>$ raco frog -n "Another post"
+# ... edit that post ...
+$ raco frog -b
+$ git add .
+$ git commit -a
+$ git push</code></pre>
+
+</article>
+<article>
   <header>
     <h2><a href='/blog/2016/09/23/racket-and-vim-syntastic'>Racket and vim-syntastic</a></h2>
     <p class='date-and-tags'>
@@ -242,18 +317,6 @@ tag_svn_revision = 1</code></pre>
 tag_build =</code></pre>
 
 </article>
-<article>
-  <header>
-    <h2><a href='/blog/2014/01/21/wordcount-in-c'>Wordcount in C++</a></h2>
-    <p class='date-and-tags'>
-<time datetime="2014-01-21" pubdate="true">2014-01-21</time> :: <span class="tags"><a href="/tags/C.html">C++</a></span></p>
-  </header>
-
-<p>This is the standard example for MapReduce applications, counting the words in a file. Note that this snippet is not threaded nor distributed. It is just a curiosity: how to implement the same in C++, using the STL to avoid having any <code>for</code> loop!</p>
-  <footer>
-    <a href='/blog/2014/01/21/wordcount-in-c'>&hellip; more &hellip;</a>
-  </footer>
-</article>
 <footer>
  <ul class="pagination">
   <li><a href="/index.html">
@@ -275,7 +338,7 @@ tag_build =</code></pre>
         <a href="http://twitter.github.com/bootstrap/index.html">Bootstrap</a>.
         Cover image by NASA/Bill Ingalls [Public domain], via Wikimedia Commons.
         </p>
-        <p>This page was last built on Friday, August 25th, 2017</p>
+        <p>This page was last built on Tuesday, September 5th, 2017</p>
 
         <p><em>© Copyright 2017, Luis Osa</em>.</p>
       </footer>

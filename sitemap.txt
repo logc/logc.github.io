@@ -1,6 +1,7 @@
 http://logc.github.io/blog/2016/10/20/minimal-c-project-structure-with-scons
 http://logc.github.io/blog/2015/07/15/open-files-from-last-commit-in-vim
 http://logc.github.io/blog/2016/09/23/racket-and-vim-syntastic
+http://logc.github.io/blog/2017/09/05/ensime-server-crash-because-of-transitive-dependency
 http://logc.github.io/blog/2013/11/17/infraestructura-de-lanzamientos-locales
 http://logc.github.io/blog/2017/08/25/maven-does-not-find-java-home-in-fish-shell
 http://logc.github.io/blog/2016/10/03/setting-up-github-pages-with-frog

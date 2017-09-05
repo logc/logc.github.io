@@ -6,7 +6,7 @@
     <title>logc io</title>
     <meta name="description" content="logc io">
     <meta name="author"      content="logc">
-    <meta name="keywords"    content="C++, C, IntelliJ, blog, python, web, all, build, git, java, maven, scons, haskell, fish, racket, programming, vim, sysadmin, frog">
+    <meta name="keywords"    content="C++, C, IntelliJ, blog, python, web, all, build, git, java, maven, scons, vim, haskell, fish, racket, programming, Scala, Emacs, sysadmin, frog">
     <meta name="viewport"    content="width=device-width, initial-scale=1.0">
     <link rel="icon"      href="/favicon.ico">
     <link rel="canonical" href="http://logc.github.io/index.html">
@@ -77,6 +77,8 @@
 
 <li><a href="/tags/C.html">C++</a></li>
 
+<li><a href="/tags/Emacs.html">Emacs</a></li>
+
 <li><a href="/tags/fish.html">fish</a></li>
 
 <li><a href="/tags/frog.html">frog</a></li>
@@ -96,6 +98,8 @@
 <li><a href="/tags/python.html">python</a></li>
 
 <li><a href="/tags/racket.html">racket</a></li>
+
+<li><a href="/tags/Scala.html">Scala</a></li>
 
 <li><a href="/tags/scons.html">scons</a></li>
 
@@ -137,6 +141,36 @@
 
 
             <article>
+  <header>
+    <h2><a href='/blog/2017/09/05/ensime-server-crash-because-of-transitive-dependency'>Ensime server crash because of transitive dependency</a></h2>
+    <p class='date-and-tags'>
+<time datetime="2017-09-05" pubdate="true">2017-09-05</time> :: <span class="tags"><a href="/tags/Scala.html">Scala</a>, <a href="/tags/Emacs.html">Emacs</a></span></p>
+  </header>
+
+<p>The Scala layer for Spacemacs uses Ensime by default. There is an error that made me struggle for weeks: <a href="https://github.com/ensime/ensime-server/issues/825">Bad source jar kills the server: ZipException: error in opening zip file</a></p>
+
+<p>The offending JAR was a transitive dependency of a project, and the solution offered on the issue was not clear for me.</p>
+
+<p>This problem is tricky if you previously loaded the project into an IDE: they download by default all transitive dependencies with sources and javadoc, and the ivy cache is shared by all projects in the same machine.</p>
+
+<p>Here is my solution, as found also on the issue, in case it helps others:</p>
+
+<ul>
+ <li>determine which dependency is pulling the problem JAR with the <a href="https://github.com/jrudolph/sbt-dependency-graph">sbt dependency  graph plugin</a> (note: the  command <code>whatDependsOn</code> only works in interactive mode)</li>
+ <li>move away the current ivy cache folder <code>console
+$ mv ~/.ivy2/ ~/.ivy2_old</code></li>
+ <li>(optional) create a new clone to have a known state <code>console
+$ git clone $repo ~/dev/ensime-$repo</code></li>
+ <li>edit <code>build.sbt</code> to add an exclusion rule for the transitive dependency at the line of the explicit dependency that needs it, e.g. <code>sbt
+libraryDependencies ++= Seq(
+  "com.company.notifications" % "notifications-schema" exclude("org.json", "json")
+)</code></li>
+ <li>compile, go for a coffee while ivy downloads the internet :), then run ensime commands <code>console
+$ sbt compile
+$ sbt ensimeConfig ensimeConfigProject</code></li></ul>
+
+</article>
+<article>
   <header>
     <h2><a href='/blog/2017/08/25/maven-does-not-find-java-home-in-fish-shell'>Maven does not find JAVA_HOME in Fish shell</a></h2>
     <p class='date-and-tags'>
@@ -262,77 +296,6 @@ status</code>. In that mindset, I tend to identify branches with directories, an
     <a href='/blog/2016/10/20/minimal-c-project-structure-with-scons'>&hellip; more &hellip;</a>
   </footer>
 </article>
-<article>
-  <header>
-    <h2><a href='/blog/2016/10/03/setting-up-github-pages-with-frog'>Setting up Github Pages with Frog</a></h2>
-    <p class='date-and-tags'>
-<time datetime="2016-10-03" pubdate="true">2016-10-03</time> :: <span class="tags"><a href="/tags/racket.html">racket</a>, <a href="/tags/frog.html">frog</a>, <a href="/tags/blog.html">blog</a></span></p>
-  </header>
-
-<p>To set up a static blog in Github Pages using the Racket package Frog, you need to do the following:</p>
-
-<ul>
- <li>download and install Racket (duh!)</li>
- <li>install Frog with raco:</li></ul>
-
-<pre><code>$ raco install frog</code></pre>
-
-<ul>
- <li>create a folder and initialize a Frog project there:</li></ul>
-
-<pre><code>$ mkdir new-blog
-$ cd new-blog
-$ raco frog --init</code></pre>
-
-<ul>
- <li>
-  <p>customize the .frogrc file. Set at least scheme/host to https://your-username.github.io, and title &amp; author to whatever you want.</p></li>
- <li>
-  <p>add some content of your own:</p></li></ul>
-
-<pre><code>$ raco frog -n "New post"
-# ... output says something like:
-~/new-blog/_src/posts/2016-10-03-new-post.md
-# ... edit that file with your preferred editor ...
-when you are finished editing, preview your glorious site with
-
-$ raco frog -bp</code></pre>
-
-<ul>
- <li>initialize an empty Git repository on the project folder, and tell git to  ignore the Frog machinery and your source directory</li></ul>
-
-<pre><code>$ git init .
-$ cat &lt;&lt; EOF &gt; .gitignore
-/.frog/
-/.frogrc
-/_src/
-EOF</code></pre>
-
-<ul>
- <li>commit everything, except for what we just ignored</li></ul>
-
-<pre><code>$ git add .
-$ git commit</code></pre>
-
-<ul>
- <li>on github.com, create a new repository with the name your-username.github.io.  Once created, add it as a remote to your local repo, and push your local master  to it.</li></ul>
-
-<pre><code>$ git remote add origin &lt;your new repo&gt;
-$ git push -u origin master</code></pre>
-
-<ul>
- <li>after some seconds, your new blog should be available as http://your-username.github.io</li></ul>
-
-<p>Now, each time that you want to add a new post, it’s just a matter of</p>
-
-<pre><code>$ raco frog -n "Another post"
-# ... edit that post ...
-$ raco frog -b
-$ git add .
-$ git commit -a
-$ git push</code></pre>
-
-</article>
 <footer>
  <ul class="pagination">
   <li class="disabled"><a href="#">
@@ -354,7 +317,7 @@ $ git push</code></pre>
         <a href="http://twitter.github.com/bootstrap/index.html">Bootstrap</a>.
         Cover image by NASA/Bill Ingalls [Public domain], via Wikimedia Commons.
         </p>
-        <p>This page was last built on Friday, August 25th, 2017</p>
+        <p>This page was last built on Tuesday, September 5th, 2017</p>
 
         <p><em>© Copyright 2017, Luis Osa</em>.</p>
       </footer>

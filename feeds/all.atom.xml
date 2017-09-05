@@ -4,7 +4,37 @@
  <link rel="self" href="http://logc.github.io/feeds/all.atom.xml" />
  <link href="http://logc.github.io/index.html" />
  <id>urn:http-logc-github-io:-index-html</id>
- <updated>2017-08-25T12:37:39Z</updated>
+ <updated>2017-09-05T13:47:32Z</updated>
+ <entry>
+  <title type="text">Ensime server crash because of transitive dependency</title>
+  <link rel="alternate" href="http://logc.github.io/blog/2017/09/05/ensime-server-crash-because-of-transitive-dependency?utm_source=all&amp;utm_medium=Atom" />
+  <id>urn:http-logc-github-io:-blog-2017-09-05-ensime-server-crash-because-of-transitive-dependency</id>
+  <published>2017-09-05T13:47:32Z</published>
+  <updated>2017-09-05T13:47:32Z</updated>
+  <author>
+   <name>logc</name></author>
+  <content type="html">
+&lt;p&gt;The Scala layer for Spacemacs uses Ensime by default. There is an error that made me struggle for weeks: &lt;a href="https://github.com/ensime/ensime-server/issues/825"&gt;Bad source jar kills the server: ZipException: error in opening zip file&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;The offending JAR was a transitive dependency of a project, and the solution offered on the issue was not clear for me.&lt;/p&gt;
+
+&lt;p&gt;This problem is tricky if you previously loaded the project into an IDE: they download by default all transitive dependencies with sources and javadoc, and the ivy cache is shared by all projects in the same machine.&lt;/p&gt;
+
+&lt;p&gt;Here is my solution, as found also on the issue, in case it helps others:&lt;/p&gt;
+
+&lt;ul&gt;
+ &lt;li&gt;determine which dependency is pulling the problem JAR with the &lt;a href="https://github.com/jrudolph/sbt-dependency-graph"&gt;sbt dependency  graph plugin&lt;/a&gt; (note: the  command &lt;code&gt;whatDependsOn&lt;/code&gt; only works in interactive mode)&lt;/li&gt;
+ &lt;li&gt;move away the current ivy cache folder &lt;code&gt;console
+$ mv ~/.ivy2/ ~/.ivy2_old&lt;/code&gt;&lt;/li&gt;
+ &lt;li&gt;(optional) create a new clone to have a known state &lt;code&gt;console
+$ git clone $repo ~/dev/ensime-$repo&lt;/code&gt;&lt;/li&gt;
+ &lt;li&gt;edit &lt;code&gt;build.sbt&lt;/code&gt; to add an exclusion rule for the transitive dependency at the line of the explicit dependency that needs it, e.g. &lt;code&gt;sbt
+libraryDependencies ++= Seq(
+  "com.company.notifications" % "notifications-schema" exclude("org.json", "json")
+)&lt;/code&gt;&lt;/li&gt;
+ &lt;li&gt;compile, go for a coffee while ivy downloads the internet :), then run ensime commands &lt;code&gt;console
+$ sbt compile
+$ sbt ensimeConfig ensimeConfigProject&lt;/code&gt;&lt;/li&gt;&lt;/ul&gt;</content></entry>
  <entry>
   <title type="text">Maven does not find JAVA_HOME in Fish shell</title>
   <link rel="alternate" href="http://logc.github.io/blog/2017/08/25/maven-does-not-find-java-home-in-fish-shell?utm_source=all&amp;utm_medium=Atom" />
