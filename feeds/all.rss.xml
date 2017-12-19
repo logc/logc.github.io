@@ -4,14 +4,88 @@
   <title>logc io: logc io</title>
   <description>logc io: logc io</description>
   <link>http://logc.github.io/index.html</link>
-  <lastBuildDate>Tue, 05 Sep 2017 13:47:32 UT</lastBuildDate>
-  <pubDate>Tue, 05 Sep 2017 13:47:32 UT</pubDate>
+  <lastBuildDate>Tue, 19 Dec 2017 18:15:41 UT</lastBuildDate>
+  <pubDate>Tue, 19 Dec 2017 18:15:41 UT</pubDate>
   <ttl>1800</ttl>
+  <item>
+   <title>Minimal Racket web app</title>
+   <link>http://logc.github.io/blog/2017/12/19/minimal-racket-web-app?utm_source=all&amp;utm_medium=RSS</link>
+   <guid isPermaLink="false">urn:http-logc-github-io:-blog-2017-12-19-minimal-racket-web-app</guid>
+   <pubDate>Tue, 19 Dec 2017 18:15:41 UT</pubDate>
+   <author>logc</author>
+   <description>
+&lt;p&gt;This is the simplest module that responds to HTTP requests.&lt;/p&gt;
+
+&lt;div class="brush: racket"&gt;
+ &lt;div class="highlight"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;#lang &lt;/span&gt;&lt;span class="nn"&gt;racket/base&lt;/span&gt;
+
+&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;&lt;a href="http://docs.racket-lang.org/reference/require.html#(form._((lib._racket/private/base..rkt)._require))" style="color: inherit"&gt;require&lt;/a&gt;&lt;/span&gt;
+ &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;&lt;a href="http://docs.racket-lang.org/reference/require.html#(form._((lib._racket/private/base..rkt)._only-in))" style="color: inherit"&gt;only-in&lt;/a&gt;&lt;/span&gt; &lt;span class="n"&gt;web-server/http&lt;/span&gt;
+          &lt;span class="n"&gt;response/full&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+ &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;&lt;a href="http://docs.racket-lang.org/reference/require.html#(form._((lib._racket/private/base..rkt)._only-in))" style="color: inherit"&gt;only-in&lt;/a&gt;&lt;/span&gt; &lt;span class="n"&gt;web-server/http/request-structs&lt;/span&gt;
+          &lt;span class="n"&gt;make-header&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+ &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;&lt;a href="http://docs.racket-lang.org/reference/require.html#(form._((lib._racket/private/base..rkt)._only-in))" style="color: inherit"&gt;only-in&lt;/a&gt;&lt;/span&gt; &lt;span class="n"&gt;web-server/servlet-env&lt;/span&gt;
+          &lt;span class="n"&gt;serve/servlet&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+
+&lt;span class="c1"&gt;;; hello: request? -&amp;gt; response?&lt;/span&gt;
+&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;&lt;a href="http://docs.racket-lang.org/reference/define.html#(form._((lib._racket/private/base..rkt)._define))" style="color: inherit"&gt;define&lt;/a&gt;&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;hello&lt;/span&gt; &lt;span class="n"&gt;req&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+  &lt;span class="c1"&gt;;; struct response/full&lt;/span&gt;
+  &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;response/full&lt;/span&gt;
+   &lt;span class="mi"&gt;200&lt;/span&gt;                          &lt;span class="c1"&gt;;; code&lt;/span&gt;
+   &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;&lt;a href="http://docs.racket-lang.org/reference/bytestrings.html#(def._((quote._~23~25kernel)._string-~3ebytes/utf-8))" style="color: inherit"&gt;string-&amp;gt;bytes/utf-8&lt;/a&gt;&lt;/span&gt; &lt;span class="s2"&gt;"OK"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;   &lt;span class="c1"&gt;;; message&lt;/span&gt;
+   &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;&lt;a href="http://docs.racket-lang.org/reference/time.html#(def._((quote._~23~25kernel)._current-seconds))" style="color: inherit"&gt;current-seconds&lt;/a&gt;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;            &lt;span class="c1"&gt;;; timestamp in s&lt;/span&gt;
+   &lt;span class="no"&gt;#f&lt;/span&gt;                           &lt;span class="c1"&gt;;; mime or #f&lt;/span&gt;
+   &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;&lt;a href="http://docs.racket-lang.org/reference/pairs.html#(def._((quote._~23~25kernel)._list))" style="color: inherit"&gt;list&lt;/a&gt;&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;make-header&lt;/span&gt;           &lt;span class="c1"&gt;;; list of headers&lt;/span&gt;
+          &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;&lt;a href="http://docs.racket-lang.org/reference/bytestrings.html#(def._((quote._~23~25kernel)._string-~3ebytes/utf-8))" style="color: inherit"&gt;string-&amp;gt;bytes/utf-8&lt;/a&gt;&lt;/span&gt; &lt;span class="s2"&gt;"Server"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+          &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;&lt;a href="http://docs.racket-lang.org/reference/bytestrings.html#(def._((quote._~23~25kernel)._string-~3ebytes/utf-8))" style="color: inherit"&gt;string-&amp;gt;bytes/utf-8&lt;/a&gt;&lt;/span&gt; &lt;span class="s2"&gt;"Racket"&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+   &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;&lt;a href="http://docs.racket-lang.org/reference/pairs.html#(def._((quote._~23~25kernel)._list))" style="color: inherit"&gt;list&lt;/a&gt;&lt;/span&gt;                        &lt;span class="c1"&gt;;; body: list of bytes&lt;/span&gt;
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;&lt;a href="http://docs.racket-lang.org/reference/bytestrings.html#(def._((quote._~23~25kernel)._string-~3ebytes/utf-8))" style="color: inherit"&gt;string-&amp;gt;bytes/utf-8&lt;/a&gt;&lt;/span&gt; &lt;span class="s2"&gt;"Hello world!&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="p"&gt;))))&lt;/span&gt;
+
+&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;&lt;a href="http://docs.racket-lang.org/reference/module.html#(form._((lib._racket/private/base..rkt)._module+))" style="color: inherit"&gt;module+&lt;/a&gt;&lt;/span&gt; &lt;span class="n"&gt;main&lt;/span&gt;
+  &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;serve/servlet&lt;/span&gt;
+   &lt;span class="n"&gt;hello&lt;/span&gt;
+   &lt;span class="kd"&gt;#:port&lt;/span&gt; &lt;span class="mi"&gt;8080&lt;/span&gt;
+   &lt;span class="kd"&gt;#:servlet-regexp&lt;/span&gt; &lt;span class="sr"&gt;#rx""&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;p&gt;Save it as &lt;code&gt;hello.rkt&lt;/code&gt; and run it with &lt;code&gt;$ racket hello.rkt&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Check that it works:&lt;/p&gt;
+
+&lt;div class="brush: shell"&gt;
+ &lt;div class="highlight"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ curl -v http://localhost:8080/
+*   Trying ::1...
+* TCP_NODELAY &lt;span class="nb"&gt;set&lt;/span&gt;
+* Connection failed
+* connect to ::1 port &lt;span class="m"&gt;8080&lt;/span&gt; failed: Connection refused
+*   Trying &lt;span class="m"&gt;127&lt;/span&gt;.0.0.1...
+* TCP_NODELAY &lt;span class="nb"&gt;set&lt;/span&gt;
+* Connected to localhost &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="m"&gt;127&lt;/span&gt;.0.0.1&lt;span class="o"&gt;)&lt;/span&gt; port &lt;span class="m"&gt;8080&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="c1"&gt;#0)&lt;/span&gt;
+&amp;gt; GET / HTTP/1.1
+&amp;gt; Host: localhost:8080
+&amp;gt; User-Agent: curl/7.54.0
+&amp;gt; Accept: */*
+&amp;gt;
+&amp;lt; HTTP/1.1 &lt;span class="m"&gt;200&lt;/span&gt; OK
+&amp;lt; Date: Tue, &lt;span class="m"&gt;19&lt;/span&gt; Dec &lt;span class="m"&gt;2017&lt;/span&gt; &lt;span class="m"&gt;18&lt;/span&gt;:13:14 GMT
+&amp;lt; Last-Modified: Tue, &lt;span class="m"&gt;19&lt;/span&gt; Dec &lt;span class="m"&gt;2017&lt;/span&gt; &lt;span class="m"&gt;18&lt;/span&gt;:13:14 GMT
+&amp;lt; Content-Length: &lt;span class="m"&gt;13&lt;/span&gt;
+&amp;lt; Server: Racket
+&amp;lt;
+Hello world!
+* Connection &lt;span class="c1"&gt;#0 to host localhost left intact&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;</description></item>
   <item>
    <title>Ensime server crash because of transitive dependency</title>
    <link>http://logc.github.io/blog/2017/09/05/ensime-server-crash-because-of-transitive-dependency?utm_source=all&amp;utm_medium=RSS</link>
    <guid isPermaLink="false">urn:http-logc-github-io:-blog-2017-09-05-ensime-server-crash-because-of-transitive-dependency</guid>
-   <pubDate>Tue, 05 Sep 2017 13:47:32 UT</pubDate>
+   <pubDate>Tue, 05 Sep 2017 12:47:32 UT</pubDate>
    <author>logc</author>
    <description>
 &lt;p&gt;The Scala layer for Spacemacs uses Ensime by default. There is an error that made me struggle for weeks: &lt;a href="https://github.com/ensime/ensime-server/issues/825"&gt;Bad source jar kills the server: ZipException: error in opening zip file&lt;/a&gt;&lt;/p&gt;
@@ -28,7 +102,7 @@
 $ mv ~/.ivy2/ ~/.ivy2_old&lt;/code&gt;&lt;/li&gt;
  &lt;li&gt;(optional) create a new clone to have a known state &lt;code&gt;console
 $ git clone $repo ~/dev/ensime-$repo&lt;/code&gt;&lt;/li&gt;
- &lt;li&gt;edit &lt;code&gt;build.sbt&lt;/code&gt; to add an exclusion rule for the transitive dependency at the line of the explicit dependency that needs it, e.g. &lt;code&gt;sbt
+ &lt;li&gt;edit &lt;code&gt;build.sbt&lt;/code&gt; to add an exclusion rule for the transitive dependency at the  line of the explicit dependency that needs it, e.g. &lt;code&gt;sbt
 libraryDependencies ++= Seq(
   "com.company.notifications" % "notifications-schema" exclude("org.json", "json")
 )&lt;/code&gt;&lt;/li&gt;
@@ -39,7 +113,7 @@ $ sbt ensimeConfig ensimeConfigProject&lt;/code&gt;&lt;/li&gt;&lt;/ul&gt;</descr
    <title>Maven does not find JAVA_HOME in Fish shell</title>
    <link>http://logc.github.io/blog/2017/08/25/maven-does-not-find-java-home-in-fish-shell?utm_source=all&amp;utm_medium=RSS</link>
    <guid isPermaLink="false">urn:http-logc-github-io:-blog-2017-08-25-maven-does-not-find-java-home-in-fish-shell</guid>
-   <pubDate>Fri, 25 Aug 2017 12:37:39 UT</pubDate>
+   <pubDate>Fri, 25 Aug 2017 11:37:39 UT</pubDate>
    <author>logc</author>
    <description>
 &lt;p&gt;After reinstalling &lt;code&gt;java&lt;/code&gt; from &lt;code&gt;brew cask&lt;/code&gt;, it could happen that Maven does not find anymore the JAVA_HOME. The error looks like this:&lt;/p&gt;
@@ -66,7 +140,7 @@ $ sbt ensimeConfig ensimeConfigProject&lt;/code&gt;&lt;/li&gt;&lt;/ul&gt;</descr
    <title>IntelliJ context menu from keyboard</title>
    <link>http://logc.github.io/blog/2017/08/24/intellij-context-menu-from-keyboard?utm_source=all&amp;utm_medium=RSS</link>
    <guid isPermaLink="false">urn:http-logc-github-io:-blog-2017-08-24-intellij-context-menu-from-keyboard</guid>
-   <pubDate>Thu, 24 Aug 2017 14:33:11 UT</pubDate>
+   <pubDate>Thu, 24 Aug 2017 13:33:11 UT</pubDate>
    <author>logc</author>
    <description>
 &lt;p&gt;Looked for this for a long time. Somehow, never found &lt;a href="https://intellij-support.jetbrains.com/hc/en-us/community/posts/206326619-Invoke-popup-menu-from-keyboard"&gt;the existing support answer&lt;/a&gt;. Just created a new shortcut on my personal keymap, with &amp;ldquo;Ctrl + Shift + Enter&amp;rdquo; =&amp;gt; a new life.&lt;/p&gt;</description></item>
@@ -74,7 +148,7 @@ $ sbt ensimeConfig ensimeConfigProject&lt;/code&gt;&lt;/li&gt;&lt;/ul&gt;</descr
    <title>Some Git aliases</title>
    <link>http://logc.github.io/blog/2017/08/15/some-git-aliases?utm_source=all&amp;utm_medium=RSS</link>
    <guid isPermaLink="false">urn:http-logc-github-io:-blog-2017-08-15-some-git-aliases</guid>
-   <pubDate>Tue, 15 Aug 2017 16:18:11 UT</pubDate>
+   <pubDate>Tue, 15 Aug 2017 15:18:11 UT</pubDate>
    <author>logc</author>
    <description>
 &lt;p&gt;Here are some of the Git alias configurations that I use. My philosophy in writing them was to keep them descriptive, and &lt;em&gt;not to keep them easy to type&lt;/em&gt;, following the approach in &lt;a href="http://blog.wittchen.biz.pl/my-approach-to-git-aliases/"&gt;this blog post&lt;/a&gt;. In order to keep my typing short, I use the &lt;a href="http://fishshell.com"&gt;fish shell&lt;/a&gt;.&lt;/p&gt;
@@ -106,7 +180,7 @@ status&lt;/code&gt;. In that mindset, I tend to identify branches with directori
    <title>Minimal C project structure with SCons</title>
    <link>http://logc.github.io/blog/2016/10/20/minimal-c-project-structure-with-scons?utm_source=all&amp;utm_medium=RSS</link>
    <guid isPermaLink="false">urn:http-logc-github-io:-blog-2016-10-20-minimal-c-project-structure-with-scons</guid>
-   <pubDate>Thu, 20 Oct 2016 18:17:59 UT</pubDate>
+   <pubDate>Thu, 20 Oct 2016 17:17:59 UT</pubDate>
    <author>logc</author>
    <description>
 &lt;p&gt;This is a possible project structure in order to have a C project using SCons as the build system. It enables you to:&lt;/p&gt;
@@ -287,7 +361,7 @@ status&lt;/code&gt;. In that mindset, I tend to identify branches with directori
    <title>Setting up Github Pages with Frog</title>
    <link>http://logc.github.io/blog/2016/10/03/setting-up-github-pages-with-frog?utm_source=all&amp;utm_medium=RSS</link>
    <guid isPermaLink="false">urn:http-logc-github-io:-blog-2016-10-03-setting-up-github-pages-with-frog</guid>
-   <pubDate>Mon, 03 Oct 2016 18:24:03 UT</pubDate>
+   <pubDate>Mon, 03 Oct 2016 17:24:03 UT</pubDate>
    <author>logc</author>
    <description>
 &lt;p&gt;To set up a static blog in Github Pages using the Racket package Frog, you need to do the following:&lt;/p&gt;
@@ -356,7 +430,7 @@ $ git push&lt;/code&gt;&lt;/pre&gt;</description></item>
    <title>Racket and vim-syntastic</title>
    <link>http://logc.github.io/blog/2016/09/23/racket-and-vim-syntastic?utm_source=all&amp;utm_medium=RSS</link>
    <guid isPermaLink="false">urn:http-logc-github-io:-blog-2016-09-23-racket-and-vim-syntastic</guid>
-   <pubDate>Fri, 23 Sep 2016 19:48:27 UT</pubDate>
+   <pubDate>Fri, 23 Sep 2016 18:48:27 UT</pubDate>
    <author>logc</author>
    <description>
 &lt;p&gt;The current Syntastic checker for Racket syntax in Vim is the &lt;code&gt;racket&lt;/code&gt; executable itself. This means that the current buffer is executed by Racket whenever it is checked for syntax, and this can have unintended consequences, e.g. entering an infinite loop, if you happen to open the wrong file.&lt;/p&gt;

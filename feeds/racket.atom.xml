@@ -4,13 +4,89 @@
  <link rel="self" href="http://logc.github.io/feeds/racket.atom.xml" />
  <link href="http://logc.github.io/tags/racket.html" />
  <id>urn:http-logc-github-io:-tags-racket-html</id>
- <updated>2016-10-03T18:24:03Z</updated>
+ <updated>2017-12-19T18:15:41Z</updated>
+ <entry>
+  <title type="text">Minimal Racket web app</title>
+  <link rel="alternate" href="http://logc.github.io/blog/2017/12/19/minimal-racket-web-app?utm_source=racket&amp;utm_medium=Atom" />
+  <id>urn:http-logc-github-io:-blog-2017-12-19-minimal-racket-web-app</id>
+  <published>2017-12-19T18:15:41Z</published>
+  <updated>2017-12-19T18:15:41Z</updated>
+  <author>
+   <name>logc</name></author>
+  <content type="html">
+&lt;p&gt;This is the simplest module that responds to HTTP requests.&lt;/p&gt;
+
+&lt;div class="brush: racket"&gt;
+ &lt;div class="highlight"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;#lang &lt;/span&gt;&lt;span class="nn"&gt;racket/base&lt;/span&gt;
+
+&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;&lt;a href="http://docs.racket-lang.org/reference/require.html#(form._((lib._racket/private/base..rkt)._require))" style="color: inherit"&gt;require&lt;/a&gt;&lt;/span&gt;
+ &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;&lt;a href="http://docs.racket-lang.org/reference/require.html#(form._((lib._racket/private/base..rkt)._only-in))" style="color: inherit"&gt;only-in&lt;/a&gt;&lt;/span&gt; &lt;span class="n"&gt;web-server/http&lt;/span&gt;
+          &lt;span class="n"&gt;response/full&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+ &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;&lt;a href="http://docs.racket-lang.org/reference/require.html#(form._((lib._racket/private/base..rkt)._only-in))" style="color: inherit"&gt;only-in&lt;/a&gt;&lt;/span&gt; &lt;span class="n"&gt;web-server/http/request-structs&lt;/span&gt;
+          &lt;span class="n"&gt;make-header&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+ &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;&lt;a href="http://docs.racket-lang.org/reference/require.html#(form._((lib._racket/private/base..rkt)._only-in))" style="color: inherit"&gt;only-in&lt;/a&gt;&lt;/span&gt; &lt;span class="n"&gt;web-server/servlet-env&lt;/span&gt;
+          &lt;span class="n"&gt;serve/servlet&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+
+&lt;span class="c1"&gt;;; hello: request? -&amp;gt; response?&lt;/span&gt;
+&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;&lt;a href="http://docs.racket-lang.org/reference/define.html#(form._((lib._racket/private/base..rkt)._define))" style="color: inherit"&gt;define&lt;/a&gt;&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;hello&lt;/span&gt; &lt;span class="n"&gt;req&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+  &lt;span class="c1"&gt;;; struct response/full&lt;/span&gt;
+  &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;response/full&lt;/span&gt;
+   &lt;span class="mi"&gt;200&lt;/span&gt;                          &lt;span class="c1"&gt;;; code&lt;/span&gt;
+   &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;&lt;a href="http://docs.racket-lang.org/reference/bytestrings.html#(def._((quote._~23~25kernel)._string-~3ebytes/utf-8))" style="color: inherit"&gt;string-&amp;gt;bytes/utf-8&lt;/a&gt;&lt;/span&gt; &lt;span class="s2"&gt;"OK"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;   &lt;span class="c1"&gt;;; message&lt;/span&gt;
+   &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;&lt;a href="http://docs.racket-lang.org/reference/time.html#(def._((quote._~23~25kernel)._current-seconds))" style="color: inherit"&gt;current-seconds&lt;/a&gt;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;            &lt;span class="c1"&gt;;; timestamp in s&lt;/span&gt;
+   &lt;span class="no"&gt;#f&lt;/span&gt;                           &lt;span class="c1"&gt;;; mime or #f&lt;/span&gt;
+   &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;&lt;a href="http://docs.racket-lang.org/reference/pairs.html#(def._((quote._~23~25kernel)._list))" style="color: inherit"&gt;list&lt;/a&gt;&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;make-header&lt;/span&gt;           &lt;span class="c1"&gt;;; list of headers&lt;/span&gt;
+          &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;&lt;a href="http://docs.racket-lang.org/reference/bytestrings.html#(def._((quote._~23~25kernel)._string-~3ebytes/utf-8))" style="color: inherit"&gt;string-&amp;gt;bytes/utf-8&lt;/a&gt;&lt;/span&gt; &lt;span class="s2"&gt;"Server"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+          &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;&lt;a href="http://docs.racket-lang.org/reference/bytestrings.html#(def._((quote._~23~25kernel)._string-~3ebytes/utf-8))" style="color: inherit"&gt;string-&amp;gt;bytes/utf-8&lt;/a&gt;&lt;/span&gt; &lt;span class="s2"&gt;"Racket"&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+   &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;&lt;a href="http://docs.racket-lang.org/reference/pairs.html#(def._((quote._~23~25kernel)._list))" style="color: inherit"&gt;list&lt;/a&gt;&lt;/span&gt;                        &lt;span class="c1"&gt;;; body: list of bytes&lt;/span&gt;
+     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;&lt;a href="http://docs.racket-lang.org/reference/bytestrings.html#(def._((quote._~23~25kernel)._string-~3ebytes/utf-8))" style="color: inherit"&gt;string-&amp;gt;bytes/utf-8&lt;/a&gt;&lt;/span&gt; &lt;span class="s2"&gt;"Hello world!&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="p"&gt;))))&lt;/span&gt;
+
+&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;&lt;a href="http://docs.racket-lang.org/reference/module.html#(form._((lib._racket/private/base..rkt)._module+))" style="color: inherit"&gt;module+&lt;/a&gt;&lt;/span&gt; &lt;span class="n"&gt;main&lt;/span&gt;
+  &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;serve/servlet&lt;/span&gt;
+   &lt;span class="n"&gt;hello&lt;/span&gt;
+   &lt;span class="kd"&gt;#:port&lt;/span&gt; &lt;span class="mi"&gt;8080&lt;/span&gt;
+   &lt;span class="kd"&gt;#:servlet-regexp&lt;/span&gt; &lt;span class="sr"&gt;#rx""&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;p&gt;Save it as &lt;code&gt;hello.rkt&lt;/code&gt; and run it with &lt;code&gt;$ racket hello.rkt&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Check that it works:&lt;/p&gt;
+
+&lt;div class="brush: shell"&gt;
+ &lt;div class="highlight"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ curl -v http://localhost:8080/
+*   Trying ::1...
+* TCP_NODELAY &lt;span class="nb"&gt;set&lt;/span&gt;
+* Connection failed
+* connect to ::1 port &lt;span class="m"&gt;8080&lt;/span&gt; failed: Connection refused
+*   Trying &lt;span class="m"&gt;127&lt;/span&gt;.0.0.1...
+* TCP_NODELAY &lt;span class="nb"&gt;set&lt;/span&gt;
+* Connected to localhost &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="m"&gt;127&lt;/span&gt;.0.0.1&lt;span class="o"&gt;)&lt;/span&gt; port &lt;span class="m"&gt;8080&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="c1"&gt;#0)&lt;/span&gt;
+&amp;gt; GET / HTTP/1.1
+&amp;gt; Host: localhost:8080
+&amp;gt; User-Agent: curl/7.54.0
+&amp;gt; Accept: */*
+&amp;gt;
+&amp;lt; HTTP/1.1 &lt;span class="m"&gt;200&lt;/span&gt; OK
+&amp;lt; Date: Tue, &lt;span class="m"&gt;19&lt;/span&gt; Dec &lt;span class="m"&gt;2017&lt;/span&gt; &lt;span class="m"&gt;18&lt;/span&gt;:13:14 GMT
+&amp;lt; Last-Modified: Tue, &lt;span class="m"&gt;19&lt;/span&gt; Dec &lt;span class="m"&gt;2017&lt;/span&gt; &lt;span class="m"&gt;18&lt;/span&gt;:13:14 GMT
+&amp;lt; Content-Length: &lt;span class="m"&gt;13&lt;/span&gt;
+&amp;lt; Server: Racket
+&amp;lt;
+Hello world!
+* Connection &lt;span class="c1"&gt;#0 to host localhost left intact&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;</content></entry>
  <entry>
   <title type="text">Setting up Github Pages with Frog</title>
   <link rel="alternate" href="http://logc.github.io/blog/2016/10/03/setting-up-github-pages-with-frog?utm_source=racket&amp;utm_medium=Atom" />
   <id>urn:http-logc-github-io:-blog-2016-10-03-setting-up-github-pages-with-frog</id>
-  <published>2016-10-03T18:24:03Z</published>
-  <updated>2016-10-03T18:24:03Z</updated>
+  <published>2016-10-03T17:24:03Z</published>
+  <updated>2016-10-03T17:24:03Z</updated>
   <author>
    <name>logc</name></author>
   <content type="html">
@@ -80,8 +156,8 @@ $ git push&lt;/code&gt;&lt;/pre&gt;</content></entry>
   <title type="text">Racket and vim-syntastic</title>
   <link rel="alternate" href="http://logc.github.io/blog/2016/09/23/racket-and-vim-syntastic?utm_source=racket&amp;utm_medium=Atom" />
   <id>urn:http-logc-github-io:-blog-2016-09-23-racket-and-vim-syntastic</id>
-  <published>2016-09-23T19:48:27Z</published>
-  <updated>2016-09-23T19:48:27Z</updated>
+  <published>2016-09-23T18:48:27Z</published>
+  <updated>2016-09-23T18:48:27Z</updated>
   <author>
    <name>logc</name></author>
   <content type="html">

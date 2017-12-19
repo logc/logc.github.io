@@ -4,14 +4,14 @@
   <title>logc io: Posts tagged 'git'</title>
   <description>logc io: Posts tagged 'git'</description>
   <link>http://logc.github.io/tags/git.html</link>
-  <lastBuildDate>Tue, 15 Aug 2017 16:18:11 UT</lastBuildDate>
-  <pubDate>Tue, 15 Aug 2017 16:18:11 UT</pubDate>
+  <lastBuildDate>Tue, 15 Aug 2017 15:18:11 UT</lastBuildDate>
+  <pubDate>Tue, 15 Aug 2017 15:18:11 UT</pubDate>
   <ttl>1800</ttl>
   <item>
    <title>Some Git aliases</title>
    <link>http://logc.github.io/blog/2017/08/15/some-git-aliases?utm_source=git&amp;utm_medium=RSS</link>
    <guid isPermaLink="false">urn:http-logc-github-io:-blog-2017-08-15-some-git-aliases</guid>
-   <pubDate>Tue, 15 Aug 2017 16:18:11 UT</pubDate>
+   <pubDate>Tue, 15 Aug 2017 15:18:11 UT</pubDate>
    <author>logc</author>
    <description>
 &lt;p&gt;Here are some of the Git alias configurations that I use. My philosophy in writing them was to keep them descriptive, and &lt;em&gt;not to keep them easy to type&lt;/em&gt;, following the approach in &lt;a href="http://blog.wittchen.biz.pl/my-approach-to-git-aliases/"&gt;this blog post&lt;/a&gt;. In order to keep my typing short, I use the &lt;a href="http://fishshell.com"&gt;fish shell&lt;/a&gt;.&lt;/p&gt;

@@ -4,14 +4,14 @@
   <title>logc io: Posts tagged 'Scala'</title>
   <description>logc io: Posts tagged 'Scala'</description>
   <link>http://logc.github.io/tags/Scala.html</link>
-  <lastBuildDate>Tue, 05 Sep 2017 13:47:32 UT</lastBuildDate>
-  <pubDate>Tue, 05 Sep 2017 13:47:32 UT</pubDate>
+  <lastBuildDate>Tue, 05 Sep 2017 12:47:32 UT</lastBuildDate>
+  <pubDate>Tue, 05 Sep 2017 12:47:32 UT</pubDate>
   <ttl>1800</ttl>
   <item>
    <title>Ensime server crash because of transitive dependency</title>
    <link>http://logc.github.io/blog/2017/09/05/ensime-server-crash-because-of-transitive-dependency?utm_source=Scala&amp;utm_medium=RSS</link>
    <guid isPermaLink="false">urn:http-logc-github-io:-blog-2017-09-05-ensime-server-crash-because-of-transitive-dependency</guid>
-   <pubDate>Tue, 05 Sep 2017 13:47:32 UT</pubDate>
+   <pubDate>Tue, 05 Sep 2017 12:47:32 UT</pubDate>
    <author>logc</author>
    <description>
 &lt;p&gt;The Scala layer for Spacemacs uses Ensime by default. There is an error that made me struggle for weeks: &lt;a href="https://github.com/ensime/ensime-server/issues/825"&gt;Bad source jar kills the server: ZipException: error in opening zip file&lt;/a&gt;&lt;/p&gt;
@@ -28,7 +28,7 @@
 $ mv ~/.ivy2/ ~/.ivy2_old&lt;/code&gt;&lt;/li&gt;
  &lt;li&gt;(optional) create a new clone to have a known state &lt;code&gt;console
 $ git clone $repo ~/dev/ensime-$repo&lt;/code&gt;&lt;/li&gt;
- &lt;li&gt;edit &lt;code&gt;build.sbt&lt;/code&gt; to add an exclusion rule for the transitive dependency at the line of the explicit dependency that needs it, e.g. &lt;code&gt;sbt
+ &lt;li&gt;edit &lt;code&gt;build.sbt&lt;/code&gt; to add an exclusion rule for the transitive dependency at the  line of the explicit dependency that needs it, e.g. &lt;code&gt;sbt
 libraryDependencies ++= Seq(
   "com.company.notifications" % "notifications-schema" exclude("org.json", "json")
 )&lt;/code&gt;&lt;/li&gt;

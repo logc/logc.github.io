@@ -4,14 +4,14 @@
   <title>logc io: Posts tagged 'blog'</title>
   <description>logc io: Posts tagged 'blog'</description>
   <link>http://logc.github.io/tags/blog.html</link>
-  <lastBuildDate>Mon, 03 Oct 2016 18:24:03 UT</lastBuildDate>
-  <pubDate>Mon, 03 Oct 2016 18:24:03 UT</pubDate>
+  <lastBuildDate>Mon, 03 Oct 2016 17:24:03 UT</lastBuildDate>
+  <pubDate>Mon, 03 Oct 2016 17:24:03 UT</pubDate>
   <ttl>1800</ttl>
   <item>
    <title>Setting up Github Pages with Frog</title>
    <link>http://logc.github.io/blog/2016/10/03/setting-up-github-pages-with-frog?utm_source=blog&amp;utm_medium=RSS</link>
    <guid isPermaLink="false">urn:http-logc-github-io:-blog-2016-10-03-setting-up-github-pages-with-frog</guid>
-   <pubDate>Mon, 03 Oct 2016 18:24:03 UT</pubDate>
+   <pubDate>Mon, 03 Oct 2016 17:24:03 UT</pubDate>
    <author>logc</author>
    <description>
 &lt;p&gt;To set up a static blog in Github Pages using the Racket package Frog, you need to do the following:&lt;/p&gt;

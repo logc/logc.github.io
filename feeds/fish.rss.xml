@@ -4,14 +4,14 @@
   <title>logc io: Posts tagged 'fish'</title>
   <description>logc io: Posts tagged 'fish'</description>
   <link>http://logc.github.io/tags/fish.html</link>
-  <lastBuildDate>Fri, 25 Aug 2017 12:37:39 UT</lastBuildDate>
-  <pubDate>Fri, 25 Aug 2017 12:37:39 UT</pubDate>
+  <lastBuildDate>Fri, 25 Aug 2017 11:37:39 UT</lastBuildDate>
+  <pubDate>Fri, 25 Aug 2017 11:37:39 UT</pubDate>
   <ttl>1800</ttl>
   <item>
    <title>Maven does not find JAVA_HOME in Fish shell</title>
    <link>http://logc.github.io/blog/2017/08/25/maven-does-not-find-java-home-in-fish-shell?utm_source=fish&amp;utm_medium=RSS</link>
    <guid isPermaLink="false">urn:http-logc-github-io:-blog-2017-08-25-maven-does-not-find-java-home-in-fish-shell</guid>
-   <pubDate>Fri, 25 Aug 2017 12:37:39 UT</pubDate>
+   <pubDate>Fri, 25 Aug 2017 11:37:39 UT</pubDate>
    <author>logc</author>
    <description>
 &lt;p&gt;After reinstalling &lt;code&gt;java&lt;/code&gt; from &lt;code&gt;brew cask&lt;/code&gt;, it could happen that Maven does not find anymore the JAVA_HOME. The error looks like this:&lt;/p&gt;

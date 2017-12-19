@@ -11,7 +11,7 @@
     <link rel="icon"      href="/favicon.ico">
     <link rel="canonical" href="http://logc.github.io/blog/2017/09/05/ensime-server-crash-because-of-transitive-dependency">
     <link rel="next" href="/blog/2017/08/25/maven-does-not-find-java-home-in-fish-shell">
-
+    <link rel="prev" href="/blog/2017/12/19/minimal-racket-web-app">
     <!-- CSS -->
     <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="/css/pygments.css">
@@ -161,7 +161,7 @@
 $ mv ~/.ivy2/ ~/.ivy2_old</code></li>
  <li>(optional) create a new clone to have a known state <code>console
 $ git clone $repo ~/dev/ensime-$repo</code></li>
- <li>edit <code>build.sbt</code> to add an exclusion rule for the transitive dependency at the line of the explicit dependency that needs it, e.g. <code>sbt
+ <li>edit <code>build.sbt</code> to add an exclusion rule for the transitive dependency at the  line of the explicit dependency that needs it, e.g. <code>sbt
 libraryDependencies ++= Seq(
   "com.company.notifications" % "notifications-schema" exclude("org.json", "json")
 )</code></li>
@@ -170,7 +170,9 @@ $ sbt compile
 $ sbt ensimeConfig ensimeConfigProject</code></li></ul>
   <footer>
     <ul class="pager">
-
+    <li class="previous">
+      <a href="/blog/2017/12/19/minimal-racket-web-app">&larr; <em>Minimal Racket web app</em></a>
+    </li>
     <li class="next">
       <a href="/blog/2017/08/25/maven-does-not-find-java-home-in-fish-shell"><em>Maven does not find JAVA_HOME in Fish shell</em> &rarr;</a>
     </li>
@@ -188,7 +190,7 @@ $ sbt ensimeConfig ensimeConfigProject</code></li></ul>
         <a href="http://twitter.github.com/bootstrap/index.html">Bootstrap</a>.
         Cover image by NASA/Bill Ingalls [Public domain], via Wikimedia Commons.
         </p>
-        <p>This page was last built on Tuesday, September 5th, 2017</p>
+        <p>This page was last built on Tuesday, December 19th, 2017</p>
 
         <p><em>© Copyright 2017, Luis Osa</em>.</p>
       </footer>
