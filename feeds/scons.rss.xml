@@ -4,14 +4,14 @@
   <title>logc io: Posts tagged 'scons'</title>
   <description>logc io: Posts tagged 'scons'</description>
   <link>http://logc.github.io/tags/scons.html</link>
-  <lastBuildDate>Thu, 20 Oct 2016 17:17:59 UT</lastBuildDate>
-  <pubDate>Thu, 20 Oct 2016 17:17:59 UT</pubDate>
+  <lastBuildDate>Thu, 20 Oct 2016 18:17:59 UT</lastBuildDate>
+  <pubDate>Thu, 20 Oct 2016 18:17:59 UT</pubDate>
   <ttl>1800</ttl>
   <item>
    <title>Minimal C project structure with SCons</title>
-   <link>http://logc.github.io/blog/2016/10/20/minimal-c-project-structure-with-scons?utm_source=scons&amp;utm_medium=RSS</link>
+   <link>http://logc.github.io/blog/2016/10/20/minimal-c-project-structure-with-scons/?utm_source=scons&amp;utm_medium=RSS</link>
    <guid isPermaLink="false">urn:http-logc-github-io:-blog-2016-10-20-minimal-c-project-structure-with-scons</guid>
-   <pubDate>Thu, 20 Oct 2016 17:17:59 UT</pubDate>
+   <pubDate>Thu, 20 Oct 2016 18:17:59 UT</pubDate>
    <author>logc</author>
    <description>
 &lt;p&gt;This is a possible project structure in order to have a C project using SCons as the build system. It enables you to:&lt;/p&gt;

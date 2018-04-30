@@ -4,13 +4,13 @@
  <link rel="self" href="http://logc.github.io/feeds/C.atom.xml" />
  <link href="http://logc.github.io/tags/C.html" />
  <id>urn:http-logc-github-io:-tags-C-html</id>
- <updated>2016-10-20T17:17:59Z</updated>
+ <updated>2016-10-20T18:17:59Z</updated>
  <entry>
   <title type="text">Minimal C project structure with SCons</title>
-  <link rel="alternate" href="http://logc.github.io/blog/2016/10/20/minimal-c-project-structure-with-scons?utm_source=C&amp;utm_medium=Atom" />
+  <link rel="alternate" href="http://logc.github.io/blog/2016/10/20/minimal-c-project-structure-with-scons/?utm_source=C&amp;utm_medium=Atom" />
   <id>urn:http-logc-github-io:-blog-2016-10-20-minimal-c-project-structure-with-scons</id>
-  <published>2016-10-20T17:17:59Z</published>
-  <updated>2016-10-20T17:17:59Z</updated>
+  <published>2016-10-20T18:17:59Z</published>
+  <updated>2016-10-20T18:17:59Z</updated>
   <author>
    <name>logc</name></author>
   <content type="html">

@@ -4,14 +4,14 @@
   <title>logc io: Posts tagged 'web'</title>
   <description>logc io: Posts tagged 'web'</description>
   <link>http://logc.github.io/tags/web.html</link>
-  <lastBuildDate>Tue, 19 Dec 2017 18:15:41 UT</lastBuildDate>
-  <pubDate>Tue, 19 Dec 2017 18:15:41 UT</pubDate>
+  <lastBuildDate>Tue, 19 Dec 2017 19:15:41 UT</lastBuildDate>
+  <pubDate>Tue, 19 Dec 2017 19:15:41 UT</pubDate>
   <ttl>1800</ttl>
   <item>
    <title>Minimal Racket web app</title>
-   <link>http://logc.github.io/blog/2017/12/19/minimal-racket-web-app?utm_source=web&amp;utm_medium=RSS</link>
+   <link>http://logc.github.io/blog/2017/12/19/minimal-racket-web-app/?utm_source=web&amp;utm_medium=RSS</link>
    <guid isPermaLink="false">urn:http-logc-github-io:-blog-2017-12-19-minimal-racket-web-app</guid>
-   <pubDate>Tue, 19 Dec 2017 18:15:41 UT</pubDate>
+   <pubDate>Tue, 19 Dec 2017 19:15:41 UT</pubDate>
    <author>logc</author>
    <description>
 &lt;p&gt;This is the simplest module that responds to HTTP requests.&lt;/p&gt;
@@ -83,7 +83,7 @@ Hello world!
 &lt;/div&gt;</description></item>
   <item>
    <title>How do you develop with Yesod</title>
-   <link>http://logc.github.io/blog/2013/12/04/how-do-you-develop-with-yesod?utm_source=web&amp;utm_medium=RSS</link>
+   <link>http://logc.github.io/blog/2013/12/04/how-do-you-develop-with-yesod/?utm_source=web&amp;utm_medium=RSS</link>
    <guid isPermaLink="false">urn:http-logc-github-io:-blog-2013-12-04-how-do-you-develop-with-yesod</guid>
    <pubDate>Sun, 04 Dec 2013 14:39:03 UT</pubDate>
    <author>logc</author>

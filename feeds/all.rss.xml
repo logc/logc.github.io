@@ -4,14 +4,50 @@
   <title>logc io: logc io</title>
   <description>logc io: logc io</description>
   <link>http://logc.github.io/index.html</link>
-  <lastBuildDate>Tue, 19 Dec 2017 18:15:41 UT</lastBuildDate>
-  <pubDate>Tue, 19 Dec 2017 18:15:41 UT</pubDate>
+  <lastBuildDate>Mon, 30 Apr 2018 09:46:41 UT</lastBuildDate>
+  <pubDate>Mon, 30 Apr 2018 09:46:41 UT</pubDate>
   <ttl>1800</ttl>
   <item>
+   <title>Git setup with fork and upstream</title>
+   <link>http://logc.github.io/blog/2018/04/30/git-setup-with-fork-and-upstream/?utm_source=all&amp;utm_medium=RSS</link>
+   <guid isPermaLink="false">urn:http-logc-github-io:-blog-2018-04-30-git-setup-with-fork-and-upstream</guid>
+   <pubDate>Mon, 30 Apr 2018 09:46:41 UT</pubDate>
+   <author>logc</author>
+   <description>
+&lt;p&gt;Here is how to setup a fresh clone of a git repository so that it pulls changes from an upstream, but only pushes by default to another repository (usually, your own fork of the project).&lt;/p&gt;
+
+&lt;p&gt;I use the fish shell. If you use Bash or Zsh it should be straightforward to define these variables in your environment.&lt;/p&gt;
+
+&lt;div class="brush: fish"&gt;
+ &lt;div class="highlight"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;set&lt;/span&gt; gituser logc
+&lt;span class="k"&gt;set&lt;/span&gt; gitproject chat
+&lt;span class="k"&gt;set&lt;/span&gt; gitorg NacionLumpen
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;p&gt;And this is how to setup the clone:&lt;/p&gt;
+
+&lt;div class="brush: fish"&gt;
+ &lt;div class="highlight"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;git clone git@github.com:&lt;span class="nv"&gt;$gituser&lt;/span&gt;/&lt;span class="nv"&gt;$gitproject&lt;/span&gt;.git
+&lt;span class="k"&gt;cd&lt;/span&gt; &lt;span class="nv"&gt;$gitproject&lt;/span&gt;
+git remote add upstream git@github.com:&lt;span class="nv"&gt;$gitorg&lt;/span&gt;/&lt;span class="nv"&gt;$gitproject&lt;/span&gt;.git
+git remote rename origin fork
+git fetch upstream
+git branch --set-upstream-to&lt;span class="o"&gt;=&lt;/span&gt;upstream/master
+git config remote.pushDefault fork
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;p&gt;As always with git, it is trivial, if your name is &amp;lsquo;Linus&amp;rsquo; :)&lt;/p&gt;</description></item>
+  <item>
    <title>Minimal Racket web app</title>
-   <link>http://logc.github.io/blog/2017/12/19/minimal-racket-web-app?utm_source=all&amp;utm_medium=RSS</link>
+   <link>http://logc.github.io/blog/2017/12/19/minimal-racket-web-app/?utm_source=all&amp;utm_medium=RSS</link>
    <guid isPermaLink="false">urn:http-logc-github-io:-blog-2017-12-19-minimal-racket-web-app</guid>
-   <pubDate>Tue, 19 Dec 2017 18:15:41 UT</pubDate>
+   <pubDate>Tue, 19 Dec 2017 19:15:41 UT</pubDate>
    <author>logc</author>
    <description>
 &lt;p&gt;This is the simplest module that responds to HTTP requests.&lt;/p&gt;
@@ -83,9 +119,9 @@ Hello world!
 &lt;/div&gt;</description></item>
   <item>
    <title>Ensime server crash because of transitive dependency</title>
-   <link>http://logc.github.io/blog/2017/09/05/ensime-server-crash-because-of-transitive-dependency?utm_source=all&amp;utm_medium=RSS</link>
+   <link>http://logc.github.io/blog/2017/09/05/ensime-server-crash-because-of-transitive-dependency/?utm_source=all&amp;utm_medium=RSS</link>
    <guid isPermaLink="false">urn:http-logc-github-io:-blog-2017-09-05-ensime-server-crash-because-of-transitive-dependency</guid>
-   <pubDate>Tue, 05 Sep 2017 12:47:32 UT</pubDate>
+   <pubDate>Tue, 05 Sep 2017 13:47:32 UT</pubDate>
    <author>logc</author>
    <description>
 &lt;p&gt;The Scala layer for Spacemacs uses Ensime by default. There is an error that made me struggle for weeks: &lt;a href="https://github.com/ensime/ensime-server/issues/825"&gt;Bad source jar kills the server: ZipException: error in opening zip file&lt;/a&gt;&lt;/p&gt;
@@ -111,9 +147,9 @@ $ sbt compile
 $ sbt ensimeConfig ensimeConfigProject&lt;/code&gt;&lt;/li&gt;&lt;/ul&gt;</description></item>
   <item>
    <title>Maven does not find JAVA_HOME in Fish shell</title>
-   <link>http://logc.github.io/blog/2017/08/25/maven-does-not-find-java-home-in-fish-shell?utm_source=all&amp;utm_medium=RSS</link>
+   <link>http://logc.github.io/blog/2017/08/25/maven-does-not-find-java-home-in-fish-shell/?utm_source=all&amp;utm_medium=RSS</link>
    <guid isPermaLink="false">urn:http-logc-github-io:-blog-2017-08-25-maven-does-not-find-java-home-in-fish-shell</guid>
-   <pubDate>Fri, 25 Aug 2017 11:37:39 UT</pubDate>
+   <pubDate>Fri, 25 Aug 2017 12:37:39 UT</pubDate>
    <author>logc</author>
    <description>
 &lt;p&gt;After reinstalling &lt;code&gt;java&lt;/code&gt; from &lt;code&gt;brew cask&lt;/code&gt;, it could happen that Maven does not find anymore the JAVA_HOME. The error looks like this:&lt;/p&gt;
@@ -138,17 +174,17 @@ $ sbt ensimeConfig ensimeConfigProject&lt;/code&gt;&lt;/li&gt;&lt;/ul&gt;</descr
 &lt;/div&gt;</description></item>
   <item>
    <title>IntelliJ context menu from keyboard</title>
-   <link>http://logc.github.io/blog/2017/08/24/intellij-context-menu-from-keyboard?utm_source=all&amp;utm_medium=RSS</link>
+   <link>http://logc.github.io/blog/2017/08/24/intellij-context-menu-from-keyboard/?utm_source=all&amp;utm_medium=RSS</link>
    <guid isPermaLink="false">urn:http-logc-github-io:-blog-2017-08-24-intellij-context-menu-from-keyboard</guid>
-   <pubDate>Thu, 24 Aug 2017 13:33:11 UT</pubDate>
+   <pubDate>Thu, 24 Aug 2017 14:33:11 UT</pubDate>
    <author>logc</author>
    <description>
 &lt;p&gt;Looked for this for a long time. Somehow, never found &lt;a href="https://intellij-support.jetbrains.com/hc/en-us/community/posts/206326619-Invoke-popup-menu-from-keyboard"&gt;the existing support answer&lt;/a&gt;. Just created a new shortcut on my personal keymap, with &amp;ldquo;Ctrl + Shift + Enter&amp;rdquo; =&amp;gt; a new life.&lt;/p&gt;</description></item>
   <item>
    <title>Some Git aliases</title>
-   <link>http://logc.github.io/blog/2017/08/15/some-git-aliases?utm_source=all&amp;utm_medium=RSS</link>
+   <link>http://logc.github.io/blog/2017/08/15/some-git-aliases/?utm_source=all&amp;utm_medium=RSS</link>
    <guid isPermaLink="false">urn:http-logc-github-io:-blog-2017-08-15-some-git-aliases</guid>
-   <pubDate>Tue, 15 Aug 2017 15:18:11 UT</pubDate>
+   <pubDate>Tue, 15 Aug 2017 16:18:11 UT</pubDate>
    <author>logc</author>
    <description>
 &lt;p&gt;Here are some of the Git alias configurations that I use. My philosophy in writing them was to keep them descriptive, and &lt;em&gt;not to keep them easy to type&lt;/em&gt;, following the approach in &lt;a href="http://blog.wittchen.biz.pl/my-approach-to-git-aliases/"&gt;this blog post&lt;/a&gt;. In order to keep my typing short, I use the &lt;a href="http://fishshell.com"&gt;fish shell&lt;/a&gt;.&lt;/p&gt;
@@ -178,9 +214,9 @@ $ sbt ensimeConfig ensimeConfigProject&lt;/code&gt;&lt;/li&gt;&lt;/ul&gt;</descr
 status&lt;/code&gt;. In that mindset, I tend to identify branches with directories, and therefore creating and deleting them as if they were directories makes sense.&lt;/p&gt;</description></item>
   <item>
    <title>Minimal C project structure with SCons</title>
-   <link>http://logc.github.io/blog/2016/10/20/minimal-c-project-structure-with-scons?utm_source=all&amp;utm_medium=RSS</link>
+   <link>http://logc.github.io/blog/2016/10/20/minimal-c-project-structure-with-scons/?utm_source=all&amp;utm_medium=RSS</link>
    <guid isPermaLink="false">urn:http-logc-github-io:-blog-2016-10-20-minimal-c-project-structure-with-scons</guid>
-   <pubDate>Thu, 20 Oct 2016 17:17:59 UT</pubDate>
+   <pubDate>Thu, 20 Oct 2016 18:17:59 UT</pubDate>
    <author>logc</author>
    <description>
 &lt;p&gt;This is a possible project structure in order to have a C project using SCons as the build system. It enables you to:&lt;/p&gt;
@@ -359,9 +395,9 @@ status&lt;/code&gt;. In that mindset, I tend to identify branches with directori
 &lt;pre&gt;&lt;code&gt;$ scons --clean&lt;/code&gt;&lt;/pre&gt;</description></item>
   <item>
    <title>Setting up Github Pages with Frog</title>
-   <link>http://logc.github.io/blog/2016/10/03/setting-up-github-pages-with-frog?utm_source=all&amp;utm_medium=RSS</link>
+   <link>http://logc.github.io/blog/2016/10/03/setting-up-github-pages-with-frog/?utm_source=all&amp;utm_medium=RSS</link>
    <guid isPermaLink="false">urn:http-logc-github-io:-blog-2016-10-03-setting-up-github-pages-with-frog</guid>
-   <pubDate>Mon, 03 Oct 2016 17:24:03 UT</pubDate>
+   <pubDate>Mon, 03 Oct 2016 18:24:03 UT</pubDate>
    <author>logc</author>
    <description>
 &lt;p&gt;To set up a static blog in Github Pages using the Racket package Frog, you need to do the following:&lt;/p&gt;
@@ -428,9 +464,9 @@ $ git commit -a
 $ git push&lt;/code&gt;&lt;/pre&gt;</description></item>
   <item>
    <title>Racket and vim-syntastic</title>
-   <link>http://logc.github.io/blog/2016/09/23/racket-and-vim-syntastic?utm_source=all&amp;utm_medium=RSS</link>
+   <link>http://logc.github.io/blog/2016/09/23/racket-and-vim-syntastic/?utm_source=all&amp;utm_medium=RSS</link>
    <guid isPermaLink="false">urn:http-logc-github-io:-blog-2016-09-23-racket-and-vim-syntastic</guid>
-   <pubDate>Fri, 23 Sep 2016 18:48:27 UT</pubDate>
+   <pubDate>Fri, 23 Sep 2016 19:48:27 UT</pubDate>
    <author>logc</author>
    <description>
 &lt;p&gt;The current Syntastic checker for Racket syntax in Vim is the &lt;code&gt;racket&lt;/code&gt; executable itself. This means that the current buffer is executed by Racket whenever it is checked for syntax, and this can have unintended consequences, e.g. entering an infinite loop, if you happen to open the wrong file.&lt;/p&gt;
@@ -440,7 +476,7 @@ $ git push&lt;/code&gt;&lt;/pre&gt;</description></item>
 &lt;pre&gt;&lt;code&gt;let g:syntastic_racket_racket_args="--load"&lt;/code&gt;&lt;/pre&gt;</description></item>
   <item>
    <title>Open files from last commit in Vim</title>
-   <link>http://logc.github.io/blog/2015/07/15/open-files-from-last-commit-in-vim?utm_source=all&amp;utm_medium=RSS</link>
+   <link>http://logc.github.io/blog/2015/07/15/open-files-from-last-commit-in-vim/?utm_source=all&amp;utm_medium=RSS</link>
    <guid isPermaLink="false">urn:http-logc-github-io:-blog-2015-07-15-open-files-from-last-commit-in-vim</guid>
    <pubDate>Sun, 15 Jul 2015 11:05:47 UT</pubDate>
    <author>logc</author>
@@ -460,7 +496,7 @@ $ git push&lt;/code&gt;&lt;/pre&gt;</description></item>
 &lt;pre&gt;&lt;code&gt;$ vim $(git lastedited)&lt;/code&gt;&lt;/pre&gt;</description></item>
   <item>
    <title>If programming languages were music genres</title>
-   <link>http://logc.github.io/blog/2015/02/27/if-programming-languages-were-music-genres?utm_source=all&amp;utm_medium=RSS</link>
+   <link>http://logc.github.io/blog/2015/02/27/if-programming-languages-were-music-genres/?utm_source=all&amp;utm_medium=RSS</link>
    <guid isPermaLink="false">urn:http-logc-github-io:-blog-2015-02-27-if-programming-languages-were-music-genres</guid>
    <pubDate>Sun, 27 Feb 2015 16:52:41 UT</pubDate>
    <author>logc</author>
@@ -485,7 +521,7 @@ $ git push&lt;/code&gt;&lt;/pre&gt;</description></item>
  &lt;li&gt;&lt;strong&gt;Scala: rap rock&lt;/strong&gt; It tries to bring together the best of two worlds and it  largely succeeds. The hardcore fans of each camp will deny there is any need  to blend their styles together, but from time to time find themselves  listening to it and nodding.&lt;/li&gt;&lt;/ul&gt;</description></item>
   <item>
    <title>Python egg tagged with Git commit hash</title>
-   <link>http://logc.github.io/blog/2014/04/01/python-egg-tagged-with-git-commit-hash?utm_source=all&amp;utm_medium=RSS</link>
+   <link>http://logc.github.io/blog/2014/04/01/python-egg-tagged-with-git-commit-hash/?utm_source=all&amp;utm_medium=RSS</link>
    <guid isPermaLink="false">urn:http-logc-github-io:-blog-2014-04-01-python-egg-tagged-with-git-commit-hash</guid>
    <pubDate>Sun, 01 Apr 2014 15:22:00 UT</pubDate>
    <author>logc</author>
@@ -537,7 +573,7 @@ tag_svn_revision = 1&lt;/code&gt;&lt;/pre&gt;
 tag_build =&lt;/code&gt;&lt;/pre&gt;</description></item>
   <item>
    <title>Wordcount in C++</title>
-   <link>http://logc.github.io/blog/2014/01/21/wordcount-in-c?utm_source=all&amp;utm_medium=RSS</link>
+   <link>http://logc.github.io/blog/2014/01/21/wordcount-in-c/?utm_source=all&amp;utm_medium=RSS</link>
    <guid isPermaLink="false">urn:http-logc-github-io:-blog-2014-01-21-wordcount-in-c</guid>
    <pubDate>Sun, 21 Jan 2014 14:52:26 UT</pubDate>
    <author>logc</author>
@@ -631,7 +667,7 @@ tag_build =&lt;/code&gt;&lt;/pre&gt;</description></item>
 &lt;/div&gt;</description></item>
   <item>
    <title>Reduce in standard C++</title>
-   <link>http://logc.github.io/blog/2014/01/20/reduce-in-standard-c?utm_source=all&amp;utm_medium=RSS</link>
+   <link>http://logc.github.io/blog/2014/01/20/reduce-in-standard-c/?utm_source=all&amp;utm_medium=RSS</link>
    <guid isPermaLink="false">urn:http-logc-github-io:-blog-2014-01-20-reduce-in-standard-c</guid>
    <pubDate>Sun, 20 Jan 2014 13:47:25 UT</pubDate>
    <author>logc</author>
@@ -683,7 +719,7 @@ tag_build =&lt;/code&gt;&lt;/pre&gt;</description></item>
 &lt;/div&gt;</description></item>
   <item>
    <title>How do you develop with Yesod</title>
-   <link>http://logc.github.io/blog/2013/12/04/how-do-you-develop-with-yesod?utm_source=all&amp;utm_medium=RSS</link>
+   <link>http://logc.github.io/blog/2013/12/04/how-do-you-develop-with-yesod/?utm_source=all&amp;utm_medium=RSS</link>
    <guid isPermaLink="false">urn:http-logc-github-io:-blog-2013-12-04-how-do-you-develop-with-yesod</guid>
    <pubDate>Sun, 04 Dec 2013 14:39:03 UT</pubDate>
    <author>logc</author>
@@ -932,7 +968,7 @@ Email
   &lt;p&gt;In &lt;code&gt;templates/&amp;lt;name&amp;gt;.{hamlet,lucius,julius}&lt;/code&gt;: write the &lt;strong&gt;templates&lt;/strong&gt; that  are filled out by the handler functions&lt;/p&gt;&lt;/li&gt;&lt;/ol&gt;</description></item>
   <item>
    <title>Instalar Python 2.7 y NumPy sobre RedHat 6</title>
-   <link>http://logc.github.io/blog/2013/12/04/instalar-python-2-7-y-numpy-sobre-redhat-6?utm_source=all&amp;utm_medium=RSS</link>
+   <link>http://logc.github.io/blog/2013/12/04/instalar-python-2-7-y-numpy-sobre-redhat-6/?utm_source=all&amp;utm_medium=RSS</link>
    <guid isPermaLink="false">urn:http-logc-github-io:-blog-2013-12-04-instalar-python-2-7-y-numpy-sobre-redhat-6</guid>
    <pubDate>Sun, 04 Dec 2013 11:44:57 UT</pubDate>
    <author>logc</author>
@@ -974,7 +1010,7 @@ Email
 &lt;p&gt;Este post es una combinación de &lt;a href="http://stackoverflow.com/questions/4149361/on-linux-suse-or-redhat-how-do-i-load-python-2-7"&gt;dos respuestas en Stack Overflow&lt;/a&gt;, y mi propia experiencia con este mismo problema.&lt;/p&gt;</description></item>
   <item>
    <title>Unicode encodings</title>
-   <link>http://logc.github.io/blog/2013/12/03/unicode-encodings?utm_source=all&amp;utm_medium=RSS</link>
+   <link>http://logc.github.io/blog/2013/12/03/unicode-encodings/?utm_source=all&amp;utm_medium=RSS</link>
    <guid isPermaLink="false">urn:http-logc-github-io:-blog-2013-12-03-unicode-encodings</guid>
    <pubDate>Sun, 03 Dec 2013 13:46:19 UT</pubDate>
    <author>logc</author>
@@ -1001,7 +1037,7 @@ Email
 &lt;/div&gt;</description></item>
   <item>
    <title>py2app excludes</title>
-   <link>http://logc.github.io/blog/2013/12/02/py2app-excludes?utm_source=all&amp;utm_medium=RSS</link>
+   <link>http://logc.github.io/blog/2013/12/02/py2app-excludes/?utm_source=all&amp;utm_medium=RSS</link>
    <guid isPermaLink="false">urn:http-logc-github-io:-blog-2013-12-02-py2app-excludes</guid>
    <pubDate>Sun, 02 Dec 2013 20:58:08 UT</pubDate>
    <author>logc</author>
@@ -1084,7 +1120,7 @@ Email
 &lt;/div&gt;</description></item>
   <item>
    <title>Compilar Cython</title>
-   <link>http://logc.github.io/blog/2013/11/19/compilar-cython?utm_source=all&amp;utm_medium=RSS</link>
+   <link>http://logc.github.io/blog/2013/11/19/compilar-cython/?utm_source=all&amp;utm_medium=RSS</link>
    <guid isPermaLink="false">urn:http-logc-github-io:-blog-2013-11-19-compilar-cython</guid>
    <pubDate>Sun, 19 Nov 2013 08:30:14 UT</pubDate>
    <author>logc</author>
@@ -1150,7 +1186,7 @@ building &lt;span class="s1"&gt;&amp;#39;fibonacci&amp;#39;&lt;/span&gt; extensi
 &lt;/div&gt;</description></item>
   <item>
    <title>Infraestructura de lanzamientos locales</title>
-   <link>http://logc.github.io/blog/2013/11/17/infraestructura-de-lanzamientos-locales?utm_source=all&amp;utm_medium=RSS</link>
+   <link>http://logc.github.io/blog/2013/11/17/infraestructura-de-lanzamientos-locales/?utm_source=all&amp;utm_medium=RSS</link>
    <guid isPermaLink="false">urn:http-logc-github-io:-blog-2013-11-17-infraestructura-de-lanzamientos-locales</guid>
    <pubDate>Sun, 17 Nov 2013 21:43:12 UT</pubDate>
    <author>logc</author>

@@ -7,7 +7,7 @@
  <updated>2014-04-01T15:22:00Z</updated>
  <entry>
   <title type="text">Python egg tagged with Git commit hash</title>
-  <link rel="alternate" href="http://logc.github.io/blog/2014/04/01/python-egg-tagged-with-git-commit-hash?utm_source=python&amp;utm_medium=Atom" />
+  <link rel="alternate" href="http://logc.github.io/blog/2014/04/01/python-egg-tagged-with-git-commit-hash/?utm_source=python&amp;utm_medium=Atom" />
   <id>urn:http-logc-github-io:-blog-2014-04-01-python-egg-tagged-with-git-commit-hash</id>
   <published>2014-04-01T15:22:00Z</published>
   <updated>2014-04-01T15:22:00Z</updated>
@@ -61,7 +61,7 @@ tag_svn_revision = 1&lt;/code&gt;&lt;/pre&gt;
 tag_build =&lt;/code&gt;&lt;/pre&gt;</content></entry>
  <entry>
   <title type="text">Instalar Python 2.7 y NumPy sobre RedHat 6</title>
-  <link rel="alternate" href="http://logc.github.io/blog/2013/12/04/instalar-python-2-7-y-numpy-sobre-redhat-6?utm_source=python&amp;utm_medium=Atom" />
+  <link rel="alternate" href="http://logc.github.io/blog/2013/12/04/instalar-python-2-7-y-numpy-sobre-redhat-6/?utm_source=python&amp;utm_medium=Atom" />
   <id>urn:http-logc-github-io:-blog-2013-12-04-instalar-python-2-7-y-numpy-sobre-redhat-6</id>
   <published>2013-12-04T11:44:57Z</published>
   <updated>2013-12-04T11:44:57Z</updated>
@@ -105,7 +105,7 @@ tag_build =&lt;/code&gt;&lt;/pre&gt;</content></entry>
 &lt;p&gt;Este post es una combinación de &lt;a href="http://stackoverflow.com/questions/4149361/on-linux-suse-or-redhat-how-do-i-load-python-2-7"&gt;dos respuestas en Stack Overflow&lt;/a&gt;, y mi propia experiencia con este mismo problema.&lt;/p&gt;</content></entry>
  <entry>
   <title type="text">Unicode encodings</title>
-  <link rel="alternate" href="http://logc.github.io/blog/2013/12/03/unicode-encodings?utm_source=python&amp;utm_medium=Atom" />
+  <link rel="alternate" href="http://logc.github.io/blog/2013/12/03/unicode-encodings/?utm_source=python&amp;utm_medium=Atom" />
   <id>urn:http-logc-github-io:-blog-2013-12-03-unicode-encodings</id>
   <published>2013-12-03T13:46:19Z</published>
   <updated>2013-12-03T13:46:19Z</updated>
@@ -134,7 +134,7 @@ tag_build =&lt;/code&gt;&lt;/pre&gt;</content></entry>
 &lt;/div&gt;</content></entry>
  <entry>
   <title type="text">py2app excludes</title>
-  <link rel="alternate" href="http://logc.github.io/blog/2013/12/02/py2app-excludes?utm_source=python&amp;utm_medium=Atom" />
+  <link rel="alternate" href="http://logc.github.io/blog/2013/12/02/py2app-excludes/?utm_source=python&amp;utm_medium=Atom" />
   <id>urn:http-logc-github-io:-blog-2013-12-02-py2app-excludes</id>
   <published>2013-12-02T20:58:08Z</published>
   <updated>2013-12-02T20:58:08Z</updated>
@@ -219,7 +219,7 @@ tag_build =&lt;/code&gt;&lt;/pre&gt;</content></entry>
 &lt;/div&gt;</content></entry>
  <entry>
   <title type="text">Compilar Cython</title>
-  <link rel="alternate" href="http://logc.github.io/blog/2013/11/19/compilar-cython?utm_source=python&amp;utm_medium=Atom" />
+  <link rel="alternate" href="http://logc.github.io/blog/2013/11/19/compilar-cython/?utm_source=python&amp;utm_medium=Atom" />
   <id>urn:http-logc-github-io:-blog-2013-11-19-compilar-cython</id>
   <published>2013-11-19T08:30:14Z</published>
   <updated>2013-11-19T08:30:14Z</updated>

@@ -6,7 +6,7 @@
     <title>logc io (page 4)</title>
     <meta name="description" content="logc io (page 4)">
     <meta name="author"      content="logc">
-    <meta name="keywords"    content="C++, IntelliJ, blog, python, web, all, build, git, frog, maven, scons, vim, sysadmin, fish, racket, programming, Scala, java, Emacs, haskell, C">
+    <meta name="keywords"    content="C++, Scala, IntelliJ, blog, python, web, all, build, git, java, maven, scons, sysadmin, fish, racket, programming, vim, Emacs, frog, haskell, C">
     <meta name="viewport"    content="width=device-width, initial-scale=1.0">
     <link rel="icon"      href="/favicon.ico">
     <link rel="canonical" href="http://logc.github.io/index-4.html">
@@ -142,7 +142,51 @@
 
             <article>
   <header>
-    <h2><a href='/blog/2013/12/03/unicode-encodings'>Unicode encodings</a></h2>
+    <h2><a href='/blog/2013/12/04/instalar-python-2-7-y-numpy-sobre-redhat-6/'>Instalar Python 2.7 y NumPy sobre RedHat 6</a></h2>
+    <p class='date-and-tags'>
+<time datetime="2013-12-04" pubdate="true">2013-12-04</time> :: <span class="tags"><a href="/tags/python.html">python</a></span></p>
+  </header>
+
+<p>RedHat y centOS tienen la fastidiosa dependencia de su gestor de paquetes, yum, con la versión 2.6 de Python desde tiempos inmemoriales. Lo que en tecnología son unos seis o siete años.</p>
+
+<p>Instalar Python 2.7 no es posible con los repositorios instalados por defecto, y si tienes la mala idea de instalar un repositorio donde sí esté y meterlo como paquete que supedita al python por defecto, te acabas de cargar yum (y la posibilidad más sencilla de deshacer tus cambios).</p>
+
+<p>La mejor manera, pese a lo que pueda parecer, es <strong>instalar desde fuentes</strong>, haciendo lo que se conoce como &ldquo;altinstall&rdquo; (instalación alternativa). Esto crea ejecutables llamados <code>python2.7</code> bajo <code>/usr/local/bin</code>, que <strong>no sobreescriben</strong> el comando <code>python</code> normal del sistema; éste sigue apuntando a un ejecutable bajo <code>/usr/bin</code>.</p>
+
+<div class="brush: console">
+ <div class="highlight">
+  <pre><span></span><span class="gp">$</span> wget http://www.python.org/ftp/python/2.7.6/Python-2.7.6.tgz
+<span class="gp">$</span> tar xvfz Python-2.7.6.tgz
+<span class="gp">$</span> <span class="nb">cd</span> Python-2.7.6
+<span class="gp">$</span> ./configure
+<span class="gp">$</span> make
+<span class="gp">$</span> sudo make altinstall
+</pre></div>
+
+</div>
+
+<p>Además de esto, es recomendable instalar <strong>un <code>easy_install</code> alternativo también</strong>, ya que, si no, todas las librerías de python se instalarán para la 2.6 y no para la 2.7.</p>
+
+<div class="brush: console">
+ <div class="highlight">
+  <pre><span></span><span class="gp">$</span> wget http://pypi.python.org/packages/2.7/s/setuptools/setuptools-0.6c11-py2.7.egg
+<span class="gp">$</span> sudo -i
+<span class="gp">#</span> <span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:/usr/local/bin
+<span class="gp">#</span> sh setuptools-0.6c11-py2.7.egg
+<span class="gp">#</span> <span class="nb">exit</span>
+<span class="gp">$</span> sudo rm /usr/local/bin/easy_install <span class="c1">## remove the symlink that shadows the system easy_install</span>
+<span class="gp">$</span> <span class="c1"># You may now try the easy_install for 2.7 with e.g.:</span>
+<span class="gp">$</span> sudo /usr/local/bin/easy_install-2.7 numpy
+</pre></div>
+
+</div>
+
+<p>Este post es una combinación de <a href="http://stackoverflow.com/questions/4149361/on-linux-suse-or-redhat-how-do-i-load-python-2-7">dos respuestas en Stack Overflow</a>, y mi propia experiencia con este mismo problema.</p>
+
+</article>
+<article>
+  <header>
+    <h2><a href='/blog/2013/12/03/unicode-encodings/'>Unicode encodings</a></h2>
     <p class='date-and-tags'>
 <time datetime="2013-12-03" pubdate="true">2013-12-03</time> :: <span class="tags"><a href="/tags/python.html">python</a></span></p>
   </header>
@@ -171,7 +215,7 @@
 </article>
 <article>
   <header>
-    <h2><a href='/blog/2013/12/02/py2app-excludes'>py2app excludes</a></h2>
+    <h2><a href='/blog/2013/12/02/py2app-excludes/'>py2app excludes</a></h2>
     <p class='date-and-tags'>
 <time datetime="2013-12-02" pubdate="true">2013-12-02</time> :: <span class="tags"><a href="/tags/python.html">python</a></span></p>
   </header>
@@ -256,7 +300,7 @@
 </article>
 <article>
   <header>
-    <h2><a href='/blog/2013/11/19/compilar-cython'>Compilar Cython</a></h2>
+    <h2><a href='/blog/2013/11/19/compilar-cython/'>Compilar Cython</a></h2>
     <p class='date-and-tags'>
 <time datetime="2013-11-19" pubdate="true">2013-11-19</time> :: <span class="tags"><a href="/tags/python.html">python</a></span></p>
   </header>
@@ -324,7 +368,7 @@ building <span class="s1">&#39;fibonacci&#39;</span> extension
 </article>
 <article>
   <header>
-    <h2><a href='/blog/2013/11/17/infraestructura-de-lanzamientos-locales'>Infraestructura de lanzamientos locales</a></h2>
+    <h2><a href='/blog/2013/11/17/infraestructura-de-lanzamientos-locales/'>Infraestructura de lanzamientos locales</a></h2>
     <p class='date-and-tags'>
 <time datetime="2013-11-17" pubdate="true">2013-11-17</time> :: <span class="tags"><a href="/tags/sysadmin.html">sysadmin</a></span></p>
   </header>
@@ -339,7 +383,7 @@ building <span class="s1">&#39;fibonacci&#39;</span> extension
  <li>tener un directorio <code>ports</code> servido por rsync.</li>
  <li>configurar Macports para usar este nuevo repositorio.</li></ul>
   <footer>
-    <a href='/blog/2013/11/17/infraestructura-de-lanzamientos-locales'>&hellip; more &hellip;</a>
+    <a href='/blog/2013/11/17/infraestructura-de-lanzamientos-locales/'>&hellip; more &hellip;</a>
   </footer>
 </article>
 <footer>
@@ -363,9 +407,9 @@ building <span class="s1">&#39;fibonacci&#39;</span> extension
         <a href="http://twitter.github.com/bootstrap/index.html">Bootstrap</a>.
         Cover image by NASA/Bill Ingalls [Public domain], via Wikimedia Commons.
         </p>
-        <p>This page was last built on Tuesday, December 19th, 2017</p>
+        <p>This page was last built on Monday, April 30th, 2018</p>
 
-        <p><em>© Copyright 2017, Luis Osa</em>.</p>
+        <p><em>© Copyright 2018, Luis Osa</em>.</p>
       </footer>
     </div>
     <!-- </body> JS -->

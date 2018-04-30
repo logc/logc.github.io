@@ -4,13 +4,13 @@
  <link rel="self" href="http://logc.github.io/feeds/web.atom.xml" />
  <link href="http://logc.github.io/tags/web.html" />
  <id>urn:http-logc-github-io:-tags-web-html</id>
- <updated>2017-12-19T18:15:41Z</updated>
+ <updated>2017-12-19T19:15:41Z</updated>
  <entry>
   <title type="text">Minimal Racket web app</title>
-  <link rel="alternate" href="http://logc.github.io/blog/2017/12/19/minimal-racket-web-app?utm_source=web&amp;utm_medium=Atom" />
+  <link rel="alternate" href="http://logc.github.io/blog/2017/12/19/minimal-racket-web-app/?utm_source=web&amp;utm_medium=Atom" />
   <id>urn:http-logc-github-io:-blog-2017-12-19-minimal-racket-web-app</id>
-  <published>2017-12-19T18:15:41Z</published>
-  <updated>2017-12-19T18:15:41Z</updated>
+  <published>2017-12-19T19:15:41Z</published>
+  <updated>2017-12-19T19:15:41Z</updated>
   <author>
    <name>logc</name></author>
   <content type="html">
@@ -83,7 +83,7 @@ Hello world!
 &lt;/div&gt;</content></entry>
  <entry>
   <title type="text">How do you develop with Yesod</title>
-  <link rel="alternate" href="http://logc.github.io/blog/2013/12/04/how-do-you-develop-with-yesod?utm_source=web&amp;utm_medium=Atom" />
+  <link rel="alternate" href="http://logc.github.io/blog/2013/12/04/how-do-you-develop-with-yesod/?utm_source=web&amp;utm_medium=Atom" />
   <id>urn:http-logc-github-io:-blog-2013-12-04-how-do-you-develop-with-yesod</id>
   <published>2013-12-04T14:39:03Z</published>
   <updated>2013-12-04T14:39:03Z</updated>

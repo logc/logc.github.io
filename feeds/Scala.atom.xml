@@ -4,13 +4,13 @@
  <link rel="self" href="http://logc.github.io/feeds/Scala.atom.xml" />
  <link href="http://logc.github.io/tags/Scala.html" />
  <id>urn:http-logc-github-io:-tags-Scala-html</id>
- <updated>2017-09-05T12:47:32Z</updated>
+ <updated>2017-09-05T13:47:32Z</updated>
  <entry>
   <title type="text">Ensime server crash because of transitive dependency</title>
-  <link rel="alternate" href="http://logc.github.io/blog/2017/09/05/ensime-server-crash-because-of-transitive-dependency?utm_source=Scala&amp;utm_medium=Atom" />
+  <link rel="alternate" href="http://logc.github.io/blog/2017/09/05/ensime-server-crash-because-of-transitive-dependency/?utm_source=Scala&amp;utm_medium=Atom" />
   <id>urn:http-logc-github-io:-blog-2017-09-05-ensime-server-crash-because-of-transitive-dependency</id>
-  <published>2017-09-05T12:47:32Z</published>
-  <updated>2017-09-05T12:47:32Z</updated>
+  <published>2017-09-05T13:47:32Z</published>
+  <updated>2017-09-05T13:47:32Z</updated>
   <author>
    <name>logc</name></author>
   <content type="html">

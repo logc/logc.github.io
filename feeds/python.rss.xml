@@ -9,7 +9,7 @@
   <ttl>1800</ttl>
   <item>
    <title>Python egg tagged with Git commit hash</title>
-   <link>http://logc.github.io/blog/2014/04/01/python-egg-tagged-with-git-commit-hash?utm_source=python&amp;utm_medium=RSS</link>
+   <link>http://logc.github.io/blog/2014/04/01/python-egg-tagged-with-git-commit-hash/?utm_source=python&amp;utm_medium=RSS</link>
    <guid isPermaLink="false">urn:http-logc-github-io:-blog-2014-04-01-python-egg-tagged-with-git-commit-hash</guid>
    <pubDate>Sun, 01 Apr 2014 15:22:00 UT</pubDate>
    <author>logc</author>
@@ -61,7 +61,7 @@ tag_svn_revision = 1&lt;/code&gt;&lt;/pre&gt;
 tag_build =&lt;/code&gt;&lt;/pre&gt;</description></item>
   <item>
    <title>Instalar Python 2.7 y NumPy sobre RedHat 6</title>
-   <link>http://logc.github.io/blog/2013/12/04/instalar-python-2-7-y-numpy-sobre-redhat-6?utm_source=python&amp;utm_medium=RSS</link>
+   <link>http://logc.github.io/blog/2013/12/04/instalar-python-2-7-y-numpy-sobre-redhat-6/?utm_source=python&amp;utm_medium=RSS</link>
    <guid isPermaLink="false">urn:http-logc-github-io:-blog-2013-12-04-instalar-python-2-7-y-numpy-sobre-redhat-6</guid>
    <pubDate>Sun, 04 Dec 2013 11:44:57 UT</pubDate>
    <author>logc</author>
@@ -103,7 +103,7 @@ tag_build =&lt;/code&gt;&lt;/pre&gt;</description></item>
 &lt;p&gt;Este post es una combinación de &lt;a href="http://stackoverflow.com/questions/4149361/on-linux-suse-or-redhat-how-do-i-load-python-2-7"&gt;dos respuestas en Stack Overflow&lt;/a&gt;, y mi propia experiencia con este mismo problema.&lt;/p&gt;</description></item>
   <item>
    <title>Unicode encodings</title>
-   <link>http://logc.github.io/blog/2013/12/03/unicode-encodings?utm_source=python&amp;utm_medium=RSS</link>
+   <link>http://logc.github.io/blog/2013/12/03/unicode-encodings/?utm_source=python&amp;utm_medium=RSS</link>
    <guid isPermaLink="false">urn:http-logc-github-io:-blog-2013-12-03-unicode-encodings</guid>
    <pubDate>Sun, 03 Dec 2013 13:46:19 UT</pubDate>
    <author>logc</author>
@@ -130,7 +130,7 @@ tag_build =&lt;/code&gt;&lt;/pre&gt;</description></item>
 &lt;/div&gt;</description></item>
   <item>
    <title>py2app excludes</title>
-   <link>http://logc.github.io/blog/2013/12/02/py2app-excludes?utm_source=python&amp;utm_medium=RSS</link>
+   <link>http://logc.github.io/blog/2013/12/02/py2app-excludes/?utm_source=python&amp;utm_medium=RSS</link>
    <guid isPermaLink="false">urn:http-logc-github-io:-blog-2013-12-02-py2app-excludes</guid>
    <pubDate>Sun, 02 Dec 2013 20:58:08 UT</pubDate>
    <author>logc</author>
@@ -213,7 +213,7 @@ tag_build =&lt;/code&gt;&lt;/pre&gt;</description></item>
 &lt;/div&gt;</description></item>
   <item>
    <title>Compilar Cython</title>
-   <link>http://logc.github.io/blog/2013/11/19/compilar-cython?utm_source=python&amp;utm_medium=RSS</link>
+   <link>http://logc.github.io/blog/2013/11/19/compilar-cython/?utm_source=python&amp;utm_medium=RSS</link>
    <guid isPermaLink="false">urn:http-logc-github-io:-blog-2013-11-19-compilar-cython</guid>
    <pubDate>Sun, 19 Nov 2013 08:30:14 UT</pubDate>
    <author>logc</author>

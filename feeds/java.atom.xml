@@ -4,13 +4,13 @@
  <link rel="self" href="http://logc.github.io/feeds/java.atom.xml" />
  <link href="http://logc.github.io/tags/java.html" />
  <id>urn:http-logc-github-io:-tags-java-html</id>
- <updated>2017-08-25T11:37:39Z</updated>
+ <updated>2017-08-25T12:37:39Z</updated>
  <entry>
   <title type="text">Maven does not find JAVA_HOME in Fish shell</title>
-  <link rel="alternate" href="http://logc.github.io/blog/2017/08/25/maven-does-not-find-java-home-in-fish-shell?utm_source=java&amp;utm_medium=Atom" />
+  <link rel="alternate" href="http://logc.github.io/blog/2017/08/25/maven-does-not-find-java-home-in-fish-shell/?utm_source=java&amp;utm_medium=Atom" />
   <id>urn:http-logc-github-io:-blog-2017-08-25-maven-does-not-find-java-home-in-fish-shell</id>
-  <published>2017-08-25T11:37:39Z</published>
-  <updated>2017-08-25T11:37:39Z</updated>
+  <published>2017-08-25T12:37:39Z</published>
+  <updated>2017-08-25T12:37:39Z</updated>
   <author>
    <name>logc</name></author>
   <content type="html">

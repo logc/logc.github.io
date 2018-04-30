@@ -4,14 +4,14 @@
   <title>logc io: Posts tagged 'racket'</title>
   <description>logc io: Posts tagged 'racket'</description>
   <link>http://logc.github.io/tags/racket.html</link>
-  <lastBuildDate>Tue, 19 Dec 2017 18:15:41 UT</lastBuildDate>
-  <pubDate>Tue, 19 Dec 2017 18:15:41 UT</pubDate>
+  <lastBuildDate>Tue, 19 Dec 2017 19:15:41 UT</lastBuildDate>
+  <pubDate>Tue, 19 Dec 2017 19:15:41 UT</pubDate>
   <ttl>1800</ttl>
   <item>
    <title>Minimal Racket web app</title>
-   <link>http://logc.github.io/blog/2017/12/19/minimal-racket-web-app?utm_source=racket&amp;utm_medium=RSS</link>
+   <link>http://logc.github.io/blog/2017/12/19/minimal-racket-web-app/?utm_source=racket&amp;utm_medium=RSS</link>
    <guid isPermaLink="false">urn:http-logc-github-io:-blog-2017-12-19-minimal-racket-web-app</guid>
-   <pubDate>Tue, 19 Dec 2017 18:15:41 UT</pubDate>
+   <pubDate>Tue, 19 Dec 2017 19:15:41 UT</pubDate>
    <author>logc</author>
    <description>
 &lt;p&gt;This is the simplest module that responds to HTTP requests.&lt;/p&gt;
@@ -83,9 +83,9 @@ Hello world!
 &lt;/div&gt;</description></item>
   <item>
    <title>Setting up Github Pages with Frog</title>
-   <link>http://logc.github.io/blog/2016/10/03/setting-up-github-pages-with-frog?utm_source=racket&amp;utm_medium=RSS</link>
+   <link>http://logc.github.io/blog/2016/10/03/setting-up-github-pages-with-frog/?utm_source=racket&amp;utm_medium=RSS</link>
    <guid isPermaLink="false">urn:http-logc-github-io:-blog-2016-10-03-setting-up-github-pages-with-frog</guid>
-   <pubDate>Mon, 03 Oct 2016 17:24:03 UT</pubDate>
+   <pubDate>Mon, 03 Oct 2016 18:24:03 UT</pubDate>
    <author>logc</author>
    <description>
 &lt;p&gt;To set up a static blog in Github Pages using the Racket package Frog, you need to do the following:&lt;/p&gt;
@@ -152,9 +152,9 @@ $ git commit -a
 $ git push&lt;/code&gt;&lt;/pre&gt;</description></item>
   <item>
    <title>Racket and vim-syntastic</title>
-   <link>http://logc.github.io/blog/2016/09/23/racket-and-vim-syntastic?utm_source=racket&amp;utm_medium=RSS</link>
+   <link>http://logc.github.io/blog/2016/09/23/racket-and-vim-syntastic/?utm_source=racket&amp;utm_medium=RSS</link>
    <guid isPermaLink="false">urn:http-logc-github-io:-blog-2016-09-23-racket-and-vim-syntastic</guid>
-   <pubDate>Fri, 23 Sep 2016 18:48:27 UT</pubDate>
+   <pubDate>Fri, 23 Sep 2016 19:48:27 UT</pubDate>
    <author>logc</author>
    <description>
 &lt;p&gt;The current Syntastic checker for Racket syntax in Vim is the &lt;code&gt;racket&lt;/code&gt; executable itself. This means that the current buffer is executed by Racket whenever it is checked for syntax, and this can have unintended consequences, e.g. entering an infinite loop, if you happen to open the wrong file.&lt;/p&gt;

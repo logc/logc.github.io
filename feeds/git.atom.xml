@@ -4,13 +4,51 @@
  <link rel="self" href="http://logc.github.io/feeds/git.atom.xml" />
  <link href="http://logc.github.io/tags/git.html" />
  <id>urn:http-logc-github-io:-tags-git-html</id>
- <updated>2017-08-15T15:18:11Z</updated>
+ <updated>2018-04-30T09:46:41Z</updated>
+ <entry>
+  <title type="text">Git setup with fork and upstream</title>
+  <link rel="alternate" href="http://logc.github.io/blog/2018/04/30/git-setup-with-fork-and-upstream/?utm_source=git&amp;utm_medium=Atom" />
+  <id>urn:http-logc-github-io:-blog-2018-04-30-git-setup-with-fork-and-upstream</id>
+  <published>2018-04-30T09:46:41Z</published>
+  <updated>2018-04-30T09:46:41Z</updated>
+  <author>
+   <name>logc</name></author>
+  <content type="html">
+&lt;p&gt;Here is how to setup a fresh clone of a git repository so that it pulls changes from an upstream, but only pushes by default to another repository (usually, your own fork of the project).&lt;/p&gt;
+
+&lt;p&gt;I use the fish shell. If you use Bash or Zsh it should be straightforward to define these variables in your environment.&lt;/p&gt;
+
+&lt;div class="brush: fish"&gt;
+ &lt;div class="highlight"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;set&lt;/span&gt; gituser logc
+&lt;span class="k"&gt;set&lt;/span&gt; gitproject chat
+&lt;span class="k"&gt;set&lt;/span&gt; gitorg NacionLumpen
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;p&gt;And this is how to setup the clone:&lt;/p&gt;
+
+&lt;div class="brush: fish"&gt;
+ &lt;div class="highlight"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;git clone git@github.com:&lt;span class="nv"&gt;$gituser&lt;/span&gt;/&lt;span class="nv"&gt;$gitproject&lt;/span&gt;.git
+&lt;span class="k"&gt;cd&lt;/span&gt; &lt;span class="nv"&gt;$gitproject&lt;/span&gt;
+git remote add upstream git@github.com:&lt;span class="nv"&gt;$gitorg&lt;/span&gt;/&lt;span class="nv"&gt;$gitproject&lt;/span&gt;.git
+git remote rename origin fork
+git fetch upstream
+git branch --set-upstream-to&lt;span class="o"&gt;=&lt;/span&gt;upstream/master
+git config remote.pushDefault fork
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;p&gt;As always with git, it is trivial, if your name is &amp;lsquo;Linus&amp;rsquo; :)&lt;/p&gt;</content></entry>
  <entry>
   <title type="text">Some Git aliases</title>
-  <link rel="alternate" href="http://logc.github.io/blog/2017/08/15/some-git-aliases?utm_source=git&amp;utm_medium=Atom" />
+  <link rel="alternate" href="http://logc.github.io/blog/2017/08/15/some-git-aliases/?utm_source=git&amp;utm_medium=Atom" />
   <id>urn:http-logc-github-io:-blog-2017-08-15-some-git-aliases</id>
-  <published>2017-08-15T15:18:11Z</published>
-  <updated>2017-08-15T15:18:11Z</updated>
+  <published>2017-08-15T16:18:11Z</published>
+  <updated>2017-08-15T16:18:11Z</updated>
   <author>
    <name>logc</name></author>
   <content type="html">
@@ -41,7 +79,7 @@
 status&lt;/code&gt;. In that mindset, I tend to identify branches with directories, and therefore creating and deleting them as if they were directories makes sense.&lt;/p&gt;</content></entry>
  <entry>
   <title type="text">Open files from last commit in Vim</title>
-  <link rel="alternate" href="http://logc.github.io/blog/2015/07/15/open-files-from-last-commit-in-vim?utm_source=git&amp;utm_medium=Atom" />
+  <link rel="alternate" href="http://logc.github.io/blog/2015/07/15/open-files-from-last-commit-in-vim/?utm_source=git&amp;utm_medium=Atom" />
   <id>urn:http-logc-github-io:-blog-2015-07-15-open-files-from-last-commit-in-vim</id>
   <published>2015-07-15T11:05:47Z</published>
   <updated>2015-07-15T11:05:47Z</updated>
@@ -63,7 +101,7 @@ status&lt;/code&gt;. In that mindset, I tend to identify branches with directori
 &lt;pre&gt;&lt;code&gt;$ vim $(git lastedited)&lt;/code&gt;&lt;/pre&gt;</content></entry>
  <entry>
   <title type="text">Python egg tagged with Git commit hash</title>
-  <link rel="alternate" href="http://logc.github.io/blog/2014/04/01/python-egg-tagged-with-git-commit-hash?utm_source=git&amp;utm_medium=Atom" />
+  <link rel="alternate" href="http://logc.github.io/blog/2014/04/01/python-egg-tagged-with-git-commit-hash/?utm_source=git&amp;utm_medium=Atom" />
   <id>urn:http-logc-github-io:-blog-2014-04-01-python-egg-tagged-with-git-commit-hash</id>
   <published>2014-04-01T15:22:00Z</published>
   <updated>2014-04-01T15:22:00Z</updated>

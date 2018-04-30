@@ -4,14 +4,50 @@
   <title>logc io: Posts tagged 'git'</title>
   <description>logc io: Posts tagged 'git'</description>
   <link>http://logc.github.io/tags/git.html</link>
-  <lastBuildDate>Tue, 15 Aug 2017 15:18:11 UT</lastBuildDate>
-  <pubDate>Tue, 15 Aug 2017 15:18:11 UT</pubDate>
+  <lastBuildDate>Mon, 30 Apr 2018 09:46:41 UT</lastBuildDate>
+  <pubDate>Mon, 30 Apr 2018 09:46:41 UT</pubDate>
   <ttl>1800</ttl>
   <item>
+   <title>Git setup with fork and upstream</title>
+   <link>http://logc.github.io/blog/2018/04/30/git-setup-with-fork-and-upstream/?utm_source=git&amp;utm_medium=RSS</link>
+   <guid isPermaLink="false">urn:http-logc-github-io:-blog-2018-04-30-git-setup-with-fork-and-upstream</guid>
+   <pubDate>Mon, 30 Apr 2018 09:46:41 UT</pubDate>
+   <author>logc</author>
+   <description>
+&lt;p&gt;Here is how to setup a fresh clone of a git repository so that it pulls changes from an upstream, but only pushes by default to another repository (usually, your own fork of the project).&lt;/p&gt;
+
+&lt;p&gt;I use the fish shell. If you use Bash or Zsh it should be straightforward to define these variables in your environment.&lt;/p&gt;
+
+&lt;div class="brush: fish"&gt;
+ &lt;div class="highlight"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;set&lt;/span&gt; gituser logc
+&lt;span class="k"&gt;set&lt;/span&gt; gitproject chat
+&lt;span class="k"&gt;set&lt;/span&gt; gitorg NacionLumpen
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;p&gt;And this is how to setup the clone:&lt;/p&gt;
+
+&lt;div class="brush: fish"&gt;
+ &lt;div class="highlight"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;git clone git@github.com:&lt;span class="nv"&gt;$gituser&lt;/span&gt;/&lt;span class="nv"&gt;$gitproject&lt;/span&gt;.git
+&lt;span class="k"&gt;cd&lt;/span&gt; &lt;span class="nv"&gt;$gitproject&lt;/span&gt;
+git remote add upstream git@github.com:&lt;span class="nv"&gt;$gitorg&lt;/span&gt;/&lt;span class="nv"&gt;$gitproject&lt;/span&gt;.git
+git remote rename origin fork
+git fetch upstream
+git branch --set-upstream-to&lt;span class="o"&gt;=&lt;/span&gt;upstream/master
+git config remote.pushDefault fork
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;p&gt;As always with git, it is trivial, if your name is &amp;lsquo;Linus&amp;rsquo; :)&lt;/p&gt;</description></item>
+  <item>
    <title>Some Git aliases</title>
-   <link>http://logc.github.io/blog/2017/08/15/some-git-aliases?utm_source=git&amp;utm_medium=RSS</link>
+   <link>http://logc.github.io/blog/2017/08/15/some-git-aliases/?utm_source=git&amp;utm_medium=RSS</link>
    <guid isPermaLink="false">urn:http-logc-github-io:-blog-2017-08-15-some-git-aliases</guid>
-   <pubDate>Tue, 15 Aug 2017 15:18:11 UT</pubDate>
+   <pubDate>Tue, 15 Aug 2017 16:18:11 UT</pubDate>
    <author>logc</author>
    <description>
 &lt;p&gt;Here are some of the Git alias configurations that I use. My philosophy in writing them was to keep them descriptive, and &lt;em&gt;not to keep them easy to type&lt;/em&gt;, following the approach in &lt;a href="http://blog.wittchen.biz.pl/my-approach-to-git-aliases/"&gt;this blog post&lt;/a&gt;. In order to keep my typing short, I use the &lt;a href="http://fishshell.com"&gt;fish shell&lt;/a&gt;.&lt;/p&gt;
@@ -41,7 +77,7 @@
 status&lt;/code&gt;. In that mindset, I tend to identify branches with directories, and therefore creating and deleting them as if they were directories makes sense.&lt;/p&gt;</description></item>
   <item>
    <title>Open files from last commit in Vim</title>
-   <link>http://logc.github.io/blog/2015/07/15/open-files-from-last-commit-in-vim?utm_source=git&amp;utm_medium=RSS</link>
+   <link>http://logc.github.io/blog/2015/07/15/open-files-from-last-commit-in-vim/?utm_source=git&amp;utm_medium=RSS</link>
    <guid isPermaLink="false">urn:http-logc-github-io:-blog-2015-07-15-open-files-from-last-commit-in-vim</guid>
    <pubDate>Sun, 15 Jul 2015 11:05:47 UT</pubDate>
    <author>logc</author>
@@ -61,7 +97,7 @@ status&lt;/code&gt;. In that mindset, I tend to identify branches with directori
 &lt;pre&gt;&lt;code&gt;$ vim $(git lastedited)&lt;/code&gt;&lt;/pre&gt;</description></item>
   <item>
    <title>Python egg tagged with Git commit hash</title>
-   <link>http://logc.github.io/blog/2014/04/01/python-egg-tagged-with-git-commit-hash?utm_source=git&amp;utm_medium=RSS</link>
+   <link>http://logc.github.io/blog/2014/04/01/python-egg-tagged-with-git-commit-hash/?utm_source=git&amp;utm_medium=RSS</link>
    <guid isPermaLink="false">urn:http-logc-github-io:-blog-2014-04-01-python-egg-tagged-with-git-commit-hash</guid>
    <pubDate>Sun, 01 Apr 2014 15:22:00 UT</pubDate>
    <author>logc</author>
