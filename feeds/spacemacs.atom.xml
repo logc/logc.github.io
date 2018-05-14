@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?> 
-<rss version="2.0">
- <channel>
-  <title>logc io: Posts tagged 'scala'</title>
-  <description>logc io: Posts tagged 'scala'</description>
-  <link>http://logc.github.io/tags/scala.html</link>
-  <lastBuildDate>Mon, 14 May 2018 14:08:11 UT</lastBuildDate>
-  <pubDate>Mon, 14 May 2018 14:08:11 UT</pubDate>
-  <ttl>1800</ttl>
-  <item>
-   <title>Debug Scala with Spacemacs</title>
-   <link>http://logc.github.io/blog/2018/05/14/debug-scala-with-spacemacs/?utm_source=scala&amp;utm_medium=RSS</link>
-   <guid isPermaLink="false">urn:http-logc-github-io:-blog-2018-05-14-debug-scala-with-spacemacs</guid>
-   <pubDate>Mon, 14 May 2018 14:08:11 UT</pubDate>
-   <author>logc</author>
-   <description>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+ <title type="text">logc io: Posts tagged 'spacemacs'</title>
+ <link rel="self" href="http://logc.github.io/feeds/spacemacs.atom.xml" />
+ <link href="http://logc.github.io/tags/spacemacs.html" />
+ <id>urn:http-logc-github-io:-tags-spacemacs-html</id>
+ <updated>2018-05-14T14:08:11Z</updated>
+ <entry>
+  <title type="text">Debug Scala with Spacemacs</title>
+  <link rel="alternate" href="http://logc.github.io/blog/2018/05/14/debug-scala-with-spacemacs/?utm_source=spacemacs&amp;utm_medium=Atom" />
+  <id>urn:http-logc-github-io:-blog-2018-05-14-debug-scala-with-spacemacs</id>
+  <published>2018-05-14T14:08:11Z</published>
+  <updated>2018-05-14T14:08:11Z</updated>
+  <author>
+   <name>logc</name></author>
+  <content type="html">
 &lt;p&gt;The &lt;a href="http://ensime.github.io/editors/emacs/userguide/#debugging"&gt;documentation about debugging in ENSIME&lt;/a&gt; was a bit confusing to me. Here are my notes on how to start debugging an (sbt-based) Scala project from Emacs (Spacemacs):&lt;/p&gt;
 
 &lt;ol&gt;
@@ -28,4 +28,4 @@ Listening for transport dt_socket at address: 5005&lt;/code&gt;&lt;/pre&gt;&lt;/
   &lt;p&gt;Attach to the debugger by using &lt;code&gt;, d A&lt;/code&gt;. The first time, you will need to  specify Host (&lt;code&gt;localhost&lt;/code&gt;) and Port (the number in the &lt;code&gt;Listening for
    transport ...&lt;/code&gt; line above)&lt;/p&gt;&lt;/li&gt;
  &lt;li&gt;
-  &lt;p&gt;When (if) the debugger hits the line where your breakpoint is set, the Emacs  cursor will jump to that position, and you can start using other debugging  commands (&lt;code&gt;, d n&lt;/code&gt;, &lt;code&gt;, d i&lt;/code&gt;, etc &amp;hellip;)&lt;/p&gt;&lt;/li&gt;&lt;/ol&gt;</description></item></channel></rss>
+  &lt;p&gt;When (if) the debugger hits the line where your breakpoint is set, the Emacs  cursor will jump to that position, and you can start using other debugging  commands (&lt;code&gt;, d n&lt;/code&gt;, &lt;code&gt;, d i&lt;/code&gt;, etc &amp;hellip;)&lt;/p&gt;&lt;/li&gt;&lt;/ol&gt;</content></entry></feed>

@@ -3,15 +3,15 @@
   <head>
 
     <meta charset="utf-8">
-    <title>Setting up Github Pages with Frog</title>
-    <meta name="description" content="To set up a static blog in Github Pages using the Racket package Frog, you need to do the following:   download and install Racket (duh!) install Frog with raco:  `$ raco install frog`  create a folder and initialize a Frog project there:  `$ mkdir new-bl...">
+    <title>Posts tagged 'spacemacs'</title>
+    <meta name="description" content="Posts tagged 'spacemacs'">
     <meta name="author"      content="logc">
-    <meta name="keywords"    content="racket, frog, blog">
+    <meta name="keywords"    content="spacemacs">
     <meta name="viewport"    content="width=device-width, initial-scale=1.0">
     <link rel="icon"      href="/favicon.ico">
-    <link rel="canonical" href="http://logc.github.io/blog/2016/10/03/setting-up-github-pages-with-frog/">
-    <link rel="next" href="/blog/2016/09/23/racket-and-vim-syntastic/">
-    <link rel="prev" href="/blog/2016/10/20/minimal-c-project-structure-with-scons/">
+    <link rel="canonical" href="http://logc.github.io/tags/spacemacs.html">
+
+
     <!-- CSS -->
     <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="/css/pygments.css">
@@ -21,9 +21,9 @@
     <link href="https://fonts.googleapis.com/css?family=Fira+Mono" rel="stylesheet">
     <!-- Feeds -->
     <link rel="alternate" type="application/atom+xml"
-          href="/feeds/all.atom.xml" title="Atom Feed">
+          href="/feeds/spacemacs.atom.xml" title="Atom Feed">
     <link rel="alternate" type="application/rss+xml"
-          href="/feeds/all.rss.xml" title="RSS Feed">
+          href="/feeds/spacemacs.rss.xml" title="RSS Feed">
     <!-- JS -->
     <script type="text/javascript">
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -119,8 +119,8 @@
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 Feeds <b class="caret"></b></a>
               <ul class="dropdown-menu">
-                <li><a href="/feeds/all.atom.xml">Atom</a></li>
-                <li><a href="/feeds/all.rss.xml">RSS</a></li>
+                <li><a href="/feeds/spacemacs.atom.xml">Atom</a></li>
+                <li><a href="/feeds/spacemacs.rss.xml">RSS</a></li>
               </ul>
             </li>
           </ul>
@@ -142,87 +142,31 @@
 
 
 
-
+            <h1>Posts tagged <em>spacemacs</em></h1>
 
             <article>
   <header>
-    <h1>Setting up Github Pages with Frog</h1>
+    <h2><a href='/blog/2018/05/14/debug-scala-with-spacemacs/'>Debug Scala with Spacemacs</a></h2>
     <p class='date-and-tags'>
-<time datetime="2016-10-03" pubdate="true">2016-10-03</time> :: <span class="tags"><a href="/tags/racket.html">racket</a>, <a href="/tags/frog.html">frog</a>, <a href="/tags/blog.html">blog</a></span></p>
+<time datetime="2018-05-14" pubdate="true">2018-05-14</time> :: <span class="tags"><a href="/tags/scala.html">scala</a>, <a href="/tags/spacemacs.html">spacemacs</a></span></p>
   </header>
 
-<p>To set up a static blog in Github Pages using the Racket package Frog, you need to do the following:</p>
+<p>The <a href="http://ensime.github.io/editors/emacs/userguide/#debugging">documentation about debugging in ENSIME</a> was a bit confusing to me. Here are my notes on how to start debugging an (sbt-based) Scala project from Emacs (Spacemacs):</p>
 
-<ul>
- <li>download and install Racket (duh!)</li>
- <li>install Frog with raco:</li></ul>
-
-<pre><code>$ raco install frog</code></pre>
-
-<ul>
- <li>create a folder and initialize a Frog project there:</li></ul>
-
-<pre><code>$ mkdir new-blog
-$ cd new-blog
-$ raco frog --init</code></pre>
-
-<ul>
+<ol>
  <li>
-  <p>customize the .frogrc file. Set at least scheme/host to https://your-username.github.io, and title &amp; author to whatever you want.</p></li>
+  <p>Launch the debugger from the sbt console first. Use the sbt-mode shell. I  don&rsquo;t really know if this works launching SBT on a terminal not running under  Emacs. Use <code>ensimeTestOnlyDebug</code> if you are running a test, otherwise use  <code>ensimeRunDebug</code> for an implementation class.</p>
+  <pre><code>&gt; ensimeTestOnlyDebug com.company.division.squad.project.package.TestClass
+...
+Listening for transport dt_socket at address: 5005</code></pre></li>
  <li>
-  <p>add some content of your own:</p></li></ul>
+  <p>Set a breakpoint in a source code line by moving your cursor to that line and  using <code>, d b</code></p></li>
+ <li>
+  <p>Attach to the debugger by using <code>, d A</code>. The first time, you will need to  specify Host (<code>localhost</code>) and Port (the number in the <code>Listening for
+   transport ...</code> line above)</p></li>
+ <li>
+  <p>When (if) the debugger hits the line where your breakpoint is set, the Emacs  cursor will jump to that position, and you can start using other debugging  commands (<code>, d n</code>, <code>, d i</code>, etc &hellip;)</p></li></ol>
 
-<pre><code>$ raco frog -n "New post"
-# ... output says something like:
-~/new-blog/_src/posts/2016-10-03-new-post.md
-# ... edit that file with your preferred editor ...
-when you are finished editing, preview your glorious site with
-
-$ raco frog -bp</code></pre>
-
-<ul>
- <li>initialize an empty Git repository on the project folder, and tell git to  ignore the Frog machinery and your source directory</li></ul>
-
-<pre><code>$ git init .
-$ cat &lt;&lt; EOF &gt; .gitignore
-/.frog/
-/.frogrc
-/_src/
-EOF</code></pre>
-
-<ul>
- <li>commit everything, except for what we just ignored</li></ul>
-
-<pre><code>$ git add .
-$ git commit</code></pre>
-
-<ul>
- <li>on github.com, create a new repository with the name your-username.github.io.  Once created, add it as a remote to your local repo, and push your local master  to it.</li></ul>
-
-<pre><code>$ git remote add origin &lt;your new repo&gt;
-$ git push -u origin master</code></pre>
-
-<ul>
- <li>after some seconds, your new blog should be available as http://your-username.github.io</li></ul>
-
-<p>Now, each time that you want to add a new post, it’s just a matter of</p>
-
-<pre><code>$ raco frog -n "Another post"
-# ... edit that post ...
-$ raco frog -b
-$ git add .
-$ git commit -a
-$ git push</code></pre>
-  <footer>
-    <ul class="pager">
-    <li class="previous">
-      <a href="/blog/2016/10/20/minimal-c-project-structure-with-scons/">&larr; <em>Minimal C project structure with SCons</em></a>
-    </li>
-    <li class="next">
-      <a href="/blog/2016/09/23/racket-and-vim-syntastic/"><em>Racket and vim-syntastic</em> &rarr;</a>
-    </li>
-    </ul>
-  </footer>
 </article>
           </div>
         </div>

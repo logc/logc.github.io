@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?> 
 <rss version="2.0">
  <channel>
-  <title>logc io: Posts tagged 'scala'</title>
-  <description>logc io: Posts tagged 'scala'</description>
-  <link>http://logc.github.io/tags/scala.html</link>
+  <title>logc io: Posts tagged 'spacemacs'</title>
+  <description>logc io: Posts tagged 'spacemacs'</description>
+  <link>http://logc.github.io/tags/spacemacs.html</link>
   <lastBuildDate>Mon, 14 May 2018 14:08:11 UT</lastBuildDate>
   <pubDate>Mon, 14 May 2018 14:08:11 UT</pubDate>
   <ttl>1800</ttl>
   <item>
    <title>Debug Scala with Spacemacs</title>
-   <link>http://logc.github.io/blog/2018/05/14/debug-scala-with-spacemacs/?utm_source=scala&amp;utm_medium=RSS</link>
+   <link>http://logc.github.io/blog/2018/05/14/debug-scala-with-spacemacs/?utm_source=spacemacs&amp;utm_medium=RSS</link>
    <guid isPermaLink="false">urn:http-logc-github-io:-blog-2018-05-14-debug-scala-with-spacemacs</guid>
    <pubDate>Mon, 14 May 2018 14:08:11 UT</pubDate>
    <author>logc</author>

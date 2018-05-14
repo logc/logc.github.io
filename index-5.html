@@ -3,15 +3,15 @@
   <head>
 
     <meta charset="utf-8">
-    <title>Setting up Github Pages with Frog</title>
-    <meta name="description" content="To set up a static blog in Github Pages using the Racket package Frog, you need to do the following:   download and install Racket (duh!) install Frog with raco:  `$ raco install frog`  create a folder and initialize a Frog project there:  `$ mkdir new-bl...">
+    <title>logc io (page 5)</title>
+    <meta name="description" content="logc io (page 5)">
     <meta name="author"      content="logc">
-    <meta name="keywords"    content="racket, frog, blog">
+    <meta name="keywords"    content="C++, Scala, IntelliJ, blog, spacemacs, web, all, build, git, java, maven, scons, python, sysadmin, fish, racket, programming, vim, scala, Emacs, frog, haskell, C">
     <meta name="viewport"    content="width=device-width, initial-scale=1.0">
     <link rel="icon"      href="/favicon.ico">
-    <link rel="canonical" href="http://logc.github.io/blog/2016/10/03/setting-up-github-pages-with-frog/">
-    <link rel="next" href="/blog/2016/09/23/racket-and-vim-syntastic/">
-    <link rel="prev" href="/blog/2016/10/20/minimal-c-project-structure-with-scons/">
+    <link rel="canonical" href="http://logc.github.io/index-5.html">
+
+
     <!-- CSS -->
     <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="/css/pygments.css">
@@ -146,84 +146,35 @@
 
             <article>
   <header>
-    <h1>Setting up Github Pages with Frog</h1>
+    <h2><a href='/blog/2013/11/17/infraestructura-de-lanzamientos-locales/'>Infraestructura de lanzamientos locales</a></h2>
     <p class='date-and-tags'>
-<time datetime="2016-10-03" pubdate="true">2016-10-03</time> :: <span class="tags"><a href="/tags/racket.html">racket</a>, <a href="/tags/frog.html">frog</a>, <a href="/tags/blog.html">blog</a></span></p>
+<time datetime="2013-11-17" pubdate="true">2013-11-17</time> :: <span class="tags"><a href="/tags/sysadmin.html">sysadmin</a></span></p>
   </header>
 
-<p>To set up a static blog in Github Pages using the Racket package Frog, you need to do the following:</p>
+<p>Este post describe cómo crear una infraestructura de lanzamientos locales, para compartir paquetes locales con otros desarrolladores del mismo equipo, basándose en Python y Macports. Esto presupone que los otros miembros del equipo usan todos Mac OS X, y que están interesados en usar paquetes de Python, claro.</p>
+
+<p>Necesitaremos:</p>
 
 <ul>
- <li>download and install Racket (duh!)</li>
- <li>install Frog with raco:</li></ul>
-
-<pre><code>$ raco install frog</code></pre>
-
-<ul>
- <li>create a folder and initialize a Frog project there:</li></ul>
-
-<pre><code>$ mkdir new-blog
-$ cd new-blog
-$ raco frog --init</code></pre>
-
-<ul>
- <li>
-  <p>customize the .frogrc file. Set at least scheme/host to https://your-username.github.io, and title &amp; author to whatever you want.</p></li>
- <li>
-  <p>add some content of your own:</p></li></ul>
-
-<pre><code>$ raco frog -n "New post"
-# ... output says something like:
-~/new-blog/_src/posts/2016-10-03-new-post.md
-# ... edit that file with your preferred editor ...
-when you are finished editing, preview your glorious site with
-
-$ raco frog -bp</code></pre>
-
-<ul>
- <li>initialize an empty Git repository on the project folder, and tell git to  ignore the Frog machinery and your source directory</li></ul>
-
-<pre><code>$ git init .
-$ cat &lt;&lt; EOF &gt; .gitignore
-/.frog/
-/.frogrc
-/_src/
-EOF</code></pre>
-
-<ul>
- <li>commit everything, except for what we just ignored</li></ul>
-
-<pre><code>$ git add .
-$ git commit</code></pre>
-
-<ul>
- <li>on github.com, create a new repository with the name your-username.github.io.  Once created, add it as a remote to your local repo, and push your local master  to it.</li></ul>
-
-<pre><code>$ git remote add origin &lt;your new repo&gt;
-$ git push -u origin master</code></pre>
-
-<ul>
- <li>after some seconds, your new blog should be available as http://your-username.github.io</li></ul>
-
-<p>Now, each time that you want to add a new post, it’s just a matter of</p>
-
-<pre><code>$ raco frog -n "Another post"
-# ... edit that post ...
-$ raco frog -b
-$ git add .
-$ git commit -a
-$ git push</code></pre>
+ <li>crear un paquete de Python con su correspondiente <code>setup.py</code></li>
+ <li>tener un directorio <code>releases</code> servido por HTTP por el servidor Apache  integrado en el sistema operativo.</li>
+ <li>tener un directorio <code>ports</code> servido por rsync.</li>
+ <li>configurar Macports para usar este nuevo repositorio.</li></ul>
   <footer>
-    <ul class="pager">
-    <li class="previous">
-      <a href="/blog/2016/10/20/minimal-c-project-structure-with-scons/">&larr; <em>Minimal C project structure with SCons</em></a>
-    </li>
-    <li class="next">
-      <a href="/blog/2016/09/23/racket-and-vim-syntastic/"><em>Racket and vim-syntastic</em> &rarr;</a>
-    </li>
-    </ul>
+    <a href='/blog/2013/11/17/infraestructura-de-lanzamientos-locales/'>&hellip; more &hellip;</a>
   </footer>
 </article>
+<footer>
+ <ul class="pagination">
+  <li><a href="/index-4.html">
+    <quote>&larr;</quote></a></li>
+  <li><a href="/index.html">1</a></li>
+  <li><a href="/index-2.html">2</a></li>
+  <li><a href="/index-3.html">3</a></li>
+  <li><a href="/index-4.html">4</a></li>
+  <li class="active"><a href="/index-5.html">5</a></li>
+  <li class="disabled"><a href="#">
+    <quote>&rarr;</quote></a></li></ul></footer>
           </div>
         </div>
       </div>

@@ -4,7 +4,31 @@
  <link rel="self" href="http://logc.github.io/feeds/all.atom.xml" />
  <link href="http://logc.github.io/index.html" />
  <id>urn:http-logc-github-io:-index-html</id>
- <updated>2018-04-30T09:46:41Z</updated>
+ <updated>2018-05-14T14:08:11Z</updated>
+ <entry>
+  <title type="text">Debug Scala with Spacemacs</title>
+  <link rel="alternate" href="http://logc.github.io/blog/2018/05/14/debug-scala-with-spacemacs/?utm_source=all&amp;utm_medium=Atom" />
+  <id>urn:http-logc-github-io:-blog-2018-05-14-debug-scala-with-spacemacs</id>
+  <published>2018-05-14T14:08:11Z</published>
+  <updated>2018-05-14T14:08:11Z</updated>
+  <author>
+   <name>logc</name></author>
+  <content type="html">
+&lt;p&gt;The &lt;a href="http://ensime.github.io/editors/emacs/userguide/#debugging"&gt;documentation about debugging in ENSIME&lt;/a&gt; was a bit confusing to me. Here are my notes on how to start debugging an (sbt-based) Scala project from Emacs (Spacemacs):&lt;/p&gt;
+
+&lt;ol&gt;
+ &lt;li&gt;
+  &lt;p&gt;Launch the debugger from the sbt console first. Use the sbt-mode shell. I  don&amp;rsquo;t really know if this works launching SBT on a terminal not running under  Emacs. Use &lt;code&gt;ensimeTestOnlyDebug&lt;/code&gt; if you are running a test, otherwise use  &lt;code&gt;ensimeRunDebug&lt;/code&gt; for an implementation class.&lt;/p&gt;
+  &lt;pre&gt;&lt;code&gt;&amp;gt; ensimeTestOnlyDebug com.company.division.squad.project.package.TestClass
+...
+Listening for transport dt_socket at address: 5005&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+ &lt;li&gt;
+  &lt;p&gt;Set a breakpoint in a source code line by moving your cursor to that line and  using &lt;code&gt;, d b&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+ &lt;li&gt;
+  &lt;p&gt;Attach to the debugger by using &lt;code&gt;, d A&lt;/code&gt;. The first time, you will need to  specify Host (&lt;code&gt;localhost&lt;/code&gt;) and Port (the number in the &lt;code&gt;Listening for
+   transport ...&lt;/code&gt; line above)&lt;/p&gt;&lt;/li&gt;
+ &lt;li&gt;
+  &lt;p&gt;When (if) the debugger hits the line where your breakpoint is set, the Emacs  cursor will jump to that position, and you can start using other debugging  commands (&lt;code&gt;, d n&lt;/code&gt;, &lt;code&gt;, d i&lt;/code&gt;, etc &amp;hellip;)&lt;/p&gt;&lt;/li&gt;&lt;/ol&gt;</content></entry>
  <entry>
   <title type="text">Git setup with fork and upstream</title>
   <link rel="alternate" href="http://logc.github.io/blog/2018/04/30/git-setup-with-fork-and-upstream/?utm_source=all&amp;utm_medium=Atom" />
@@ -1217,311 +1241,6 @@ building &lt;span class="s1"&gt;&amp;#39;fibonacci&amp;#39;&lt;/span&gt; extensi
   &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;&amp;gt;&amp;gt;&amp;gt; &lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;fibonacci&lt;/span&gt;
 &lt;span class="gp"&gt;&amp;gt;&amp;gt;&amp;gt; &lt;/span&gt;&lt;span class="n"&gt;fibonacci&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;fib&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mi"&gt;5&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="go"&gt;1 1 2 3&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;/div&gt;</content></entry>
- <entry>
-  <title type="text">Infraestructura de lanzamientos locales</title>
-  <link rel="alternate" href="http://logc.github.io/blog/2013/11/17/infraestructura-de-lanzamientos-locales/?utm_source=all&amp;utm_medium=Atom" />
-  <id>urn:http-logc-github-io:-blog-2013-11-17-infraestructura-de-lanzamientos-locales</id>
-  <published>2013-11-17T21:43:12Z</published>
-  <updated>2013-11-17T21:43:12Z</updated>
-  <author>
-   <name>logc</name></author>
-  <content type="html">
-&lt;p&gt;Este post describe cómo crear una infraestructura de lanzamientos locales, para compartir paquetes locales con otros desarrolladores del mismo equipo, basándose en Python y Macports. Esto presupone que los otros miembros del equipo usan todos Mac OS X, y que están interesados en usar paquetes de Python, claro.&lt;/p&gt;
-
-&lt;p&gt;Necesitaremos:&lt;/p&gt;
-
-&lt;ul&gt;
- &lt;li&gt;crear un paquete de Python con su correspondiente &lt;code&gt;setup.py&lt;/code&gt;&lt;/li&gt;
- &lt;li&gt;tener un directorio &lt;code&gt;releases&lt;/code&gt; servido por HTTP por el servidor Apache  integrado en el sistema operativo.&lt;/li&gt;
- &lt;li&gt;tener un directorio &lt;code&gt;ports&lt;/code&gt; servido por rsync.&lt;/li&gt;
- &lt;li&gt;configurar Macports para usar este nuevo repositorio.&lt;/li&gt;&lt;/ul&gt;
-&lt;!-- more--&gt;
-
-&lt;h2 id="crear-un-paquete-de-ejemplo-en-python"&gt;Crear un paquete de ejemplo en Python&lt;/h2&gt;
-
-&lt;p&gt;Crea un directorio llamado &lt;code&gt;pyhello&lt;/code&gt;, y los siguientes directorios y ficheros dentro de él:&lt;/p&gt;
-
-&lt;div class="brush: console"&gt;
- &lt;div class="highlight"&gt;
-  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="go"&gt;.&lt;/span&gt;
-&lt;span class="go"&gt;├── pyhello&lt;/span&gt;
-&lt;span class="go"&gt;│   ├── __init__.py&lt;/span&gt;
-&lt;span class="go"&gt;│   └── main.py&lt;/span&gt;
-&lt;span class="go"&gt;└── setup.py&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;/div&gt;
-
-&lt;p&gt;El contenido de &lt;code&gt;setup.py&lt;/code&gt;:&lt;/p&gt;
-
-&lt;div class="brush: python"&gt;
- &lt;div class="highlight"&gt;
-  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;setuptools&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;setup&lt;/span&gt;
-
-&lt;span class="n"&gt;setup&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;pyhello&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-      &lt;span class="n"&gt;version&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;0.1&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-      &lt;span class="n"&gt;packages&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;pyhello&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
-      &lt;span class="n"&gt;entry_points&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
-          &lt;span class="s1"&gt;&amp;#39;console_scripts&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;pyhello=pyhello.main:main&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]})&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;/div&gt;
-
-&lt;p&gt;El contenido de &lt;code&gt;pyhello/main.py&lt;/code&gt;:&lt;/p&gt;
-
-&lt;div class="brush: python"&gt;
- &lt;div class="highlight"&gt;
-  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
-    &lt;span class="k"&gt;print&lt;/span&gt; &lt;span class="s2"&gt;"Hello from pyhello!"&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;/div&gt;
-
-&lt;p&gt;Después crea una distribución de fuentes con el comando estándar:&lt;/p&gt;
-
-&lt;div class="brush: console"&gt;
- &lt;div class="highlight"&gt;
-  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="go"&gt;python setup.py sdist&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;/div&gt;
-
-&lt;p&gt;Esto crea un lanzamiento llamado &lt;code&gt;pyhello-0.1.tar.gz&lt;/code&gt; bajo el directorio &lt;code&gt;dist&lt;/code&gt;.&lt;/p&gt;
-
-&lt;h2 id="servir-lanzamientos-por-http"&gt;Servir lanzamientos por HTTP&lt;/h2&gt;
-
-&lt;p&gt;Crea un directorio &lt;code&gt;releases&lt;/code&gt; bajo &lt;code&gt;~/Sites&lt;/code&gt;. Copia el fichero &lt;code&gt;dist/pyhello-0.1.tar.gz&lt;/code&gt; allá.&lt;/p&gt;
-
-&lt;p&gt;Crea un fichero de configuración para Apache en &lt;code&gt;/etc/apache2/users/YOUR_USERNAME.conf&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;El contenido de &lt;code&gt;YOUR_USERNAME.conf&lt;/code&gt;:&lt;/p&gt;
-
-&lt;div class="brush: apacheconf"&gt;
- &lt;div class="highlight"&gt;
-  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nt"&gt;&amp;lt;Directory&lt;/span&gt; &lt;span class="s"&gt;"/Users/YOUR_USERNAME/Sites/"&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
-    &lt;span class="nb"&gt;Options&lt;/span&gt; Indexes Multiviews
-    &lt;span class="nb"&gt;AllowOverride&lt;/span&gt; AuthConfig Limit
-    &lt;span class="nb"&gt;Order&lt;/span&gt; allow,deny
-    &lt;span class="nb"&gt;Allow&lt;/span&gt; from &lt;span class="k"&gt;all&lt;/span&gt;
-&lt;span class="nt"&gt;&amp;lt;/Directory&amp;gt;&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;/div&gt;
-
-&lt;p&gt;Para lanzar Apache sólo durante esta sesión de la máquina:&lt;/p&gt;
-
-&lt;div class="brush: console"&gt;
- &lt;div class="highlight"&gt;
-  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo apachectl start
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;/div&gt;
-
-&lt;p&gt;Para lanzar Apache automáticamente cada vez que se inicia la máquina:&lt;/p&gt;
-
-&lt;div class="brush: console"&gt;
- &lt;div class="highlight"&gt;
-  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo launchctl load -w /System/Library/LaunchDaemons/org.apache.httpd.plist
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;/div&gt;
-
-&lt;h2 id="crear-un-fichero-portfile"&gt;Crear un fichero Portfile&lt;/h2&gt;
-
-&lt;p&gt;El contenido de un fichero Portfile para un proyecto de Python normal (basado en un &lt;code&gt;setup.py&lt;/code&gt;) es:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;# -*- coding: utf-8; mode: tcl; tab-width: 4; truncate-lines: t; indent-tabs-mode: nil; c-basic-offset: 4 -*- vim:fenc=utf-8:et:sw=4:ts=4:sts=4
-# $Id$
-
-PortSystem 1.0
-PortGroup python 1.0
-
-name                py-pyhello
-version             0.1
-
-categories-append   devel
-license             BSD
-maintainers         your.mail.provider.com:your.mail.name
-description         An example Python app
-long_description    Pyhello is an example Python app, distributed over \
-                    local Macports
-
-platforms           darwin
-supported_archs     noarch
-
-homepage            http://your.local.machine/~YOUR_USERNAME/
-master_sites        http://your.local.machine/~YOUR_USERNAME/releases/
-distname            pyhello-${version}
-
-python.versions     26 27
-
-checksums           rmd160 b8a9e7e5db29d407db95310ee95e7048d6fa1cdd \
-                    sha256 cd8693792f5e6632c0c7efd287b5153571173cc3a26f98c2cead7af6a0445b2b&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;&lt;strong&gt;Aclaraciones&lt;/strong&gt;:&lt;/p&gt;
-
-&lt;ul&gt;
- &lt;li&gt;
-  &lt;p&gt;&lt;code&gt;PortGroup&lt;/code&gt; para python configura los comandos de &lt;code&gt;build&lt;/code&gt; e &lt;code&gt;install&lt;/code&gt;;  también existen grupos para &lt;code&gt;haskell&lt;/code&gt; y otros.&lt;/p&gt;&lt;/li&gt;
- &lt;li&gt;
-  &lt;p&gt;el nombre del paquete es manipulado para generar un paquete por cada versión  listada en &lt;code&gt;python.versions&lt;/code&gt;. En este ejemplo, se generarían &lt;code&gt;py26-pyhello&lt;/code&gt; y  &lt;code&gt;py27-pyhello&lt;/code&gt;.&lt;/p&gt;&lt;/li&gt;
- &lt;li&gt;
-  &lt;p&gt;la convención para el campo &lt;code&gt;maintainers&lt;/code&gt; es &lt;code&gt;gmail.com:user&lt;/code&gt; para  &lt;code&gt;user@gmail.com&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
- &lt;li&gt;
-  &lt;p&gt;para generar los digests del lanzamiento con los siguientes comandos:&lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;
-
-&lt;div class="brush: console"&gt;
- &lt;div class="highlight"&gt;
-  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; openssl sha256 dist/pyhello-0.1.tar.gz
-&lt;span class="gp"&gt;$&lt;/span&gt; openssl rmd160 dist/pyhello-0.1.tar.gz
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;/div&gt;
-
-&lt;h2 id="servir-portfiles-por-rsync"&gt;Servir Portfiles por rsync&lt;/h2&gt;
-
-&lt;p&gt;Crea un directorio &lt;code&gt;ports&lt;/code&gt; bajo &lt;code&gt;~/Sites&lt;/code&gt;, y los siguentes subdirectorios en él:&lt;/p&gt;
-
-&lt;div class="brush: console"&gt;
- &lt;div class="highlight"&gt;
-  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="go"&gt;.&lt;/span&gt;
-&lt;span class="go"&gt;└── python&lt;/span&gt;
-&lt;span class="go"&gt;    └── pyhello&lt;/span&gt;
-&lt;span class="go"&gt;        └── Portfile&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;/div&gt;
-
-&lt;p&gt;Copia el fichero Portfile a su ubicación mostrada y ejecuta el siguiente comando en el directorio &lt;code&gt;ports&lt;/code&gt;:&lt;/p&gt;
-
-&lt;div class="brush: console"&gt;
- &lt;div class="highlight"&gt;
-  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; portindex
-&lt;span class="go"&gt;Creating port index in ...&lt;/span&gt;
-&lt;span class="go"&gt;Adding port python/pyhello&lt;/span&gt;
-&lt;span class="go"&gt;Adding subport py26-pyhello&lt;/span&gt;
-&lt;span class="go"&gt;Adding subport py27-pyhello&lt;/span&gt;
-
-&lt;span class="go"&gt;Total number of ports parsed:	3&lt;/span&gt;
-&lt;span class="go"&gt;Ports successfully parsed:	3&lt;/span&gt;
-&lt;span class="go"&gt;Ports failed:			0&lt;/span&gt;
-&lt;span class="go"&gt;Up-to-date ports skipped:	0&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;/div&gt;
-
-&lt;p&gt;Aunque rsync viene instalado por defecto, usaremos la versión instalada con Macports en lo siguiente. La versión por defecto está en &lt;code&gt;/usr/bin&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;Crear un fichero para &lt;code&gt;launchctl&lt;/code&gt; en &lt;code&gt;/Library/LaunchDaemons/name.YOUR_USERNAME.rsync.plist&lt;/code&gt;&lt;/p&gt;
-
-&lt;p&gt;El contenido de &lt;code&gt;rsync.plit&lt;/code&gt;:&lt;/p&gt;
-
-&lt;div class="brush: xml"&gt;
- &lt;div class="highlight"&gt;
-  &lt;pre&gt;&lt;span&gt;&lt;/span&gt; &lt;span class="cp"&gt;&amp;lt;?xml version="1.0" encoding="UTF-8"?&amp;gt;&lt;/span&gt;
- &lt;span class="cp"&gt;&amp;lt;!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd"&amp;gt;&lt;/span&gt;
- &lt;span class="nt"&gt;&amp;lt;plist&lt;/span&gt; &lt;span class="na"&gt;version=&lt;/span&gt;&lt;span class="s"&gt;"1.0"&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
- &lt;span class="nt"&gt;&amp;lt;dict&amp;gt;&lt;/span&gt;
-        &lt;span class="nt"&gt;&amp;lt;key&amp;gt;&lt;/span&gt;Disabled&lt;span class="nt"&gt;&amp;lt;/key&amp;gt;&lt;/span&gt;
-        &lt;span class="nt"&gt;&amp;lt;false/&amp;gt;&lt;/span&gt;
-        &lt;span class="nt"&gt;&amp;lt;key&amp;gt;&lt;/span&gt;Label&lt;span class="nt"&gt;&amp;lt;/key&amp;gt;&lt;/span&gt;
-        &lt;span class="nt"&gt;&amp;lt;string&amp;gt;&lt;/span&gt;name.YOUR_USERNAME.rsync&lt;span class="nt"&gt;&amp;lt;/string&amp;gt;&lt;/span&gt;
-        &lt;span class="nt"&gt;&amp;lt;key&amp;gt;&lt;/span&gt;Program&lt;span class="nt"&gt;&amp;lt;/key&amp;gt;&lt;/span&gt;
-        &lt;span class="nt"&gt;&amp;lt;string&amp;gt;&lt;/span&gt;/opt/local/bin/rsync&lt;span class="nt"&gt;&amp;lt;/string&amp;gt;&lt;/span&gt;
-        &lt;span class="nt"&gt;&amp;lt;key&amp;gt;&lt;/span&gt;ProgramArguments&lt;span class="nt"&gt;&amp;lt;/key&amp;gt;&lt;/span&gt;
-        &lt;span class="nt"&gt;&amp;lt;array&amp;gt;&lt;/span&gt;
-                &lt;span class="nt"&gt;&amp;lt;string&amp;gt;&lt;/span&gt;/opt/local/bin/rsync&lt;span class="nt"&gt;&amp;lt;/string&amp;gt;&lt;/span&gt;
-                &lt;span class="nt"&gt;&amp;lt;string&amp;gt;&lt;/span&gt;--daemon&lt;span class="nt"&gt;&amp;lt;/string&amp;gt;&lt;/span&gt;
-                &lt;span class="nt"&gt;&amp;lt;string&amp;gt;&lt;/span&gt;--config=/opt/local/etc/rsyncd.conf&lt;span class="nt"&gt;&amp;lt;/string&amp;gt;&lt;/span&gt;
-        &lt;span class="nt"&gt;&amp;lt;/array&amp;gt;&lt;/span&gt;
-        &lt;span class="nt"&gt;&amp;lt;key&amp;gt;&lt;/span&gt;inetdCompatibility&lt;span class="nt"&gt;&amp;lt;/key&amp;gt;&lt;/span&gt;
-        &lt;span class="nt"&gt;&amp;lt;dict&amp;gt;&lt;/span&gt;
-                &lt;span class="nt"&gt;&amp;lt;key&amp;gt;&lt;/span&gt;Wait&lt;span class="nt"&gt;&amp;lt;/key&amp;gt;&lt;/span&gt;
-                &lt;span class="nt"&gt;&amp;lt;false/&amp;gt;&lt;/span&gt;
-        &lt;span class="nt"&gt;&amp;lt;/dict&amp;gt;&lt;/span&gt;
-        &lt;span class="nt"&gt;&amp;lt;key&amp;gt;&lt;/span&gt;Sockets&lt;span class="nt"&gt;&amp;lt;/key&amp;gt;&lt;/span&gt;
-        &lt;span class="nt"&gt;&amp;lt;dict&amp;gt;&lt;/span&gt;
-            &lt;span class="nt"&gt;&amp;lt;key&amp;gt;&lt;/span&gt;Listeners&lt;span class="nt"&gt;&amp;lt;/key&amp;gt;&lt;/span&gt;
-            &lt;span class="nt"&gt;&amp;lt;dict&amp;gt;&lt;/span&gt;
-                &lt;span class="nt"&gt;&amp;lt;key&amp;gt;&lt;/span&gt;SockServiceName&lt;span class="nt"&gt;&amp;lt;/key&amp;gt;&lt;/span&gt;
-                &lt;span class="nt"&gt;&amp;lt;string&amp;gt;&lt;/span&gt;rsync&lt;span class="nt"&gt;&amp;lt;/string&amp;gt;&lt;/span&gt;
-                &lt;span class="nt"&gt;&amp;lt;key&amp;gt;&lt;/span&gt;SockType&lt;span class="nt"&gt;&amp;lt;/key&amp;gt;&lt;/span&gt;
-                &lt;span class="nt"&gt;&amp;lt;string&amp;gt;&lt;/span&gt;stream&lt;span class="nt"&gt;&amp;lt;/string&amp;gt;&lt;/span&gt;
-            &lt;span class="nt"&gt;&amp;lt;/dict&amp;gt;&lt;/span&gt;
-        &lt;span class="nt"&gt;&amp;lt;/dict&amp;gt;&lt;/span&gt;
- &lt;span class="nt"&gt;&amp;lt;/dict&amp;gt;&lt;/span&gt;
- &lt;span class="nt"&gt;&amp;lt;/plist&amp;gt;&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;/div&gt;
-
-&lt;p&gt;El contenido de &lt;code&gt;/opt/local/etc/rsyncd.conf&lt;/code&gt;:&lt;/p&gt;
-
-&lt;div class="brush: ini"&gt;
- &lt;div class="highlight"&gt;
-  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;[ports]&lt;/span&gt;
-
-&lt;span class="na"&gt;path&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;/Users/YOUR_USERNAME/Sites/ports&lt;/span&gt;
-&lt;span class="na"&gt;log file&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;/opt/local/var/log/rsyncd.log&lt;/span&gt;
-&lt;span class="na"&gt;pid file&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;/opt/local/var/run/rsyncd.pid&lt;/span&gt;
-&lt;span class="na"&gt;read only&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;true&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;/div&gt;
-
-&lt;p&gt;Añadir rsync a &lt;code&gt;launchctl&lt;/code&gt;:&lt;/p&gt;
-
-&lt;div class="brush: console"&gt;
- &lt;div class="highlight"&gt;
-  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo launchctl load -w /Library/LaunchDaemons/name.YOUR_USERNAME.rsync.plist
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;/div&gt;
-
-&lt;p&gt;Comprueba que sólo se pueden listar los ports y nada más del sistema de fichero:&lt;/p&gt;
-
-&lt;div class="brush: console"&gt;
- &lt;div class="highlight"&gt;
-  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; rsync -axv rsync://localhost/
-&lt;span class="gp"&gt;$&lt;/span&gt; rsync -axv rsync://localhost/ports/
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;/div&gt;
-
-&lt;h2 id="configurar-macports"&gt;Configurar Macports&lt;/h2&gt;
-
-&lt;p&gt;Configura Macports en todas las máquinas que deban poder acceder a los nuevos paquetes. El nuevo repositorio debe ir antes del repositorio por defecto para evitar conflictos de nombres.&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;rsync://localhost/ports/
-rsync://rsync.macports.org/release/ports/ [default]&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Comprueba desde otras máquinas que se pueden encontrar los nuevos paquetes:&lt;/p&gt;
-
-&lt;div class="brush: console"&gt;
- &lt;div class="highlight"&gt;
-  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; port search pyhello
-&lt;span class="go"&gt;py-pyhello @0.1 (python, devel)&lt;/span&gt;
-&lt;span class="go"&gt;    An example Python app&lt;/span&gt;
-
-&lt;span class="go"&gt;py26-pyhello @0.1 (python, devel)&lt;/span&gt;
-&lt;span class="go"&gt;    An example Python app&lt;/span&gt;
-
-&lt;span class="go"&gt;py27-pyhello @0.1 (python, devel)&lt;/span&gt;
-&lt;span class="go"&gt;    An example Python app&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;/div&gt;
-
-&lt;p&gt;Después de instalar el nuevo paquete, sus comandos están a nuestra disposición:&lt;/p&gt;
-
-&lt;div class="brush: console"&gt;
- &lt;div class="highlight"&gt;
-  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; sudo port install py27-pyhello
-&lt;span class="gp"&gt;$&lt;/span&gt; pyhello
-&lt;span class="go"&gt;Hello from pyhello!&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 &lt;/div&gt;</content></entry></feed>

@@ -1,37 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?> 
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
- <title type="text">logc io: Posts tagged 'Scala'</title>
- <link rel="self" href="http://logc.github.io/feeds/Scala.atom.xml" />
- <link href="http://logc.github.io/tags/Scala.html" />
- <id>urn:http-logc-github-io:-tags-Scala-html</id>
- <updated>2017-09-05T13:47:32Z</updated>
+ <title type="text">logc io: Posts tagged 'scala'</title>
+ <link rel="self" href="http://logc.github.io/feeds/scala.atom.xml" />
+ <link href="http://logc.github.io/tags/scala.html" />
+ <id>urn:http-logc-github-io:-tags-scala-html</id>
+ <updated>2018-05-14T14:08:11Z</updated>
  <entry>
-  <title type="text">Ensime server crash because of transitive dependency</title>
-  <link rel="alternate" href="http://logc.github.io/blog/2017/09/05/ensime-server-crash-because-of-transitive-dependency/?utm_source=Scala&amp;utm_medium=Atom" />
-  <id>urn:http-logc-github-io:-blog-2017-09-05-ensime-server-crash-because-of-transitive-dependency</id>
-  <published>2017-09-05T13:47:32Z</published>
-  <updated>2017-09-05T13:47:32Z</updated>
+  <title type="text">Debug Scala with Spacemacs</title>
+  <link rel="alternate" href="http://logc.github.io/blog/2018/05/14/debug-scala-with-spacemacs/?utm_source=scala&amp;utm_medium=Atom" />
+  <id>urn:http-logc-github-io:-blog-2018-05-14-debug-scala-with-spacemacs</id>
+  <published>2018-05-14T14:08:11Z</published>
+  <updated>2018-05-14T14:08:11Z</updated>
   <author>
    <name>logc</name></author>
   <content type="html">
-&lt;p&gt;The Scala layer for Spacemacs uses Ensime by default. There is an error that made me struggle for weeks: &lt;a href="https://github.com/ensime/ensime-server/issues/825"&gt;Bad source jar kills the server: ZipException: error in opening zip file&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;The &lt;a href="http://ensime.github.io/editors/emacs/userguide/#debugging"&gt;documentation about debugging in ENSIME&lt;/a&gt; was a bit confusing to me. Here are my notes on how to start debugging an (sbt-based) Scala project from Emacs (Spacemacs):&lt;/p&gt;
 
-&lt;p&gt;The offending JAR was a transitive dependency of a project, and the solution offered on the issue was not clear for me.&lt;/p&gt;
-
-&lt;p&gt;This problem is tricky if you previously loaded the project into an IDE: they download by default all transitive dependencies with sources and javadoc, and the ivy cache is shared by all projects in the same machine.&lt;/p&gt;
-
-&lt;p&gt;Here is my solution, as found also on the issue, in case it helps others:&lt;/p&gt;
-
-&lt;ul&gt;
- &lt;li&gt;determine which dependency is pulling the problem JAR with the &lt;a href="https://github.com/jrudolph/sbt-dependency-graph"&gt;sbt dependency  graph plugin&lt;/a&gt; (note: the  command &lt;code&gt;whatDependsOn&lt;/code&gt; only works in interactive mode)&lt;/li&gt;
- &lt;li&gt;move away the current ivy cache folder &lt;code&gt;console
-$ mv ~/.ivy2/ ~/.ivy2_old&lt;/code&gt;&lt;/li&gt;
- &lt;li&gt;(optional) create a new clone to have a known state &lt;code&gt;console
-$ git clone $repo ~/dev/ensime-$repo&lt;/code&gt;&lt;/li&gt;
- &lt;li&gt;edit &lt;code&gt;build.sbt&lt;/code&gt; to add an exclusion rule for the transitive dependency at the  line of the explicit dependency that needs it, e.g. &lt;code&gt;sbt
-libraryDependencies ++= Seq(
-  "com.company.notifications" % "notifications-schema" exclude("org.json", "json")
-)&lt;/code&gt;&lt;/li&gt;
- &lt;li&gt;compile, go for a coffee while ivy downloads the internet :), then run ensime commands &lt;code&gt;console
-$ sbt compile
-$ sbt ensimeConfig ensimeConfigProject&lt;/code&gt;&lt;/li&gt;&lt;/ul&gt;</content></entry></feed>
+&lt;ol&gt;
+ &lt;li&gt;
+  &lt;p&gt;Launch the debugger from the sbt console first. Use the sbt-mode shell. I  don&amp;rsquo;t really know if this works launching SBT on a terminal not running under  Emacs. Use &lt;code&gt;ensimeTestOnlyDebug&lt;/code&gt; if you are running a test, otherwise use  &lt;code&gt;ensimeRunDebug&lt;/code&gt; for an implementation class.&lt;/p&gt;
+  &lt;pre&gt;&lt;code&gt;&amp;gt; ensimeTestOnlyDebug com.company.division.squad.project.package.TestClass
+...
+Listening for transport dt_socket at address: 5005&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
+ &lt;li&gt;
+  &lt;p&gt;Set a breakpoint in a source code line by moving your cursor to that line and  using &lt;code&gt;, d b&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
+ &lt;li&gt;
+  &lt;p&gt;Attach to the debugger by using &lt;code&gt;, d A&lt;/code&gt;. The first time, you will need to  specify Host (&lt;code&gt;localhost&lt;/code&gt;) and Port (the number in the &lt;code&gt;Listening for
+   transport ...&lt;/code&gt; line above)&lt;/p&gt;&lt;/li&gt;
+ &lt;li&gt;
+  &lt;p&gt;When (if) the debugger hits the line where your breakpoint is set, the Emacs  cursor will jump to that position, and you can start using other debugging  commands (&lt;code&gt;, d n&lt;/code&gt;, &lt;code&gt;, d i&lt;/code&gt;, etc &amp;hellip;)&lt;/p&gt;&lt;/li&gt;&lt;/ol&gt;</content></entry></feed>
