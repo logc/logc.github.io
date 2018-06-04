@@ -146,6 +146,44 @@
 
             <article>
   <header>
+    <h2><a href='/blog/2018/06/04/logging-start-and-finish-in-python/'>Logging start and finish in Python</a></h2>
+    <p class='date-and-tags'>
+<time datetime="2018-06-04" pubdate="true">2018-06-04</time> :: <span class="tags"><a href="/tags/python.html">python</a></span></p>
+  </header>
+
+<p>Just a quick post on how to log, in simple Python scripts, the start and finish times of a function.</p>
+
+<div class="brush: python">
+ <div class="highlight">
+  <pre><span></span><span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span>
+        <span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">,</span>
+        <span class="n">format</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">%(asctime)s</span><span class="s1"> </span><span class="si">%(levelname)s</span><span class="s1"> - </span><span class="si">%(message)s</span><span class="s1">&#39;</span><span class="p">,</span>
+        <span class="n">datefmt</span><span class="o">=</span><span class="s1">&#39;%H:%M:%S&#39;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">"Start processing after </span><span class="si">%s</span><span class="s2">"</span><span class="p">,</span> <span class="n">format_time_since</span><span class="p">(</span><span class="n">start</span><span class="p">))</span>
+    <span class="c1"># Do some processing ...</span>
+    <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">"Finished processing after </span><span class="si">%s</span><span class="s2">"</span><span class="p">,</span> <span class="n">format_time_since</span><span class="p">(</span><span class="n">start</span><span class="p">))</span>
+    <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">format_time_since</span><span class="p">(</span><span class="n">start</span><span class="p">):</span>
+    <span class="n">now</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="n">elapsed</span> <span class="o">=</span> <span class="n">now</span> <span class="o">-</span> <span class="n">start</span>
+    <span class="k">return</span> <span class="n">time</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">"%H:%M:%S"</span><span class="p">,</span> <span class="n">time</span><span class="o">.</span><span class="n">gmtime</span><span class="p">(</span><span class="n">elapsed</span><span class="p">))</span>
+</pre></div>
+
+</div>
+
+</article>
+<article>
+  <header>
     <h2><a href='/blog/2018/05/14/debug-scala-with-spacemacs/'>Debug Scala with Spacemacs</a></h2>
     <p class='date-and-tags'>
 <time datetime="2018-05-14" pubdate="true">2018-05-14</time> :: <span class="tags"><a href="/tags/scala.html">scala</a>, <a href="/tags/spacemacs.html">spacemacs</a></span></p>
@@ -312,35 +350,6 @@ $ sbt compile
 $ sbt ensimeConfig ensimeConfigProject</code></li></ul>
 
 </article>
-<article>
-  <header>
-    <h2><a href='/blog/2017/08/25/maven-does-not-find-java-home-in-fish-shell/'>Maven does not find JAVA_HOME in Fish shell</a></h2>
-    <p class='date-and-tags'>
-<time datetime="2017-08-25" pubdate="true">2017-08-25</time> :: <span class="tags"><a href="/tags/fish.html">fish</a>, <a href="/tags/maven.html">maven</a>, <a href="/tags/java.html">java</a></span></p>
-  </header>
-
-<p>After reinstalling <code>java</code> from <code>brew cask</code>, it could happen that Maven does not find anymore the JAVA_HOME. The error looks like this:</p>
-
-<div class="brush: console">
- <div class="highlight">
-  <pre><span></span><span class="gp">$</span> mvn clean install
-<span class="go">The JAVA_HOME environment variable is not defined correctly</span>
-<span class="go">This environment variable is needed to run this program</span>
-<span class="go">NB: JAVA_HOME should point to a JDK not a JR</span>
-</pre></div>
-
-</div>
-
-<p>In Fish shell, on Mac OS X, the solution is to set the variable in universal mode:</p>
-
-<div class="brush: console">
- <div class="highlight">
-  <pre><span></span><span class="gp">$</span> <span class="nb">set</span> -U JAVA_HOME <span class="o">(</span>/usr/libexec/java_home<span class="o">)</span>
-</pre></div>
-
-</div>
-
-</article>
 <footer>
  <ul class="pagination">
   <li class="disabled"><a href="#">
@@ -363,7 +372,7 @@ $ sbt ensimeConfig ensimeConfigProject</code></li></ul>
         <a href="http://twitter.github.com/bootstrap/index.html">Bootstrap</a>.
         Cover image by NASA/Bill Ingalls [Public domain], via Wikimedia Commons.
         </p>
-        <p>This page was last built on Monday, May 14th, 2018</p>
+        <p>This page was last built on Monday, June 4th, 2018</p>
 
         <p><em>© Copyright 2018, Luis Osa</em>.</p>
       </footer>

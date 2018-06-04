@@ -13,6 +13,7 @@ http://logc.github.io/blog/2013/12/04/how-do-you-develop-with-yesod/
 http://logc.github.io/blog/2014/04/01/python-egg-tagged-with-git-commit-hash/
 http://logc.github.io/blog/2015/07/15/open-files-from-last-commit-in-vim/
 http://logc.github.io/blog/2013/11/19/compilar-cython/
+http://logc.github.io/blog/2018/06/04/logging-start-and-finish-in-python/
 http://logc.github.io/blog/2017/08/24/intellij-context-menu-from-keyboard/
 http://logc.github.io/blog/2017/08/25/maven-does-not-find-java-home-in-fish-shell/
 http://logc.github.io/blog/2018/05/14/debug-scala-with-spacemacs/

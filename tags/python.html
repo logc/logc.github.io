@@ -146,6 +146,44 @@
 
             <article>
   <header>
+    <h2><a href='/blog/2018/06/04/logging-start-and-finish-in-python/'>Logging start and finish in Python</a></h2>
+    <p class='date-and-tags'>
+<time datetime="2018-06-04" pubdate="true">2018-06-04</time> :: <span class="tags"><a href="/tags/python.html">python</a></span></p>
+  </header>
+
+<p>Just a quick post on how to log, in simple Python scripts, the start and finish times of a function.</p>
+
+<div class="brush: python">
+ <div class="highlight">
+  <pre><span></span><span class="kn">import</span> <span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span>
+        <span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">,</span>
+        <span class="n">format</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">%(asctime)s</span><span class="s1"> </span><span class="si">%(levelname)s</span><span class="s1"> - </span><span class="si">%(message)s</span><span class="s1">&#39;</span><span class="p">,</span>
+        <span class="n">datefmt</span><span class="o">=</span><span class="s1">&#39;%H:%M:%S&#39;</span><span class="p">,</span>
+    <span class="p">)</span>
+    <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">"Start processing after </span><span class="si">%s</span><span class="s2">"</span><span class="p">,</span> <span class="n">format_time_since</span><span class="p">(</span><span class="n">start</span><span class="p">))</span>
+    <span class="c1"># Do some processing ...</span>
+    <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">"Finished processing after </span><span class="si">%s</span><span class="s2">"</span><span class="p">,</span> <span class="n">format_time_since</span><span class="p">(</span><span class="n">start</span><span class="p">))</span>
+    <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">format_time_since</span><span class="p">(</span><span class="n">start</span><span class="p">):</span>
+    <span class="n">now</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+    <span class="n">elapsed</span> <span class="o">=</span> <span class="n">now</span> <span class="o">-</span> <span class="n">start</span>
+    <span class="k">return</span> <span class="n">time</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">"%H:%M:%S"</span><span class="p">,</span> <span class="n">time</span><span class="o">.</span><span class="n">gmtime</span><span class="p">(</span><span class="n">elapsed</span><span class="p">))</span>
+</pre></div>
+
+</div>
+
+</article>
+<article>
+  <header>
     <h2><a href='/blog/2014/04/01/python-egg-tagged-with-git-commit-hash/'>Python egg tagged with Git commit hash</a></h2>
     <p class='date-and-tags'>
 <time datetime="2014-04-01" pubdate="true">2014-04-01</time> :: <span class="tags"><a href="/tags/python.html">python</a>, <a href="/tags/git.html">git</a></span></p>
@@ -356,74 +394,14 @@ tag_build =</code></pre>
 </div>
 
 </article>
-<article>
-  <header>
-    <h2><a href='/blog/2013/11/19/compilar-cython/'>Compilar Cython</a></h2>
-    <p class='date-and-tags'>
-<time datetime="2013-11-19" pubdate="true">2013-11-19</time> :: <span class="tags"><a href="/tags/python.html">python</a></span></p>
-  </header>
-
-<p>Compilar ficheros de Cython es más fácil usando la función <code>cythonize</code> dentro del setup.py de nuestro proyecto:</p>
-
-<div class="brush: python">
- <div class="highlight">
-  <pre><span></span><span class="c1"># File: setup.py</span>
-
-<span class="kn">from</span> <span class="nn">distutils.core</span> <span class="kn">import</span> <span class="n">setup</span>
-<span class="kn">from</span> <span class="nn">Cython.Build</span> <span class="kn">import</span> <span class="n">cythonize</span>
-
-<span class="n">setup</span><span class="p">(</span>
-      <span class="n">name</span> <span class="o">=</span> <span class="s2">"My hello app"</span><span class="p">,</span>
-      <span class="n">ext_modules</span> <span class="o">=</span> <span class="n">cythonize</span><span class="p">(</span><span class="s1">&#39;fibonacci.pyx&#39;</span><span class="p">),</span> <span class="c1"># accepts a glob pattern</span>
-<span class="p">)</span>
-</pre></div>
-
-</div>
-
-<p>Por ejemplo, el fichero a compilar es fibonacci.pyx, que contiene un ejemplo del tutorial de Cython:</p>
-
-<div class="brush: python">
- <div class="highlight">
-  <pre><span></span><span class="c1"># File: fibonacci.pyx</span>
-
-<span class="k">def</span> <span class="nf">fib</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
-    <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span>
-    <span class="k">while</span> <span class="n">b</span> <span class="o">&lt;</span> <span class="n">n</span><span class="p">:</span>
-        <span class="k">print</span> <span class="n">b</span><span class="p">,</span>
-        <span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="n">b</span><span class="p">,</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
-</pre></div>
-
-</div>
-
-<p>El resultado de compilar <code>fibonacci.pyx</code> es un fichero con código intermedio en C <code>fibonacci.c</code> y un fichero compilado <code>fibonacci.so</code>.</p>
-
-<div class="brush: bash">
- <div class="highlight">
-  <pre><span></span>$ python setup.py build
-running build
-running build_ext
-building <span class="s1">&#39;fibonacci&#39;</span> extension
-/usr/bin/clang ...snip... -o build/lib.macosx-10.8-x86_64-2.7/fibonacci.so
-</pre></div>
-
-</div>
-
-<blockquote>
- <p><strong>note</strong></p>
- <p>El compilador que se utiliza es el que sea por defecto del sistema en ese momento. Aún estoy investigando cómo seleccionar un compilador en concreto, o añadir librerías y flags.</p></blockquote>
-
-<p>El fichero .so puede usarse desde otros módulos de Python, o directamente desde la shell</p>
-
-<div class="brush: pycon">
- <div class="highlight">
-  <pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">fibonacci</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">fibonacci</span><span class="o">.</span><span class="n">fib</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
-<span class="go">1 1 2 3</span>
-</pre></div>
-
-</div>
-
-</article>
+<footer>
+ <ul class="pagination">
+  <li class="disabled"><a href="#">
+    <quote>&larr;</quote></a></li>
+  <li class="active"><a href="/tags/python.html">1</a></li>
+  <li><a href="/tags/python-2.html">2</a></li>
+  <li><a href="/tags/python-2.html">
+    <quote>&rarr;</quote></a></li></ul></footer>
           </div>
         </div>
       </div>
@@ -435,7 +413,7 @@ building <span class="s1">&#39;fibonacci&#39;</span> extension
         <a href="http://twitter.github.com/bootstrap/index.html">Bootstrap</a>.
         Cover image by NASA/Bill Ingalls [Public domain], via Wikimedia Commons.
         </p>
-        <p>This page was last built on Monday, May 14th, 2018</p>
+        <p>This page was last built on Monday, June 4th, 2018</p>
 
         <p><em>© Copyright 2018, Luis Osa</em>.</p>
       </footer>
