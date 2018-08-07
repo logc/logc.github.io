@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?> 
+<rss version="2.0">
+ <channel>
+  <title>logc io: Posts tagged 'lisp'</title>
+  <description>logc io: Posts tagged 'lisp'</description>
+  <link>http://logc.github.io/tags/lisp.html</link>
+  <lastBuildDate>Tue, 07 Aug 2018 09:14:18 UT</lastBuildDate>
+  <pubDate>Tue, 07 Aug 2018 09:14:18 UT</pubDate>
+  <ttl>1800</ttl>
+  <item>
+   <title>Produce small executables with Common Lisp</title>
+   <link>http://logc.github.io/blog/2018/08/07/produce-small-executables-with-common-lisp/?utm_source=lisp&amp;utm_medium=RSS</link>
+   <guid isPermaLink="false">urn:http-logc-github-io:-blog-2018-08-07-produce-small-executables-with-common-lisp</guid>
+   <pubDate>Tue, 07 Aug 2018 09:14:18 UT</pubDate>
+   <author>logc</author>
+   <description>
+&lt;p&gt;You need &lt;a href="https://github.com/roswell/roswell"&gt;roswell&lt;/a&gt;, &lt;a href="https://common-lisp.net/project/ecl/"&gt;ECL&lt;/a&gt; and &lt;a href="https://upx.github.io/"&gt;UPX&lt;/a&gt; installed.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ brew install --HEAD roswell
+$ brew install ecl upx
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The reason to install the head roswell is that, as of this writing, some of the Common Lisp installations did not work on the latest release on Homebrew.&lt;/p&gt;
+
+&lt;p&gt;The reason to install &lt;code&gt;ecl&lt;/code&gt; on the system, and not using &lt;code&gt;ros install&lt;/code&gt;, is that I had problems installing the latest version of ECL that way. Also, the &lt;code&gt;ros
+list versions&lt;/code&gt; command did not find any available versions of ECL. So, I resorted to using the system installed ECL.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ ros use ecl/system&lt;/code&gt;&lt;/pre&gt;
+&lt;!-- more--&gt;
+
+&lt;p&gt;Initialize a new roswell script&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ ros init hello&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Then add the following to &lt;code&gt;hello.ros&lt;/code&gt;&lt;/p&gt;
+
+&lt;div class="brush: lisp"&gt;
+ &lt;div class="highlight"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="nv"&gt;!/bin/sh&lt;/span&gt;
+&lt;span class="cm"&gt;#|-*- mode:lisp -*-|#&lt;/span&gt;
+&lt;span class="cm"&gt;#|&lt;/span&gt;
+&lt;span class="cm"&gt;exec ros -Q -- $0 "$@"&lt;/span&gt;
+&lt;span class="cm"&gt;|#&lt;/span&gt;
+&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;progn&lt;/span&gt; &lt;span class="c1"&gt;;;init forms&lt;/span&gt;
+  &lt;span class="c1"&gt;;;(ros:ensure-asdf)&lt;/span&gt;
+  &lt;span class="c1"&gt;;;#+quicklisp(ql:quickload &amp;#39;() :silent t)&lt;/span&gt;
+  &lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;defpackage&lt;/span&gt; &lt;span class="ss"&gt;:ros.script.hello.3742624530&lt;/span&gt;
+  &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="ss"&gt;:use&lt;/span&gt; &lt;span class="ss"&gt;:cl&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;in-package&lt;/span&gt; &lt;span class="ss"&gt;:ros.script.hello.3742624530&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+
+&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;defun&lt;/span&gt; &lt;span class="nv"&gt;main&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;&amp;amp;rest&lt;/span&gt; &lt;span class="nv"&gt;argv&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+  &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;declare&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;ignorable&lt;/span&gt; &lt;span class="nv"&gt;argv&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+  &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;format&lt;/span&gt; &lt;span class="no"&gt;t&lt;/span&gt; &lt;span class="s"&gt;"Hello world!~%"&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;span class="c1"&gt;;;; vim: set ft=lisp lisp:&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;p&gt;Compile into an executable using&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ ros build hello.ros&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The executable &lt;code&gt;hello&lt;/code&gt; is now 1.6 MB on my system (Darwin 17.7.0)&lt;/p&gt;
+
+&lt;p&gt;You can bring this down to 457 KB using&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ upx --best hello&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The &amp;ldquo;hello&amp;rdquo; executable is now small, but not really fast&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ time ./hello
+Hello world!
+        0.41 real         0.40 user         0.02 sys&lt;/code&gt;&lt;/pre&gt;</description></item></channel></rss>

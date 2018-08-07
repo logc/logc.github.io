@@ -3,10 +3,10 @@
   <head>
 
     <meta charset="utf-8">
-    <title>Posts tagged 'C'</title>
-    <meta name="description" content="Posts tagged 'C'">
+    <title>Posts tagged 'C++'</title>
+    <meta name="description" content="Posts tagged 'C++'">
     <meta name="author"      content="logc">
-    <meta name="keywords"    content="C">
+    <meta name="keywords"    content="C++">
     <meta name="viewport"    content="width=device-width, initial-scale=1.0">
     <link rel="icon"      href="/favicon.ico">
     <link rel="canonical" href="http://logc.github.io/tags/C.html">
@@ -91,6 +91,8 @@
 
 <li><a href="/tags/java.html">java</a></li>
 
+<li><a href="/tags/lisp.html">lisp</a></li>
+
 <li><a href="/tags/maven.html">maven</a></li>
 
 <li><a href="/tags/programming.html">programming</a></li>
@@ -142,59 +144,32 @@
 
 
 
-            <h1>Posts tagged <em>C</em></h1>
+            <h1>Posts tagged <em>C++</em></h1>
 
             <article>
   <header>
-    <h2><a href='/blog/2016/10/20/minimal-c-project-structure-with-scons/'>Minimal C project structure with SCons</a></h2>
+    <h2><a href='/blog/2014/01/21/wordcount-in-c/'>Wordcount in C++</a></h2>
     <p class='date-and-tags'>
-<time datetime="2016-10-20" pubdate="true">2016-10-20</time> :: <span class="tags"><a href="/tags/C.html">C</a>, <a href="/tags/scons.html">scons</a>, <a href="/tags/build.html">build</a></span></p>
+<time datetime="2014-01-21" pubdate="true">2014-01-21</time> :: <span class="tags"><a href="/tags/C.html">C++</a></span></p>
   </header>
 
-<p>This is a possible project structure in order to have a C project using SCons as the build system. It enables you to:</p>
-
-<ul>
- <li>compile most files as a library, and link that to a <code>main</code> file with application code.</li>
- <li>separate <code>src</code> and <code>include</code> directories</li>
- <li>separate unit tests using libcheck</li>
- <li>the unit tests link to the library</li>
- <li>Macports-installed libraries</li></ul>
-
-<p>Layout your code like this:</p>
-
-<pre><code>.
-├── include
-│   └── core
-│       └── mylib.h
-├── sconstruct
-├── src
-│   ├── core
-│   │   └── mylib.c
-│   └── main.c
-└── tests
-    ├── core
-    │   ├── test_mylib.c
-    │   ├── test_mylib.h
-    │   └── tests.h
-    └── main.c</code></pre>
-
-<p>where <code>mylib</code> should have a more descriptive name for your project.</p>
-
-<p><code>sconstruct</code> is:</p>
-
-<div class="brush: python">
- <div class="highlight">
-  <pre><span></span><span class="n">env</span> <span class="o">=</span> <span class="n">Environment</span><span class="p">(</span><span class="n">CPPPATH</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;include&#39;</span><span class="p">,</span> <span class="s1">&#39;/opt/local/include&#39;</span><span class="p">])</span>
-<span class="n">env</span><span class="o">.</span><span class="n">Library</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="s1">&#39;mylib&#39;</span><span class="p">,</span> <span class="n">source</span><span class="o">=</span><span class="n">Glob</span><span class="p">(</span><span class="s1">&#39;src/core/*.c&#39;</span><span class="p">))</span>
-<span class="n">env</span><span class="o">.</span><span class="n">Program</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="s1">&#39;mylib&#39;</span><span class="p">,</span> <span class="n">source</span><span class="o">=</span><span class="n">Glob</span><span class="p">(</span><span class="s1">&#39;src/*.c&#39;</span><span class="p">),</span>
-            <span class="n">LIBS</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;mylib&#39;</span><span class="p">],</span> <span class="n">LIBPATH</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;.&#39;</span><span class="p">])</span>
-<span class="n">env</span><span class="o">.</span><span class="n">Program</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="s1">&#39;test_mylib&#39;</span><span class="p">,</span> <span class="n">source</span><span class="o">=</span><span class="n">Glob</span><span class="p">(</span><span class="s1">&#39;tests/*.c&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="n">Glob</span><span class="p">(</span><span class="s1">&#39;tests/**/*.c&#39;</span><span class="p">),</span>
-            <span class="n">LIBS</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;mylib&#39;</span><span class="p">,</span> <span class="s1">&#39;check&#39;</span><span class="p">],</span> <span class="n">LIBPATH</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="s1">&#39;/opt/local/lib/&#39;</span><span class="p">])</span>
-</pre></div>
-
-</div>
+<p>This is the standard example for MapReduce applications, counting the words in a file. Note that this snippet is not threaded nor distributed. It is just a curiosity: how to implement the same in C++, using the STL to avoid having any <code>for</code> loop!</p>
   <footer>
-    <a href='/blog/2016/10/20/minimal-c-project-structure-with-scons/'>&hellip; more &hellip;</a>
+    <a href='/blog/2014/01/21/wordcount-in-c/'>&hellip; more &hellip;</a>
+  </footer>
+</article>
+<article>
+  <header>
+    <h2><a href='/blog/2014/01/20/reduce-in-standard-c/'>Reduce in standard C++</a></h2>
+    <p class='date-and-tags'>
+<time datetime="2014-01-20" pubdate="true">2014-01-20</time> :: <span class="tags"><a href="/tags/C.html">C++</a></span></p>
+  </header>
+
+<h2 id="accumulate-instead-of-loop">Accumulate instead of loop</h2>
+
+<p>You can traverse a C++ vector in many ways. Looping over a counter variable that goes from 0 to the vector size or taking an iterator from the vector&rsquo;s <code>begin</code> to its <code>end</code> pointer positions are well-known ways to access its elements. When you are collapsing the elements into a single accumulator value (an operation usually called <code>reduce</code> in functional programming), you can use the <code>std::accumulate</code> function in the <code>numeric</code> header.</p>
+  <footer>
+    <a href='/blog/2014/01/20/reduce-in-standard-c/'>&hellip; more &hellip;</a>
   </footer>
 </article>
           </div>
@@ -208,7 +183,7 @@
         <a href="http://twitter.github.com/bootstrap/index.html">Bootstrap</a>.
         Cover image by NASA/Bill Ingalls [Public domain], via Wikimedia Commons.
         </p>
-        <p>This page was last built on Monday, June 4th, 2018</p>
+        <p>This page was last built on Tuesday, August 7th, 2018</p>
 
         <p><em>© Copyright 2018, Luis Osa</em>.</p>
       </footer>

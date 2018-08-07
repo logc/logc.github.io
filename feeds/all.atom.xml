@@ -4,7 +4,76 @@
  <link rel="self" href="http://logc.github.io/feeds/all.atom.xml" />
  <link href="http://logc.github.io/index.html" />
  <id>urn:http-logc-github-io:-index-html</id>
- <updated>2018-06-04T18:07:09Z</updated>
+ <updated>2018-08-07T09:14:18Z</updated>
+ <entry>
+  <title type="text">Produce small executables with Common Lisp</title>
+  <link rel="alternate" href="http://logc.github.io/blog/2018/08/07/produce-small-executables-with-common-lisp/?utm_source=all&amp;utm_medium=Atom" />
+  <id>urn:http-logc-github-io:-blog-2018-08-07-produce-small-executables-with-common-lisp</id>
+  <published>2018-08-07T09:14:18Z</published>
+  <updated>2018-08-07T09:14:18Z</updated>
+  <author>
+   <name>logc</name></author>
+  <content type="html">
+&lt;p&gt;You need &lt;a href="https://github.com/roswell/roswell"&gt;roswell&lt;/a&gt;, &lt;a href="https://common-lisp.net/project/ecl/"&gt;ECL&lt;/a&gt; and &lt;a href="https://upx.github.io/"&gt;UPX&lt;/a&gt; installed.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ brew install --HEAD roswell
+$ brew install ecl upx
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The reason to install the head roswell is that, as of this writing, some of the Common Lisp installations did not work on the latest release on Homebrew.&lt;/p&gt;
+
+&lt;p&gt;The reason to install &lt;code&gt;ecl&lt;/code&gt; on the system, and not using &lt;code&gt;ros install&lt;/code&gt;, is that I had problems installing the latest version of ECL that way. Also, the &lt;code&gt;ros
+list versions&lt;/code&gt; command did not find any available versions of ECL. So, I resorted to using the system installed ECL.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ ros use ecl/system&lt;/code&gt;&lt;/pre&gt;
+&lt;!-- more--&gt;
+
+&lt;p&gt;Initialize a new roswell script&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ ros init hello&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Then add the following to &lt;code&gt;hello.ros&lt;/code&gt;&lt;/p&gt;
+
+&lt;div class="brush: lisp"&gt;
+ &lt;div class="highlight"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="err"&gt;#&lt;/span&gt;&lt;span class="nv"&gt;!/bin/sh&lt;/span&gt;
+&lt;span class="cm"&gt;#|-*- mode:lisp -*-|#&lt;/span&gt;
+&lt;span class="cm"&gt;#|&lt;/span&gt;
+&lt;span class="cm"&gt;exec ros -Q -- $0 "$@"&lt;/span&gt;
+&lt;span class="cm"&gt;|#&lt;/span&gt;
+&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;progn&lt;/span&gt; &lt;span class="c1"&gt;;;init forms&lt;/span&gt;
+  &lt;span class="c1"&gt;;;(ros:ensure-asdf)&lt;/span&gt;
+  &lt;span class="c1"&gt;;;#+quicklisp(ql:quickload &amp;#39;() :silent t)&lt;/span&gt;
+  &lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;defpackage&lt;/span&gt; &lt;span class="ss"&gt;:ros.script.hello.3742624530&lt;/span&gt;
+  &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="ss"&gt;:use&lt;/span&gt; &lt;span class="ss"&gt;:cl&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;in-package&lt;/span&gt; &lt;span class="ss"&gt;:ros.script.hello.3742624530&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+
+&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;defun&lt;/span&gt; &lt;span class="nv"&gt;main&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;&amp;amp;rest&lt;/span&gt; &lt;span class="nv"&gt;argv&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+  &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;declare&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;ignorable&lt;/span&gt; &lt;span class="nv"&gt;argv&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+  &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;format&lt;/span&gt; &lt;span class="no"&gt;t&lt;/span&gt; &lt;span class="s"&gt;"Hello world!~%"&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;span class="c1"&gt;;;; vim: set ft=lisp lisp:&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;p&gt;Compile into an executable using&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ ros build hello.ros&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The executable &lt;code&gt;hello&lt;/code&gt; is now 1.6 MB on my system (Darwin 17.7.0)&lt;/p&gt;
+
+&lt;p&gt;You can bring this down to 457 KB using&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ upx --best hello&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The &amp;ldquo;hello&amp;rdquo; executable is now small, but not really fast&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;$ time ./hello
+Hello world!
+        0.41 real         0.40 user         0.02 sys&lt;/code&gt;&lt;/pre&gt;</content></entry>
  <entry>
   <title type="text">Logging start and finish in Python</title>
   <link rel="alternate" href="http://logc.github.io/blog/2018/06/04/logging-start-and-finish-in-python/?utm_source=all&amp;utm_medium=Atom" />
@@ -1126,91 +1195,6 @@ Email
   &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;unicode_string&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="sa"&gt;u&lt;/span&gt;&lt;span class="s2"&gt;"Años"&lt;/span&gt;
 
 &lt;span class="n"&gt;unicode_str&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;unicode&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;open&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;some.txt&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;r&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;read&lt;/span&gt;&lt;span class="p"&gt;(),&lt;/span&gt; &lt;span class="n"&gt;encoding&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;utf-8&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;/div&gt;</content></entry>
- <entry>
-  <title type="text">py2app excludes</title>
-  <link rel="alternate" href="http://logc.github.io/blog/2013/12/02/py2app-excludes/?utm_source=all&amp;utm_medium=Atom" />
-  <id>urn:http-logc-github-io:-blog-2013-12-02-py2app-excludes</id>
-  <published>2013-12-02T20:58:08Z</published>
-  <updated>2013-12-02T20:58:08Z</updated>
-  <author>
-   <name>logc</name></author>
-  <content type="html">
-&lt;p&gt;Al generar una aplicación para Mac OS X con py2app, a menudo se generan ejecutables muy pesados, por ejemplo 20 MBs para una aplicación de línea de comandos (!).&lt;/p&gt;
-
-&lt;p&gt;Uno de los problemas es que py2app tiende a incluir muchos módulos de la librería estándar de Python que en realidad no hacen falta. Se pueden excluir específicamente incluyéndolos en la opción excludes que se pasa a la función setup en el archivo setup.py usado para generar la aplicación.&lt;/p&gt;
-
-&lt;p&gt;Con la lista siguiente, el peso baja de 22 MBs a 6 MBs. Probablemente se puede rebajar aún más.&lt;/p&gt;
-
-&lt;div class="brush: python"&gt;
- &lt;div class="highlight"&gt;
-  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# File: setup.py&lt;/span&gt;
-
-&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;setuptools&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;setup&lt;/span&gt;
-
-&lt;span class="n"&gt;APP&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;path/main.py&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
-&lt;span class="n"&gt;Plist&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{}&lt;/span&gt;
-&lt;span class="n"&gt;DATA_FILES&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[]&lt;/span&gt;
-&lt;span class="n"&gt;OPTIONS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;argv_emulation&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="bp"&gt;True&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-           &lt;span class="c1"&gt;#&amp;#39;iconfile&amp;#39;: &amp;#39;Icons/ConverterIcon.icns&amp;#39;,&lt;/span&gt;
-           &lt;span class="s1"&gt;&amp;#39;plist&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;Plist&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-           &lt;span class="s1"&gt;&amp;#39;excludes&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;
-               &lt;span class="s1"&gt;&amp;#39;aetypes&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-               &lt;span class="s1"&gt;&amp;#39;ast&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-               &lt;span class="s1"&gt;&amp;#39;bz2&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-               &lt;span class="s1"&gt;&amp;#39;calendar&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-               &lt;span class="s1"&gt;&amp;#39;codecs&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-               &lt;span class="s1"&gt;&amp;#39;collections&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-               &lt;span class="s1"&gt;&amp;#39;ctypes&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-               &lt;span class="s1"&gt;&amp;#39;distutils&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-               &lt;span class="s1"&gt;&amp;#39;doctest&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-               &lt;span class="s1"&gt;&amp;#39;email&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-               &lt;span class="s1"&gt;&amp;#39;encodings&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-               &lt;span class="s1"&gt;&amp;#39;functools&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-               &lt;span class="s1"&gt;&amp;#39;gzip&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-               &lt;span class="s1"&gt;&amp;#39;inspect&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-               &lt;span class="s1"&gt;&amp;#39;itertools&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-               &lt;span class="s1"&gt;&amp;#39;locale&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-               &lt;span class="s1"&gt;&amp;#39;logging&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-               &lt;span class="s1"&gt;&amp;#39;optparse&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-               &lt;span class="s1"&gt;&amp;#39;pickle&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-               &lt;span class="s1"&gt;&amp;#39;platform&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-               &lt;span class="s1"&gt;&amp;#39;pprint&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-               &lt;span class="s1"&gt;&amp;#39;random&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-               &lt;span class="s1"&gt;&amp;#39;re&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-               &lt;span class="s1"&gt;&amp;#39;sets&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-               &lt;span class="s1"&gt;&amp;#39;shutil&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-               &lt;span class="s1"&gt;&amp;#39;socket&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-               &lt;span class="s1"&gt;&amp;#39;ssl&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-               &lt;span class="s1"&gt;&amp;#39;subprocess&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-               &lt;span class="s1"&gt;&amp;#39;tarfile&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-               &lt;span class="s1"&gt;&amp;#39;tempfile&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-               &lt;span class="s1"&gt;&amp;#39;threading&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-               &lt;span class="s1"&gt;&amp;#39;traceback&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-               &lt;span class="s1"&gt;&amp;#39;types&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-               &lt;span class="s1"&gt;&amp;#39;unittest&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-               &lt;span class="s1"&gt;&amp;#39;urllib&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-               &lt;span class="s1"&gt;&amp;#39;urllib2&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-               &lt;span class="s1"&gt;&amp;#39;urlparse&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-               &lt;span class="s1"&gt;&amp;#39;weakref&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-               &lt;span class="s1"&gt;&amp;#39;xml&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-               &lt;span class="s1"&gt;&amp;#39;zipfile&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-           &lt;span class="p"&gt;]&lt;/span&gt;
-           &lt;span class="p"&gt;}&lt;/span&gt;
-
-&lt;span class="n"&gt;setup&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
-    &lt;span class="n"&gt;app&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;APP&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-    &lt;span class="n"&gt;package_dir&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;src&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;},&lt;/span&gt; &lt;span class="c1"&gt;# you may not need this&lt;/span&gt;
-    &lt;span class="n"&gt;data_files&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;DATA_FILES&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-    &lt;span class="n"&gt;version&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;"0.1"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-    &lt;span class="n"&gt;description&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;"&amp;lt;Your description&amp;gt;"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-    &lt;span class="n"&gt;author&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;"&amp;lt;Your name&amp;gt;"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-    &lt;span class="n"&gt;author_email&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;"&amp;lt;Your email&amp;gt;"&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-    &lt;span class="n"&gt;options&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;py2app&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;OPTIONS&lt;/span&gt;&lt;span class="p"&gt;},&lt;/span&gt;
-    &lt;span class="n"&gt;setup_requires&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;py2app&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt;
-&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 &lt;/div&gt;</content></entry></feed>

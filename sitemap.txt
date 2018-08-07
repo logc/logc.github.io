@@ -19,5 +19,6 @@ http://logc.github.io/blog/2017/08/25/maven-does-not-find-java-home-in-fish-shel
 http://logc.github.io/blog/2018/05/14/debug-scala-with-spacemacs/
 http://logc.github.io/blog/2016/10/20/minimal-c-project-structure-with-scons/
 http://logc.github.io/blog/2015/02/27/if-programming-languages-were-music-genres/
+http://logc.github.io/blog/2018/08/07/produce-small-executables-with-common-lisp/
 http://logc.github.io/blog/2013/11/17/infraestructura-de-lanzamientos-locales/
 http://logc.github.io/About.html

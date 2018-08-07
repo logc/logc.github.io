@@ -6,7 +6,7 @@
     <title>logc io (page 5)</title>
     <meta name="description" content="logc io (page 5)">
     <meta name="author"      content="logc">
-    <meta name="keywords"    content="C++, Scala, IntelliJ, blog, spacemacs, web, all, build, git, java, maven, scons, python, sysadmin, fish, racket, programming, vim, scala, Emacs, frog, haskell, C">
+    <meta name="keywords"    content="IntelliJ, lisp, web, build, git, java, scons, python, Scala, racket, programming, haskell, C, C++, blog, spacemacs, all, maven, sysadmin, fish, vim, scala, Emacs, frog">
     <meta name="viewport"    content="width=device-width, initial-scale=1.0">
     <link rel="icon"      href="/favicon.ico">
     <link rel="canonical" href="http://logc.github.io/index-5.html">
@@ -91,6 +91,8 @@
 
 <li><a href="/tags/java.html">java</a></li>
 
+<li><a href="/tags/lisp.html">lisp</a></li>
+
 <li><a href="/tags/maven.html">maven</a></li>
 
 <li><a href="/tags/programming.html">programming</a></li>
@@ -145,6 +147,91 @@
 
 
             <article>
+  <header>
+    <h2><a href='/blog/2013/12/02/py2app-excludes/'>py2app excludes</a></h2>
+    <p class='date-and-tags'>
+<time datetime="2013-12-02" pubdate="true">2013-12-02</time> :: <span class="tags"><a href="/tags/python.html">python</a></span></p>
+  </header>
+
+<p>Al generar una aplicación para Mac OS X con py2app, a menudo se generan ejecutables muy pesados, por ejemplo 20 MBs para una aplicación de línea de comandos (!).</p>
+
+<p>Uno de los problemas es que py2app tiende a incluir muchos módulos de la librería estándar de Python que en realidad no hacen falta. Se pueden excluir específicamente incluyéndolos en la opción excludes que se pasa a la función setup en el archivo setup.py usado para generar la aplicación.</p>
+
+<p>Con la lista siguiente, el peso baja de 22 MBs a 6 MBs. Probablemente se puede rebajar aún más.</p>
+
+<div class="brush: python">
+ <div class="highlight">
+  <pre><span></span><span class="c1"># File: setup.py</span>
+
+<span class="kn">from</span> <span class="nn">setuptools</span> <span class="kn">import</span> <span class="n">setup</span>
+
+<span class="n">APP</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;path/main.py&#39;</span><span class="p">]</span>
+<span class="n">Plist</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="n">DATA_FILES</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">OPTIONS</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;argv_emulation&#39;</span><span class="p">:</span> <span class="bp">True</span><span class="p">,</span>
+           <span class="c1">#&#39;iconfile&#39;: &#39;Icons/ConverterIcon.icns&#39;,</span>
+           <span class="s1">&#39;plist&#39;</span><span class="p">:</span> <span class="n">Plist</span><span class="p">,</span>
+           <span class="s1">&#39;excludes&#39;</span><span class="p">:</span> <span class="p">[</span>
+               <span class="s1">&#39;aetypes&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;ast&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;bz2&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;calendar&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;codecs&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;collections&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;ctypes&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;distutils&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;doctest&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;email&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;encodings&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;functools&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;gzip&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;inspect&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;itertools&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;locale&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;logging&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;optparse&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;pickle&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;platform&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;pprint&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;random&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;re&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;sets&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;shutil&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;socket&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;ssl&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;subprocess&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;tarfile&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;tempfile&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;threading&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;traceback&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;types&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;unittest&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;urllib&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;urllib2&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;urlparse&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;weakref&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;xml&#39;</span><span class="p">,</span>
+               <span class="s1">&#39;zipfile&#39;</span><span class="p">,</span>
+           <span class="p">]</span>
+           <span class="p">}</span>
+
+<span class="n">setup</span><span class="p">(</span>
+    <span class="n">app</span><span class="o">=</span><span class="n">APP</span><span class="p">,</span>
+    <span class="n">package_dir</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;&#39;</span><span class="p">:</span> <span class="s1">&#39;src&#39;</span><span class="p">},</span> <span class="c1"># you may not need this</span>
+    <span class="n">data_files</span><span class="o">=</span><span class="n">DATA_FILES</span><span class="p">,</span>
+    <span class="n">version</span><span class="o">=</span><span class="s2">"0.1"</span><span class="p">,</span>
+    <span class="n">description</span><span class="o">=</span><span class="s2">"&lt;Your description&gt;"</span><span class="p">,</span>
+    <span class="n">author</span><span class="o">=</span><span class="s2">"&lt;Your name&gt;"</span><span class="p">,</span>
+    <span class="n">author_email</span><span class="o">=</span><span class="s2">"&lt;Your email&gt;"</span><span class="p">,</span>
+    <span class="n">options</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;py2app&#39;</span><span class="p">:</span> <span class="n">OPTIONS</span><span class="p">},</span>
+    <span class="n">setup_requires</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;py2app&#39;</span><span class="p">],</span>
+<span class="p">)</span>
+</pre></div>
+
+</div>
+
+</article>
+<article>
   <header>
     <h2><a href='/blog/2013/11/19/compilar-cython/'>Compilar Cython</a></h2>
     <p class='date-and-tags'>
@@ -254,7 +341,7 @@ building <span class="s1">&#39;fibonacci&#39;</span> extension
         <a href="http://twitter.github.com/bootstrap/index.html">Bootstrap</a>.
         Cover image by NASA/Bill Ingalls [Public domain], via Wikimedia Commons.
         </p>
-        <p>This page was last built on Monday, June 4th, 2018</p>
+        <p>This page was last built on Tuesday, August 7th, 2018</p>
 
         <p><em>© Copyright 2018, Luis Osa</em>.</p>
       </footer>

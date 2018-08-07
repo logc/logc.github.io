@@ -3,13 +3,13 @@
   <head>
 
     <meta charset="utf-8">
-    <title>Posts tagged 'sysadmin'</title>
-    <meta name="description" content="Posts tagged 'sysadmin'">
+    <title>Posts tagged 'lisp'</title>
+    <meta name="description" content="Posts tagged 'lisp'">
     <meta name="author"      content="logc">
-    <meta name="keywords"    content="sysadmin">
+    <meta name="keywords"    content="lisp">
     <meta name="viewport"    content="width=device-width, initial-scale=1.0">
     <link rel="icon"      href="/favicon.ico">
-    <link rel="canonical" href="http://logc.github.io/tags/sysadmin.html">
+    <link rel="canonical" href="http://logc.github.io/tags/lisp.html">
 
 
     <!-- CSS -->
@@ -21,9 +21,9 @@
     <link href="https://fonts.googleapis.com/css?family=Fira+Mono" rel="stylesheet">
     <!-- Feeds -->
     <link rel="alternate" type="application/atom+xml"
-          href="/feeds/sysadmin.atom.xml" title="Atom Feed">
+          href="/feeds/lisp.atom.xml" title="Atom Feed">
     <link rel="alternate" type="application/rss+xml"
-          href="/feeds/sysadmin.rss.xml" title="RSS Feed">
+          href="/feeds/lisp.rss.xml" title="RSS Feed">
     <!-- JS -->
     <script type="text/javascript">
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -121,8 +121,8 @@
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 Feeds <b class="caret"></b></a>
               <ul class="dropdown-menu">
-                <li><a href="/feeds/sysadmin.atom.xml">Atom</a></li>
-                <li><a href="/feeds/sysadmin.rss.xml">RSS</a></li>
+                <li><a href="/feeds/lisp.atom.xml">Atom</a></li>
+                <li><a href="/feeds/lisp.rss.xml">RSS</a></li>
               </ul>
             </li>
           </ul>
@@ -144,26 +144,29 @@
 
 
 
-            <h1>Posts tagged <em>sysadmin</em></h1>
+            <h1>Posts tagged <em>lisp</em></h1>
 
             <article>
   <header>
-    <h2><a href='/blog/2013/11/17/infraestructura-de-lanzamientos-locales/'>Infraestructura de lanzamientos locales</a></h2>
+    <h2><a href='/blog/2018/08/07/produce-small-executables-with-common-lisp/'>Produce small executables with Common Lisp</a></h2>
     <p class='date-and-tags'>
-<time datetime="2013-11-17" pubdate="true">2013-11-17</time> :: <span class="tags"><a href="/tags/sysadmin.html">sysadmin</a></span></p>
+<time datetime="2018-08-07" pubdate="true">2018-08-07</time> :: <span class="tags"><a href="/tags/lisp.html">lisp</a></span></p>
   </header>
 
-<p>Este post describe cómo crear una infraestructura de lanzamientos locales, para compartir paquetes locales con otros desarrolladores del mismo equipo, basándose en Python y Macports. Esto presupone que los otros miembros del equipo usan todos Mac OS X, y que están interesados en usar paquetes de Python, claro.</p>
+<p>You need <a href="https://github.com/roswell/roswell">roswell</a>, <a href="https://common-lisp.net/project/ecl/">ECL</a> and <a href="https://upx.github.io/">UPX</a> installed.</p>
 
-<p>Necesitaremos:</p>
+<pre><code>$ brew install --HEAD roswell
+$ brew install ecl upx
+</code></pre>
 
-<ul>
- <li>crear un paquete de Python con su correspondiente <code>setup.py</code></li>
- <li>tener un directorio <code>releases</code> servido por HTTP por el servidor Apache  integrado en el sistema operativo.</li>
- <li>tener un directorio <code>ports</code> servido por rsync.</li>
- <li>configurar Macports para usar este nuevo repositorio.</li></ul>
+<p>The reason to install the head roswell is that, as of this writing, some of the Common Lisp installations did not work on the latest release on Homebrew.</p>
+
+<p>The reason to install <code>ecl</code> on the system, and not using <code>ros install</code>, is that I had problems installing the latest version of ECL that way. Also, the <code>ros
+list versions</code> command did not find any available versions of ECL. So, I resorted to using the system installed ECL.</p>
+
+<pre><code>$ ros use ecl/system</code></pre>
   <footer>
-    <a href='/blog/2013/11/17/infraestructura-de-lanzamientos-locales/'>&hellip; more &hellip;</a>
+    <a href='/blog/2018/08/07/produce-small-executables-with-common-lisp/'>&hellip; more &hellip;</a>
   </footer>
 </article>
           </div>
