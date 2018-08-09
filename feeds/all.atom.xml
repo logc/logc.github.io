@@ -4,7 +4,40 @@
  <link rel="self" href="http://logc.github.io/feeds/all.atom.xml" />
  <link href="http://logc.github.io/index.html" />
  <id>urn:http-logc-github-io:-index-html</id>
- <updated>2018-08-07T09:14:18Z</updated>
+ <updated>2018-08-09T12:10:00Z</updated>
+ <entry>
+  <title type="text">Ensime server crashed by wrong JAR</title>
+  <link rel="alternate" href="http://logc.github.io/blog/2018/08/09/ensime-server-crashed-by-wrong-jar/?utm_source=all&amp;utm_medium=Atom" />
+  <id>urn:http-logc-github-io:-blog-2018-08-09-ensime-server-crashed-by-wrong-jar</id>
+  <published>2018-08-09T12:10:00Z</published>
+  <updated>2018-08-09T12:10:00Z</updated>
+  <author>
+   <name>logc</name></author>
+  <content type="html">
+&lt;p&gt;If you have a dodgy source jar file, it will probably blow up the ensime server with java.util.zip.ZipException: error in opening zip file. The solution offered in &lt;a href="https://github.com/ensime/ensime-server/issues/825"&gt;the project&amp;rsquo;s Github issue&lt;/a&gt; is to delete your local copy of the bad file and add it to the list of excluded classifiers in ivy (i.e. &lt;code&gt;~/.ivy2/exclude_classifiers&lt;/code&gt;), and report the file to the nexus hosts to have it deleted.&lt;/p&gt;
+
+&lt;p&gt;Mine is a bit longer &amp;hellip;&lt;/p&gt;
+&lt;!-- more--&gt;
+
+&lt;p&gt;I struggled with this error for weeks! In my case, the offending JAR was a transitive dependency of a project, and the solution offered here was not clear enough for me.&lt;/p&gt;
+
+&lt;p&gt;This problem is tricky if you previously loaded the project into an IDE: they download by default all transitive dependencies with sources and javadoc, and the ivy cache is shared by all projects in the same machine.&lt;/p&gt;
+
+&lt;p&gt;Here is my solution, in case it helps others:&lt;/p&gt;
+
+&lt;ul&gt;
+ &lt;li&gt;determine which dependency is pulling the problem JAR with the &lt;a href="https://github.com/jrudolph/sbt-dependency-graph"&gt;sbt dependency  graph plugin&lt;/a&gt; (note: the  command &lt;code&gt;whatDependsOn&lt;/code&gt; only works in interactive mode)&lt;/li&gt;
+ &lt;li&gt;move away the current ivy cache folder &lt;code&gt;console
+$ mv ~/.ivy2/ ~/.ivy2_old&lt;/code&gt;&lt;/li&gt;
+ &lt;li&gt;(optional) create a new clone to have a known state &lt;code&gt;console
+$ git clone $repo ~/dev/ensime-$repo&lt;/code&gt;&lt;/li&gt;
+ &lt;li&gt;edit &lt;code&gt;build.sbt&lt;/code&gt; to add an exclusion rule for the transitive dependency at the line of the explicit dependency that needs it, e.g. &lt;code&gt;sbt
+libraryDependencies ++= Seq(
+  "com.company.notifications" % "notifications-schema" exclude("org.json", "json")
+)&lt;/code&gt;&lt;/li&gt;
+ &lt;li&gt;compile, go for a coffee while ivy downloads the internet :smile:, then run ensime commands &lt;code&gt;console
+$ sbt compile
+$ sbt ensimeConfig ensimeConfigProject&lt;/code&gt;&lt;/li&gt;&lt;/ul&gt;</content></entry>
  <entry>
   <title type="text">Produce small executables with Common Lisp</title>
   <link rel="alternate" href="http://logc.github.io/blog/2018/08/07/produce-small-executables-with-common-lisp/?utm_source=all&amp;utm_medium=Atom" />
@@ -1168,33 +1201,4 @@ Email
 
 &lt;/div&gt;
 
-&lt;p&gt;Este post es una combinación de &lt;a href="http://stackoverflow.com/questions/4149361/on-linux-suse-or-redhat-how-do-i-load-python-2-7"&gt;dos respuestas en Stack Overflow&lt;/a&gt;, y mi propia experiencia con este mismo problema.&lt;/p&gt;</content></entry>
- <entry>
-  <title type="text">Unicode encodings</title>
-  <link rel="alternate" href="http://logc.github.io/blog/2013/12/03/unicode-encodings/?utm_source=all&amp;utm_medium=Atom" />
-  <id>urn:http-logc-github-io:-blog-2013-12-03-unicode-encodings</id>
-  <published>2013-12-03T13:46:19Z</published>
-  <updated>2013-12-03T13:46:19Z</updated>
-  <author>
-   <name>logc</name></author>
-  <content type="html">
-&lt;p&gt;¡Por fin he entendido cuál es la diferencia entre Unicode y UTF&amp;ndash;8! Y lo que es más importante, cómo se declaran correctamente &lt;code&gt;strings&lt;/code&gt; en Unicode en Python.&lt;/p&gt;
-
-&lt;p&gt;Unicode es &lt;strong&gt;la tabla de equivalencias&lt;/strong&gt; entre caracteres de (casi) todos los lenguajes humanos, y un número asignado a ese caracter en concreto.&lt;/p&gt;
-
-&lt;p&gt;UTF&amp;ndash;8 es &lt;strong&gt;la manera de comprimir&lt;/strong&gt; esos números en uno o dos bytes, en lugar de usar 4 bytes por caracter, aprovechando el hecho de que la mayoría de caracteres habituales están en los números bajos (menores de 128).&lt;/p&gt;
-
-&lt;p&gt;Es decir, si el &amp;ldquo;encodificador&amp;rdquo; encuentra un número &amp;lt; 128, deja ese número; si encuentra uno mayor, pero menor de X (donde X es un límite que no recuerdo), usa &lt;strong&gt;dos bytes&lt;/strong&gt; para expresar este número. El &amp;ldquo;decodificador&amp;rdquo; entonces sabe que cada caracter menor de 128 está &amp;ldquo;solo&amp;rdquo;, mientras que si encuentra uno mayor, entonces debe leer también el siguiente byte para tener el número correcto con el que ir a la tabla Unicode y obtener el caracter adecuado.&lt;/p&gt;
-
-&lt;p&gt;Se puede crear una cadena Unicode en Python usando una &lt;code&gt;u&lt;/code&gt; delante de la cadena literal, pero esto no siempre es posible, como cuando se lee de un fichero. Para convertir entre distintas codificaciones existe la función &lt;code&gt;unicode&lt;/code&gt;.&lt;/p&gt;
-
-&lt;p&gt;La función &lt;code&gt;unicode&lt;/code&gt; &lt;strong&gt;no utiliza UTF&amp;ndash;8 por defecto&lt;/strong&gt;, sino, absurdamente, ASCII. Por eso &lt;em&gt;sólo es equivalente a poner una &lt;code&gt;u&lt;/code&gt; delante una cadena si se especifica que el &lt;code&gt;encoding&lt;/code&gt; sea &lt;code&gt;'utf-8'&lt;/code&gt;&lt;/em&gt;.&lt;/p&gt;
-
-&lt;div class="brush: python"&gt;
- &lt;div class="highlight"&gt;
-  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;unicode_string&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="sa"&gt;u&lt;/span&gt;&lt;span class="s2"&gt;"Años"&lt;/span&gt;
-
-&lt;span class="n"&gt;unicode_str&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;unicode&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;open&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;some.txt&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;r&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;read&lt;/span&gt;&lt;span class="p"&gt;(),&lt;/span&gt; &lt;span class="n"&gt;encoding&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;utf-8&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;/div&gt;</content></entry></feed>
+&lt;p&gt;Este post es una combinación de &lt;a href="http://stackoverflow.com/questions/4149361/on-linux-suse-or-redhat-how-do-i-load-python-2-7"&gt;dos respuestas en Stack Overflow&lt;/a&gt;, y mi propia experiencia con este mismo problema.&lt;/p&gt;</content></entry></feed>

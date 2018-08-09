@@ -1,31 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?> 
 <rss version="2.0">
  <channel>
-  <title>logc io: Posts tagged 'scala'</title>
-  <description>logc io: Posts tagged 'scala'</description>
-  <link>http://logc.github.io/tags/scala.html</link>
-  <lastBuildDate>Mon, 14 May 2018 14:08:11 UT</lastBuildDate>
-  <pubDate>Mon, 14 May 2018 14:08:11 UT</pubDate>
+  <title>logc io: Posts tagged 'Scala'</title>
+  <description>logc io: Posts tagged 'Scala'</description>
+  <link>http://logc.github.io/tags/Scala.html</link>
+  <lastBuildDate>Tue, 05 Sep 2017 13:47:32 UT</lastBuildDate>
+  <pubDate>Tue, 05 Sep 2017 13:47:32 UT</pubDate>
   <ttl>1800</ttl>
   <item>
-   <title>Debug Scala with Spacemacs</title>
-   <link>http://logc.github.io/blog/2018/05/14/debug-scala-with-spacemacs/?utm_source=scala&amp;utm_medium=RSS</link>
-   <guid isPermaLink="false">urn:http-logc-github-io:-blog-2018-05-14-debug-scala-with-spacemacs</guid>
-   <pubDate>Mon, 14 May 2018 14:08:11 UT</pubDate>
+   <title>Ensime server crash because of transitive dependency</title>
+   <link>http://logc.github.io/blog/2017/09/05/ensime-server-crash-because-of-transitive-dependency/?utm_source=Scala&amp;utm_medium=RSS</link>
+   <guid isPermaLink="false">urn:http-logc-github-io:-blog-2017-09-05-ensime-server-crash-because-of-transitive-dependency</guid>
+   <pubDate>Tue, 05 Sep 2017 13:47:32 UT</pubDate>
    <author>logc</author>
    <description>
-&lt;p&gt;The &lt;a href="http://ensime.github.io/editors/emacs/userguide/#debugging"&gt;documentation about debugging in ENSIME&lt;/a&gt; was a bit confusing to me. Here are my notes on how to start debugging an (sbt-based) Scala project from Emacs (Spacemacs):&lt;/p&gt;
+&lt;p&gt;The Scala layer for Spacemacs uses Ensime by default. There is an error that made me struggle for weeks: &lt;a href="https://github.com/ensime/ensime-server/issues/825"&gt;Bad source jar kills the server: ZipException: error in opening zip file&lt;/a&gt;&lt;/p&gt;
 
-&lt;ol&gt;
- &lt;li&gt;
-  &lt;p&gt;Launch the debugger from the sbt console first. Use the sbt-mode shell. I  don&amp;rsquo;t really know if this works launching SBT on a terminal not running under  Emacs. Use &lt;code&gt;ensimeTestOnlyDebug&lt;/code&gt; if you are running a test, otherwise use  &lt;code&gt;ensimeRunDebug&lt;/code&gt; for an implementation class.&lt;/p&gt;
-  &lt;pre&gt;&lt;code&gt;&amp;gt; ensimeTestOnlyDebug com.company.division.squad.project.package.TestClass
-...
-Listening for transport dt_socket at address: 5005&lt;/code&gt;&lt;/pre&gt;&lt;/li&gt;
- &lt;li&gt;
-  &lt;p&gt;Set a breakpoint in a source code line by moving your cursor to that line and  using &lt;code&gt;, d b&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
- &lt;li&gt;
-  &lt;p&gt;Attach to the debugger by using &lt;code&gt;, d A&lt;/code&gt;. The first time, you will need to  specify Host (&lt;code&gt;localhost&lt;/code&gt;) and Port (the number in the &lt;code&gt;Listening for
-   transport ...&lt;/code&gt; line above)&lt;/p&gt;&lt;/li&gt;
- &lt;li&gt;
-  &lt;p&gt;When (if) the debugger hits the line where your breakpoint is set, the Emacs  cursor will jump to that position, and you can start using other debugging  commands (&lt;code&gt;, d n&lt;/code&gt;, &lt;code&gt;, d i&lt;/code&gt;, etc &amp;hellip;)&lt;/p&gt;&lt;/li&gt;&lt;/ol&gt;</description></item></channel></rss>
+&lt;p&gt;The offending JAR was a transitive dependency of a project, and the solution offered on the issue was not clear for me.&lt;/p&gt;
+
+&lt;p&gt;This problem is tricky if you previously loaded the project into an IDE: they download by default all transitive dependencies with sources and javadoc, and the ivy cache is shared by all projects in the same machine.&lt;/p&gt;
+
+&lt;p&gt;Here is my solution, as found also on the issue, in case it helps others:&lt;/p&gt;
+
+&lt;ul&gt;
+ &lt;li&gt;determine which dependency is pulling the problem JAR with the &lt;a href="https://github.com/jrudolph/sbt-dependency-graph"&gt;sbt dependency  graph plugin&lt;/a&gt; (note: the  command &lt;code&gt;whatDependsOn&lt;/code&gt; only works in interactive mode)&lt;/li&gt;
+ &lt;li&gt;move away the current ivy cache folder &lt;code&gt;console
+$ mv ~/.ivy2/ ~/.ivy2_old&lt;/code&gt;&lt;/li&gt;
+ &lt;li&gt;(optional) create a new clone to have a known state &lt;code&gt;console
+$ git clone $repo ~/dev/ensime-$repo&lt;/code&gt;&lt;/li&gt;
+ &lt;li&gt;edit &lt;code&gt;build.sbt&lt;/code&gt; to add an exclusion rule for the transitive dependency at the  line of the explicit dependency that needs it, e.g. &lt;code&gt;sbt
+libraryDependencies ++= Seq(
+  "com.company.notifications" % "notifications-schema" exclude("org.json", "json")
+)&lt;/code&gt;&lt;/li&gt;
+ &lt;li&gt;compile, go for a coffee while ivy downloads the internet :), then run ensime commands &lt;code&gt;console
+$ sbt compile
+$ sbt ensimeConfig ensimeConfigProject&lt;/code&gt;&lt;/li&gt;&lt;/ul&gt;</description></item></channel></rss>

@@ -3,15 +3,15 @@
   <head>
 
     <meta charset="utf-8">
-    <title>Debug Scala with Spacemacs</title>
-    <meta name="description" content="The documentation about debugging in ENSIME was a bit confusing to me. Here are my notes on how to start debugging an (sbt-based) Scala project from Emacs (Spacemacs):      Launch the debugger from the sbt console first. Use the sbt-mode shell. I  don't r...">
+    <title>Ensime server crashed by wrong JAR</title>
+    <meta name="description" content="If you have a dodgy source jar file, it will probably blow up the ensime server with java.util.zip.ZipException: error in opening zip file. The solution offered in the project's Github issue is to delete your local copy of the bad file and add it to the l...">
     <meta name="author"      content="logc">
-    <meta name="keywords"    content="scala, spacemacs">
+    <meta name="keywords"    content="Scala Ensime Spacemacs">
     <meta name="viewport"    content="width=device-width, initial-scale=1.0">
     <link rel="icon"      href="/favicon.ico">
-    <link rel="canonical" href="http://logc.github.io/blog/2018/05/14/debug-scala-with-spacemacs/">
-    <link rel="next" href="/blog/2018/04/30/git-setup-with-fork-and-upstream/">
-    <link rel="prev" href="/blog/2018/06/04/logging-start-and-finish-in-python/">
+    <link rel="canonical" href="http://logc.github.io/blog/2018/08/09/ensime-server-crashed-by-wrong-jar/">
+    <link rel="next" href="/blog/2018/08/07/produce-small-executables-with-common-lisp/">
+
     <!-- CSS -->
     <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="/css/pygments.css">
@@ -150,33 +150,40 @@
 
             <article>
   <header>
-    <h1>Debug Scala with Spacemacs</h1>
+    <h1>Ensime server crashed by wrong JAR</h1>
     <p class='date-and-tags'>
-<time datetime="2018-05-14" pubdate="true">2018-05-14</time> :: <span class="tags"><a href="/tags/scala.html">scala</a>, <a href="/tags/spacemacs.html">spacemacs</a></span></p>
+<time datetime="2018-08-09" pubdate="true">2018-08-09</time> :: <span class="tags"><a href="/tags/Scala-Ensime-Spacemacs.html">Scala Ensime Spacemacs</a></span></p>
   </header>
 
-<p>The <a href="http://ensime.github.io/editors/emacs/userguide/#debugging">documentation about debugging in ENSIME</a> was a bit confusing to me. Here are my notes on how to start debugging an (sbt-based) Scala project from Emacs (Spacemacs):</p>
+<p>If you have a dodgy source jar file, it will probably blow up the ensime server with java.util.zip.ZipException: error in opening zip file. The solution offered in <a href="https://github.com/ensime/ensime-server/issues/825">the project&rsquo;s Github issue</a> is to delete your local copy of the bad file and add it to the list of excluded classifiers in ivy (i.e. <code>~/.ivy2/exclude_classifiers</code>), and report the file to the nexus hosts to have it deleted.</p>
 
-<ol>
- <li>
-  <p>Launch the debugger from the sbt console first. Use the sbt-mode shell. I  don&rsquo;t really know if this works launching SBT on a terminal not running under  Emacs. Use <code>ensimeTestOnlyDebug</code> if you are running a test, otherwise use  <code>ensimeRunDebug</code> for an implementation class.</p>
-  <pre><code>&gt; ensimeTestOnlyDebug com.company.division.squad.project.package.TestClass
-...
-Listening for transport dt_socket at address: 5005</code></pre></li>
- <li>
-  <p>Set a breakpoint in a source code line by moving your cursor to that line and  using <code>, d b</code></p></li>
- <li>
-  <p>Attach to the debugger by using <code>, d A</code>. The first time, you will need to  specify Host (<code>localhost</code>) and Port (the number in the <code>Listening for
-   transport ...</code> line above)</p></li>
- <li>
-  <p>When (if) the debugger hits the line where your breakpoint is set, the Emacs  cursor will jump to that position, and you can start using other debugging  commands (<code>, d n</code>, <code>, d i</code>, etc &hellip;)</p></li></ol>
+<p>Mine is a bit longer &hellip;</p>
+<!-- more-->
+
+<p>I struggled with this error for weeks! In my case, the offending JAR was a transitive dependency of a project, and the solution offered here was not clear enough for me.</p>
+
+<p>This problem is tricky if you previously loaded the project into an IDE: they download by default all transitive dependencies with sources and javadoc, and the ivy cache is shared by all projects in the same machine.</p>
+
+<p>Here is my solution, in case it helps others:</p>
+
+<ul>
+ <li>determine which dependency is pulling the problem JAR with the <a href="https://github.com/jrudolph/sbt-dependency-graph">sbt dependency  graph plugin</a> (note: the  command <code>whatDependsOn</code> only works in interactive mode)</li>
+ <li>move away the current ivy cache folder <code>console
+$ mv ~/.ivy2/ ~/.ivy2_old</code></li>
+ <li>(optional) create a new clone to have a known state <code>console
+$ git clone $repo ~/dev/ensime-$repo</code></li>
+ <li>edit <code>build.sbt</code> to add an exclusion rule for the transitive dependency at the line of the explicit dependency that needs it, e.g. <code>sbt
+libraryDependencies ++= Seq(
+  "com.company.notifications" % "notifications-schema" exclude("org.json", "json")
+)</code></li>
+ <li>compile, go for a coffee while ivy downloads the internet :smile:, then run ensime commands <code>console
+$ sbt compile
+$ sbt ensimeConfig ensimeConfigProject</code></li></ul>
   <footer>
     <ul class="pager">
-    <li class="previous">
-      <a href="/blog/2018/06/04/logging-start-and-finish-in-python/">&larr; <em>Logging start and finish in Python</em></a>
-    </li>
+
     <li class="next">
-      <a href="/blog/2018/04/30/git-setup-with-fork-and-upstream/"><em>Git setup with fork and upstream</em> &rarr;</a>
+      <a href="/blog/2018/08/07/produce-small-executables-with-common-lisp/"><em>Produce small executables with Common Lisp</em> &rarr;</a>
     </li>
     </ul>
   </footer>

@@ -3,15 +3,15 @@
   <head>
 
     <meta charset="utf-8">
-    <title>Debug Scala with Spacemacs</title>
-    <meta name="description" content="The documentation about debugging in ENSIME was a bit confusing to me. Here are my notes on how to start debugging an (sbt-based) Scala project from Emacs (Spacemacs):      Launch the debugger from the sbt console first. Use the sbt-mode shell. I  don't r...">
+    <title>Posts tagged 'Scala Ensime Spacemacs'</title>
+    <meta name="description" content="Posts tagged 'Scala Ensime Spacemacs'">
     <meta name="author"      content="logc">
-    <meta name="keywords"    content="scala, spacemacs">
+    <meta name="keywords"    content="Scala Ensime Spacemacs">
     <meta name="viewport"    content="width=device-width, initial-scale=1.0">
     <link rel="icon"      href="/favicon.ico">
-    <link rel="canonical" href="http://logc.github.io/blog/2018/05/14/debug-scala-with-spacemacs/">
-    <link rel="next" href="/blog/2018/04/30/git-setup-with-fork-and-upstream/">
-    <link rel="prev" href="/blog/2018/06/04/logging-start-and-finish-in-python/">
+    <link rel="canonical" href="http://logc.github.io/tags/Scala-Ensime-Spacemacs.html">
+
+
     <!-- CSS -->
     <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="/css/pygments.css">
@@ -21,9 +21,9 @@
     <link href="https://fonts.googleapis.com/css?family=Fira+Mono" rel="stylesheet">
     <!-- Feeds -->
     <link rel="alternate" type="application/atom+xml"
-          href="/feeds/all.atom.xml" title="Atom Feed">
+          href="/feeds/Scala-Ensime-Spacemacs.atom.xml" title="Atom Feed">
     <link rel="alternate" type="application/rss+xml"
-          href="/feeds/all.rss.xml" title="RSS Feed">
+          href="/feeds/Scala-Ensime-Spacemacs.rss.xml" title="RSS Feed">
     <!-- JS -->
     <script type="text/javascript">
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -123,8 +123,8 @@
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 Feeds <b class="caret"></b></a>
               <ul class="dropdown-menu">
-                <li><a href="/feeds/all.atom.xml">Atom</a></li>
-                <li><a href="/feeds/all.rss.xml">RSS</a></li>
+                <li><a href="/feeds/Scala-Ensime-Spacemacs.atom.xml">Atom</a></li>
+                <li><a href="/feeds/Scala-Ensime-Spacemacs.rss.xml">RSS</a></li>
               </ul>
             </li>
           </ul>
@@ -146,39 +146,20 @@
 
 
 
-
+            <h1>Posts tagged <em>Scala Ensime Spacemacs</em></h1>
 
             <article>
   <header>
-    <h1>Debug Scala with Spacemacs</h1>
+    <h2><a href='/blog/2018/08/09/ensime-server-crashed-by-wrong-jar/'>Ensime server crashed by wrong JAR</a></h2>
     <p class='date-and-tags'>
-<time datetime="2018-05-14" pubdate="true">2018-05-14</time> :: <span class="tags"><a href="/tags/scala.html">scala</a>, <a href="/tags/spacemacs.html">spacemacs</a></span></p>
+<time datetime="2018-08-09" pubdate="true">2018-08-09</time> :: <span class="tags"><a href="/tags/Scala-Ensime-Spacemacs.html">Scala Ensime Spacemacs</a></span></p>
   </header>
 
-<p>The <a href="http://ensime.github.io/editors/emacs/userguide/#debugging">documentation about debugging in ENSIME</a> was a bit confusing to me. Here are my notes on how to start debugging an (sbt-based) Scala project from Emacs (Spacemacs):</p>
+<p>If you have a dodgy source jar file, it will probably blow up the ensime server with java.util.zip.ZipException: error in opening zip file. The solution offered in <a href="https://github.com/ensime/ensime-server/issues/825">the project&rsquo;s Github issue</a> is to delete your local copy of the bad file and add it to the list of excluded classifiers in ivy (i.e. <code>~/.ivy2/exclude_classifiers</code>), and report the file to the nexus hosts to have it deleted.</p>
 
-<ol>
- <li>
-  <p>Launch the debugger from the sbt console first. Use the sbt-mode shell. I  don&rsquo;t really know if this works launching SBT on a terminal not running under  Emacs. Use <code>ensimeTestOnlyDebug</code> if you are running a test, otherwise use  <code>ensimeRunDebug</code> for an implementation class.</p>
-  <pre><code>&gt; ensimeTestOnlyDebug com.company.division.squad.project.package.TestClass
-...
-Listening for transport dt_socket at address: 5005</code></pre></li>
- <li>
-  <p>Set a breakpoint in a source code line by moving your cursor to that line and  using <code>, d b</code></p></li>
- <li>
-  <p>Attach to the debugger by using <code>, d A</code>. The first time, you will need to  specify Host (<code>localhost</code>) and Port (the number in the <code>Listening for
-   transport ...</code> line above)</p></li>
- <li>
-  <p>When (if) the debugger hits the line where your breakpoint is set, the Emacs  cursor will jump to that position, and you can start using other debugging  commands (<code>, d n</code>, <code>, d i</code>, etc &hellip;)</p></li></ol>
+<p>Mine is a bit longer &hellip;</p>
   <footer>
-    <ul class="pager">
-    <li class="previous">
-      <a href="/blog/2018/06/04/logging-start-and-finish-in-python/">&larr; <em>Logging start and finish in Python</em></a>
-    </li>
-    <li class="next">
-      <a href="/blog/2018/04/30/git-setup-with-fork-and-upstream/"><em>Git setup with fork and upstream</em> &rarr;</a>
-    </li>
-    </ul>
+    <a href='/blog/2018/08/09/ensime-server-crashed-by-wrong-jar/'>&hellip; more &hellip;</a>
   </footer>
 </article>
           </div>
