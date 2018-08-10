@@ -4,7 +4,35 @@
  <link rel="self" href="http://logc.github.io/feeds/all.atom.xml" />
  <link href="http://logc.github.io/index.html" />
  <id>urn:http-logc-github-io:-index-html</id>
- <updated>2018-08-09T12:10:00Z</updated>
+ <updated>2018-08-10T10:06:41Z</updated>
+ <entry>
+  <title type="text">Setting JAVA_HOME for SBT inside Emacs GUI</title>
+  <link rel="alternate" href="http://logc.github.io/blog/2018/08/10/setting-java-home-for-sbt-inside-emacs-gui/?utm_source=all&amp;utm_medium=Atom" />
+  <id>urn:http-logc-github-io:-blog-2018-08-10-setting-java-home-for-sbt-inside-emacs-gui</id>
+  <published>2018-08-10T10:06:41Z</published>
+  <updated>2018-08-10T10:06:41Z</updated>
+  <author>
+   <name>logc</name></author>
+  <content type="html">
+&lt;p&gt;Is your terminal SBT and your Emacs (or Spacemacs) SBT giving you different results? More confusingly, is SBT doing the correct thing from inside Emacs if Emacs is started from the terminal and not as a GUI application?&lt;/p&gt;
+
+&lt;p&gt;This can be caused by Emacs producing its own environment if started as a GUI application! (And you thought all environments were created equal, out of &lt;code&gt;.bashrc&lt;/code&gt; or whatever &amp;hellip; Nope.)&lt;/p&gt;
+
+&lt;p&gt;This new env that Emacs creates for itself is based on &amp;hellip; magic, I guess.&lt;/p&gt;
+
+&lt;p&gt;In any case, it does &lt;em&gt;not&lt;/em&gt; necessarily respect the &lt;code&gt;JAVA_HOME&lt;/code&gt; that you carefully set in your normal (terminal) environment.&lt;/p&gt;
+
+&lt;p&gt;In order to correct this, add to your &lt;code&gt;init.el&lt;/code&gt; (or &lt;code&gt;dotspacemacs/user-init&lt;/code&gt; in &lt;code&gt;.spacemacs&lt;/code&gt;):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;(setenv "JAVA_HOME"
+        "/Library/Java/JavaVirtualMachines/jdk1.8.0_172.jdk/Contents/Home/")&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;or whatever it is that &lt;code&gt;JAVA_HOME&lt;/code&gt; should point to.&lt;/p&gt;
+
+&lt;p&gt;As an alternative, you can set this variable per project by adding a file &lt;code&gt;.sbtopts&lt;/code&gt; in the project root with the following:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;-java-home
+/Library/Java/JavaVirtualMachines/jdk1.8.0_172.jdk/Contents/Home/&lt;/code&gt;&lt;/pre&gt;</content></entry>
  <entry>
   <title type="text">Ensime server crashed by wrong JAR</title>
   <link rel="alternate" href="http://logc.github.io/blog/2018/08/09/ensime-server-crashed-by-wrong-jar/?utm_source=all&amp;utm_medium=Atom" />
@@ -1157,48 +1185,4 @@ Email
  &lt;li&gt;
   &lt;p&gt;In &lt;code&gt;Handler/&amp;lt;name&amp;gt;.hs&lt;/code&gt;: write &lt;strong&gt;handler functions&lt;/strong&gt; that answer requests to  those routes; include them in &lt;code&gt;Application.hs&lt;/code&gt; and list them on  &lt;code&gt;&amp;lt;application&amp;gt;.cabal&lt;/code&gt;&lt;/p&gt;&lt;/li&gt;
  &lt;li&gt;
-  &lt;p&gt;In &lt;code&gt;templates/&amp;lt;name&amp;gt;.{hamlet,lucius,julius}&lt;/code&gt;: write the &lt;strong&gt;templates&lt;/strong&gt; that  are filled out by the handler functions&lt;/p&gt;&lt;/li&gt;&lt;/ol&gt;</content></entry>
- <entry>
-  <title type="text">Instalar Python 2.7 y NumPy sobre RedHat 6</title>
-  <link rel="alternate" href="http://logc.github.io/blog/2013/12/04/instalar-python-2-7-y-numpy-sobre-redhat-6/?utm_source=all&amp;utm_medium=Atom" />
-  <id>urn:http-logc-github-io:-blog-2013-12-04-instalar-python-2-7-y-numpy-sobre-redhat-6</id>
-  <published>2013-12-04T11:44:57Z</published>
-  <updated>2013-12-04T11:44:57Z</updated>
-  <author>
-   <name>logc</name></author>
-  <content type="html">
-&lt;p&gt;RedHat y centOS tienen la fastidiosa dependencia de su gestor de paquetes, yum, con la versión 2.6 de Python desde tiempos inmemoriales. Lo que en tecnología son unos seis o siete años.&lt;/p&gt;
-
-&lt;p&gt;Instalar Python 2.7 no es posible con los repositorios instalados por defecto, y si tienes la mala idea de instalar un repositorio donde sí esté y meterlo como paquete que supedita al python por defecto, te acabas de cargar yum (y la posibilidad más sencilla de deshacer tus cambios).&lt;/p&gt;
-
-&lt;p&gt;La mejor manera, pese a lo que pueda parecer, es &lt;strong&gt;instalar desde fuentes&lt;/strong&gt;, haciendo lo que se conoce como &amp;ldquo;altinstall&amp;rdquo; (instalación alternativa). Esto crea ejecutables llamados &lt;code&gt;python2.7&lt;/code&gt; bajo &lt;code&gt;/usr/local/bin&lt;/code&gt;, que &lt;strong&gt;no sobreescriben&lt;/strong&gt; el comando &lt;code&gt;python&lt;/code&gt; normal del sistema; éste sigue apuntando a un ejecutable bajo &lt;code&gt;/usr/bin&lt;/code&gt;.&lt;/p&gt;
-
-&lt;div class="brush: console"&gt;
- &lt;div class="highlight"&gt;
-  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; wget http://www.python.org/ftp/python/2.7.6/Python-2.7.6.tgz
-&lt;span class="gp"&gt;$&lt;/span&gt; tar xvfz Python-2.7.6.tgz
-&lt;span class="gp"&gt;$&lt;/span&gt; &lt;span class="nb"&gt;cd&lt;/span&gt; Python-2.7.6
-&lt;span class="gp"&gt;$&lt;/span&gt; ./configure
-&lt;span class="gp"&gt;$&lt;/span&gt; make
-&lt;span class="gp"&gt;$&lt;/span&gt; sudo make altinstall
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;/div&gt;
-
-&lt;p&gt;Además de esto, es recomendable instalar &lt;strong&gt;un &lt;code&gt;easy_install&lt;/code&gt; alternativo también&lt;/strong&gt;, ya que, si no, todas las librerías de python se instalarán para la 2.6 y no para la 2.7.&lt;/p&gt;
-
-&lt;div class="brush: console"&gt;
- &lt;div class="highlight"&gt;
-  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; wget http://pypi.python.org/packages/2.7/s/setuptools/setuptools-0.6c11-py2.7.egg
-&lt;span class="gp"&gt;$&lt;/span&gt; sudo -i
-&lt;span class="gp"&gt;#&lt;/span&gt; &lt;span class="nb"&gt;export&lt;/span&gt; &lt;span class="nv"&gt;PATH&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="nv"&gt;$PATH&lt;/span&gt;:/usr/local/bin
-&lt;span class="gp"&gt;#&lt;/span&gt; sh setuptools-0.6c11-py2.7.egg
-&lt;span class="gp"&gt;#&lt;/span&gt; &lt;span class="nb"&gt;exit&lt;/span&gt;
-&lt;span class="gp"&gt;$&lt;/span&gt; sudo rm /usr/local/bin/easy_install &lt;span class="c1"&gt;## remove the symlink that shadows the system easy_install&lt;/span&gt;
-&lt;span class="gp"&gt;$&lt;/span&gt; &lt;span class="c1"&gt;# You may now try the easy_install for 2.7 with e.g.:&lt;/span&gt;
-&lt;span class="gp"&gt;$&lt;/span&gt; sudo /usr/local/bin/easy_install-2.7 numpy
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;/div&gt;
-
-&lt;p&gt;Este post es una combinación de &lt;a href="http://stackoverflow.com/questions/4149361/on-linux-suse-or-redhat-how-do-i-load-python-2-7"&gt;dos respuestas en Stack Overflow&lt;/a&gt;, y mi propia experiencia con este mismo problema.&lt;/p&gt;</content></entry></feed>
+  &lt;p&gt;In &lt;code&gt;templates/&amp;lt;name&amp;gt;.{hamlet,lucius,julius}&lt;/code&gt;: write the &lt;strong&gt;templates&lt;/strong&gt; that  are filled out by the handler functions&lt;/p&gt;&lt;/li&gt;&lt;/ol&gt;</content></entry></feed>

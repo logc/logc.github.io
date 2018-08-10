@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?> 
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
- <title type="text">logc io: Posts tagged 'Emacs'</title>
- <link rel="self" href="http://logc.github.io/feeds/Emacs.atom.xml" />
- <link href="http://logc.github.io/tags/Emacs.html" />
- <id>urn:http-logc-github-io:-tags-Emacs-html</id>
+ <title type="text">logc io: Posts tagged 'emacs'</title>
+ <link rel="self" href="http://logc.github.io/feeds/emacs.atom.xml" />
+ <link href="http://logc.github.io/tags/emacs.html" />
+ <id>urn:http-logc-github-io:-tags-emacs-html</id>
  <updated>2017-09-05T13:47:32Z</updated>
  <entry>
   <title type="text">Ensime server crash because of transitive dependency</title>
-  <link rel="alternate" href="http://logc.github.io/blog/2017/09/05/ensime-server-crash-because-of-transitive-dependency/?utm_source=Emacs&amp;utm_medium=Atom" />
+  <link rel="alternate" href="http://logc.github.io/blog/2017/09/05/ensime-server-crash-because-of-transitive-dependency/?utm_source=emacs&amp;utm_medium=Atom" />
   <id>urn:http-logc-github-io:-blog-2017-09-05-ensime-server-crash-because-of-transitive-dependency</id>
   <published>2017-09-05T13:47:32Z</published>
   <updated>2017-09-05T13:47:32Z</updated>

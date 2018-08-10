@@ -1,6 +1,6 @@
     Title: Ensime server crash because of transitive dependency
     Date: 2017-09-05T15:47:32
-    Tags: Scala, Emacs
+    Tags: scala,emacs
 
 The Scala layer for Spacemacs uses Ensime by default. There is an error that
 made me struggle for weeks: [Bad source jar kills the server: ZipException:

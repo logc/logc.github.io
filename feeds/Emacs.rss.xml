@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?> 
 <rss version="2.0">
  <channel>
-  <title>logc io: Posts tagged 'Emacs'</title>
-  <description>logc io: Posts tagged 'Emacs'</description>
-  <link>http://logc.github.io/tags/Emacs.html</link>
+  <title>logc io: Posts tagged 'emacs'</title>
+  <description>logc io: Posts tagged 'emacs'</description>
+  <link>http://logc.github.io/tags/emacs.html</link>
   <lastBuildDate>Tue, 05 Sep 2017 13:47:32 UT</lastBuildDate>
   <pubDate>Tue, 05 Sep 2017 13:47:32 UT</pubDate>
   <ttl>1800</ttl>
   <item>
    <title>Ensime server crash because of transitive dependency</title>
-   <link>http://logc.github.io/blog/2017/09/05/ensime-server-crash-because-of-transitive-dependency/?utm_source=Emacs&amp;utm_medium=RSS</link>
+   <link>http://logc.github.io/blog/2017/09/05/ensime-server-crash-because-of-transitive-dependency/?utm_source=emacs&amp;utm_medium=RSS</link>
    <guid isPermaLink="false">urn:http-logc-github-io:-blog-2017-09-05-ensime-server-crash-because-of-transitive-dependency</guid>
    <pubDate>Tue, 05 Sep 2017 13:47:32 UT</pubDate>
    <author>logc</author>

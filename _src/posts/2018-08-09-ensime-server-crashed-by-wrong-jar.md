@@ -1,6 +1,6 @@
     Title: Ensime server crashed by wrong JAR
     Date: 2018-08-09T14:10:00
-    Tags: Scala Ensime Spacemacs
+    Tags: scala,ensime,spacemacs
 
 If you have a dodgy source jar file, it will probably blow up the ensime server
 with java.util.zip.ZipException: error in opening zip file. The solution offered

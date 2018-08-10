@@ -6,7 +6,7 @@
     <title>logc io (page 5)</title>
     <meta name="description" content="logc io (page 5)">
     <meta name="author"      content="logc">
-    <meta name="keywords"    content="sysadmin, java, C, blog, frog, lisp, spacemacs, git, scala, fish, scons, haskell, python, maven, racket, build, IntelliJ, programming, all, Scala, C++, Emacs, vim, web, Scala Ensime Spacemacs">
+    <meta name="keywords"    content="sysadmin, java, C, blog, frog, lisp, spacemacs, emacs, scala, fish, git, scons, haskell, python, ensime, maven, racket, build, IntelliJ, programming, all, C++, vim, web">
     <meta name="viewport"    content="width=device-width, initial-scale=1.0">
     <link rel="icon"      href="/favicon.ico">
     <link rel="canonical" href="http://logc.github.io/index-5.html">
@@ -77,7 +77,9 @@
 
 <li><a href="/tags/C.html">C++</a></li>
 
-<li><a href="/tags/Emacs.html">Emacs</a></li>
+<li><a href="/tags/emacs.html">emacs</a></li>
+
+<li><a href="/tags/ensime.html">ensime</a></li>
 
 <li><a href="/tags/fish.html">fish</a></li>
 
@@ -101,11 +103,7 @@
 
 <li><a href="/tags/racket.html">racket</a></li>
 
-<li><a href="/tags/Scala.html">Scala</a></li>
-
 <li><a href="/tags/scala.html">scala</a></li>
-
-<li><a href="/tags/Scala-Ensime-Spacemacs.html">Scala Ensime Spacemacs</a></li>
 
 <li><a href="/tags/scons.html">scons</a></li>
 
@@ -149,6 +147,50 @@
 
 
             <article>
+  <header>
+    <h2><a href='/blog/2013/12/04/instalar-python-2-7-y-numpy-sobre-redhat-6/'>Instalar Python 2.7 y NumPy sobre RedHat 6</a></h2>
+    <p class='date-and-tags'>
+<time datetime="2013-12-04" pubdate="true">2013-12-04</time> :: <span class="tags"><a href="/tags/python.html">python</a></span></p>
+  </header>
+
+<p>RedHat y centOS tienen la fastidiosa dependencia de su gestor de paquetes, yum, con la versión 2.6 de Python desde tiempos inmemoriales. Lo que en tecnología son unos seis o siete años.</p>
+
+<p>Instalar Python 2.7 no es posible con los repositorios instalados por defecto, y si tienes la mala idea de instalar un repositorio donde sí esté y meterlo como paquete que supedita al python por defecto, te acabas de cargar yum (y la posibilidad más sencilla de deshacer tus cambios).</p>
+
+<p>La mejor manera, pese a lo que pueda parecer, es <strong>instalar desde fuentes</strong>, haciendo lo que se conoce como &ldquo;altinstall&rdquo; (instalación alternativa). Esto crea ejecutables llamados <code>python2.7</code> bajo <code>/usr/local/bin</code>, que <strong>no sobreescriben</strong> el comando <code>python</code> normal del sistema; éste sigue apuntando a un ejecutable bajo <code>/usr/bin</code>.</p>
+
+<div class="brush: console">
+ <div class="highlight">
+  <pre><span></span><span class="gp">$</span> wget http://www.python.org/ftp/python/2.7.6/Python-2.7.6.tgz
+<span class="gp">$</span> tar xvfz Python-2.7.6.tgz
+<span class="gp">$</span> <span class="nb">cd</span> Python-2.7.6
+<span class="gp">$</span> ./configure
+<span class="gp">$</span> make
+<span class="gp">$</span> sudo make altinstall
+</pre></div>
+
+</div>
+
+<p>Además de esto, es recomendable instalar <strong>un <code>easy_install</code> alternativo también</strong>, ya que, si no, todas las librerías de python se instalarán para la 2.6 y no para la 2.7.</p>
+
+<div class="brush: console">
+ <div class="highlight">
+  <pre><span></span><span class="gp">$</span> wget http://pypi.python.org/packages/2.7/s/setuptools/setuptools-0.6c11-py2.7.egg
+<span class="gp">$</span> sudo -i
+<span class="gp">#</span> <span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span><span class="nv">$PATH</span>:/usr/local/bin
+<span class="gp">#</span> sh setuptools-0.6c11-py2.7.egg
+<span class="gp">#</span> <span class="nb">exit</span>
+<span class="gp">$</span> sudo rm /usr/local/bin/easy_install <span class="c1">## remove the symlink that shadows the system easy_install</span>
+<span class="gp">$</span> <span class="c1"># You may now try the easy_install for 2.7 with e.g.:</span>
+<span class="gp">$</span> sudo /usr/local/bin/easy_install-2.7 numpy
+</pre></div>
+
+</div>
+
+<p>Este post es una combinación de <a href="http://stackoverflow.com/questions/4149361/on-linux-suse-or-redhat-how-do-i-load-python-2-7">dos respuestas en Stack Overflow</a>, y mi propia experiencia con este mismo problema.</p>
+
+</article>
+<article>
   <header>
     <h2><a href='/blog/2013/12/03/unicode-encodings/'>Unicode encodings</a></h2>
     <p class='date-and-tags'>
@@ -372,7 +414,7 @@ building <span class="s1">&#39;fibonacci&#39;</span> extension
         <a href="http://twitter.github.com/bootstrap/index.html">Bootstrap</a>.
         Cover image by NASA/Bill Ingalls [Public domain], via Wikimedia Commons.
         </p>
-        <p>This page was last built on Thursday, August 9th, 2018</p>
+        <p>This page was last built on Friday, August 10th, 2018</p>
 
         <p><em>© Copyright 2018, Luis Osa</em>.</p>
       </footer>

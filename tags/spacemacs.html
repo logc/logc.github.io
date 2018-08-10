@@ -77,7 +77,9 @@
 
 <li><a href="/tags/C.html">C++</a></li>
 
-<li><a href="/tags/Emacs.html">Emacs</a></li>
+<li><a href="/tags/emacs.html">emacs</a></li>
+
+<li><a href="/tags/ensime.html">ensime</a></li>
 
 <li><a href="/tags/fish.html">fish</a></li>
 
@@ -101,11 +103,7 @@
 
 <li><a href="/tags/racket.html">racket</a></li>
 
-<li><a href="/tags/Scala.html">Scala</a></li>
-
 <li><a href="/tags/scala.html">scala</a></li>
-
-<li><a href="/tags/Scala-Ensime-Spacemacs.html">Scala Ensime Spacemacs</a></li>
 
 <li><a href="/tags/scons.html">scons</a></li>
 
@@ -150,6 +148,48 @@
 
             <article>
   <header>
+    <h2><a href='/blog/2018/08/10/setting-java-home-for-sbt-inside-emacs-gui/'>Setting JAVA_HOME for SBT inside Emacs GUI</a></h2>
+    <p class='date-and-tags'>
+<time datetime="2018-08-10" pubdate="true">2018-08-10</time> :: <span class="tags"><a href="/tags/scala.html">scala</a>, <a href="/tags/spacemacs.html">spacemacs</a></span></p>
+  </header>
+
+<p>Is your terminal SBT and your Emacs (or Spacemacs) SBT giving you different results? More confusingly, is SBT doing the correct thing from inside Emacs if Emacs is started from the terminal and not as a GUI application?</p>
+
+<p>This can be caused by Emacs producing its own environment if started as a GUI application! (And you thought all environments were created equal, out of <code>.bashrc</code> or whatever &hellip; Nope.)</p>
+
+<p>This new env that Emacs creates for itself is based on &hellip; magic, I guess.</p>
+
+<p>In any case, it does <em>not</em> necessarily respect the <code>JAVA_HOME</code> that you carefully set in your normal (terminal) environment.</p>
+
+<p>In order to correct this, add to your <code>init.el</code> (or <code>dotspacemacs/user-init</code> in <code>.spacemacs</code>):</p>
+
+<pre><code>(setenv "JAVA_HOME"
+        "/Library/Java/JavaVirtualMachines/jdk1.8.0_172.jdk/Contents/Home/")</code></pre>
+
+<p>or whatever it is that <code>JAVA_HOME</code> should point to.</p>
+
+<p>As an alternative, you can set this variable per project by adding a file <code>.sbtopts</code> in the project root with the following:</p>
+
+<pre><code>-java-home
+/Library/Java/JavaVirtualMachines/jdk1.8.0_172.jdk/Contents/Home/</code></pre>
+
+</article>
+<article>
+  <header>
+    <h2><a href='/blog/2018/08/09/ensime-server-crashed-by-wrong-jar/'>Ensime server crashed by wrong JAR</a></h2>
+    <p class='date-and-tags'>
+<time datetime="2018-08-09" pubdate="true">2018-08-09</time> :: <span class="tags"><a href="/tags/scala.html">scala</a>, <a href="/tags/ensime.html">ensime</a>, <a href="/tags/spacemacs.html">spacemacs</a></span></p>
+  </header>
+
+<p>If you have a dodgy source jar file, it will probably blow up the ensime server with java.util.zip.ZipException: error in opening zip file. The solution offered in <a href="https://github.com/ensime/ensime-server/issues/825">the project&rsquo;s Github issue</a> is to delete your local copy of the bad file and add it to the list of excluded classifiers in ivy (i.e. <code>~/.ivy2/exclude_classifiers</code>), and report the file to the nexus hosts to have it deleted.</p>
+
+<p>Mine is a bit longer &hellip;</p>
+  <footer>
+    <a href='/blog/2018/08/09/ensime-server-crashed-by-wrong-jar/'>&hellip; more &hellip;</a>
+  </footer>
+</article>
+<article>
+  <header>
     <h2><a href='/blog/2018/05/14/debug-scala-with-spacemacs/'>Debug Scala with Spacemacs</a></h2>
     <p class='date-and-tags'>
 <time datetime="2018-05-14" pubdate="true">2018-05-14</time> :: <span class="tags"><a href="/tags/scala.html">scala</a>, <a href="/tags/spacemacs.html">spacemacs</a></span></p>
@@ -183,7 +223,7 @@ Listening for transport dt_socket at address: 5005</code></pre></li>
         <a href="http://twitter.github.com/bootstrap/index.html">Bootstrap</a>.
         Cover image by NASA/Bill Ingalls [Public domain], via Wikimedia Commons.
         </p>
-        <p>This page was last built on Thursday, August 9th, 2018</p>
+        <p>This page was last built on Friday, August 10th, 2018</p>
 
         <p><em>© Copyright 2018, Luis Osa</em>.</p>
       </footer>

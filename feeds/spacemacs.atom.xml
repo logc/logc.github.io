@@ -4,7 +4,68 @@
  <link rel="self" href="http://logc.github.io/feeds/spacemacs.atom.xml" />
  <link href="http://logc.github.io/tags/spacemacs.html" />
  <id>urn:http-logc-github-io:-tags-spacemacs-html</id>
- <updated>2018-05-14T14:08:11Z</updated>
+ <updated>2018-08-10T10:06:41Z</updated>
+ <entry>
+  <title type="text">Setting JAVA_HOME for SBT inside Emacs GUI</title>
+  <link rel="alternate" href="http://logc.github.io/blog/2018/08/10/setting-java-home-for-sbt-inside-emacs-gui/?utm_source=spacemacs&amp;utm_medium=Atom" />
+  <id>urn:http-logc-github-io:-blog-2018-08-10-setting-java-home-for-sbt-inside-emacs-gui</id>
+  <published>2018-08-10T10:06:41Z</published>
+  <updated>2018-08-10T10:06:41Z</updated>
+  <author>
+   <name>logc</name></author>
+  <content type="html">
+&lt;p&gt;Is your terminal SBT and your Emacs (or Spacemacs) SBT giving you different results? More confusingly, is SBT doing the correct thing from inside Emacs if Emacs is started from the terminal and not as a GUI application?&lt;/p&gt;
+
+&lt;p&gt;This can be caused by Emacs producing its own environment if started as a GUI application! (And you thought all environments were created equal, out of &lt;code&gt;.bashrc&lt;/code&gt; or whatever &amp;hellip; Nope.)&lt;/p&gt;
+
+&lt;p&gt;This new env that Emacs creates for itself is based on &amp;hellip; magic, I guess.&lt;/p&gt;
+
+&lt;p&gt;In any case, it does &lt;em&gt;not&lt;/em&gt; necessarily respect the &lt;code&gt;JAVA_HOME&lt;/code&gt; that you carefully set in your normal (terminal) environment.&lt;/p&gt;
+
+&lt;p&gt;In order to correct this, add to your &lt;code&gt;init.el&lt;/code&gt; (or &lt;code&gt;dotspacemacs/user-init&lt;/code&gt; in &lt;code&gt;.spacemacs&lt;/code&gt;):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;(setenv "JAVA_HOME"
+        "/Library/Java/JavaVirtualMachines/jdk1.8.0_172.jdk/Contents/Home/")&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;or whatever it is that &lt;code&gt;JAVA_HOME&lt;/code&gt; should point to.&lt;/p&gt;
+
+&lt;p&gt;As an alternative, you can set this variable per project by adding a file &lt;code&gt;.sbtopts&lt;/code&gt; in the project root with the following:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;-java-home
+/Library/Java/JavaVirtualMachines/jdk1.8.0_172.jdk/Contents/Home/&lt;/code&gt;&lt;/pre&gt;</content></entry>
+ <entry>
+  <title type="text">Ensime server crashed by wrong JAR</title>
+  <link rel="alternate" href="http://logc.github.io/blog/2018/08/09/ensime-server-crashed-by-wrong-jar/?utm_source=spacemacs&amp;utm_medium=Atom" />
+  <id>urn:http-logc-github-io:-blog-2018-08-09-ensime-server-crashed-by-wrong-jar</id>
+  <published>2018-08-09T12:10:00Z</published>
+  <updated>2018-08-09T12:10:00Z</updated>
+  <author>
+   <name>logc</name></author>
+  <content type="html">
+&lt;p&gt;If you have a dodgy source jar file, it will probably blow up the ensime server with java.util.zip.ZipException: error in opening zip file. The solution offered in &lt;a href="https://github.com/ensime/ensime-server/issues/825"&gt;the project&amp;rsquo;s Github issue&lt;/a&gt; is to delete your local copy of the bad file and add it to the list of excluded classifiers in ivy (i.e. &lt;code&gt;~/.ivy2/exclude_classifiers&lt;/code&gt;), and report the file to the nexus hosts to have it deleted.&lt;/p&gt;
+
+&lt;p&gt;Mine is a bit longer &amp;hellip;&lt;/p&gt;
+&lt;!-- more--&gt;
+
+&lt;p&gt;I struggled with this error for weeks! In my case, the offending JAR was a transitive dependency of a project, and the solution offered here was not clear enough for me.&lt;/p&gt;
+
+&lt;p&gt;This problem is tricky if you previously loaded the project into an IDE: they download by default all transitive dependencies with sources and javadoc, and the ivy cache is shared by all projects in the same machine.&lt;/p&gt;
+
+&lt;p&gt;Here is my solution, in case it helps others:&lt;/p&gt;
+
+&lt;ul&gt;
+ &lt;li&gt;determine which dependency is pulling the problem JAR with the &lt;a href="https://github.com/jrudolph/sbt-dependency-graph"&gt;sbt dependency  graph plugin&lt;/a&gt; (note: the  command &lt;code&gt;whatDependsOn&lt;/code&gt; only works in interactive mode)&lt;/li&gt;
+ &lt;li&gt;move away the current ivy cache folder &lt;code&gt;console
+$ mv ~/.ivy2/ ~/.ivy2_old&lt;/code&gt;&lt;/li&gt;
+ &lt;li&gt;(optional) create a new clone to have a known state &lt;code&gt;console
+$ git clone $repo ~/dev/ensime-$repo&lt;/code&gt;&lt;/li&gt;
+ &lt;li&gt;edit &lt;code&gt;build.sbt&lt;/code&gt; to add an exclusion rule for the transitive dependency at the line of the explicit dependency that needs it, e.g. &lt;code&gt;sbt
+libraryDependencies ++= Seq(
+  "com.company.notifications" % "notifications-schema" exclude("org.json", "json")
+)&lt;/code&gt;&lt;/li&gt;
+ &lt;li&gt;compile, go for a coffee while ivy downloads the internet :smile:, then run ensime commands &lt;code&gt;console
+$ sbt compile
+$ sbt ensimeConfig ensimeConfigProject&lt;/code&gt;&lt;/li&gt;&lt;/ul&gt;</content></entry>
  <entry>
   <title type="text">Debug Scala with Spacemacs</title>
   <link rel="alternate" href="http://logc.github.io/blog/2018/05/14/debug-scala-with-spacemacs/?utm_source=spacemacs&amp;utm_medium=Atom" />
