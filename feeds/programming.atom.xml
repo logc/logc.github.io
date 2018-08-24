@@ -4,7 +4,32 @@
  <link rel="self" href="http://logc.github.io/feeds/programming.atom.xml" />
  <link href="http://logc.github.io/tags/programming.html" />
  <id>urn:http-logc-github-io:-tags-programming-html</id>
- <updated>2015-02-27T16:52:41Z</updated>
+ <updated>2018-08-24T16:03:56Z</updated>
+ <entry>
+  <title type="text">What to learn in a new programming language</title>
+  <link rel="alternate" href="http://logc.github.io/blog/2018/08/24/what-to-learn-in-a-new-programming-language/?utm_source=programming&amp;utm_medium=Atom" />
+  <id>urn:http-logc-github-io:-blog-2018-08-24-what-to-learn-in-a-new-programming-language</id>
+  <published>2018-08-24T16:03:56Z</published>
+  <updated>2018-08-24T16:03:56Z</updated>
+  <author>
+   <name>logc</name></author>
+  <content type="html">
+&lt;p&gt;This is a list of practical tasks that I learn in any language. Each point builds more or less on top of the previous ones.&lt;/p&gt;
+
+&lt;ul&gt;
+ &lt;li&gt;write a unittest&lt;/li&gt;
+ &lt;li&gt;read a configuration file&lt;/li&gt;
+ &lt;li&gt;parse command line arguments&lt;/li&gt;
+ &lt;li&gt;pass arguments to different functions&lt;/li&gt;
+ &lt;li&gt;logging&lt;/li&gt;
+ &lt;li&gt;write to a database&lt;/li&gt;
+ &lt;li&gt;run concurrent processes&lt;/li&gt;
+ &lt;li&gt;monitoring of a server process&lt;/li&gt;
+ &lt;li&gt;reporting/alerting&lt;/li&gt;
+ &lt;li&gt;create a GUI&lt;/li&gt;
+ &lt;li&gt;create a web interface&lt;/li&gt;
+ &lt;li&gt;create a REST interface&lt;/li&gt;
+ &lt;li&gt;create an installer/deployable app&lt;/li&gt;&lt;/ul&gt;</content></entry>
  <entry>
   <title type="text">If programming languages were music genres</title>
   <link rel="alternate" href="http://logc.github.io/blog/2015/02/27/if-programming-languages-were-music-genres/?utm_source=programming&amp;utm_medium=Atom" />

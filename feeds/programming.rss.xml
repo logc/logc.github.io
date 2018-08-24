@@ -4,9 +4,32 @@
   <title>logc io: Posts tagged 'programming'</title>
   <description>logc io: Posts tagged 'programming'</description>
   <link>http://logc.github.io/tags/programming.html</link>
-  <lastBuildDate>Sun, 27 Feb 2015 16:52:41 UT</lastBuildDate>
-  <pubDate>Sun, 27 Feb 2015 16:52:41 UT</pubDate>
+  <lastBuildDate>Fri, 24 Aug 2018 16:03:56 UT</lastBuildDate>
+  <pubDate>Fri, 24 Aug 2018 16:03:56 UT</pubDate>
   <ttl>1800</ttl>
+  <item>
+   <title>What to learn in a new programming language</title>
+   <link>http://logc.github.io/blog/2018/08/24/what-to-learn-in-a-new-programming-language/?utm_source=programming&amp;utm_medium=RSS</link>
+   <guid isPermaLink="false">urn:http-logc-github-io:-blog-2018-08-24-what-to-learn-in-a-new-programming-language</guid>
+   <pubDate>Fri, 24 Aug 2018 16:03:56 UT</pubDate>
+   <author>logc</author>
+   <description>
+&lt;p&gt;This is a list of practical tasks that I learn in any language. Each point builds more or less on top of the previous ones.&lt;/p&gt;
+
+&lt;ul&gt;
+ &lt;li&gt;write a unittest&lt;/li&gt;
+ &lt;li&gt;read a configuration file&lt;/li&gt;
+ &lt;li&gt;parse command line arguments&lt;/li&gt;
+ &lt;li&gt;pass arguments to different functions&lt;/li&gt;
+ &lt;li&gt;logging&lt;/li&gt;
+ &lt;li&gt;write to a database&lt;/li&gt;
+ &lt;li&gt;run concurrent processes&lt;/li&gt;
+ &lt;li&gt;monitoring of a server process&lt;/li&gt;
+ &lt;li&gt;reporting/alerting&lt;/li&gt;
+ &lt;li&gt;create a GUI&lt;/li&gt;
+ &lt;li&gt;create a web interface&lt;/li&gt;
+ &lt;li&gt;create a REST interface&lt;/li&gt;
+ &lt;li&gt;create an installer/deployable app&lt;/li&gt;&lt;/ul&gt;</description></item>
   <item>
    <title>If programming languages were music genres</title>
    <link>http://logc.github.io/blog/2015/02/27/if-programming-languages-were-music-genres/?utm_source=programming&amp;utm_medium=RSS</link>

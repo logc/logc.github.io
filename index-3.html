@@ -148,6 +148,16 @@
 
             <article>
   <header>
+    <h2><a href='/blog/2017/08/24/intellij-context-menu-from-keyboard/'>IntelliJ context menu from keyboard</a></h2>
+    <p class='date-and-tags'>
+<time datetime="2017-08-24" pubdate="true">2017-08-24</time> :: <span class="tags"><a href="/tags/IntelliJ.html">IntelliJ</a></span></p>
+  </header>
+
+<p>Looked for this for a long time. Somehow, never found <a href="https://intellij-support.jetbrains.com/hc/en-us/community/posts/206326619-Invoke-popup-menu-from-keyboard">the existing support answer</a>. Just created a new shortcut on my personal keymap, with &ldquo;Ctrl + Shift + Enter&rdquo; =&gt; a new life.</p>
+
+</article>
+<article>
+  <header>
     <h2><a href='/blog/2017/08/15/some-git-aliases/'>Some Git aliases</a></h2>
     <p class='date-and-tags'>
 <time datetime="2017-08-15" pubdate="true">2017-08-15</time> :: <span class="tags"><a href="/tags/git.html">git</a></span></p>
@@ -318,28 +328,6 @@ $ git push</code></pre>
 <pre><code>let g:syntastic_racket_racket_args="--load"</code></pre>
 
 </article>
-<article>
-  <header>
-    <h2><a href='/blog/2015/07/15/open-files-from-last-commit-in-vim/'>Open files from last commit in Vim</a></h2>
-    <p class='date-and-tags'>
-<time datetime="2015-07-15" pubdate="true">2015-07-15</time> :: <span class="tags"><a href="/tags/vim.html">vim</a>, <a href="/tags/git.html">git</a></span></p>
-  </header>
-
-<p>It is always a nuisance to remember which files were you working on when you last exited your editing session. I have tried different approaches, including:</p>
-
-<ul>
- <li>leaving a test that does not succeed in order to get an errortrace that  points to the next task I should tackle</li>
- <li>opening the editor inside a <code>tmux</code> or <code>screen</code> session, and therefore never  ending the editing session</li></ul>
-
-<p>The last idea I had was to create a unfinished Git commit (called &ldquo;Unfinished: The commit title&rdquo;), and use Git to retrieve the name of the files that were touched in that commit. You can do it like this:</p>
-
-<pre><code>$ git log --pretty=format: --name-only -n 1</code></pre>
-
-<p>If you alias that command in your <code>.gitconfig</code>, e.g. to <code>lastedited</code>, you can then open the files in your editor by command subtitution:</p>
-
-<pre><code>$ vim $(git lastedited)</code></pre>
-
-</article>
 <footer>
  <ul class="pagination">
   <li class="page-item"><a class="page-link" href="/index-2.html">
@@ -349,6 +337,7 @@ $ git push</code></pre>
   <li class="page-item active"><a class="page-link" href="/index-3.html">3</a></li>
   <li class="page-item"><a class="page-link" href="/index-4.html">4</a></li>
   <li class="page-item"><a class="page-link" href="/index-5.html">5</a></li>
+  <li class="page-item"><a class="page-link" href="/index-6.html">6</a></li>
   <li class="page-item"><a class="page-link" href="/index-4.html">
     <quote>&rarr;</quote></a></li></ul></footer>
           </div>
@@ -362,7 +351,7 @@ $ git push</code></pre>
         <a href="http://twitter.github.com/bootstrap/index.html">Bootstrap</a>.
         Cover image by NASA/Bill Ingalls [Public domain], via Wikimedia Commons.
         </p>
-        <p>This page was last built on Friday, August 10th, 2018</p>
+        <p>This page was last built on Friday, August 24th, 2018</p>
 
         <p><em>© Copyright 2018, Luis Osa</em>.</p>
       </footer>

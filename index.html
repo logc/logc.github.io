@@ -148,6 +148,31 @@
 
             <article>
   <header>
+    <h2><a href='/blog/2018/08/24/what-to-learn-in-a-new-programming-language/'>What to learn in a new programming language</a></h2>
+    <p class='date-and-tags'>
+<time datetime="2018-08-24" pubdate="true">2018-08-24</time> :: <span class="tags"><a href="/tags/programming.html">programming</a></span></p>
+  </header>
+
+<p>This is a list of practical tasks that I learn in any language. Each point builds more or less on top of the previous ones.</p>
+
+<ul>
+ <li>write a unittest</li>
+ <li>read a configuration file</li>
+ <li>parse command line arguments</li>
+ <li>pass arguments to different functions</li>
+ <li>logging</li>
+ <li>write to a database</li>
+ <li>run concurrent processes</li>
+ <li>monitoring of a server process</li>
+ <li>reporting/alerting</li>
+ <li>create a GUI</li>
+ <li>create a web interface</li>
+ <li>create a REST interface</li>
+ <li>create an installer/deployable app</li></ul>
+
+</article>
+<article>
+  <header>
     <h2><a href='/blog/2018/08/10/setting-java-home-for-sbt-inside-emacs-gui/'>Setting JAVA_HOME for SBT inside Emacs GUI</a></h2>
     <p class='date-and-tags'>
 <time datetime="2018-08-10" pubdate="true">2018-08-10</time> :: <span class="tags"><a href="/tags/scala.html">scala</a>, <a href="/tags/spacemacs.html">spacemacs</a></span></p>
@@ -249,30 +274,6 @@ list versions</code> command did not find any available versions of ECL. So, I r
 </div>
 
 </article>
-<article>
-  <header>
-    <h2><a href='/blog/2018/05/14/debug-scala-with-spacemacs/'>Debug Scala with Spacemacs</a></h2>
-    <p class='date-and-tags'>
-<time datetime="2018-05-14" pubdate="true">2018-05-14</time> :: <span class="tags"><a href="/tags/scala.html">scala</a>, <a href="/tags/spacemacs.html">spacemacs</a></span></p>
-  </header>
-
-<p>The <a href="http://ensime.github.io/editors/emacs/userguide/#debugging">documentation about debugging in ENSIME</a> was a bit confusing to me. Here are my notes on how to start debugging an (sbt-based) Scala project from Emacs (Spacemacs):</p>
-
-<ol>
- <li>
-  <p>Launch the debugger from the sbt console first. Use the sbt-mode shell. I  don&rsquo;t really know if this works launching SBT on a terminal not running under  Emacs. Use <code>ensimeTestOnlyDebug</code> if you are running a test, otherwise use  <code>ensimeRunDebug</code> for an implementation class.</p>
-  <pre><code>&gt; ensimeTestOnlyDebug com.company.division.squad.project.package.TestClass
-...
-Listening for transport dt_socket at address: 5005</code></pre></li>
- <li>
-  <p>Set a breakpoint in a source code line by moving your cursor to that line and  using <code>, d b</code></p></li>
- <li>
-  <p>Attach to the debugger by using <code>, d A</code>. The first time, you will need to  specify Host (<code>localhost</code>) and Port (the number in the <code>Listening for
-   transport ...</code> line above)</p></li>
- <li>
-  <p>When (if) the debugger hits the line where your breakpoint is set, the Emacs  cursor will jump to that position, and you can start using other debugging  commands (<code>, d n</code>, <code>, d i</code>, etc &hellip;)</p></li></ol>
-
-</article>
 <footer>
  <ul class="pagination">
   <li class="page-item disabled"><a class="page-link" href="#">
@@ -282,6 +283,7 @@ Listening for transport dt_socket at address: 5005</code></pre></li>
   <li class="page-item"><a class="page-link" href="/index-3.html">3</a></li>
   <li class="page-item"><a class="page-link" href="/index-4.html">4</a></li>
   <li class="page-item"><a class="page-link" href="/index-5.html">5</a></li>
+  <li class="page-item"><a class="page-link" href="/index-6.html">6</a></li>
   <li class="page-item"><a class="page-link" href="/index-2.html">
     <quote>&rarr;</quote></a></li></ul></footer>
           </div>
@@ -295,7 +297,7 @@ Listening for transport dt_socket at address: 5005</code></pre></li>
         <a href="http://twitter.github.com/bootstrap/index.html">Bootstrap</a>.
         Cover image by NASA/Bill Ingalls [Public domain], via Wikimedia Commons.
         </p>
-        <p>This page was last built on Friday, August 10th, 2018</p>
+        <p>This page was last built on Friday, August 24th, 2018</p>
 
         <p><em>© Copyright 2018, Luis Osa</em>.</p>
       </footer>

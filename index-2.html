@@ -148,6 +148,30 @@
 
             <article>
   <header>
+    <h2><a href='/blog/2018/05/14/debug-scala-with-spacemacs/'>Debug Scala with Spacemacs</a></h2>
+    <p class='date-and-tags'>
+<time datetime="2018-05-14" pubdate="true">2018-05-14</time> :: <span class="tags"><a href="/tags/scala.html">scala</a>, <a href="/tags/spacemacs.html">spacemacs</a></span></p>
+  </header>
+
+<p>The <a href="http://ensime.github.io/editors/emacs/userguide/#debugging">documentation about debugging in ENSIME</a> was a bit confusing to me. Here are my notes on how to start debugging an (sbt-based) Scala project from Emacs (Spacemacs):</p>
+
+<ol>
+ <li>
+  <p>Launch the debugger from the sbt console first. Use the sbt-mode shell. I  don&rsquo;t really know if this works launching SBT on a terminal not running under  Emacs. Use <code>ensimeTestOnlyDebug</code> if you are running a test, otherwise use  <code>ensimeRunDebug</code> for an implementation class.</p>
+  <pre><code>&gt; ensimeTestOnlyDebug com.company.division.squad.project.package.TestClass
+...
+Listening for transport dt_socket at address: 5005</code></pre></li>
+ <li>
+  <p>Set a breakpoint in a source code line by moving your cursor to that line and  using <code>, d b</code></p></li>
+ <li>
+  <p>Attach to the debugger by using <code>, d A</code>. The first time, you will need to  specify Host (<code>localhost</code>) and Port (the number in the <code>Listening for
+   transport ...</code> line above)</p></li>
+ <li>
+  <p>When (if) the debugger hits the line where your breakpoint is set, the Emacs  cursor will jump to that position, and you can start using other debugging  commands (<code>, d n</code>, <code>, d i</code>, etc &hellip;)</p></li></ol>
+
+</article>
+<article>
+  <header>
     <h2><a href='/blog/2018/04/30/git-setup-with-fork-and-upstream/'>Git setup with fork and upstream</a></h2>
     <p class='date-and-tags'>
 <time datetime="2018-04-30" pubdate="true">2018-04-30</time> :: <span class="tags"><a href="/tags/git.html">git</a></span></p>
@@ -319,16 +343,6 @@ $ sbt ensimeConfig ensimeConfigProject</code></li></ul>
 </div>
 
 </article>
-<article>
-  <header>
-    <h2><a href='/blog/2017/08/24/intellij-context-menu-from-keyboard/'>IntelliJ context menu from keyboard</a></h2>
-    <p class='date-and-tags'>
-<time datetime="2017-08-24" pubdate="true">2017-08-24</time> :: <span class="tags"><a href="/tags/IntelliJ.html">IntelliJ</a></span></p>
-  </header>
-
-<p>Looked for this for a long time. Somehow, never found <a href="https://intellij-support.jetbrains.com/hc/en-us/community/posts/206326619-Invoke-popup-menu-from-keyboard">the existing support answer</a>. Just created a new shortcut on my personal keymap, with &ldquo;Ctrl + Shift + Enter&rdquo; =&gt; a new life.</p>
-
-</article>
 <footer>
  <ul class="pagination">
   <li class="page-item"><a class="page-link" href="/index.html">
@@ -338,6 +352,7 @@ $ sbt ensimeConfig ensimeConfigProject</code></li></ul>
   <li class="page-item"><a class="page-link" href="/index-3.html">3</a></li>
   <li class="page-item"><a class="page-link" href="/index-4.html">4</a></li>
   <li class="page-item"><a class="page-link" href="/index-5.html">5</a></li>
+  <li class="page-item"><a class="page-link" href="/index-6.html">6</a></li>
   <li class="page-item"><a class="page-link" href="/index-3.html">
     <quote>&rarr;</quote></a></li></ul></footer>
           </div>
@@ -351,7 +366,7 @@ $ sbt ensimeConfig ensimeConfigProject</code></li></ul>
         <a href="http://twitter.github.com/bootstrap/index.html">Bootstrap</a>.
         Cover image by NASA/Bill Ingalls [Public domain], via Wikimedia Commons.
         </p>
-        <p>This page was last built on Friday, August 10th, 2018</p>
+        <p>This page was last built on Friday, August 24th, 2018</p>
 
         <p><em>© Copyright 2018, Luis Osa</em>.</p>
       </footer>

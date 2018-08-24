@@ -148,6 +148,28 @@
 
             <article>
   <header>
+    <h2><a href='/blog/2015/07/15/open-files-from-last-commit-in-vim/'>Open files from last commit in Vim</a></h2>
+    <p class='date-and-tags'>
+<time datetime="2015-07-15" pubdate="true">2015-07-15</time> :: <span class="tags"><a href="/tags/vim.html">vim</a>, <a href="/tags/git.html">git</a></span></p>
+  </header>
+
+<p>It is always a nuisance to remember which files were you working on when you last exited your editing session. I have tried different approaches, including:</p>
+
+<ul>
+ <li>leaving a test that does not succeed in order to get an errortrace that  points to the next task I should tackle</li>
+ <li>opening the editor inside a <code>tmux</code> or <code>screen</code> session, and therefore never  ending the editing session</li></ul>
+
+<p>The last idea I had was to create a unfinished Git commit (called &ldquo;Unfinished: The commit title&rdquo;), and use Git to retrieve the name of the files that were touched in that commit. You can do it like this:</p>
+
+<pre><code>$ git log --pretty=format: --name-only -n 1</code></pre>
+
+<p>If you alias that command in your <code>.gitconfig</code>, e.g. to <code>lastedited</code>, you can then open the files in your editor by command subtitution:</p>
+
+<pre><code>$ vim $(git lastedited)</code></pre>
+
+</article>
+<article>
+  <header>
     <h2><a href='/blog/2015/02/27/if-programming-languages-were-music-genres/'>If programming languages were music genres</a></h2>
     <p class='date-and-tags'>
 <time datetime="2015-02-27" pubdate="true">2015-02-27</time> :: <span class="tags"><a href="/tags/programming.html">programming</a></span></p>
@@ -242,29 +264,6 @@ tag_build =</code></pre>
     <a href='/blog/2014/01/20/reduce-in-standard-c/'>&hellip; more &hellip;</a>
   </footer>
 </article>
-<article>
-  <header>
-    <h2><a href='/blog/2013/12/04/how-do-you-develop-with-yesod/'>How do you develop with Yesod</a></h2>
-    <p class='date-and-tags'>
-<time datetime="2013-12-04" pubdate="true">2013-12-04</time> :: <span class="tags"><a href="/tags/haskell.html">haskell</a>, <a href="/tags/web.html">web</a></span></p>
-  </header>
-
-<p>Yesod tutorials and examples can be found on the <a href="http://www.yesodweb.com/book">Yesod book</a>, which is freely available online.</p>
-
-<p>However, many of the examples given are self-contained (which means that handler functions, data models and templates are defined in a single module, where a Warp web server is started as well). There is <a href="http://www.yesodweb.com/book/scaffolding-and-the-site-template">a chapter that describes the scaffolded template</a>, i.e. what you get after you start with Yesod, but it is rather a description of its advantages and structure, not so much a detailed how-to.</p>
-
-<p>The purpose of this post is to explain to a new Yesod developer &ldquo;What do I do after &hellip; ?&rdquo; :</p>
-
-<div class="brush: console">
- <div class="highlight">
-  <pre><span></span><span class="gp">$</span> yesod init
-</pre></div>
-
-</div>
-  <footer>
-    <a href='/blog/2013/12/04/how-do-you-develop-with-yesod/'>&hellip; more &hellip;</a>
-  </footer>
-</article>
 <footer>
  <ul class="pagination">
   <li class="page-item"><a class="page-link" href="/index-3.html">
@@ -274,6 +273,7 @@ tag_build =</code></pre>
   <li class="page-item"><a class="page-link" href="/index-3.html">3</a></li>
   <li class="page-item active"><a class="page-link" href="/index-4.html">4</a></li>
   <li class="page-item"><a class="page-link" href="/index-5.html">5</a></li>
+  <li class="page-item"><a class="page-link" href="/index-6.html">6</a></li>
   <li class="page-item"><a class="page-link" href="/index-5.html">
     <quote>&rarr;</quote></a></li></ul></footer>
           </div>
@@ -287,7 +287,7 @@ tag_build =</code></pre>
         <a href="http://twitter.github.com/bootstrap/index.html">Bootstrap</a>.
         Cover image by NASA/Bill Ingalls [Public domain], via Wikimedia Commons.
         </p>
-        <p>This page was last built on Friday, August 10th, 2018</p>
+        <p>This page was last built on Friday, August 24th, 2018</p>
 
         <p><em>© Copyright 2018, Luis Osa</em>.</p>
       </footer>
