@@ -4,7 +4,77 @@
  <link rel="self" href="http://logc.github.io/feeds/all.atom.xml" />
  <link href="http://logc.github.io/index.html" />
  <id>urn:http-logc-github-io:-index-html</id>
- <updated>2018-08-24T16:03:56Z</updated>
+ <updated>2019-01-05T15:44:58Z</updated>
+ <entry>
+  <title type="text">Interfacing D functions from Racket</title>
+  <link rel="alternate" href="http://logc.github.io/blog/2019/01/05/interfacing-d-functions-from-racket/?utm_source=all&amp;utm_medium=Atom" />
+  <id>urn:http-logc-github-io:-blog-2019-01-05-interfacing-d-functions-from-racket</id>
+  <published>2019-01-05T15:44:58Z</published>
+  <updated>2019-01-05T15:44:58Z</updated>
+  <author>
+   <name>logc</name></author>
+  <content type="html">
+&lt;p&gt;This is how you can use a function written in D from a Racket script.&lt;/p&gt;
+
+&lt;p&gt;In a file called &lt;code&gt;logc.d&lt;/code&gt;:&lt;/p&gt;
+
+&lt;div class="brush: d"&gt;
+ &lt;div class="highlight"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;import&lt;/span&gt; &lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;stdio&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+&lt;span class="k"&gt;extern&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;C&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="n"&gt;hello&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="n"&gt;writeln&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"hi from D"&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;p&gt;Compile to a shared library with:&lt;/p&gt;
+
+&lt;div class="brush: console"&gt;
+ &lt;div class="highlight"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; ldc2 -shared -m64 logc.d
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;p&gt;or with&lt;/p&gt;
+
+&lt;div class="brush: console"&gt;
+ &lt;div class="highlight"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; dmd -shared -m64 -fPIC -defaultlib&lt;span class="o"&gt;=&lt;/span&gt;libphobos2.so logc.d
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;p&gt;Use the generated &lt;code&gt;liblogc.so&lt;/code&gt; (or &lt;code&gt;liblogc.dylib&lt;/code&gt;) from a Racket script:&lt;/p&gt;
+
+&lt;div class="brush: racket"&gt;
+ &lt;div class="highlight"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;&lt;a href="http://docs.racket-lang.org/reference/require.html#(form._((lib._racket/private/base..rkt)._require))" style="color: inherit"&gt;require&lt;/a&gt;&lt;/span&gt; &lt;span class="n"&gt;ffi/unsafe&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+
+&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;&lt;a href="http://docs.racket-lang.org/reference/define.html#(form._((lib._racket/private/base..rkt)._define))" style="color: inherit"&gt;define&lt;/a&gt;&lt;/span&gt; &lt;span class="n"&gt;logc-lib&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;&lt;a href="http://docs.racket-lang.org/foreign/Loading_Foreign_Libraries.html#(def._((lib._ffi/unsafe..rkt)._ffi-lib))" style="color: inherit"&gt;ffi-lib&lt;/a&gt;&lt;/span&gt; &lt;span class="s2"&gt;"liblogc"&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+
+&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;&lt;a href="http://docs.racket-lang.org/reference/define.html#(form._((lib._racket/private/base..rkt)._define))" style="color: inherit"&gt;define&lt;/a&gt;&lt;/span&gt; &lt;span class="n"&gt;logc-hello&lt;/span&gt;
+  &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;&lt;a href="http://docs.racket-lang.org/foreign/Loading_Foreign_Libraries.html#(def._((lib._ffi/unsafe..rkt)._get-ffi-obj))" style="color: inherit"&gt;get-ffi-obj&lt;/a&gt;&lt;/span&gt; &lt;span class="s2"&gt;"hello"&lt;/span&gt; &lt;span class="n"&gt;logc-lib&lt;/span&gt;
+               &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;&lt;a href="http://docs.racket-lang.org/foreign/foreign_procedures.html#(form._((lib._ffi/unsafe..rkt).__fun))" style="color: inherit"&gt;_fun&lt;/a&gt;&lt;/span&gt; &lt;span class="k"&gt;&lt;a href="http://docs.racket-lang.org/reference/function-contracts.html#(form._((lib._racket/contract/base..rkt)._-~3e))" style="color: inherit"&gt;-&amp;gt;&lt;/a&gt;&lt;/span&gt; &lt;span class="n"&gt;&lt;a href="http://docs.racket-lang.org/foreign/Other_Atomic_Types.html#(def._((quote._~23~25foreign).__void))" style="color: inherit"&gt;_void&lt;/a&gt;&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;p&gt;Try the results:&lt;/p&gt;
+
+&lt;div class="brush: racket"&gt;
+ &lt;div class="highlight"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nb"&gt;&lt;a href="http://docs.racket-lang.org/reference/generic-numbers.html#(def._((quote._~23~25kernel)._~3e))" style="color: inherit"&gt;&amp;gt;&lt;/a&gt;&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;logc-hello&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;hi&lt;/span&gt; &lt;span class="n"&gt;from&lt;/span&gt; &lt;span class="n"&gt;D&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;p&gt;This post is based on &lt;a href="https://wiki.dlang.org/Call_D_from_Ruby_using_FFI"&gt;Call D from Ruby using FFI&lt;/a&gt; and &lt;a href="http://prl.ccs.neu.edu/blog/2016/06/27/tutorial-using-racket-s-ffi/"&gt;tutorial using racket&amp;rsquo;s ffi&lt;/a&gt;&lt;/p&gt;</content></entry>
  <entry>
   <title type="text">What to learn in a new programming language</title>
   <link rel="alternate" href="http://logc.github.io/blog/2018/08/24/what-to-learn-in-a-new-programming-language/?utm_source=all&amp;utm_medium=Atom" />
@@ -903,60 +973,6 @@ tag_build =&lt;/code&gt;&lt;/pre&gt;</content></entry>
 
 &lt;span class="gp"&gt;$&lt;/span&gt; c++ main.cpp -o wordcount -std&lt;span class="o"&gt;=&lt;/span&gt;c++11 &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; ./wordcount sample.txt
 &lt;span class="go"&gt;File sample.txt holds 10 words&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;/div&gt;</content></entry>
- <entry>
-  <title type="text">Reduce in standard C++</title>
-  <link rel="alternate" href="http://logc.github.io/blog/2014/01/20/reduce-in-standard-c/?utm_source=all&amp;utm_medium=Atom" />
-  <id>urn:http-logc-github-io:-blog-2014-01-20-reduce-in-standard-c</id>
-  <published>2014-01-20T13:47:25Z</published>
-  <updated>2014-01-20T13:47:25Z</updated>
-  <author>
-   <name>logc</name></author>
-  <content type="html">
-&lt;h2 id="accumulate-instead-of-loop"&gt;Accumulate instead of loop&lt;/h2&gt;
-
-&lt;p&gt;You can traverse a C++ vector in many ways. Looping over a counter variable that goes from 0 to the vector size or taking an iterator from the vector&amp;rsquo;s &lt;code&gt;begin&lt;/code&gt; to its &lt;code&gt;end&lt;/code&gt; pointer positions are well-known ways to access its elements. When you are collapsing the elements into a single accumulator value (an operation usually called &lt;code&gt;reduce&lt;/code&gt; in functional programming), you can use the &lt;code&gt;std::accumulate&lt;/code&gt; function in the &lt;code&gt;numeric&lt;/code&gt; header.&lt;/p&gt;
-&lt;!-- more--&gt;
-
-&lt;div class="brush: c++"&gt;
- &lt;div class="highlight"&gt;
-  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;iostream&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
-&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;vector&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
-&lt;span class="cp"&gt;#include&lt;/span&gt; &lt;span class="cpf"&gt;&amp;lt;numeric&amp;gt;&lt;/span&gt;&lt;span class="cp"&gt;&lt;/span&gt;
-
-&lt;span class="k"&gt;struct&lt;/span&gt; &lt;span class="n"&gt;cell&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-    &lt;span class="kt"&gt;double&lt;/span&gt; &lt;span class="n"&gt;probability&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;span class="p"&gt;};&lt;/span&gt;
-
-&lt;span class="kt"&gt;int&lt;/span&gt; &lt;span class="nf"&gt;main&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-&lt;span class="p"&gt;{&lt;/span&gt;
-    &lt;span class="kt"&gt;double&lt;/span&gt; &lt;span class="n"&gt;result&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-    &lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;vector&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;cell&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt; &lt;span class="n"&gt;grid&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-    &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;size_t&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="o"&gt;++&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-        &lt;span class="n"&gt;cell&lt;/span&gt; &lt;span class="n"&gt;c&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{.&lt;/span&gt;&lt;span class="n"&gt;probability&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mf"&gt;0.1&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;i&lt;/span&gt;&lt;span class="p"&gt;};&lt;/span&gt;
-        &lt;span class="n"&gt;grid&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;push_back&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;c&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
-    &lt;span class="p"&gt;}&lt;/span&gt;
-
-    &lt;span class="n"&gt;result&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;accumulate&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;
-        &lt;span class="n"&gt;grid&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;begin&lt;/span&gt;&lt;span class="p"&gt;(),&lt;/span&gt; &lt;span class="n"&gt;grid&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;end&lt;/span&gt;&lt;span class="p"&gt;(),&lt;/span&gt; &lt;span class="mf"&gt;0.0&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-        &lt;span class="p"&gt;[]&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kt"&gt;double&lt;/span&gt; &lt;span class="n"&gt;sum&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="k"&gt;const&lt;/span&gt; &lt;span class="n"&gt;cell&lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&lt;/span&gt; &lt;span class="n"&gt;c&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;sum&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;c&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;probability&lt;/span&gt;&lt;span class="p"&gt;;});&lt;/span&gt;
-    &lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="o"&gt;::&lt;/span&gt;&lt;span class="n"&gt;cout&lt;/span&gt; &lt;span class="o"&gt;&amp;lt;&amp;lt;&lt;/span&gt; &lt;span class="n"&gt;result&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;span class="p"&gt;}&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-&lt;/div&gt;
-
-&lt;h2 id="compile-and-run"&gt;Compile and run&lt;/h2&gt;
-
-&lt;p&gt;In this example, the compilation needs a &lt;code&gt;-std=c++11&lt;/code&gt; flag in order to set the standard to C++11, a fairly recent standard that is not supported by all compilers and systems. However, the part that is written in this new standard is the &lt;em&gt;accumulating function&lt;/em&gt;, which is expressed as a lambda in this example. If you move its code to a named function outside the &lt;code&gt;main&lt;/code&gt;, this code should compile with many more compilers.&lt;/p&gt;
-
-&lt;div class="brush: console"&gt;
- &lt;div class="highlight"&gt;
-  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; c++ main.cpp -o example -std&lt;span class="o"&gt;=&lt;/span&gt;c++11 &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; ./example
-&lt;span class="go"&gt;0.3&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 &lt;/div&gt;</content></entry></feed>

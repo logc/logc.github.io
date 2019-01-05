@@ -9,6 +9,7 @@ http://logc.github.io/blog/2018/08/09/ensime-server-crashed-by-wrong-jar/
 http://logc.github.io/blog/2016/10/20/minimal-c-project-structure-with-scons/
 http://logc.github.io/blog/2014/01/20/reduce-in-standard-c/
 http://logc.github.io/blog/2018/06/04/logging-start-and-finish-in-python/
+http://logc.github.io/blog/2019/01/05/interfacing-d-functions-from-racket/
 http://logc.github.io/blog/2017/08/25/maven-does-not-find-java-home-in-fish-shell/
 http://logc.github.io/blog/2018/05/14/debug-scala-with-spacemacs/
 http://logc.github.io/blog/2013/12/03/unicode-encodings/

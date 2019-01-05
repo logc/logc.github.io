@@ -6,7 +6,7 @@
     <title>logc io</title>
     <meta name="description" content="logc io">
     <meta name="author"      content="logc">
-    <meta name="keywords"    content="sysadmin, java, C, blog, frog, lisp, spacemacs, emacs, scala, fish, git, scons, haskell, python, ensime, maven, racket, build, IntelliJ, programming, all, C++, vim, web">
+    <meta name="keywords"    content="sysadmin, java, Racket, C, blog, frog, lisp, spacemacs, vim, emacs, scala, fish, git, scons, haskell, python, ensime, maven, racket, build, IntelliJ, programming, all, C++, D, web">
     <meta name="viewport"    content="width=device-width, initial-scale=1.0">
     <link rel="icon"      href="/favicon.ico">
     <link rel="canonical" href="http://logc.github.io/index.html">
@@ -77,6 +77,8 @@
 
 <li><a href="/tags/C.html">C++</a></li>
 
+<li><a href="/tags/D.html">D</a></li>
+
 <li><a href="/tags/emacs.html">emacs</a></li>
 
 <li><a href="/tags/ensime.html">ensime</a></li>
@@ -102,6 +104,8 @@
 <li><a href="/tags/python.html">python</a></li>
 
 <li><a href="/tags/racket.html">racket</a></li>
+
+<li><a href="/tags/Racket.html">Racket</a></li>
 
 <li><a href="/tags/scala.html">scala</a></li>
 
@@ -147,6 +151,76 @@
 
 
             <article>
+  <header>
+    <h2><a href='/blog/2019/01/05/interfacing-d-functions-from-racket/'>Interfacing D functions from Racket</a></h2>
+    <p class='date-and-tags'>
+<time datetime="2019-01-05" pubdate="true">2019-01-05</time> :: <span class="tags"><a href="/tags/D.html">D</a>, <a href="/tags/Racket.html">Racket</a></span></p>
+  </header>
+
+<p>This is how you can use a function written in D from a Racket script.</p>
+
+<p>In a file called <code>logc.d</code>:</p>
+
+<div class="brush: d">
+ <div class="highlight">
+  <pre><span></span><span class="k">import</span> <span class="n">std</span><span class="p">.</span><span class="n">stdio</span><span class="p">;</span>
+
+<span class="k">extern</span><span class="p">(</span><span class="n">C</span><span class="p">)</span>
+<span class="kt">void</span> <span class="n">hello</span><span class="p">()</span>
+<span class="p">{</span>
+  <span class="n">writeln</span><span class="p">(</span><span class="s">"hi from D"</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+
+</div>
+
+<p>Compile to a shared library with:</p>
+
+<div class="brush: console">
+ <div class="highlight">
+  <pre><span></span><span class="gp">$</span> ldc2 -shared -m64 logc.d
+</pre></div>
+
+</div>
+
+<p>or with</p>
+
+<div class="brush: console">
+ <div class="highlight">
+  <pre><span></span><span class="gp">$</span> dmd -shared -m64 -fPIC -defaultlib<span class="o">=</span>libphobos2.so logc.d
+</pre></div>
+
+</div>
+
+<p>Use the generated <code>liblogc.so</code> (or <code>liblogc.dylib</code>) from a Racket script:</p>
+
+<div class="brush: racket">
+ <div class="highlight">
+  <pre><span></span><span class="p">(</span><span class="k"><a href="http://docs.racket-lang.org/reference/require.html#(form._((lib._racket/private/base..rkt)._require))" style="color: inherit">require</a></span> <span class="n">ffi/unsafe</span><span class="p">)</span>
+
+<span class="p">(</span><span class="k"><a href="http://docs.racket-lang.org/reference/define.html#(form._((lib._racket/private/base..rkt)._define))" style="color: inherit">define</a></span> <span class="n">logc-lib</span> <span class="p">(</span><span class="n"><a href="http://docs.racket-lang.org/foreign/Loading_Foreign_Libraries.html#(def._((lib._ffi/unsafe..rkt)._ffi-lib))" style="color: inherit">ffi-lib</a></span> <span class="s2">"liblogc"</span><span class="p">))</span>
+
+<span class="p">(</span><span class="k"><a href="http://docs.racket-lang.org/reference/define.html#(form._((lib._racket/private/base..rkt)._define))" style="color: inherit">define</a></span> <span class="n">logc-hello</span>
+  <span class="p">(</span><span class="n"><a href="http://docs.racket-lang.org/foreign/Loading_Foreign_Libraries.html#(def._((lib._ffi/unsafe..rkt)._get-ffi-obj))" style="color: inherit">get-ffi-obj</a></span> <span class="s2">"hello"</span> <span class="n">logc-lib</span>
+               <span class="p">(</span><span class="n"><a href="http://docs.racket-lang.org/foreign/foreign_procedures.html#(form._((lib._ffi/unsafe..rkt).__fun))" style="color: inherit">_fun</a></span> <span class="k"><a href="http://docs.racket-lang.org/reference/function-contracts.html#(form._((lib._racket/contract/base..rkt)._-~3e))" style="color: inherit">-&gt;</a></span> <span class="n"><a href="http://docs.racket-lang.org/foreign/Other_Atomic_Types.html#(def._((quote._~23~25foreign).__void))" style="color: inherit">_void</a></span><span class="p">)))</span>
+</pre></div>
+
+</div>
+
+<p>Try the results:</p>
+
+<div class="brush: racket">
+ <div class="highlight">
+  <pre><span></span><span class="nb"><a href="http://docs.racket-lang.org/reference/generic-numbers.html#(def._((quote._~23~25kernel)._~3e))" style="color: inherit">&gt;</a></span> <span class="p">(</span><span class="n">logc-hello</span><span class="p">)</span>
+<span class="n">hi</span> <span class="n">from</span> <span class="n">D</span>
+</pre></div>
+
+</div>
+
+<p>This post is based on <a href="https://wiki.dlang.org/Call_D_from_Ruby_using_FFI">Call D from Ruby using FFI</a> and <a href="http://prl.ccs.neu.edu/blog/2016/06/27/tutorial-using-racket-s-ffi/">tutorial using racket&rsquo;s ffi</a></p>
+
+</article>
+<article>
   <header>
     <h2><a href='/blog/2018/08/24/what-to-learn-in-a-new-programming-language/'>What to learn in a new programming language</a></h2>
     <p class='date-and-tags'>
@@ -236,44 +310,6 @@ list versions</code> command did not find any available versions of ECL. So, I r
     <a href='/blog/2018/08/07/produce-small-executables-with-common-lisp/'>&hellip; more &hellip;</a>
   </footer>
 </article>
-<article>
-  <header>
-    <h2><a href='/blog/2018/06/04/logging-start-and-finish-in-python/'>Logging start and finish in Python</a></h2>
-    <p class='date-and-tags'>
-<time datetime="2018-06-04" pubdate="true">2018-06-04</time> :: <span class="tags"><a href="/tags/python.html">python</a></span></p>
-  </header>
-
-<p>Just a quick post on how to log, in simple Python scripts, the start and finish times of a function.</p>
-
-<div class="brush: python">
- <div class="highlight">
-  <pre><span></span><span class="kn">import</span> <span class="nn">logging</span>
-<span class="kn">import</span> <span class="nn">time</span>
-<span class="kn">import</span> <span class="nn">sys</span>
-
-
-<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
-    <span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
-    <span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span>
-        <span class="n">level</span><span class="o">=</span><span class="n">logging</span><span class="o">.</span><span class="n">DEBUG</span><span class="p">,</span>
-        <span class="n">format</span><span class="o">=</span><span class="s1">&#39;</span><span class="si">%(asctime)s</span><span class="s1"> </span><span class="si">%(levelname)s</span><span class="s1"> - </span><span class="si">%(message)s</span><span class="s1">&#39;</span><span class="p">,</span>
-        <span class="n">datefmt</span><span class="o">=</span><span class="s1">&#39;%H:%M:%S&#39;</span><span class="p">,</span>
-    <span class="p">)</span>
-    <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">"Start processing after </span><span class="si">%s</span><span class="s2">"</span><span class="p">,</span> <span class="n">format_time_since</span><span class="p">(</span><span class="n">start</span><span class="p">))</span>
-    <span class="c1"># Do some processing ...</span>
-    <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">"Finished processing after </span><span class="si">%s</span><span class="s2">"</span><span class="p">,</span> <span class="n">format_time_since</span><span class="p">(</span><span class="n">start</span><span class="p">))</span>
-    <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
-
-
-<span class="k">def</span> <span class="nf">format_time_since</span><span class="p">(</span><span class="n">start</span><span class="p">):</span>
-    <span class="n">now</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
-    <span class="n">elapsed</span> <span class="o">=</span> <span class="n">now</span> <span class="o">-</span> <span class="n">start</span>
-    <span class="k">return</span> <span class="n">time</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">"%H:%M:%S"</span><span class="p">,</span> <span class="n">time</span><span class="o">.</span><span class="n">gmtime</span><span class="p">(</span><span class="n">elapsed</span><span class="p">))</span>
-</pre></div>
-
-</div>
-
-</article>
 <footer>
  <ul class="pagination">
   <li class="page-item disabled"><a class="page-link" href="#">
@@ -297,9 +333,9 @@ list versions</code> command did not find any available versions of ECL. So, I r
         <a href="http://twitter.github.com/bootstrap/index.html">Bootstrap</a>.
         Cover image by NASA/Bill Ingalls [Public domain], via Wikimedia Commons.
         </p>
-        <p>This page was last built on Friday, August 24th, 2018</p>
+        <p>This page was last built on Saturday, January 5th, 2019</p>
 
-        <p><em>© Copyright 2018, Luis Osa</em>.</p>
+        <p><em>© Copyright 2019, Luis Osa</em>.</p>
       </footer>
     </div>
     <!-- </body> JS -->
