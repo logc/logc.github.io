@@ -21,18 +21,18 @@ h4 { font-size: 1.5rem; }
 
 h2, h3, h4 { font-style: italic; }
 
+/* Based on the 'tango' pygments style */
+a { color: #204a87; }
+
 article {
     position: relative;
     padding: 2rem 0rem;
 }
 
-/* Tufte style */
+/* Tufte style constrained width */
 p, pre, ul { max-width: 55%; }
 
-footer {
-    padding: 5%;
-    font-size: 70%;
-}
+footer { font-size: 70%; }
 
 pre {
     font-size: 10px;
@@ -71,10 +71,7 @@ code {
     background: transparent;
 }
 
-.date-and-tags {
-    font-size: 80%;
-}
+.date-and-tags { font-size: 80%; }
 
-@media (max-width: 760px) {
-    p, pre, ul { max-width: 100%; }
-}
+/* Remove Tufte style for small screen sizes */
+@media (max-width: 760px) { p, pre, ul { max-width: 100%; } }
