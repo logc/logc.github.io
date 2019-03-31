@@ -4,7 +4,7 @@
 
     <meta charset="utf-8">
     <title>Produce small executables with Common Lisp</title>
-    <meta name="description" content="You need roswell, ECL and UPX installed.  `$ brew install --HEAD roswell $ brew install ecl upx ` The reason to install the head roswell is that, as of this writing, some of the Common Lisp installations did not work on the latest release on Homebrew.  Th...">
+    <meta name="description" content="You need roswell, ECL and UPX installed.      $ brew install --HEAD roswell $ brew install ecl upx     The reason to install the head roswell is that, as of this writing, some of the Common Lisp installations did not work on the latest release on Homebrew...">
     <meta name="author"      content="logc">
     <meta name="keywords"    content="lisp">
     <meta name="viewport"    content="width=device-width, initial-scale=1.0">
@@ -103,9 +103,9 @@
 
 <li><a href="/tags/python.html">python</a></li>
 
-<li><a href="/tags/racket.html">racket</a></li>
-
 <li><a href="/tags/Racket.html">Racket</a></li>
+
+<li><a href="/tags/racket.html">racket</a></li>
 
 <li><a href="/tags/scala.html">scala</a></li>
 
@@ -135,7 +135,11 @@
     </header>
     <div class="jumbotron subpages">
       <div class="container">
-        <h1>This is rocket science</h1>
+        <h1>
+            <a href="/index.html">
+                Notes on programming
+            </a>
+        </h1>
         <h2>logc</h2>
       </div>
     </div>
@@ -148,8 +152,6 @@
 
 
 
-
-
             <article>
   <header>
     <h1>Produce small executables with Common Lisp</h1>
@@ -159,21 +161,35 @@
 
 <p>You need <a href="https://github.com/roswell/roswell">roswell</a>, <a href="https://common-lisp.net/project/ecl/">ECL</a> and <a href="https://upx.github.io/">UPX</a> installed.</p>
 
-<pre><code>$ brew install --HEAD roswell
-$ brew install ecl upx
-</code></pre>
+<div class="brush: console">
+ <div class="highlight">
+  <pre><span></span><span class="gp">$</span> brew install --HEAD roswell
+<span class="gp">$</span> brew install ecl upx
+</pre></div>
+
+</div>
 
 <p>The reason to install the head roswell is that, as of this writing, some of the Common Lisp installations did not work on the latest release on Homebrew.</p>
 
 <p>The reason to install <code>ecl</code> on the system, and not using <code>ros install</code>, is that I had problems installing the latest version of ECL that way. Also, the <code>ros
 list versions</code> command did not find any available versions of ECL. So, I resorted to using the system installed ECL.</p>
 
-<pre><code>$ ros use ecl/system</code></pre>
+<div class="brush: console">
+ <div class="highlight">
+  <pre><span></span><span class="gp">$</span> ros use ecl/system
+</pre></div>
+
+</div>
 <!-- more-->
 
 <p>Initialize a new roswell script</p>
 
-<pre><code>$ ros init hello</code></pre>
+<div class="brush: console">
+ <div class="highlight">
+  <pre><span></span><span class="gp">$</span> ros init hello
+</pre></div>
+
+</div>
 
 <p>Then add the following to <code>hello.ros</code></p>
 
@@ -204,19 +220,34 @@ list versions</code> command did not find any available versions of ECL. So, I r
 
 <p>Compile into an executable using</p>
 
-<pre><code>$ ros build hello.ros</code></pre>
+<div class="brush: console">
+ <div class="highlight">
+  <pre><span></span><span class="gp">$</span> ros build hello.ros
+</pre></div>
+
+</div>
 
 <p>The executable <code>hello</code> is now 1.6 MB on my system (Darwin 17.7.0)</p>
 
 <p>You can bring this down to 457 KB using</p>
 
-<pre><code>$ upx --best hello</code></pre>
+<div class="brush: console">
+ <div class="highlight">
+  <pre><span></span><span class="gp">$</span> upx --best hello
+</pre></div>
+
+</div>
 
 <p>The &ldquo;hello&rdquo; executable is now small, but not really fast</p>
 
-<pre><code>$ time ./hello
-Hello world!
-        0.41 real         0.40 user         0.02 sys</code></pre>
+<div class="brush: console">
+ <div class="highlight">
+  <pre><span></span><span class="gp">$</span> <span class="nb">time</span> ./hello
+<span class="go">Hello world!</span>
+<span class="go">    0.41 real         0.40 user         0.02 sys</span>
+</pre></div>
+
+</div>
   <footer>
     <ul class="pager">
     <li class="previous">
@@ -237,9 +268,8 @@ Hello world!
         <a href="https://github.com/greghendershott/frog">Frog</a>
         &amp;
         <a href="http://twitter.github.com/bootstrap/index.html">Bootstrap</a>.
-        Cover image by NASA/Bill Ingalls [Public domain], via Wikimedia Commons.
-        </p>
-        <p>This page was last built on Saturday, January 5th, 2019</p>
+              </p>
+        <p>This web site was last built on Sunday, March 31st, 2019</p>
 
         <p><em>© Copyright 2019, Luis Osa</em>.</p>
       </footer>

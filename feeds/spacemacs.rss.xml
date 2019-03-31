@@ -24,15 +24,19 @@
 
 &lt;p&gt;In order to correct this, add to your &lt;code&gt;init.el&lt;/code&gt; (or &lt;code&gt;dotspacemacs/user-init&lt;/code&gt; in &lt;code&gt;.spacemacs&lt;/code&gt;):&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;(setenv "JAVA_HOME"
-        "/Library/Java/JavaVirtualMachines/jdk1.8.0_172.jdk/Contents/Home/")&lt;/code&gt;&lt;/pre&gt;
+&lt;div class="brush: elisp"&gt;
+ &lt;div class="highlight"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nv"&gt;setenv&lt;/span&gt; &lt;span class="s"&gt;"JAVA_HOME"&lt;/span&gt;
+        &lt;span class="s"&gt;"/Library/Java/JavaVirtualMachines/jdk1.8.0_172.jdk/Contents/Home/"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
 
 &lt;p&gt;or whatever it is that &lt;code&gt;JAVA_HOME&lt;/code&gt; should point to.&lt;/p&gt;
 
 &lt;p&gt;As an alternative, you can set this variable per project by adding a file &lt;code&gt;.sbtopts&lt;/code&gt; in the project root with the following:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;-java-home
-/Library/Java/JavaVirtualMachines/jdk1.8.0_172.jdk/Contents/Home/&lt;/code&gt;&lt;/pre&gt;</description></item>
+&lt;pre&gt;&lt;code&gt;-java-home /Library/Java/JavaVirtualMachines/jdk1.8.0_172.jdk/Contents/Home/&lt;/code&gt;&lt;/pre&gt;</description></item>
   <item>
    <title>Ensime server crashed by wrong JAR</title>
    <link>http://logc.github.io/blog/2018/08/09/ensime-server-crashed-by-wrong-jar/?utm_source=spacemacs&amp;utm_medium=RSS</link>

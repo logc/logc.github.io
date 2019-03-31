@@ -1,168 +1,77 @@
 <?xml version="1.0" encoding="utf-8"?> 
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
- <title type="text">logc io: Posts tagged 'racket'</title>
- <link rel="self" href="http://logc.github.io/feeds/racket.atom.xml" />
- <link href="http://logc.github.io/tags/racket.html" />
- <id>urn:http-logc-github-io:-tags-racket-html</id>
- <updated>2017-12-19T19:15:41Z</updated>
+ <title type="text">logc io: Posts tagged 'Racket'</title>
+ <link rel="self" href="http://logc.github.io/feeds/Racket.atom.xml" />
+ <link href="http://logc.github.io/tags/Racket.html" />
+ <id>urn:http-logc-github-io:-tags-Racket-html</id>
+ <updated>2019-01-05T15:44:58Z</updated>
  <entry>
-  <title type="text">Minimal Racket web app</title>
-  <link rel="alternate" href="http://logc.github.io/blog/2017/12/19/minimal-racket-web-app/?utm_source=racket&amp;utm_medium=Atom" />
-  <id>urn:http-logc-github-io:-blog-2017-12-19-minimal-racket-web-app</id>
-  <published>2017-12-19T19:15:41Z</published>
-  <updated>2017-12-19T19:15:41Z</updated>
+  <title type="text">Interfacing D functions from Racket</title>
+  <link rel="alternate" href="http://logc.github.io/blog/2019/01/05/interfacing-d-functions-from-racket/?utm_source=Racket&amp;utm_medium=Atom" />
+  <id>urn:http-logc-github-io:-blog-2019-01-05-interfacing-d-functions-from-racket</id>
+  <published>2019-01-05T15:44:58Z</published>
+  <updated>2019-01-05T15:44:58Z</updated>
   <author>
    <name>logc</name></author>
   <content type="html">
-&lt;p&gt;This is the simplest module that responds to HTTP requests.&lt;/p&gt;
+&lt;p&gt;This is how you can use a function written in D from a Racket script.&lt;/p&gt;
 
-&lt;div class="brush: racket"&gt;
+&lt;p&gt;In a file called &lt;code&gt;logc.d&lt;/code&gt;:&lt;/p&gt;
+
+&lt;div class="brush: d"&gt;
  &lt;div class="highlight"&gt;
-  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;#lang &lt;/span&gt;&lt;span class="nn"&gt;racket/base&lt;/span&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;import&lt;/span&gt; &lt;span class="n"&gt;std&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;stdio&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 
-&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;&lt;a href="http://docs.racket-lang.org/reference/require.html#(form._((lib._racket/private/base..rkt)._require))" style="color: inherit"&gt;require&lt;/a&gt;&lt;/span&gt;
- &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;&lt;a href="http://docs.racket-lang.org/reference/require.html#(form._((lib._racket/private/base..rkt)._only-in))" style="color: inherit"&gt;only-in&lt;/a&gt;&lt;/span&gt; &lt;span class="n"&gt;web-server/http&lt;/span&gt;
-          &lt;span class="n"&gt;response/full&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
- &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;&lt;a href="http://docs.racket-lang.org/reference/require.html#(form._((lib._racket/private/base..rkt)._only-in))" style="color: inherit"&gt;only-in&lt;/a&gt;&lt;/span&gt; &lt;span class="n"&gt;web-server/http/request-structs&lt;/span&gt;
-          &lt;span class="n"&gt;make-header&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
- &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;&lt;a href="http://docs.racket-lang.org/reference/require.html#(form._((lib._racket/private/base..rkt)._only-in))" style="color: inherit"&gt;only-in&lt;/a&gt;&lt;/span&gt; &lt;span class="n"&gt;web-server/servlet-env&lt;/span&gt;
-          &lt;span class="n"&gt;serve/servlet&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-
-&lt;span class="c1"&gt;;; hello: request? -&amp;gt; response?&lt;/span&gt;
-&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;&lt;a href="http://docs.racket-lang.org/reference/define.html#(form._((lib._racket/private/base..rkt)._define))" style="color: inherit"&gt;define&lt;/a&gt;&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;hello&lt;/span&gt; &lt;span class="n"&gt;req&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-  &lt;span class="c1"&gt;;; struct response/full&lt;/span&gt;
-  &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;response/full&lt;/span&gt;
-   &lt;span class="mi"&gt;200&lt;/span&gt;                          &lt;span class="c1"&gt;;; code&lt;/span&gt;
-   &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;&lt;a href="http://docs.racket-lang.org/reference/bytestrings.html#(def._((quote._~23~25kernel)._string-~3ebytes/utf-8))" style="color: inherit"&gt;string-&amp;gt;bytes/utf-8&lt;/a&gt;&lt;/span&gt; &lt;span class="s2"&gt;"OK"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;   &lt;span class="c1"&gt;;; message&lt;/span&gt;
-   &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;&lt;a href="http://docs.racket-lang.org/reference/time.html#(def._((quote._~23~25kernel)._current-seconds))" style="color: inherit"&gt;current-seconds&lt;/a&gt;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;            &lt;span class="c1"&gt;;; timestamp in s&lt;/span&gt;
-   &lt;span class="no"&gt;#f&lt;/span&gt;                           &lt;span class="c1"&gt;;; mime or #f&lt;/span&gt;
-   &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;&lt;a href="http://docs.racket-lang.org/reference/pairs.html#(def._((quote._~23~25kernel)._list))" style="color: inherit"&gt;list&lt;/a&gt;&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;make-header&lt;/span&gt;           &lt;span class="c1"&gt;;; list of headers&lt;/span&gt;
-          &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;&lt;a href="http://docs.racket-lang.org/reference/bytestrings.html#(def._((quote._~23~25kernel)._string-~3ebytes/utf-8))" style="color: inherit"&gt;string-&amp;gt;bytes/utf-8&lt;/a&gt;&lt;/span&gt; &lt;span class="s2"&gt;"Server"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-          &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;&lt;a href="http://docs.racket-lang.org/reference/bytestrings.html#(def._((quote._~23~25kernel)._string-~3ebytes/utf-8))" style="color: inherit"&gt;string-&amp;gt;bytes/utf-8&lt;/a&gt;&lt;/span&gt; &lt;span class="s2"&gt;"Racket"&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
-   &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;&lt;a href="http://docs.racket-lang.org/reference/pairs.html#(def._((quote._~23~25kernel)._list))" style="color: inherit"&gt;list&lt;/a&gt;&lt;/span&gt;                        &lt;span class="c1"&gt;;; body: list of bytes&lt;/span&gt;
-     &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;&lt;a href="http://docs.racket-lang.org/reference/bytestrings.html#(def._((quote._~23~25kernel)._string-~3ebytes/utf-8))" style="color: inherit"&gt;string-&amp;gt;bytes/utf-8&lt;/a&gt;&lt;/span&gt; &lt;span class="s2"&gt;"Hello world!&lt;/span&gt;&lt;span class="se"&gt;\n&lt;/span&gt;&lt;span class="s2"&gt;"&lt;/span&gt;&lt;span class="p"&gt;))))&lt;/span&gt;
-
-&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;&lt;a href="http://docs.racket-lang.org/reference/module.html#(form._((lib._racket/private/base..rkt)._module+))" style="color: inherit"&gt;module+&lt;/a&gt;&lt;/span&gt; &lt;span class="n"&gt;main&lt;/span&gt;
-  &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;serve/servlet&lt;/span&gt;
-   &lt;span class="n"&gt;hello&lt;/span&gt;
-   &lt;span class="kd"&gt;#:port&lt;/span&gt; &lt;span class="mi"&gt;8080&lt;/span&gt;
-   &lt;span class="kd"&gt;#:servlet-regexp&lt;/span&gt; &lt;span class="sr"&gt;#rx""&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;span class="k"&gt;extern&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;C&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="kt"&gt;void&lt;/span&gt; &lt;span class="n"&gt;hello&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="p"&gt;{&lt;/span&gt;
+  &lt;span class="n"&gt;writeln&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"hi from D"&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 &lt;/div&gt;
 
-&lt;p&gt;Save it as &lt;code&gt;hello.rkt&lt;/code&gt; and run it with &lt;code&gt;$ racket hello.rkt&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;Compile to a shared library with:&lt;/p&gt;
 
-&lt;p&gt;Check that it works:&lt;/p&gt;
-
-&lt;div class="brush: shell"&gt;
+&lt;div class="brush: console"&gt;
  &lt;div class="highlight"&gt;
-  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;$ curl -v http://localhost:8080/
-*   Trying ::1...
-* TCP_NODELAY &lt;span class="nb"&gt;set&lt;/span&gt;
-* Connection failed
-* connect to ::1 port &lt;span class="m"&gt;8080&lt;/span&gt; failed: Connection refused
-*   Trying &lt;span class="m"&gt;127&lt;/span&gt;.0.0.1...
-* TCP_NODELAY &lt;span class="nb"&gt;set&lt;/span&gt;
-* Connected to localhost &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="m"&gt;127&lt;/span&gt;.0.0.1&lt;span class="o"&gt;)&lt;/span&gt; port &lt;span class="m"&gt;8080&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="c1"&gt;#0)&lt;/span&gt;
-&amp;gt; GET / HTTP/1.1
-&amp;gt; Host: localhost:8080
-&amp;gt; User-Agent: curl/7.54.0
-&amp;gt; Accept: */*
-&amp;gt;
-&amp;lt; HTTP/1.1 &lt;span class="m"&gt;200&lt;/span&gt; OK
-&amp;lt; Date: Tue, &lt;span class="m"&gt;19&lt;/span&gt; Dec &lt;span class="m"&gt;2017&lt;/span&gt; &lt;span class="m"&gt;18&lt;/span&gt;:13:14 GMT
-&amp;lt; Last-Modified: Tue, &lt;span class="m"&gt;19&lt;/span&gt; Dec &lt;span class="m"&gt;2017&lt;/span&gt; &lt;span class="m"&gt;18&lt;/span&gt;:13:14 GMT
-&amp;lt; Content-Length: &lt;span class="m"&gt;13&lt;/span&gt;
-&amp;lt; Server: Racket
-&amp;lt;
-Hello world!
-* Connection &lt;span class="c1"&gt;#0 to host localhost left intact&lt;/span&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; ldc2 -shared -m64 logc.d
 &lt;/pre&gt;&lt;/div&gt;
 
-&lt;/div&gt;</content></entry>
- <entry>
-  <title type="text">Setting up Github Pages with Frog</title>
-  <link rel="alternate" href="http://logc.github.io/blog/2016/10/03/setting-up-github-pages-with-frog/?utm_source=racket&amp;utm_medium=Atom" />
-  <id>urn:http-logc-github-io:-blog-2016-10-03-setting-up-github-pages-with-frog</id>
-  <published>2016-10-03T18:24:03Z</published>
-  <updated>2016-10-03T18:24:03Z</updated>
-  <author>
-   <name>logc</name></author>
-  <content type="html">
-&lt;p&gt;To set up a static blog in Github Pages using the Racket package Frog, you need to do the following:&lt;/p&gt;
+&lt;/div&gt;
 
-&lt;ul&gt;
- &lt;li&gt;download and install Racket (duh!)&lt;/li&gt;
- &lt;li&gt;install Frog with raco:&lt;/li&gt;&lt;/ul&gt;
+&lt;p&gt;or with&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;$ raco install frog&lt;/code&gt;&lt;/pre&gt;
+&lt;div class="brush: console"&gt;
+ &lt;div class="highlight"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; dmd -shared -m64 -fPIC -defaultlib&lt;span class="o"&gt;=&lt;/span&gt;libphobos2.so logc.d
+&lt;/pre&gt;&lt;/div&gt;
 
-&lt;ul&gt;
- &lt;li&gt;create a folder and initialize a Frog project there:&lt;/li&gt;&lt;/ul&gt;
+&lt;/div&gt;
 
-&lt;pre&gt;&lt;code&gt;$ mkdir new-blog
-$ cd new-blog
-$ raco frog --init&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Use the generated &lt;code&gt;liblogc.so&lt;/code&gt; (or &lt;code&gt;liblogc.dylib&lt;/code&gt;) from a Racket script:&lt;/p&gt;
 
-&lt;ul&gt;
- &lt;li&gt;
-  &lt;p&gt;customize the .frogrc file. Set at least scheme/host to https://your-username.github.io, and title &amp;amp; author to whatever you want.&lt;/p&gt;&lt;/li&gt;
- &lt;li&gt;
-  &lt;p&gt;add some content of your own:&lt;/p&gt;&lt;/li&gt;&lt;/ul&gt;
+&lt;div class="brush: racket"&gt;
+ &lt;div class="highlight"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;&lt;a href="http://docs.racket-lang.org/reference/require.html#(form._((lib._racket/private/base..rkt)._require))" style="color: inherit"&gt;require&lt;/a&gt;&lt;/span&gt; &lt;span class="n"&gt;ffi/unsafe&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 
-&lt;pre&gt;&lt;code&gt;$ raco frog -n "New post"
-# ... output says something like:
-~/new-blog/_src/posts/2016-10-03-new-post.md
-# ... edit that file with your preferred editor ...
-when you are finished editing, preview your glorious site with
+&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;&lt;a href="http://docs.racket-lang.org/reference/define.html#(form._((lib._racket/private/base..rkt)._define))" style="color: inherit"&gt;define&lt;/a&gt;&lt;/span&gt; &lt;span class="n"&gt;logc-lib&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;&lt;a href="http://docs.racket-lang.org/foreign/Loading_Foreign_Libraries.html#(def._((lib._ffi/unsafe..rkt)._ffi-lib))" style="color: inherit"&gt;ffi-lib&lt;/a&gt;&lt;/span&gt; &lt;span class="s2"&gt;"liblogc"&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
 
-$ raco frog -bp&lt;/code&gt;&lt;/pre&gt;
+&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;&lt;a href="http://docs.racket-lang.org/reference/define.html#(form._((lib._racket/private/base..rkt)._define))" style="color: inherit"&gt;define&lt;/a&gt;&lt;/span&gt; &lt;span class="n"&gt;logc-hello&lt;/span&gt;
+  &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;&lt;a href="http://docs.racket-lang.org/foreign/Loading_Foreign_Libraries.html#(def._((lib._ffi/unsafe..rkt)._get-ffi-obj))" style="color: inherit"&gt;get-ffi-obj&lt;/a&gt;&lt;/span&gt; &lt;span class="s2"&gt;"hello"&lt;/span&gt; &lt;span class="n"&gt;logc-lib&lt;/span&gt;
+               &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;&lt;a href="http://docs.racket-lang.org/foreign/foreign_procedures.html#(form._((lib._ffi/unsafe..rkt).__fun))" style="color: inherit"&gt;_fun&lt;/a&gt;&lt;/span&gt; &lt;span class="k"&gt;&lt;a href="http://docs.racket-lang.org/reference/function-contracts.html#(form._((lib._racket/contract/base..rkt)._-~3e))" style="color: inherit"&gt;-&amp;gt;&lt;/a&gt;&lt;/span&gt; &lt;span class="n"&gt;&lt;a href="http://docs.racket-lang.org/foreign/Other_Atomic_Types.html#(def._((quote._~23~25foreign).__void))" style="color: inherit"&gt;_void&lt;/a&gt;&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
 
-&lt;ul&gt;
- &lt;li&gt;initialize an empty Git repository on the project folder, and tell git to  ignore the Frog machinery and your source directory&lt;/li&gt;&lt;/ul&gt;
+&lt;/div&gt;
 
-&lt;pre&gt;&lt;code&gt;$ git init .
-$ cat &amp;lt;&amp;lt; EOF &amp;gt; .gitignore
-/.frog/
-/.frogrc
-/_src/
-EOF&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Try the results:&lt;/p&gt;
 
-&lt;ul&gt;
- &lt;li&gt;commit everything, except for what we just ignored&lt;/li&gt;&lt;/ul&gt;
+&lt;div class="brush: racket"&gt;
+ &lt;div class="highlight"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="nb"&gt;&lt;a href="http://docs.racket-lang.org/reference/generic-numbers.html#(def._((quote._~23~25kernel)._~3e))" style="color: inherit"&gt;&amp;gt;&lt;/a&gt;&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;logc-hello&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;hi&lt;/span&gt; &lt;span class="n"&gt;from&lt;/span&gt; &lt;span class="n"&gt;D&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
 
-&lt;pre&gt;&lt;code&gt;$ git add .
-$ git commit&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
 
-&lt;ul&gt;
- &lt;li&gt;on github.com, create a new repository with the name your-username.github.io.  Once created, add it as a remote to your local repo, and push your local master  to it.&lt;/li&gt;&lt;/ul&gt;
-
-&lt;pre&gt;&lt;code&gt;$ git remote add origin &amp;lt;your new repo&amp;gt;
-$ git push -u origin master&lt;/code&gt;&lt;/pre&gt;
-
-&lt;ul&gt;
- &lt;li&gt;after some seconds, your new blog should be available as http://your-username.github.io&lt;/li&gt;&lt;/ul&gt;
-
-&lt;p&gt;Now, each time that you want to add a new post, it’s just a matter of&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;$ raco frog -n "Another post"
-# ... edit that post ...
-$ raco frog -b
-$ git add .
-$ git commit -a
-$ git push&lt;/code&gt;&lt;/pre&gt;</content></entry>
- <entry>
-  <title type="text">Racket and vim-syntastic</title>
-  <link rel="alternate" href="http://logc.github.io/blog/2016/09/23/racket-and-vim-syntastic/?utm_source=racket&amp;utm_medium=Atom" />
-  <id>urn:http-logc-github-io:-blog-2016-09-23-racket-and-vim-syntastic</id>
-  <published>2016-09-23T19:48:27Z</published>
-  <updated>2016-09-23T19:48:27Z</updated>
-  <author>
-   <name>logc</name></author>
-  <content type="html">
-&lt;p&gt;The current Syntastic checker for Racket syntax in Vim is the &lt;code&gt;racket&lt;/code&gt; executable itself. This means that the current buffer is executed by Racket whenever it is checked for syntax, and this can have unintended consequences, e.g. entering an infinite loop, if you happen to open the wrong file.&lt;/p&gt;
-
-&lt;p&gt;In order to just get the syntax errors, add this to your &lt;code&gt;.vimrc&lt;/code&gt;:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code&gt;let g:syntastic_racket_racket_args="--load"&lt;/code&gt;&lt;/pre&gt;</content></entry></feed>
+&lt;p&gt;This post is based on &lt;a href="https://wiki.dlang.org/Call_D_from_Ruby_using_FFI"&gt;Call D from Ruby using FFI&lt;/a&gt; and &lt;a href="http://prl.ccs.neu.edu/blog/2016/06/27/tutorial-using-racket-s-ffi/"&gt;tutorial using racket&amp;rsquo;s ffi&lt;/a&gt;&lt;/p&gt;</content></entry></feed>

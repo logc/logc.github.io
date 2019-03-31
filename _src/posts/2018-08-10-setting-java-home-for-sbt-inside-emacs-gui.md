@@ -18,13 +18,16 @@ carefully set in your normal (terminal) environment.
 In order to correct this, add to your `init.el` (or `dotspacemacs/user-init` in
 `.spacemacs`):
 
-    (setenv "JAVA_HOME"
-            "/Library/Java/JavaVirtualMachines/jdk1.8.0_172.jdk/Contents/Home/")
+```elisp
+(setenv "JAVA_HOME"
+        "/Library/Java/JavaVirtualMachines/jdk1.8.0_172.jdk/Contents/Home/")
+```
 
 or whatever it is that `JAVA_HOME` should point to.
 
 As an alternative, you can set this variable per project by adding a file
 `.sbtopts` in the project root with the following:
 
-    -java-home
-    /Library/Java/JavaVirtualMachines/jdk1.8.0_172.jdk/Contents/Home/
+```
+-java-home /Library/Java/JavaVirtualMachines/jdk1.8.0_172.jdk/Contents/Home/
+```

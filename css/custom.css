@@ -1,345 +1,80 @@
 /* custom.css */
-
-@font-face {
-    font-family: 'texgyreherosbold';
-    src: url('../fonts/texgyreheros_bold_macroman/texgyreheros-bold-webfont.eot');
-    src: url('../fonts/texgyreheros_bold_macroman/texgyreheros-bold-webfont.eot?#iefix') format('embedded-opentype'),
-         url('../fonts/texgyreheros_bold_macroman/texgyreheros-bold-webfont.woff') format('woff'),
-         url('../fonts/texgyreheros_bold_macroman/texgyreheros-bold-webfont.ttf') format('truetype'),
-         url('../fonts/texgyreheros_bold_macroman/texgyreheros-bold-webfont.svg#texgyreherosbold') format('svg');
-    font-weight: normal;
-    font-style: normal;
-
-}
-
-@font-face {
-    font-family: 'texgyreherosbold_italic';
-    src: url('../fonts/texgyreheros_bolditalic_macroman/texgyreheros-bolditalic-webfont.eot');
-    src: url('../fonts/texgyreheros_bolditalic_macroman/texgyreheros-bolditalic-webfont.eot?#iefix') format('embedded-opentype'),
-         url('../fonts/texgyreheros_bolditalic_macroman/texgyreheros-bolditalic-webfont.woff') format('woff'),
-         url('../fonts/texgyreheros_bolditalic_macroman/texgyreheros-bolditalic-webfont.ttf') format('truetype'),
-         url('../fonts/texgyreheros_bolditalic_macroman/texgyreheros-bolditalic-webfont.svg#texgyreherosbold_italic') format('svg');
-    font-weight: normal;
-    font-style: normal;
-
-}
-
-@font-face {
-    font-family: 'texgyreherositalic';
-    src: url('../fonts/texgyreheros_italic_macroman/texgyreheros-italic-webfont.eot');
-    src: url('../fonts/texgyreheros_italic_macroman/texgyreheros-italic-webfont.eot?#iefix') format('embedded-opentype'),
-         url('../fonts/texgyreheros_italic_macroman/texgyreheros-italic-webfont.woff') format('woff'),
-         url('../fonts/texgyreheros_italic_macroman/texgyreheros-italic-webfont.ttf') format('truetype'),
-         url('../fonts/texgyreheros_italic_macroman/texgyreheros-italic-webfont.svg#texgyreherositalic') format('svg');
-    font-weight: normal;
-    font-style: normal;
-
-}
-
-@font-face {
-    font-family: 'texgyreherosregular';
-    src: url('../fonts/texgyreheros_regular_macroman/texgyreheros-regular-webfont.eot');
-    src: url('../fonts/texgyreheros_regular_macroman/texgyreheros-regular-webfont.eot?#iefix') format('embedded-opentype'),
-         url('../fonts/texgyreheros_regular_macroman/texgyreheros-regular-webfont.woff') format('woff'),
-         url('../fonts/texgyreheros_regular_macroman/texgyreheros-regular-webfont.ttf') format('truetype'),
-         url('../fonts/texgyreheros_regular_macroman/texgyreheros-regular-webfont.svg#texgyreherosregular') format('svg');
-    font-weight: normal;
-    font-style: normal;
-
-}
-
-@font-face {
-    font-family: 'texgyretermesbold';
-    src: url('../fonts/texgyreheros_bold_macroman/texgyretermes-bold-webfont.eot');
-    src: url('../fonts/texgyreheros_bold_macroman/texgyretermes-bold-webfont.eot?#iefix') format('embedded-opentype'),
-         url('../fonts/texgyreheros_bold_macroman/texgyretermes-bold-webfont.woff') format('woff'),
-         url('../fonts/texgyreheros_bold_macroman/texgyretermes-bold-webfont.ttf') format('truetype'),
-         url('../fonts/texgyreheros_bold_macroman/texgyretermes-bold-webfont.svg#texgyretermesbold') format('svg');
-    font-weight: normal;
-    font-style: normal;
-
-}
-
-@font-face {
-    font-family: 'texgyretermesbold_italic';
-    src: url('fonts/texgyretermes_bold_macroman/texgyretermes-bolditalic-webfont.eot');
-    src: url('fonts/texgyretermes_bold_macroman/texgyretermes-bolditalic-webfont.eot?#iefix') format('embedded-opentype'),
-         url('fonts/texgyretermes_bold_macroman/texgyretermes-bolditalic-webfont.woff') format('woff'),
-         url('fonts/texgyretermes_bold_macroman/texgyretermes-bolditalic-webfont.ttf') format('truetype'),
-         url('fonts/texgyretermes_bold_macroman/texgyretermes-bolditalic-webfont.svg#texgyretermesbold_italic') format('svg');
-    font-weight: normal;
-    font-style: normal;
-
-}
-
-@font-face {
-    font-family: 'texgyretermesitalic';
-    src: url('../fonts/texgyretermes_italic_macroman/texgyretermes-italic-webfont.eot');
-    src: url('../fonts/texgyretermes_italic_macroman/texgyretermes-italic-webfont.eot?#iefix') format('embedded-opentype'),
-         url('../fonts/texgyretermes_italic_macroman/texgyretermes-italic-webfont.woff') format('woff'),
-         url('../fonts/texgyretermes_italic_macroman/texgyretermes-italic-webfont.ttf') format('truetype'),
-         url('../fonts/texgyretermes_italic_macroman/texgyretermes-italic-webfont.svg#texgyretermesitalic') format('svg');
-    font-weight: normal;
-    font-style: normal;
-
-}
-
-@font-face {
-    font-family: 'texgyretermesregular';
-    src: url('../fonts/texgyretermes_regular_macroman/texgyretermes-regular-webfont.eot');
-    src: url('../fonts/texgyretermes_regular_macroman/texgyretermes-regular-webfont.eot?#iefix') format('embedded-opentype'),
-         url('../fonts/texgyretermes_regular_macroman/texgyretermes-regular-webfont.woff') format('woff'),
-         url('../fonts/texgyretermes_regular_macroman/texgyretermes-regular-webfont.ttf') format('truetype'),
-         url('../fonts/texgyretermes_regular_macroman/texgyretermes-regular-webfont.svg#texgyretermesregular') format('svg');
-    font-weight: normal;
-    font-style: normal;
-
-}
-
-.navbar, .navbar-inverse, .navbar-brand, .dropdown-toggle, .navbar-nav>.dropdown>a .caret {
-    font-family: 'texgyreherosbold', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    font-size: 20px;
-    margin-bottom: 0px;
-}
+@charset "UTF-8";
 
 body {
-    font-family: 'texgyreherosregular', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    font-size: 18px;
-    text-align: justify;
-    text-justify: inter-word;
+    width: 87.5%;
+    margin-left: auto;
+    margin-right: auto;
+    font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+    background-color: #fffff8;
+    color: #111;
+    max-width: 800px;
 }
+
+h1 { font-size: 3.2rem; }
+
+h2 { font-size: 2.2rem; }
+
+h3 { font-size: 1.7rem; }
+
+h4 { font-size: 1.5rem; }
+
+h2, h3, h4 { font-style: italic; }
 
 article {
-    padding-top: 1px;
-    padding-bottom: 75px;
+    position: relative;
+    padding: 2rem 0rem;
 }
 
-a, a:hover, a:visited {
-    color: #558a86;
-}
-
-.pagination > .active a {
-    background-color: #558a86;
-    border-color: #558a86;
-}
-
-h1 {
-    font-family: 'texgyreherosbold' !important;
-    font-size: 170%;
-    font-weight: bold;
-    color: #c8c8c8;
-}
-
-h2 {
-    font-family: 'texgyreherosbold' !important;
-    font-size: 160%;
-    font-weight: bold;
-    color: #558a86;
-}
-
-h3 {
-    font-family: 'texgyreherosbold' !important;
-    font-size: 150%;
-    font-weight: bold;
-    color: #558a86;
-}
-
-h4 {
-    font-family: 'texgyreherosbold' !important;
-    font-size: 140%;
-    font-style: italic;
-    color: #558a86;
-}
-
-/* This is not code blocks, but only inline code
-code {
-    font-family: 'Fira Mono', Menlo, Monaco, Consolas, 'Courier New', monospace;
-    font-size: 80%;
-    color: black;
-    background-color: #c8c8c8;
-}
-
-
-pre {
-    background-color: #49483e !important;
-}
-*/
-
+/* Tufte style */
+p, pre, ul { max-width: 55%; }
 
 footer {
     padding: 5%;
     font-size: 70%;
 }
 
-blockquote p {
-    font-size: 100%;
-    color: #2f292b;
-    margin-bottom: 13px;
+pre {
+    font-size: 10px;
+    font-family: Monaco, "Lucida Console", monospace;
+}
+
+/* Inline code */
+code {
+    font-family: Monaco, "Lucida Console", monospace;
+    font-size: 1.0rem;
+}
+
+/* Tag classes */
+.navbar, .navbar-inverse, .navbar-brand, .dropdown-toggle, .navbar-nav>.dropdown>a .caret {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 20px;
+    margin-bottom: 0px;
+}
+
+.jumbotron {
+    background: transparent;
+    padding: 15px;
+}
+
+.jumbotron h1 a
+{
+    font-family: Tahoma, Geneva, sans-serif;
+    font-weight: bold;
+    text-decoration: none;
+    color: #111;
+}
+
+/* Display code */
+.highlight {
+    font-family: Monaco, "Lucida Console", monospace;
+    background: transparent;
 }
 
 .date-and-tags {
-    font-family: 'texgyreherosbold', 'Helvetica Neue', Helvetica, Arial, sans-serif;
     font-size: 80%;
 }
 
-.pagination > .active a {
-    background-color: #558a86;
-    border-color: #558a86;
+@media (max-width: 760px) {
+    p, pre, ul { max-width: 100%; }
 }
-
-.footnotes {
-    font-size: smaller;
-    margin-top: 2em;
-}
-
-#left-sidebar, #right-sidebar {
-    font-size: 80%;
-}
-
-
-.read-more {
-    font-style: italic;
-}
-
-.figure {
-    padding: 1em;
-}
-
-.caption {
-    color: #666;
-    font-style: italic;
-    font-size: smaller;
-}
-
-.sourcetable {
-    margin-top: 1em;
-    margin-bottom: 1em;
-}
-
-/* Start taken from http://prl.ccs.neu.edu/blog/index.html */
-.jumbotron
-{
-  color: white;
-  text-align: center;
-  text-shadow: 2px 2px rgba(0, 0, 0, 0.62);
-  background-color: transparent;
-  margin-top: 0px;
-  margin-bottom: 0px;
-  background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.7)), url('../img/background.jpg') no-repeat center center transparent;
-  background-repeat:no-repeat;
-  background-size:cover;
-}
-
-.jumbotron img.pn-logo
-{
-    height: 70px;
-}
-
-.jumbotron h1
-{
-  font-size: 35px;
-  line-height: 50px;
-  margin-top: 20px;
-}
-
-.jumbotron h2
-{
-  font-size: 22px;
-  color: white !important;
-  margin-bottom: 15px;
-}
-
-.jumbotron h3
-{
-  font-size: 17px;
-  margin-bottom: 12px;
-}
-
-.jumbotron.subpages h1
-{
-  margin-top: 0;
-}
-
-.main-content
-{
-  width: 100%;
-  color: #c8c8c8;
-  background-color: #272b30;
-}
-
-@media (min-width: 768px)
-{
-
-  body
-  {
-    background: linear-gradient(rgba(0, 0, 0, 0.7),
-                                rgba(0, 0, 0, 0.0),
-			       	rgba(0, 0, 0, 0.7)), url('../img/background.jpg') no-repeat center center transparent;
-    background-repeat:no-repeat;
-    background-size:100%;
-    background-attachment: fixed;
-    background-position: 50% 0px;
-    background-color: #051122;
-  }
-
-  article
-  {
-    width: 80%;
-    margin: 0 auto;
-    padding: 5%;
-  }
-
-  .navbar {
-      border-radius: 0;
-      border-top: 0;
-      border-bottom: 0;
-  }
-
-  #pn-mobile-indicator
-  {
-    display: block;
-  }
-
-  .navbar.navbar-inverse
-  {
-    background-color: transparent;
-  }
-
-  .jumbotron
-  {  
-      padding-top: 100px;
-      color: white;
-      padding-bottom: 110px;
-      background: transparent;
-  }
-
-  .jumbotron img.pn-logo
-  {
-      height: 131px;
-  }
-
-  .jumbotron h1
-  {  
-    font-size: 50px;
-    line-height: 50px;
-    margin-top: 40px;  
-  }
-
-  .jumbotron h2
-  {
-    font-size: 25px;
-    margin-bottom: 25px;
-  }
-
-  .jumbotron h3
-  {
-    font-size: 20px;
-    margin-bottom: 25px;
-  }
-
-  .main-content
-  {
-    padding-top: 50px;
-  }
-}
-/* End taken from PRL blog */

@@ -16,21 +16,35 @@
    <description>
 &lt;p&gt;You need &lt;a href="https://github.com/roswell/roswell"&gt;roswell&lt;/a&gt;, &lt;a href="https://common-lisp.net/project/ecl/"&gt;ECL&lt;/a&gt; and &lt;a href="https://upx.github.io/"&gt;UPX&lt;/a&gt; installed.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;$ brew install --HEAD roswell
-$ brew install ecl upx
-&lt;/code&gt;&lt;/pre&gt;
+&lt;div class="brush: console"&gt;
+ &lt;div class="highlight"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; brew install --HEAD roswell
+&lt;span class="gp"&gt;$&lt;/span&gt; brew install ecl upx
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
 
 &lt;p&gt;The reason to install the head roswell is that, as of this writing, some of the Common Lisp installations did not work on the latest release on Homebrew.&lt;/p&gt;
 
 &lt;p&gt;The reason to install &lt;code&gt;ecl&lt;/code&gt; on the system, and not using &lt;code&gt;ros install&lt;/code&gt;, is that I had problems installing the latest version of ECL that way. Also, the &lt;code&gt;ros
 list versions&lt;/code&gt; command did not find any available versions of ECL. So, I resorted to using the system installed ECL.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;$ ros use ecl/system&lt;/code&gt;&lt;/pre&gt;
+&lt;div class="brush: console"&gt;
+ &lt;div class="highlight"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; ros use ecl/system
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
 &lt;!-- more--&gt;
 
 &lt;p&gt;Initialize a new roswell script&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;$ ros init hello&lt;/code&gt;&lt;/pre&gt;
+&lt;div class="brush: console"&gt;
+ &lt;div class="highlight"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; ros init hello
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
 
 &lt;p&gt;Then add the following to &lt;code&gt;hello.ros&lt;/code&gt;&lt;/p&gt;
 
@@ -61,16 +75,31 @@ list versions&lt;/code&gt; command did not find any available versions of ECL. S
 
 &lt;p&gt;Compile into an executable using&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;$ ros build hello.ros&lt;/code&gt;&lt;/pre&gt;
+&lt;div class="brush: console"&gt;
+ &lt;div class="highlight"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; ros build hello.ros
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
 
 &lt;p&gt;The executable &lt;code&gt;hello&lt;/code&gt; is now 1.6 MB on my system (Darwin 17.7.0)&lt;/p&gt;
 
 &lt;p&gt;You can bring this down to 457 KB using&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;$ upx --best hello&lt;/code&gt;&lt;/pre&gt;
+&lt;div class="brush: console"&gt;
+ &lt;div class="highlight"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; upx --best hello
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
 
 &lt;p&gt;The &amp;ldquo;hello&amp;rdquo; executable is now small, but not really fast&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;$ time ./hello
-Hello world!
-        0.41 real         0.40 user         0.02 sys&lt;/code&gt;&lt;/pre&gt;</description></item></channel></rss>
+&lt;div class="brush: console"&gt;
+ &lt;div class="highlight"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="gp"&gt;$&lt;/span&gt; &lt;span class="nb"&gt;time&lt;/span&gt; ./hello
+&lt;span class="go"&gt;Hello world!&lt;/span&gt;
+&lt;span class="go"&gt;    0.41 real         0.40 user         0.02 sys&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;</description></item></channel></rss>
