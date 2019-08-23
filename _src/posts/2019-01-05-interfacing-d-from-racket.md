@@ -1,6 +1,6 @@
     Title: Interfacing D functions from Racket
     Date: 2019-01-05T16:44:58
-    Tags: D, Racket
+    Tags: D, racket
 
 This is how you can use a function written in D from a Racket script.
 

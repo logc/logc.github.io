@@ -6,7 +6,7 @@
     <title>logc io</title>
     <meta name="description" content="logc io">
     <meta name="author"      content="logc">
-    <meta name="keywords"    content="scala, web, python, all, fish, D, racket, lisp, spacemacs, blog, C, programming, haskell, ensime, maven, vim, scons, frog, build, IntelliJ, C++, emacs, Racket, java, sysadmin, git">
+    <meta name="keywords"    content="scala, web, python, all, fish, D, lisp, racket, haskell, spacemacs, blog, C, programming, ensime, maven, vim, scons, frog, build, IntelliJ, C++, emacs, java, sysadmin, git">
     <meta name="viewport"    content="width=device-width, initial-scale=1.0">
     <link rel="icon"      href="/favicon.ico">
     <link rel="canonical" href="http://logc.github.io/index.html">
@@ -103,8 +103,6 @@
 
 <li><a href="/tags/python.html">python</a></li>
 
-<li><a href="/tags/Racket.html">Racket</a></li>
-
 <li><a href="/tags/racket.html">racket</a></li>
 
 <li><a href="/tags/scala.html">scala</a></li>
@@ -154,9 +152,23 @@
 
             <article>
   <header>
+    <h2><a href='/blog/2019/08/23/setting-up-magit-forge-with-github-enterprise-server/'>Setting up Magit Forge with Github Enterprise server</a></h2>
+    <p class='date-and-tags'>
+<time datetime="2019-08-23" pubdate="true">2019-08-23</time> :: <span class="tags"><a href="/tags/emacs.html">emacs</a>, <a href="/tags/git.html">git</a></span></p>
+  </header>
+
+<p>I have attempted a number of times to create a pull request from the comfort of Emacs and Magit, with no success yet. The main problem is that I use most of the time my company&rsquo;s GitHub Enterprise instance, not the public service called <code>github.com</code>. The GitHub service is so ubiquitous that many people forget there are other installations, not seen on the public Internet, where big corporations and hip companies keep their precious, precious code.</p>
+
+<p>This week I finally made progress in setting up the connection.</p>
+  <footer>
+    <a href='/blog/2019/08/23/setting-up-magit-forge-with-github-enterprise-server/'>&hellip; more &hellip;</a>
+  </footer>
+</article>
+<article>
+  <header>
     <h2><a href='/blog/2019/01/05/interfacing-d-functions-from-racket/'>Interfacing D functions from Racket</a></h2>
     <p class='date-and-tags'>
-<time datetime="2019-01-05" pubdate="true">2019-01-05</time> :: <span class="tags"><a href="/tags/D.html">D</a>, <a href="/tags/Racket.html">Racket</a></span></p>
+<time datetime="2019-01-05" pubdate="true">2019-01-05</time> :: <span class="tags"><a href="/tags/D.html">D</a>, <a href="/tags/racket.html">racket</a></span></p>
   </header>
 
 <p>This is how you can use a function written in D from a Racket script.</p>
@@ -293,38 +305,6 @@
     <a href='/blog/2018/08/09/ensime-server-crashed-by-wrong-jar/'>&hellip; more &hellip;</a>
   </footer>
 </article>
-<article>
-  <header>
-    <h2><a href='/blog/2018/08/07/produce-small-executables-with-common-lisp/'>Produce small executables with Common Lisp</a></h2>
-    <p class='date-and-tags'>
-<time datetime="2018-08-07" pubdate="true">2018-08-07</time> :: <span class="tags"><a href="/tags/lisp.html">lisp</a></span></p>
-  </header>
-
-<p>You need <a href="https://github.com/roswell/roswell">roswell</a>, <a href="https://common-lisp.net/project/ecl/">ECL</a> and <a href="https://upx.github.io/">UPX</a> installed.</p>
-
-<div class="brush: console">
- <div class="highlight">
-  <pre><span></span><span class="gp">$</span> brew install --HEAD roswell
-<span class="gp">$</span> brew install ecl upx
-</pre></div>
-
-</div>
-
-<p>The reason to install the head roswell is that, as of this writing, some of the Common Lisp installations did not work on the latest release on Homebrew.</p>
-
-<p>The reason to install <code>ecl</code> on the system, and not using <code>ros install</code>, is that I had problems installing the latest version of ECL that way. Also, the <code>ros
-list versions</code> command did not find any available versions of ECL. So, I resorted to using the system installed ECL.</p>
-
-<div class="brush: console">
- <div class="highlight">
-  <pre><span></span><span class="gp">$</span> ros use ecl/system
-</pre></div>
-
-</div>
-  <footer>
-    <a href='/blog/2018/08/07/produce-small-executables-with-common-lisp/'>&hellip; more &hellip;</a>
-  </footer>
-</article>
 <footer>
  <ul class="pagination">
   <li class="page-item disabled"><a class="page-link" href="#">
@@ -346,7 +326,7 @@ list versions</code> command did not find any available versions of ECL. So, I r
         <a href="https://github.com/greghendershott/frog">Frog</a>
         &amp;
         <a href="http://twitter.github.com/bootstrap/index.html">Bootstrap</a>.
-        Last built on Sunday, March 31st, 2019</p>
+        Last built on Friday, August 23rd, 2019</p>
 
         <p><em>© Copyright 2013-2019, Luis Osa</em>.</p>
       </footer>

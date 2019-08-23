@@ -6,7 +6,7 @@
     <title>logc io (page 2)</title>
     <meta name="description" content="logc io (page 2)">
     <meta name="author"      content="logc">
-    <meta name="keywords"    content="scala, web, python, all, fish, D, racket, lisp, spacemacs, blog, C, programming, haskell, ensime, maven, vim, scons, frog, build, IntelliJ, C++, emacs, Racket, java, sysadmin, git">
+    <meta name="keywords"    content="scala, web, python, all, fish, D, lisp, racket, haskell, spacemacs, blog, C, programming, ensime, maven, vim, scons, frog, build, IntelliJ, C++, emacs, java, sysadmin, git">
     <meta name="viewport"    content="width=device-width, initial-scale=1.0">
     <link rel="icon"      href="/favicon.ico">
     <link rel="canonical" href="http://logc.github.io/index-2.html">
@@ -103,8 +103,6 @@
 
 <li><a href="/tags/python.html">python</a></li>
 
-<li><a href="/tags/Racket.html">Racket</a></li>
-
 <li><a href="/tags/racket.html">racket</a></li>
 
 <li><a href="/tags/scala.html">scala</a></li>
@@ -153,6 +151,38 @@
 
 
             <article>
+  <header>
+    <h2><a href='/blog/2018/08/07/produce-small-executables-with-common-lisp/'>Produce small executables with Common Lisp</a></h2>
+    <p class='date-and-tags'>
+<time datetime="2018-08-07" pubdate="true">2018-08-07</time> :: <span class="tags"><a href="/tags/lisp.html">lisp</a></span></p>
+  </header>
+
+<p>You need <a href="https://github.com/roswell/roswell">roswell</a>, <a href="https://common-lisp.net/project/ecl/">ECL</a> and <a href="https://upx.github.io/">UPX</a> installed.</p>
+
+<div class="brush: console">
+ <div class="highlight">
+  <pre><span></span><span class="gp">$</span> brew install --HEAD roswell
+<span class="gp">$</span> brew install ecl upx
+</pre></div>
+
+</div>
+
+<p>The reason to install the head roswell is that, as of this writing, some of the Common Lisp installations did not work on the latest release on Homebrew.</p>
+
+<p>The reason to install <code>ecl</code> on the system, and not using <code>ros install</code>, is that I had problems installing the latest version of ECL that way. Also, the <code>ros
+list versions</code> command did not find any available versions of ECL. So, I resorted to using the system installed ECL.</p>
+
+<div class="brush: console">
+ <div class="highlight">
+  <pre><span></span><span class="gp">$</span> ros use ecl/system
+</pre></div>
+
+</div>
+  <footer>
+    <a href='/blog/2018/08/07/produce-small-executables-with-common-lisp/'>&hellip; more &hellip;</a>
+  </footer>
+</article>
+<article>
   <header>
     <h2><a href='/blog/2018/06/04/logging-start-and-finish-in-python/'>Logging start and finish in Python</a></h2>
     <p class='date-and-tags'>
@@ -328,36 +358,6 @@ Hello world!
 </div>
 
 </article>
-<article>
-  <header>
-    <h2><a href='/blog/2017/09/05/ensime-server-crash-because-of-transitive-dependency/'>Ensime server crash because of transitive dependency</a></h2>
-    <p class='date-and-tags'>
-<time datetime="2017-09-05" pubdate="true">2017-09-05</time> :: <span class="tags"><a href="/tags/scala.html">scala</a>, <a href="/tags/emacs.html">emacs</a></span></p>
-  </header>
-
-<p>The Scala layer for Spacemacs uses Ensime by default. There is an error that made me struggle for weeks: <a href="https://github.com/ensime/ensime-server/issues/825">Bad source jar kills the server: ZipException: error in opening zip file</a></p>
-
-<p>The offending JAR was a transitive dependency of a project, and the solution offered on the issue was not clear for me.</p>
-
-<p>This problem is tricky if you previously loaded the project into an IDE: they download by default all transitive dependencies with sources and javadoc, and the ivy cache is shared by all projects in the same machine.</p>
-
-<p>Here is my solution, as found also on the issue, in case it helps others:</p>
-
-<ul>
- <li>determine which dependency is pulling the problem JAR with the <a href="https://github.com/jrudolph/sbt-dependency-graph">sbt dependency  graph plugin</a> (note: the  command <code>whatDependsOn</code> only works in interactive mode)</li>
- <li>move away the current ivy cache folder <code>console
-$ mv ~/.ivy2/ ~/.ivy2_old</code></li>
- <li>(optional) create a new clone to have a known state <code>console
-$ git clone $repo ~/dev/ensime-$repo</code></li>
- <li>edit <code>build.sbt</code> to add an exclusion rule for the transitive dependency at the  line of the explicit dependency that needs it, e.g. <code>sbt
-libraryDependencies ++= Seq(
-  "com.company.notifications" % "notifications-schema" exclude("org.json", "json")
-)</code></li>
- <li>compile, go for a coffee while ivy downloads the internet :), then run ensime commands <code>console
-$ sbt compile
-$ sbt ensimeConfig ensimeConfigProject</code></li></ul>
-
-</article>
 <footer>
  <ul class="pagination">
   <li class="page-item"><a class="page-link" href="/index.html">
@@ -379,7 +379,7 @@ $ sbt ensimeConfig ensimeConfigProject</code></li></ul>
         <a href="https://github.com/greghendershott/frog">Frog</a>
         &amp;
         <a href="http://twitter.github.com/bootstrap/index.html">Bootstrap</a>.
-        Last built on Sunday, March 31st, 2019</p>
+        Last built on Friday, August 23rd, 2019</p>
 
         <p><em>© Copyright 2013-2019, Luis Osa</em>.</p>
       </footer>

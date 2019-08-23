@@ -6,12 +6,12 @@
     <title>Interfacing D functions from Racket</title>
     <meta name="description" content="This is how you can use a function written in D from a Racket script.  In a file called `logc.d`:      import std.stdio; extern(C) void hello() {   writeln(&quot;hi from D&quot;); }     Compile to a shared library with:      $ ldc2 -shared -m64 logc.d     or with  ...">
     <meta name="author"      content="logc">
-    <meta name="keywords"    content="D, Racket">
+    <meta name="keywords"    content="D, racket">
     <meta name="viewport"    content="width=device-width, initial-scale=1.0">
     <link rel="icon"      href="/favicon.ico">
     <link rel="canonical" href="http://logc.github.io/blog/2019/01/05/interfacing-d-functions-from-racket/">
     <link rel="next" href="/blog/2018/08/24/what-to-learn-in-a-new-programming-language/">
-
+    <link rel="prev" href="/blog/2019/08/23/setting-up-magit-forge-with-github-enterprise-server/">
     <!-- CSS -->
     <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="/css/pygments.css">
@@ -103,8 +103,6 @@
 
 <li><a href="/tags/python.html">python</a></li>
 
-<li><a href="/tags/Racket.html">Racket</a></li>
-
 <li><a href="/tags/racket.html">racket</a></li>
 
 <li><a href="/tags/scala.html">scala</a></li>
@@ -156,7 +154,7 @@
   <header>
     <h1>Interfacing D functions from Racket</h1>
     <p class='date-and-tags'>
-<time datetime="2019-01-05" pubdate="true">2019-01-05</time> :: <span class="tags"><a href="/tags/D.html">D</a>, <a href="/tags/Racket.html">Racket</a></span></p>
+<time datetime="2019-01-05" pubdate="true">2019-01-05</time> :: <span class="tags"><a href="/tags/D.html">D</a>, <a href="/tags/racket.html">racket</a></span></p>
   </header>
 
 <p>This is how you can use a function written in D from a Racket script.</p>
@@ -222,7 +220,9 @@
 <p>This post is based on <a href="https://wiki.dlang.org/Call_D_from_Ruby_using_FFI">Call D from Ruby using FFI</a> and <a href="http://prl.ccs.neu.edu/blog/2016/06/27/tutorial-using-racket-s-ffi/">tutorial using racket&rsquo;s ffi</a></p>
   <footer>
     <ul class="pager">
-
+    <li class="previous">
+      <a href="/blog/2019/08/23/setting-up-magit-forge-with-github-enterprise-server/">&larr; <em>Setting up Magit Forge with Github Enterprise server</em></a>
+    </li>
     <li class="next">
       <a href="/blog/2018/08/24/what-to-learn-in-a-new-programming-language/"><em>What to learn in a new programming language</em> &rarr;</a>
     </li>
@@ -238,7 +238,7 @@
         <a href="https://github.com/greghendershott/frog">Frog</a>
         &amp;
         <a href="http://twitter.github.com/bootstrap/index.html">Bootstrap</a>.
-        Last built on Sunday, March 31st, 2019</p>
+        Last built on Friday, August 23rd, 2019</p>
 
         <p><em>© Copyright 2013-2019, Luis Osa</em>.</p>
       </footer>

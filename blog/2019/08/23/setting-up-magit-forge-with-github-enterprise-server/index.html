@@ -3,15 +3,15 @@
   <head>
 
     <meta charset="utf-8">
-    <title>Git setup with fork and upstream</title>
-    <meta name="description" content="Here is how to setup a fresh clone of a git repository so that it pulls changes from an upstream, but only pushes by default to another repository (usually, your own fork of the project).  I use the fish shell. If you use Bash or Zsh it should be straight...">
+    <title>Setting up Magit Forge with Github Enterprise server</title>
+    <meta name="description" content="I have attempted a number of times to create a pull request from the comfort of Emacs and Magit, with no success yet. The main problem is that I use most of the time my company's GitHub Enterprise instance, not the public service called `github.com`. The ...">
     <meta name="author"      content="logc">
-    <meta name="keywords"    content="git">
+    <meta name="keywords"    content="emacs, git">
     <meta name="viewport"    content="width=device-width, initial-scale=1.0">
     <link rel="icon"      href="/favicon.ico">
-    <link rel="canonical" href="http://logc.github.io/blog/2018/04/30/git-setup-with-fork-and-upstream/">
-    <link rel="next" href="/blog/2017/12/19/minimal-racket-web-app/">
-    <link rel="prev" href="/blog/2018/05/14/debug-scala-with-spacemacs/">
+    <link rel="canonical" href="http://logc.github.io/blog/2019/08/23/setting-up-magit-forge-with-github-enterprise-server/">
+    <link rel="next" href="/blog/2019/01/05/interfacing-d-functions-from-racket/">
+
     <!-- CSS -->
     <link rel="stylesheet" type="text/css" href="/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="/css/pygments.css">
@@ -152,47 +152,52 @@
 
             <article>
   <header>
-    <h1>Git setup with fork and upstream</h1>
+    <h1>Setting up Magit Forge with Github Enterprise server</h1>
     <p class='date-and-tags'>
-<time datetime="2018-04-30" pubdate="true">2018-04-30</time> :: <span class="tags"><a href="/tags/git.html">git</a></span></p>
+<time datetime="2019-08-23" pubdate="true">2019-08-23</time> :: <span class="tags"><a href="/tags/emacs.html">emacs</a>, <a href="/tags/git.html">git</a></span></p>
   </header>
 
-<p>Here is how to setup a fresh clone of a git repository so that it pulls changes from an upstream, but only pushes by default to another repository (usually, your own fork of the project).</p>
+<p>I have attempted a number of times to create a pull request from the comfort of Emacs and Magit, with no success yet. The main problem is that I use most of the time my company&rsquo;s GitHub Enterprise instance, not the public service called <code>github.com</code>. The GitHub service is so ubiquitous that many people forget there are other installations, not seen on the public Internet, where big corporations and hip companies keep their precious, precious code.</p>
 
-<p>I use the fish shell. If you use Bash or Zsh it should be straightforward to define these variables in your environment.</p>
+<p>This week I finally made progress in setting up the connection.</p>
+<!-- more-->
 
-<div class="brush: fish">
+<p>You need to customize the variable <code>forge-alist</code> to include your company&rsquo;s GHE as a new &ldquo;forge&rdquo;. You need to add there a four-element tuple that describes how Magit Forge should talk to this new Github, and also how it should be identified to the user. It is easier to see how the fields are intended if you use a Customize buffer, but in the end, you need to do the equivalent of evaluating this expression:</p>
+
+<div class="brush: emacs-lisp">
  <div class="highlight">
-  <pre><span></span><span class="k">set</span> gituser logc
-<span class="k">set</span> gitproject chat
-<span class="k">set</span> gitorg NacionLumpen
+  <pre><span></span><span class="p">(</span><span class="nb">push</span> <span class="o">&#39;</span><span class="p">(</span><span class="s">"ghe.company.net"</span> <span class="s">"ghe.company.net/api/v3"</span>
+        <span class="s">"ghe.company.net"</span> <span class="nv">forge-github-repository</span><span class="p">)</span>
+        <span class="nv">forge-alist</span><span class="p">)</span>
 </pre></div>
 
 </div>
 
-<p>And this is how to setup the clone:</p>
+<p>where it is assumed that your company&rsquo;s sysadmins have deployed the Github service under a DNS name like <code>ghe.company.net</code>. Of course, this will be different for each deployment, and it could be called <code>veryprivategithub.anotherdomainweown.com</code>. You need to figure out that bit.</p>
 
-<div class="brush: fish">
- <div class="highlight">
-  <pre><span></span>git clone git@github.com:<span class="nv">$gituser</span>/<span class="nv">$gitproject</span>.git
-<span class="k">cd</span> <span class="nv">$gitproject</span>
-git remote add upstream git@github.com:<span class="nv">$gitorg</span>/<span class="nv">$gitproject</span>.git
-git remote rename origin fork
-git fetch upstream
-git branch --set-upstream-to<span class="o">=</span>upstream/master
-git config remote.pushDefault fork
-</pre></div>
+<p>Another thing that was tricky was that the next thing to do, on a repository that has been cloned from a remote with this name, is to do a <code>forge-pull</code>. This will try to contact the GHE instance and download data like open issues.</p>
 
-</div>
+<p>In order to connect to the forge, Magit Forge needs to know which credentials to use. There is a wizard, for the first <code>forge-pull</code>, where you just need to give your user and password (!) and it will create the right token for you using the GHE API (and hopefully, immediately forget your credentials!).</p>
 
-<p>As always with git, it is trivial, if your name is &lsquo;Linus&rsquo; :)</p>
+<p>If you have trust issues, or are a hacker that needs to do everything by themselves, you can do the following instead:</p>
+
+<ol>
+ <li>
+  <p>Change the order of sources in the variable <code>auth-sources</code> and set  <code>~/authinfo.gpg</code> <strong>higher</strong> than <code>~/authinfo</code>. This means that the  <strong>encrypted file</strong> will be used in preference to a <strong>plaintext file</strong> in  order to store the token that allows Magit to connect to GHE.</p></li>
+ <li>
+  <p>Open <code>~/.authinfo.gpg</code>. You may need to enter your passphrase for that file.  You may need to <strong>create</strong> that file in the first place. You may need to  <strong>create a GPG private/public keypair</strong> in order to encrypt files at all.  Please refer to the GPG documentation for that. Ah! On top of that, when you  try to open <code>~/.authinfo.gpg</code>, and you are using GUI Emacs version 26, you  may need to <code>(setq epa-pinentry-mode 'loopback)</code>, otherwise it will <strong>not</strong>  prompt you to enter your passphrase and just throw a decryption error. Go and  do all of that, I will be waiting here.</p></li>
+ <li>
+  <p>Ready? OK, now create a token on the Github Enterprise API for your user account.</p></li>
+ <li>
+  <p>You should write that token into <code>~/.authinfo.gpg</code> in this format:</p></li></ol>
+
+<pre><code># -*- epa-file-encrypt-to: ("youruser@company.net") -*-
+machine ghe.company.net/api/v3 login youruser^forge password &lt;and the token that you just generated&gt;</code></pre>
   <footer>
     <ul class="pager">
-    <li class="previous">
-      <a href="/blog/2018/05/14/debug-scala-with-spacemacs/">&larr; <em>Debug Scala with Spacemacs</em></a>
-    </li>
+
     <li class="next">
-      <a href="/blog/2017/12/19/minimal-racket-web-app/"><em>Minimal Racket web app</em> &rarr;</a>
+      <a href="/blog/2019/01/05/interfacing-d-functions-from-racket/"><em>Interfacing D functions from Racket</em> &rarr;</a>
     </li>
     </ul>
   </footer>

@@ -4,9 +4,52 @@
   <title>logc io: Posts tagged 'git'</title>
   <description>logc io: Posts tagged 'git'</description>
   <link>http://logc.github.io/tags/git.html</link>
-  <lastBuildDate>Mon, 30 Apr 2018 09:46:41 UT</lastBuildDate>
-  <pubDate>Mon, 30 Apr 2018 09:46:41 UT</pubDate>
+  <lastBuildDate>Fri, 23 Aug 2019 14:14:14 UT</lastBuildDate>
+  <pubDate>Fri, 23 Aug 2019 14:14:14 UT</pubDate>
   <ttl>1800</ttl>
+  <item>
+   <title>Setting up Magit Forge with Github Enterprise server</title>
+   <link>http://logc.github.io/blog/2019/08/23/setting-up-magit-forge-with-github-enterprise-server/?utm_source=git&amp;utm_medium=RSS</link>
+   <guid isPermaLink="false">urn:http-logc-github-io:-blog-2019-08-23-setting-up-magit-forge-with-github-enterprise-server</guid>
+   <pubDate>Fri, 23 Aug 2019 14:14:14 UT</pubDate>
+   <author>logc</author>
+   <description>
+&lt;p&gt;I have attempted a number of times to create a pull request from the comfort of Emacs and Magit, with no success yet. The main problem is that I use most of the time my company&amp;rsquo;s GitHub Enterprise instance, not the public service called &lt;code&gt;github.com&lt;/code&gt;. The GitHub service is so ubiquitous that many people forget there are other installations, not seen on the public Internet, where big corporations and hip companies keep their precious, precious code.&lt;/p&gt;
+
+&lt;p&gt;This week I finally made progress in setting up the connection.&lt;/p&gt;
+&lt;!-- more--&gt;
+
+&lt;p&gt;You need to customize the variable &lt;code&gt;forge-alist&lt;/code&gt; to include your company&amp;rsquo;s GHE as a new &amp;ldquo;forge&amp;rdquo;. You need to add there a four-element tuple that describes how Magit Forge should talk to this new Github, and also how it should be identified to the user. It is easier to see how the fields are intended if you use a Customize buffer, but in the end, you need to do the equivalent of evaluating this expression:&lt;/p&gt;
+
+&lt;div class="brush: emacs-lisp"&gt;
+ &lt;div class="highlight"&gt;
+  &lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;push&lt;/span&gt; &lt;span class="o"&gt;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;"ghe.company.net"&lt;/span&gt; &lt;span class="s"&gt;"ghe.company.net/api/v3"&lt;/span&gt;
+        &lt;span class="s"&gt;"ghe.company.net"&lt;/span&gt; &lt;span class="nv"&gt;forge-github-repository&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="nv"&gt;forge-alist&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;/div&gt;
+
+&lt;p&gt;where it is assumed that your company&amp;rsquo;s sysadmins have deployed the Github service under a DNS name like &lt;code&gt;ghe.company.net&lt;/code&gt;. Of course, this will be different for each deployment, and it could be called &lt;code&gt;veryprivategithub.anotherdomainweown.com&lt;/code&gt;. You need to figure out that bit.&lt;/p&gt;
+
+&lt;p&gt;Another thing that was tricky was that the next thing to do, on a repository that has been cloned from a remote with this name, is to do a &lt;code&gt;forge-pull&lt;/code&gt;. This will try to contact the GHE instance and download data like open issues.&lt;/p&gt;
+
+&lt;p&gt;In order to connect to the forge, Magit Forge needs to know which credentials to use. There is a wizard, for the first &lt;code&gt;forge-pull&lt;/code&gt;, where you just need to give your user and password (!) and it will create the right token for you using the GHE API (and hopefully, immediately forget your credentials!).&lt;/p&gt;
+
+&lt;p&gt;If you have trust issues, or are a hacker that needs to do everything by themselves, you can do the following instead:&lt;/p&gt;
+
+&lt;ol&gt;
+ &lt;li&gt;
+  &lt;p&gt;Change the order of sources in the variable &lt;code&gt;auth-sources&lt;/code&gt; and set  &lt;code&gt;~/authinfo.gpg&lt;/code&gt; &lt;strong&gt;higher&lt;/strong&gt; than &lt;code&gt;~/authinfo&lt;/code&gt;. This means that the  &lt;strong&gt;encrypted file&lt;/strong&gt; will be used in preference to a &lt;strong&gt;plaintext file&lt;/strong&gt; in  order to store the token that allows Magit to connect to GHE.&lt;/p&gt;&lt;/li&gt;
+ &lt;li&gt;
+  &lt;p&gt;Open &lt;code&gt;~/.authinfo.gpg&lt;/code&gt;. You may need to enter your passphrase for that file.  You may need to &lt;strong&gt;create&lt;/strong&gt; that file in the first place. You may need to  &lt;strong&gt;create a GPG private/public keypair&lt;/strong&gt; in order to encrypt files at all.  Please refer to the GPG documentation for that. Ah! On top of that, when you  try to open &lt;code&gt;~/.authinfo.gpg&lt;/code&gt;, and you are using GUI Emacs version 26, you  may need to &lt;code&gt;(setq epa-pinentry-mode 'loopback)&lt;/code&gt;, otherwise it will &lt;strong&gt;not&lt;/strong&gt;  prompt you to enter your passphrase and just throw a decryption error. Go and  do all of that, I will be waiting here.&lt;/p&gt;&lt;/li&gt;
+ &lt;li&gt;
+  &lt;p&gt;Ready? OK, now create a token on the Github Enterprise API for your user account.&lt;/p&gt;&lt;/li&gt;
+ &lt;li&gt;
+  &lt;p&gt;You should write that token into &lt;code&gt;~/.authinfo.gpg&lt;/code&gt; in this format:&lt;/p&gt;&lt;/li&gt;&lt;/ol&gt;
+
+&lt;pre&gt;&lt;code&gt;# -*- epa-file-encrypt-to: ("youruser@company.net") -*-
+machine ghe.company.net/api/v3 login youruser^forge password &amp;lt;and the token that you just generated&amp;gt;&lt;/code&gt;&lt;/pre&gt;</description></item>
   <item>
    <title>Git setup with fork and upstream</title>
    <link>http://logc.github.io/blog/2018/04/30/git-setup-with-fork-and-upstream/?utm_source=git&amp;utm_medium=RSS</link>
